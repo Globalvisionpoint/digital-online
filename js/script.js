@@ -9,8 +9,19 @@
     /* ============================================
        LOADER
        ============================================ */
+    // NOTE: `is-loading` is already on <body> in the HTML so the loader screen
+    // shows on first paint with zero flash of header/content. We only remove
+    // the class here once loading is complete.
     const loader = document.getElementById('loader');
-    document.body.classList.add('is-loading');
+    // Safety fallback: if 4 seconds pass and the loader is still showing
+    // (e.g. JS error or very slow assets), force-reveal the page.
+    const safetyTimeout = setTimeout(() => {
+        if (document.body.classList.contains('is-loading')) {
+            document.body.classList.remove('is-loading');
+            if (loader) loader.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+    }, 8000);
     if (loader) {
         const loaderBar = document.getElementById('loader-bar');
         const loaderPercent = document.getElementById('loader-percent');
@@ -29,6 +40,7 @@
             if (loadProgress >= 100) {
                 loadProgress = 100;
                 clearInterval(loadInterval);
+                clearTimeout(safetyTimeout);
                 setTimeout(() => {
                     loader.classList.add('hidden');
                     document.body.classList.remove('is-loading');

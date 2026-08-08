@@ -115,18 +115,25 @@ ul { list-style: none; }
 }
 #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 
-/* Hide header while the loading screen is active */
+/* Hide header while the loading screen is active.
+   Use display:none (not visibility/opacity) so the header is removed from the
+   layout entirely and never flashes on first paint. The class is added directly
+   on <body> in HTML so it applies before any JS runs. */
+html.is-loading body.is-loading .header,
 body.is-loading .header,
 body.is-loading .header-placeholder {
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
+    display: none !important;
 }
 body.is-loading #bg-canvas,
 body.is-loading .grid-overlay,
 body.is-loading .noise-overlay,
 body.is-loading .scanlines,
 body.is-loading .vignette {
+    visibility: hidden;
+}
+/* While loading, the main content (everything except the loader) is invisible.
+   This prevents any flash of content while the page is still loading. */
+body.is-loading > *:not(#loader) {
     visibility: hidden;
 }
 .loader-ring {
