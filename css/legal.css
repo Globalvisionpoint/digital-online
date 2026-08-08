@@ -10,7 +10,7 @@
 
 /* Reduce top padding only on the legal page so the header sits higher */
 .section > .container.legal-page {
-    margin-top: -50px;
+    margin-top: -80px;
 }
 
 .legal-header {
