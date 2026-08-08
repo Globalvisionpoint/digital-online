@@ -8,11 +8,16 @@
     padding: 0 16px;
 }
 
+/* Reduce top padding only on the legal page so the header sits higher */
+.section > .container.legal-page {
+    margin-top: -50px;
+}
+
 .legal-header {
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    padding: 30px 20px 30px;
+    margin-top: 0;
+    margin-bottom: 32px;
+    padding: 22px 20px 22px;
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.04) 0%, rgba(255, 7, 58, 0.03) 100%);
     border: 1px solid var(--c-border-strong);
     border-radius: 4px;
