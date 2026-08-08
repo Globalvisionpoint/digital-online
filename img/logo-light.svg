@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 90" width="360" height="90">
+    <defs>
+        <linearGradient id="accent-light" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#818CF8"/>
+            <stop offset="100%" stop-color="#22D3EE"/>
+        </linearGradient>
+    </defs>
+
+    <g transform="translate(8, 12)">
+        <path d="M 10 10 L 44 10 L 54 20 L 54 54 L 10 54 Z" fill="#FFFFFF"/>
+        <path d="M 22 18 L 22 46 L 28 40 L 32 47 L 36 45 L 32 38 L 41 38 Z" fill="#000000"/>
+    </g>
+
+    <text x="90" y="50" font-family="'Inter', 'Segoe UI', system-ui, sans-serif"
+          font-size="32" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">Digital</text>
+    <text x="200" y="50" font-family="'Inter', 'Segoe UI', system-ui, sans-serif"
+          font-size="32" font-weight="800" fill="url(#accent-light)" letter-spacing="-0.5">Online</text>
+
+    <text x="91" y="72" font-family="'Inter', 'Segoe UI', system-ui, sans-serif"
+          font-size="14" font-weight="700" fill="#FFFFFF" letter-spacing="3">SERVICII DIGITALE</text>
+</svg>

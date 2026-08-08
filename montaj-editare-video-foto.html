@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Montaj & Editare Video-Foto | Digital Online</title>
+    <meta name="description" content="Montaj video, editare foto, generare de videoclipuri realiste cu AI pentru social media, reclame, Reels, TikTok.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=401">
+
+    <!-- Three.js + GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="img/logo-light.svg">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="img/favicon-192.png">
+
+    <!-- ===== SEO + GEO (Generative Engine Optimization) ===== -->
+    <link rel="canonical" href="https://digital-online.ro/montaj-editare-video-foto.html">
+    <link rel="alternate" hreflang="ro" href="https://digital-online.ro/montaj-editare-video-foto.html">
+    <link rel="alternate" hreflang="x-default" href="https://digital-online.ro/montaj-editare-video-foto.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Digital Online">
+    <meta property="og:title" content="Montaj & Editare Video-Foto | Digital Online">
+    <meta property="og:description" content="Montaj video, editare foto, generare de videoclipuri realiste cu AI pentru social media, reclame, Reels, TikTok.">
+    <meta property="og:url" content="https://digital-online.ro/montaj-editare-video-foto.html">
+    <meta property="og:image" content="https://digital-online.ro/img/og-cover.png">
+    <meta property="og:locale" content="ro_RO">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Montaj & Editare Video-Foto | Digital Online">
+    <meta name="twitter:description" content="Montaj video, editare foto, generare de videoclipuri realiste cu AI pentru social media, reclame, Reels, TikTok.">
+    <meta name="twitter:image" content="https://digital-online.ro/img/og-cover.png">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Digital Online">
+    <meta name="geo.region" content="EU">
+    <meta name="geo.placename" content="Europe">
+    <meta name="language" content="Romanian, English, Spanish, Portuguese">
+    <meta name="theme-color" content="#05050a">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://digital-online.ro/montaj-editare-video-foto.html#webpage",
+          "url": "https://digital-online.ro/montaj-editare-video-foto.html",
+          "name": "Montaj & Editare Video-Foto | Digital Online",
+          "isPartOf": { "@id": "https://digital-online.ro/#website" },
+          "about": { "@id": "https://digital-online.ro/#organization" },
+          "inLanguage": "ro"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Acasă", "item": "https://digital-online.ro/" },
+            { "@type": "ListItem", "position": 2, "name": "Montaj & Editare Video-Foto | Digital Online", "item": "https://digital-online.ro/montaj-editare-video-foto.html" }
+          ]
+        }
+      ]
+    }
+    </script>
+</head>
+<body id="top">
+
+    <!-- ===== CYBER LAYER ===== -->
+
+    <div id="loader">
+        <div class="loader-ring"></div>
+        <div class="loader-ring delay-1"></div>
+        <div class="loader-ring delay-2"></div>
+        <div class="loader-center">
+            <div class="loader-title">DIGITAL ONLINE</div>
+            <div class="loader-status" id="loader-text">INITIALIZING SYSTEM</div>
+        </div>
+        <div class="loader-progress">
+            <div id="loader-bar" class="loader-bar"></div>
+        </div>
+        <div class="loader-percent" id="loader-percent">0%</div>
+    </div>
+
+    <canvas id="bg-canvas"></canvas>
+    <div class="grid-overlay"></div>
+    <div class="noise-overlay"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div id="cursor" class="custom-cursor"></div>
+    <div id="cursor-trail" class="cursor-trail"></div>
+    <!-- ===== /CYBER LAYER ===== -->
+    
+
+    <header class="header" id="header">
+        <div class="container header-inner">            <button class="menu-toggle" id="menuToggle" aria-label="Meniu">â˜°</button>            <a href="index.html" class="logo"><img src="img/logo-light.svg" alt="Digital Online" class="logo-img"></a>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html#top" class="nav-link">AcasÄƒ</a></li>
+                    <li class="has-dropdown"><a href="index.html#servicii" class="nav-link active">Servicii â–¾</a>
+                        <ul class="dropdown">
+                            <li><a href="servicii-it.html">Site-uri Web & Servicii IT</a></li>
+                            <li><a href="magazine-online.html">Magazine Online Shopify</a></li>
+                            <li><a href="integrari.html">IntegrÄƒri Automate</a></li>
+                            <li><a href="consultanta.html">ConsultanÈ›Äƒ Business</a></li>
+                            <li><a href="import-china.html">Import Produse China</a></li>
+                            <li><a href="promovare.html">Promovare & Ads</a></li>
+                            <li><a href="montaj-editare-video-foto.html">Montaj & Editare Video-Foto</a></li>
+                            <li><a href="implementare-ai.html">Implementare AI & ChatboÈ›i</a></li>
+                            <li><a href="platforme-custom.html">Platforme & AplicaÈ›ii Custom</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="index.html#dashboards" class="nav-link">Analytics</a></li>
+                    <li><a href="index.html#proces" class="nav-link">Proces</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="btn btn-primary btn-sm">SolicitÄƒ OfertÄƒ</a>
+        </div>
+    </header>
+    <div class="header-placeholder" aria-hidden="true"></div>
+
+
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <div class="page-blob blob-1"></div>
+            <div class="page-blob blob-2"></div>
+            <div class="page-blob blob-3"></div>
+        </div>
+        <div class="container">
+            <h1>ConÈ›inut vizual care opreÈ™te scroll-ul<br><span class="grad-text">È™i transformÄƒ privitori Ã®n clienÈ›i</span></h1>
+            <p>Montaj È™i editare video, foto, plus generare de videoclipuri realiste cu inteligenÈ›Äƒ artificialÄƒ â€” pentru social media, reclame, Reels, TikTok È™i orice alt canal.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-head">
+                <h2>Tipuri de conÈ›inut pe care le producem</h2>
+                <p>De la conÈ›inut organic la reclame premium, cu sau fÄƒrÄƒ AI.</p>
+            </div>
+            <div class="feature-grid">
+                <div class="feature"><h4><span>ðŸ“±</span> Reels / TikTok / Shorts</h4><p>Clipuri scurte, verticale, dinamice â€” perfect optimizate pentru engagement È™i reach organic.</p></div>
+                <div class="feature"><h4><span>ðŸ“º</span> Video Ads pentru campanii</h4><p>Clipuri profesionale pentru Meta Ads, YouTube Ads, TikTok Ads â€” cu hook Ã®n prima secundÄƒ.</p></div>
+                <div class="feature"><h4><span>ðŸŽ¥</span> Videoclipuri de prezentare</h4><p>PrezentÄƒri de produs, demo-uri, video-uri corporate, testimoniale clienÈ›i, unboxing-uri.</p></div>
+                <div class="feature"><h4><span>ðŸ“¸</span> Editare foto produse</h4><p>RetuÈ™are, eliminare fundal, montaj, colorizare, mockup-uri. Calitate de studio.</p></div>
+                <div class="feature"><h4><span>ðŸ¤–</span> Generare video cu AI</h4><p>CreÄƒm videoclipuri realiste cu AI â€” personaje, scene, voiceover, fÄƒrÄƒ filmÄƒri fizice.</p></div>
+                <div class="feature"><h4><span>ðŸ–¼ï¸</span> Generare imagini AI</h4><p>Imagini unice, lifestyle, mockup-uri, ilustratii, generative fill â€” perfecte pentru ads È™i site.</p></div>
+                <div class="feature"><h4><span>ðŸŽ¤</span> Voiceover profesional</h4><p>Voce naturalÄƒ sau generatÄƒ AI, Ã®n romÃ¢nÄƒ sau alte limbi. Pentru ads, tutoriale, podcast-uri.</p></div>
+                <div class="feature"><h4><span>âœ‚ï¸</span> Montaj evenimente</h4><p>Clipuri aftermovie pentru nunÈ›i, conferinÈ›e, lansÄƒri, evenimente corporate.</p></div>
+                <div class="feature"><h4><span>ðŸŽ¬</span> AnimaÈ›ii & motion graphics</h4><p>AnimaÈ›ii 2D/3D, logo reveal-uri, explainer video-uri, infografice animate.</p></div>
+                <div class="feature"><h4><span>ðŸ“–</span> Carusele Instagram</h4><p>Carusele vizuale cu informaÈ›ii, statistici, citate, tutoriale â€” pentru engagement È™i salvare.</p></div>
+                <div class="feature"><h4><span>ðŸŒŸ</span> Stories & Highlights</h4><p>Design È™i conÈ›inut pentru Instagram Stories, Snapchat, Facebook Stories.</p></div>
+                <div class="feature"><h4><span>ðŸ“¦</span> Foto & video produse</h4><p>Sesiuni foto/video pentru produse: 360Â°, video demo, lifestyle, pe model.</p></div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <div class="section-head">
+                    <h2>Clipuri care se folosesc la ads</h2>
+                    <p>Tipuri de creativitÄƒÈ›i care convertesc cel mai bine Ã®n campanii plÄƒtite.</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature"><h4><span>ðŸŽ¯</span> Hook + Problem + Solution</h4><p>Atragi atenÈ›ia, identifici problema, arÄƒÈ›i soluÈ›ia. FormÄƒ clasicÄƒ, funcÈ›ioneazÄƒ pe toate platformele.</p></div>
+                    <div class="feature"><h4><span>â­</span> Testimoniale reale</h4><p>ClienÈ›i mulÈ›umiÈ›i care povestesc experienÈ›a. ÃŽncredere È™i conversii.</p></div>
+                    <div class="feature"><h4><span>ðŸ”¥</span> UGC (User Generated Content)</h4><p>Content Ã®n stilul celor creaÈ›i de utilizatori, dar produÈ™i profesional. FuncÈ›ioneazÄƒ excelent pe TikTok È™i Reels.</p></div>
+                    <div class="feature"><h4><span>ðŸ“¦</span> Unboxing & Demo</h4><p>ArÄƒtarea produsului Ã®n acÈ›iune. ÃŽncredere, transparenÈ›Äƒ, dorinÈ›Äƒ de cumpÄƒrare.</p></div>
+                    <div class="feature"><h4><span>ðŸ¤”</span> Before / After</h4><p>TransformÄƒri vizuale puternice. Ideal pentru beauty, fitness, home improvement, curÄƒÈ›enie.</p></div>
+                    <div class="feature"><h4><span>â±ï¸</span> Sliding Scale / Countdown</h4><p>NumÄƒrÄƒtori inverse, oferte limitate, scarcity â€” pentru urgenÈ›Äƒ È™i acÈ›iune rapidÄƒ.</p></div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h2>Ai nevoie de conÈ›inut vizual care vinde?</h2>
+                <p>Spune-ne brandul, produsele È™i canalele pe care vrei sÄƒ apari, iar noi producem conÈ›inutul.</p>
+                <a href="#contact" class="btn">Cere Pachet Video â†’</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-contact" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Spune-ne despre proiectul tÄƒu<br>È™i construim Ã®mpreunÄƒ</h2>
+                    <p>De la primul concept pÃ¢nÄƒ la lansare È™i optimizare, echipa noastrÄƒ lucreazÄƒ cu tine la fiecare pas. Ne ocupÄƒm de site-uri de prezentare, magazine online Shopify, import produse din China, integrÄƒri automate, promovare multi-channel, editare video È™i foto, implementare AI È™i platforme web custom.</p>
+                    <p>Scrie-ne pe WhatsApp, trimite-ne un email sau completeazÄƒ formularul. Revenim cu o propunere clarÄƒ Ã®n maxim 24 de ore.</p>
+
+                    <div class="contact-channels">
+                        <!-- WhatsApp - buton principal, link direct -->
+                        <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="channel channel-whatsapp">
+                            <div class="channel-icon">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                                </svg>
+                            </div>
+                            <div class="channel-body">
+                                <div class="channel-title-row">
+                                    <strong>WhatsApp</strong>
+                                    <span class="live-dot"></span>
+                                </div>
+                                <small>Scrie-ne acum. RÄƒspundem Ã®n cÃ¢teva minute</small>
+                            </div>
+                            <div class="channel-arrow">â†’</div>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="mailto:contact@digital-online.ro" class="channel">
+                            <div class="channel-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                    <path d="m22 7-10 5L2 7"/>
+                                </svg>
+                            </div>
+                            <div class="channel-body">
+                                <strong>Email</strong>
+                                <small>contact@digital-online.ro</small>
+                            </div>
+                            <div class="channel-arrow">â†’</div>
+                        </a>
+
+                        <!-- Telefon -->
+                        <a href="tel:+40758653550" class="channel">
+                            <div class="channel-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                                </svg>
+                            </div>
+                            <div class="channel-body">
+                                <strong>Telefon</strong>
+                                <small>+40 758 653 550</small>
+                            </div>
+                            <div class="channel-arrow">â†’</div>
+                        </a>
+
+                        <!-- Program -->
+                        <div class="channel channel-static">
+                            <div class="channel-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                            </div>
+                            <div class="channel-body">
+                                <strong>Program</strong>
+                                <small>Luni â€“ Vineri Â· 09:00 â€“ 17:00</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm" novalidate>
+                    <h3>SolicitÄƒ o ofertÄƒ</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nume">Nume complet *</label>
+                            <input type="text" id="nume" name="nume" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefon">Telefon *</label>
+                            <input type="tel" id="telefon" name="telefon" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviciu">Serviciul dorit</label>
+                        <select id="serviciu" name="serviciu">
+                            <option value="">Alege serviciul...</option>
+                            <option>Site de prezentare</option>
+                            <option>Magazin online Shopify</option>
+                            <option>Modificare / MentenanÈ›Äƒ site existent</option>
+                            <option>IntegrÄƒri automate (facturare, curierat, plÄƒÈ›i)</option>
+                            <option>ConsultanÈ›Äƒ business online</option>
+                            <option>Import produse China</option>
+                            <option>Promovare & Marketing (Google/Meta/TikTok Ads)</option>
+                            <option>Montaj & Editare Video-Foto</option>
+                            <option>Implementare AI & ChatboÈ›i</option>
+                            <option>PlatformÄƒ / AplicaÈ›ie custom</option>
+                            <option>Altceva</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mesaj">Mesajul tÄƒu *</label>
+                        <textarea id="mesaj" name="mesaj" rows="5" required placeholder="Descrie pe scurt ce ai nevoie..."></textarea>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" id="gdpr" name="gdpr" required>
+                        <label for="gdpr">Sunt de acord cu prelucrarea datelor personale conform <a href="#" target="_blank">politicii de confidenÈ›ialitate</a>.</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Trimite Solicitarea â†’</button>
+                    <div class="form-status" id="formStatus"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer"><div class="container">
+        <div class="footer-grid">
+            <div class="footer-col"><a href="index.html" class="logo logo-light"><img src="img/logo-light.svg" alt="Digital Online" class="logo-img"></a><p>Partenerul tÄƒu digital complet.</p></div>
+            <div class="footer-col"><h5>Servicii</h5><ul><li><a href="servicii-it.html">Site-uri Web & Servicii IT</a></li><li><a href="magazine-online.html">Magazine Online</a></li><li><a href="integrari.html">IntegrÄƒri</a></li><li><a href="promovare.html">Promovare & Ads</a></li><li><a href="implementare-ai.html">AI & ChatboÈ›i</a></li></ul></div>
+            <div class="footer-col"><h5>Companie</h5><ul><li><a href="index.html#despre">Despre noi</a></li><li><a href="index.html#proces">Proces</a></li><li><a href="index.html#companie">ÃŽncredere</a></li></ul></div>
+            <div class="footer-col"><h5>Contact</h5><ul><li>ðŸ“§ contact@digital-online.ro</li><li>ðŸ•’ Luni â€“ Vineri 09:00 â€“ 17:00</li></ul></div>
+        </div>
+        <div class="footer-bottom"><span>Â© <span id="year">2026</span> Digital Online Â· Toate drepturile rezervate</span><span>Global Vision Point Limited</span></div>
+    </div></footer>
+    <button class="to-top" id="toTop">â†‘</button>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+

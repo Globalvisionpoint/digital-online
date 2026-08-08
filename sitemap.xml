@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+    <!-- Pagina principalÄƒ -->
+    <url>
+        <loc>https://digital-online.ro/</loc>
+        <loc>https://www.digital-online.ro/</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/"/>
+    </url>
+
+    <url>
+        <loc>https://digital-online.ro/index.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Site-uri Web & Servicii IT -->
+    <url>
+        <loc>https://digital-online.ro/servicii-it.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Magazine Online Shopify -->
+    <url>
+        <loc>https://digital-online.ro/magazine-online.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- IntegrÄƒri Automate -->
+    <url>
+        <loc>https://digital-online.ro/integrari.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- ConsultanÈ›Äƒ Business -->
+    <url>
+        <loc>https://digital-online.ro/consultanta.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Import Produse China -->
+    <url>
+        <loc>https://digital-online.ro/import-china.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Promovare & Marketing Digital -->
+    <url>
+        <loc>https://digital-online.ro/promovare.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Montaj & Editare Video-Foto -->
+    <url>
+        <loc>https://digital-online.ro/montaj-editare-video-foto.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Implementare AI & ChatboÈ›i -->
+    <url>
+        <loc>https://digital-online.ro/implementare-ai.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Platforme & AplicaÈ›ii Custom -->
+    <url>
+        <loc>https://digital-online.ro/platforme-custom.html</loc>
+        <lastmod>2026-08-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+</urlset>

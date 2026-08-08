@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Digital Online - favicon (doar simbolul, fără wordmark)
+  Optimizat pentru 16x16, 32x32, 64x64
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+    <defs>
+        <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#4F46E5"/>
+            <stop offset="100%" stop-color="#06B6D4"/>
+        </linearGradient>
+    </defs>
+    <!-- Fundal pătrat 44x44 cu colț tăiat (aceeași formă ca logo) -->
+    <path d="M 10 10 L 44 10 L 54 20 L 54 54 L 10 54 Z" fill="#0F172A"/>
+    <!-- Cursor (aceeași formă ca logo, repoziționat pentru favicon) -->
+    <path d="M 24 23 L 24 41 L 29 36 L 33 43 L 36.5 41.5 L 33 35 L 39 35 Z" fill="url(#accent)"/>
+</svg>
