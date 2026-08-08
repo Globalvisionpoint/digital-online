@@ -212,6 +212,23 @@
       ]
     }
     </script>
+
+    <!-- ===== COOKIE CONSENT BANNER (GDPR / ePrivacy compliant) ===== -->
+    <link rel="stylesheet" href="css/cookies.css?v=1">
+
+    <!-- Google Consent Mode v2 (default denied — așteaptă consimțământul) -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 800,
+        'region': ['RO', 'EU']
+    });
+    </script>
     </head>
 <body id="top">
 
@@ -911,7 +928,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <span>© <span id="year">2026</span> Digital Online · Toate drepturile rezervate</span>
+                <span>© <span id="year">2026</span> Digital Online · Toate drepturile rezervate · <a href="politica-confidentialitate.html" style="color:var(--cyber-neon);text-decoration:none;">Politică de Confidențialitate</a> · <a href="#" onclick="event.preventDefault();window.DigitalOnlineCookies&&window.DigitalOnlineCookies.openSettings();return false;" style="color:var(--cyber-neon);text-decoration:none;cursor:pointer;">Setări Cookie-uri</a> · <a href="politica-confidentialitate.html" style="color:var(--cyber-neon);text-decoration:none;">Politică de Confidențialitate</a> · <a href="#" onclick="event.preventDefault();window.DigitalOnlineCookies&&window.DigitalOnlineCookies.openSettings();return false;" style="color:var(--cyber-neon);text-decoration:none;cursor:pointer;">Setări Cookie-uri</a></span>
                 
             </div>
         </div>
@@ -952,6 +969,9 @@
         if (target) obs.observe(target);
     })();
     </script>
+
+    <!-- ===== COOKIE CONSENT — script încărcat la final ===== -->
+    <script src="js/cookies.js?v=1" defer></script>
 </body>
 </html>
 

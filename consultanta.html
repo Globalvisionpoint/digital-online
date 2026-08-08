@@ -62,7 +62,24 @@
       ]
     }
     </script>
-</head>
+
+    <!-- ===== COOKIE CONSENT BANNER (GDPR / ePrivacy compliant) ===== -->
+    <link rel="stylesheet" href="css/cookies.css?v=1">
+
+    <!-- Google Consent Mode v2 (default denied — așteaptă consimțământul) -->
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
+        'wait_for_update': 800,
+        'region': ['RO', 'EU']
+    });
+    </script>
+    </head>
 <body id="top">
 
     <!-- ===== CYBER LAYER ===== -->
@@ -290,10 +307,13 @@
             <div class="footer-col"><h5>Companie</h5><ul><li><a href="index.html#despre">Despre noi</a></li><li><a href="index.html#proces">Proces</a></li><li><a href="index.html#companie">ÃŽncredere</a></li></ul></div>
             <div class="footer-col"><h5>Contact</h5><ul><li>ðŸ“§ contact@digital-online.ro</li><li>ðŸ•’ Luni â€“ Vineri 09:00 â€“ 17:00</li></ul></div>
         </div>
-        <div class="footer-bottom"><span>Â© <span id="year">2026</span> Digital Online Â· Toate drepturile rezervate</span></div>
+        <div class="footer-bottom"><span>© <span id="year">2026</span> Digital Online · Toate drepturile rezervate · <a href="politica-confidentialitate.html" style="color:var(--cyber-neon);text-decoration:none;">Politică de Confidențialitate</a> · <a href="#" onclick="event.preventDefault();window.DigitalOnlineCookies&amp;&amp;window.DigitalOnlineCookies.openSettings();return false;" style="color:var(--cyber-neon);text-decoration:none;cursor:pointer;">Setări Cookie-uri</a></span></div>
     </div></footer>
     <button class="to-top" id="toTop">â†‘</button>
     <script src="js/script.js"></script>
+
+    <!-- ===== COOKIE CONSENT — script încărcat la final ===== -->
+    <script src="js/cookies.js?v=1" defer></script>
 </body>
 </html>
 
