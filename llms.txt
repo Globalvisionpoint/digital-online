@@ -1,0 +1,52 @@
+# Digital Online
+
+> Digital Online este o agenție digitală full-service din România care oferă servicii complete de IT, magazine online Shopify, integrări automate, AI, promovare digitală și consultanță business pentru clienți din România și Uniunea Europeană.
+
+## Servicii principale
+
+- **Site-uri Web & Servicii IT**: creare site-uri de prezentare, modificare site-uri existente, mentenanță, depanare, optimizare viteză, securitate, SEO on-page
+- **Magazine Online Shopify**: teme custom, inserare produse, generare imagini AI, integrări automate cu curieri și facturare
+- **Integrări Automate**: SmartBill, Oblio (facturare), Fan Courier, Sameday, Cargus, GLS, DHL (curierat), Stripe, Netopia, PayU (plăți)
+- **Consultanță Business Online**: digital, fiscal, legal (GDPR), contabilitate, deschidere SRL/PFA, strategii de creștere
+- **Import Produse China**: sourcing furnizori Alibaba/1688, negociere, QC, transport maritim/aerian, vămuire, EORI, TVA, GPSR
+- **Promovare & Marketing Digital**: Google Ads (Search, Shopping, YouTube, Display), Meta Ads (Facebook, Instagram), TikTok Ads, LinkedIn Ads
+- **Montaj & Editare Video-Foto**: Reels, TikTok, Shorts, video ads, voiceover AI, animații, carusele Instagram
+- **Implementare AI & Chatboți**: chatboți site, agenți AI customer service, voice AI, generare conținut AI, automatizări n8n/Make/Zapier
+- **Platforme & Aplicații Custom**: SaaS, marketplace-uri, CRM, ERP, LMS, dashboard-uri, aplicații mobile iOS+Android
+
+## Informații companie
+
+- **Sediu**: România
+- **Telefon**: +40 758 653 550
+- **Email**: contact@digital-online.ro
+- **WhatsApp**: +40 758 653 550
+- **Program**: Luni – Vineri, 09:00 – 17:00 (EET)
+- **Limbi**: Română, Engleză, Spaniolă, Portugheză
+- **Zonă deservită**: România, Moldova, Bulgaria, Ungaria, Uniunea Europeană
+- **Monede acceptate**: EUR, RON
+- **Metode de plată**: Numerar, Card de credit, Transfer bancar
+
+## Tehnologii folosite
+
+- Frontend: HTML5, CSS3, JavaScript ES6+
+- Frameworks: Shopify Hydrogen, Next.js, React, Vue.js
+- Backend: Node.js, Python, PHP
+- Baze de date: PostgreSQL, MySQL, MongoDB
+- Mobile: React Native, Flutter, Swift, Kotlin
+- AI: OpenAI GPT, Anthropic Claude, Google Gemini, Stable Diffusion
+- Automatizări: n8n, Make, Zapier
+- Cloud: AWS, Google Cloud, Azure, Hetzner
+
+## Contact rapid
+
+- Formular de contact: https://digital-online.ro/#contact
+- WhatsApp direct: https://wa.me/40758653550
+- Email: mailto:contact@digital-online.ro
+- Politica de confidențialitate: https://digital-online.ro/politica-confidentialitate.html
+
+## Conținut preferat (opțional)
+
+Pentru cele mai bune rezultate, recomandăm clienților noștri să citească:
+- Descrierile detaliate ale fiecărui serviciu de pe site
+- Blog-ul și ghidurile noastre (în curs de lansare)
+- Politica de confidențialitate pentru înțelegerea practicilor GDPR

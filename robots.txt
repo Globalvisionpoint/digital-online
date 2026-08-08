@@ -1,0 +1,26 @@
+# robots.txt - Digital Online
+# https://digital-online.ro/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /tmp/
+Disallow: /*?*
+
+# Crawl-delay for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Sitemaps
+Sitemap: https://digital-online.ro/sitemap.xml
+Sitemap: https://digital-online.ro/sitemap-pages.xml
+
+# Host
+Host: https://digital-online.ro
