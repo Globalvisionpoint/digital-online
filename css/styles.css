@@ -100,6 +100,40 @@ ul { list-style: none; }
 }
 
 /* ============================================
+   CUSTOM CURSOR — ascuns pe banner cookies, modal, footer, pagini legale
+   ============================================ */
+body.cookie-modal-open .custom-cursor,
+body.cookie-modal-open .cursor-trail,
+.footer:hover ~ .custom-cursor,
+.legal-page:hover ~ .custom-cursor {
+    display: none !important;
+}
+
+/* Suprascrie cursor: none pe elementele din banner cookies / modal */
+.cookie-banner, .cookie-banner *,
+.cookie-modal, .cookie-modal *,
+.cookie-revoke-btn, .cookie-revoke-btn *,
+.footer, .footer *,
+.legal-page, .legal-page *,
+.footer-bottom, .footer-bottom * {
+    cursor: auto !important;
+}
+.cookie-banner button,
+.cookie-banner a,
+.cookie-modal button,
+.cookie-modal a,
+.cookie-modal input[type="checkbox"] + .cookie-toggle-slider,
+.cookie-revoke-btn {
+    cursor: pointer !important;
+}
+.cookie-modal input[type="checkbox"]:disabled + .cookie-toggle-slider {
+    cursor: not-allowed !important;
+}
+.footer a:hover, .footer-bottom a:hover {
+    cursor: pointer !important;
+}
+
+/* ============================================
    LOADER
    ============================================ */
 #loader {

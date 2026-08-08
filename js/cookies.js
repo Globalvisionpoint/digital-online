@@ -214,22 +214,11 @@
     // ACTIONS
     // ============================================
 
-    function showBanner() {
-        buildBanner();
-        requestAnimationFrame(() => {
-            document.getElementById('cookie-banner').classList.add('visible');
-        });
-    }
-
-    function hideBanner() {
-        const b = document.getElementById('cookie-banner');
-        if (b) b.classList.remove('visible');
-    }
-
     function openModal() {
         buildModal();
         const m = document.getElementById('cookie-modal');
         document.body.style.overflow = 'hidden';
+        document.body.classList.add('cookie-modal-open');
         requestAnimationFrame(() => m.classList.add('visible'));
         // focus trap minimal: focus first focusable
         const first = m.querySelector('button, input');
@@ -240,6 +229,25 @@
         const m = document.getElementById('cookie-modal');
         if (m) m.classList.remove('visible');
         document.body.style.overflow = '';
+        document.body.classList.remove('cookie-modal-open');
+    }
+
+    function showBanner() {
+        buildBanner();
+        document.body.classList.add('cookie-modal-open');
+        requestAnimationFrame(() => {
+            document.getElementById('cookie-banner').classList.add('visible');
+        });
+    }
+
+    function hideBanner() {
+        const b = document.getElementById('cookie-banner');
+        if (b) b.classList.remove('visible');
+        // păstrăm cookie-modal-open dacă modal-ul e deschis
+        const m = document.getElementById('cookie-modal');
+        if (!m || !m.classList.contains('visible')) {
+            document.body.classList.remove('cookie-modal-open');
+        }
     }
 
     function showRevokeButton() {

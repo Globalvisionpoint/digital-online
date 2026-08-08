@@ -194,20 +194,25 @@
     const trail = document.getElementById('cursor-trail');
     if (cursor && trail) {
         let cx = 0, cy = 0, tx = 0, ty = 0;
+        let cursorActive = true;
 
         document.addEventListener('mousemove', (e) => {
             cx = e.clientX;
             cy = e.clientY;
-            cursor.style.left = cx - 6 + 'px';
-            cursor.style.top = cy - 6 + 'px';
+            if (cursorActive) {
+                cursor.style.left = cx - 6 + 'px';
+                cursor.style.top = cy - 6 + 'px';
+            }
         });
 
         function animateCursor() {
             requestAnimationFrame(animateCursor);
             tx += (cx - tx) * 0.15;
             ty += (cy - ty) * 0.15;
-            trail.style.left = tx - 15 + 'px';
-            trail.style.top = ty - 15 + 'px';
+            if (cursorActive) {
+                trail.style.left = tx - 15 + 'px';
+                trail.style.top = ty - 15 + 'px';
+            }
         }
         animateCursor();
 
@@ -216,6 +221,39 @@
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
+
+        // Dezactivează cursorul custom când banner-ul cookies / modal-ul sunt deschise,
+        // sau când mouse-ul e pe butonul de revocare / footer / suprafețe "neprietenoase"
+        function setCursorActive(active) {
+            cursorActive = active;
+            cursor.style.display = active ? '' : 'none';
+            trail.style.display = active ? '' : 'none';
+        }
+
+        // Ascultă clasa de pe body (setată de cookies.js)
+        const observer = new MutationObserver(() => {
+            setCursorActive(!document.body.classList.contains('cookie-modal-open'));
+        });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+        // Hover pe butonul de revocare / cookie banner
+        const safeTargets = ['.cookie-banner', '.cookie-modal', '.cookie-revoke-btn', '.footer', '.legal-page'];
+        document.addEventListener('mouseover', (e) => {
+            const t = e.target;
+            const hit = t.closest && t.closest(safeTargets.join(','));
+            if (hit) {
+                setCursorActive(false);
+            } else if (!document.body.classList.contains('cookie-modal-open')) {
+                setCursorActive(true);
+            }
+        }, true);
+        document.addEventListener('mouseout', (e) => {
+            const t = e.target;
+            const hit = t.closest && t.closest(safeTargets.join(','));
+            if (hit && !e.relatedTarget) {
+                setCursorActive(true);
+            }
+        }, true);
     }
 
     /* ============================================

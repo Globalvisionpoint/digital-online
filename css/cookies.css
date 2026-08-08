@@ -12,10 +12,71 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    /* ascunde cursorul custom Cyber din styles.css; afișează cursorul nativ */
+    cursor: pointer;
 }
 .cookie-overlay.visible {
     opacity: 1;
     visibility: visible;
+}
+
+/* Când banner-ul cookies sau modal-ul sunt deschise,
+   ascunde cursorul custom #cursor / #cursor-trail și forțează cursorul nativ. */
+body.cookie-modal-open #cursor,
+body.cookie-modal-open #cursor-trail,
+body.cookie-modal-open .custom-cursor {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+body.cookie-modal-open,
+body.cookie-modal-open * {
+    cursor: auto !important;
+}
+/* dar păstrăm pointer pe elementele clickabile */
+body.cookie-modal-open button,
+body.cookie-modal-open a,
+body.cookie-modal-open .cookie-btn,
+body.cookie-modal-open .cookie-modal-close,
+body.cookie-modal-open .cookie-toggle,
+body.cookie-modal-open .cookie-toggle-slider,
+body.cookie-modal-open [role="button"],
+body.cookie-modal-open [type="button"],
+body.cookie-modal-open [type="checkbox"] {
+    cursor: pointer !important;
+}
+body.cookie-modal-open input[type="checkbox"]:disabled + .cookie-toggle-slider,
+body.cookie-modal-open .cookie-toggle input:disabled + .cookie-toggle-slider {
+    cursor: not-allowed !important;
+}
+
+/* Ascunde cursorul custom și pe butonul de revocare */
+.cookie-revoke-btn,
+.cookie-revoke-btn:hover,
+.cookie-revoke-btn * {
+    cursor: pointer !important;
+}
+/* Suprascrie regulile din styles.css care pun cursor: none pe diverse elemente */
+#cookie-banner,
+#cookie-banner *,
+#cookie-modal,
+#cookie-modal *,
+.cookie-revoke-btn,
+.cookie-revoke-btn * {
+    cursor: auto !important;
+}
+#cookie-banner button,
+#cookie-modal button,
+#cookie-banner a,
+#cookie-modal a,
+.cookie-revoke-btn {
+    cursor: pointer !important;
+}
+#cookie-modal input[type="checkbox"]:disabled + .cookie-toggle-slider {
+    cursor: not-allowed !important;
+}
+#cookie-modal .cookie-toggle-slider {
+    cursor: pointer !important;
 }
 
 .cookie-banner {
