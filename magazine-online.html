@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=399">
+    <link rel="stylesheet" href="css/styles.css?v=509">
 
     <!-- Three.js + GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -50,12 +50,12 @@
 
     <header class="header" id="header">
         <div class="container header-inner">
-            <button class="menu-toggle" id="menuToggle" aria-label="Meniu"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><span class="bars"></span></button>
             <a href="index.html" class="logo"><img src="img/logo-light.svg" alt="Digital Online" class="logo-img"></a>
             <nav class="nav" id="nav">
                 <ul class="nav-list">
                     <li><a href="index.html#top" class="nav-link">Acasă</a></li>
-                    <li class="has-dropdown"><a href="index.html#servicii" class="nav-link active">Servicii </a>
+                    <li class="has-dropdown"><a href="index.html#servicii" class="nav-link active">Servicii ▾</a>
                         <ul class="dropdown">
                             <li><a href="servicii-it.html">Site-uri Web & Servicii IT</a></li>
                             <li><a href="magazine-online.html">Magazine Online Shopify</a></li>
@@ -95,21 +95,21 @@
         <div class="container">
             <div class="section-head">
                 <h2>Ce construim pentru tine</h2>
-                <p>De la designul temei până la ultimul produs încărcat — ne ocupăm de absolut tot.</p>
+                <p>De la designul temei până la ultimul produs încărcat, ne ocupăm de absolut tot.</p>
             </div>
             <div class="feature-grid">
-                <div class="feature"><h4><span></span> Temă Shopify custom</h4><p>Design unic, adaptat brandului tău. Nu folosim teme generice, ci creăm experiențe vizuale unice.</p></div>
-                <div class="feature"><h4><span>️</span> Magazin 100% custom de la 0</h4><p>Dacă vrei ceva cu totul diferit de Shopify standard, construim o soluție complet personalizată, pe Shopify Hydrogen sau headless commerce.</p></div>
-                <div class="feature"><h4><span></span> Inserare produse</h4><p>Adăugăm toate produsele tale cu titluri SEO-friendly, descrieri optimizate, imagini și variante complete.</p></div>
-                <div class="feature"><h4><span>️</span> Creare titluri & SEO</h4><p>Fiecare produs primește titlu, descriere, meta tags optimizate pentru Google și pentru rată de conversie.</p></div>
-                <div class="feature"><h4><span></span> Imagini produse & AI</h4><p>Folosim inteligența artificială pentru a genera imagini realiste pentru produsele tale, optimizate pentru web.</p></div>
-                <div class="feature"><h4><span></span> Generare imagini noi</h4><p>Creăm vizualuri unice, lifestyle, mockup-uri și imagini promoționale generate AI pentru fiecare produs.</p></div>
-                <div class="feature"><h4><span>️</span> Sisteme & configurări custom</h4><p>Implementăm funcționalități personalizate: reguli de preț, discount-uri automate, programe de loialitate, abonamente.</p></div>
-                <div class="feature"><h4><span></span> Aplicații Shopify</h4><p>Instalăm și configurăm aplicațiile potrivite pentru nevoile tale: review-uri, upsell, email marketing, analytics.</p></div>
-                <div class="feature"><h4><span></span> Procesatori de plată</h4><p>Integrare cu Stripe, Netopia, PayU, MobilPay — pentru plăți cu cardul și numerar (ramburs).</p></div>
-                <div class="feature"><h4><span></span> Shopify Dashboard</h4><p>Acces complet la dashboard-ul Shopify cu toate datele: vânzări, comenzi, produse, inventar, conversii.</p></div>
-                <div class="feature"><h4><span></span> Integrări curierat</h4><p>Conectare cu Fan Courier, Sameday, Cargus, GLS, DHL — generare AWB-uri direct din Shopify.</p></div>
-                <div class="feature"><h4><span></span> Facturare automată</h4><p>Integrare cu SmartBill, Fgo, Oblio — facturile se emit automat la fiecare comandă.</p></div>
+                <div class="feature"><h4>Temă Shopify custom</h4><p>Design unic, adaptat brandului tău. Nu folosim teme generice, ci creăm experiențe vizuale unice.</p></div>
+                <div class="feature"><h4>Magazin 100% custom de la 0</h4><p>Dacă vrei ceva cu totul diferit de Shopify standard, construim o soluție complet personalizată, pe Shopify Hydrogen sau headless commerce.</p></div>
+                <div class="feature"><h4>Inserare produse</h4><p>Adăugăm toate produsele tale cu titluri SEO-friendly, descrieri optimizate, imagini și variante complete.</p></div>
+                <div class="feature"><h4>Creare titluri & SEO</h4><p>Fiecare produs primește titlu, descriere, meta tags optimizate pentru Google și pentru rată de conversie.</p></div>
+                <div class="feature"><h4>Imagini produse & AI</h4><p>Folosim inteligența artificială pentru a genera imagini realiste pentru produsele tale, optimizate pentru web.</p></div>
+                <div class="feature"><h4>Generare imagini noi</h4><p>Creăm vizualuri unice, lifestyle, mockup-uri și imagini promoționale generate AI pentru fiecare produs.</p></div>
+                <div class="feature"><h4>Sisteme & configurări custom</h4><p>Implementăm funcționalități personalizate: reguli de preț, discount-uri automate, programe de loialitate, abonamente.</p></div>
+                <div class="feature"><h4>Aplicații Shopify</h4><p>Instalăm și configurăm aplicațiile potrivite pentru nevoile tale: review-uri, upsell, email marketing, analytics.</p></div>
+                <div class="feature"><h4>Procesatori de plată</h4><p>Integrare cu Stripe, Netopia, PayU, MobilPay, pentru plăți cu cardul și numerar (ramburs).</p></div>
+                <div class="feature"><h4>Shopify Dashboard</h4><p>Acces complet la dashboard-ul Shopify cu toate datele: vânzări, comenzi, produse, inventar, conversii.</p></div>
+                <div class="feature"><h4>Integrări curierat</h4><p>Conectare cu Fan Courier, Sameday, Cargus, GLS, DHL, generare AWB-uri direct din Shopify.</p></div>
+                <div class="feature"><h4>Facturare automată</h4><p>Integrare cu SmartBill, Fgo, Oblio, facturile se emit automat la fiecare comandă.</p></div>
             </div>
         </div>
     </section>
@@ -118,64 +118,73 @@
         <div class="container">
             <div class="section-head">
                 <h2>Pachete pentru magazine online</h2>
-                <p>Fiecare proiect e diferit. Discutăm ce ai nevoie, complexitate, volum și termene — apoi îți trimitem o ofertă clară, fără surprize.</p>
+                <p>Fiecare magazin e diferit, alegem împreună pachetul potrivit, apoi construim o ofertă personalizată pe nevoile tale.</p>
             </div>
             <div class="pricing-cards">
                 <div class="pricing-card">
                     <h3>Start</h3>
                     <p>Pentru afaceri la început de drum</p>
                     <ul>
-                        <li>Temă Shopify personalizată</li>
-                        <li>Până la 50 produse încărcate</li>
-                        <li>Titluri & descrieri SEO</li>
-                        <li>Procesator de plată integrat</li>
-                        <li>Setări de bază livrare</li>
-                        <li>Dashboard Shopify configurat</li>
-                        <li>Politici generale (livrare, retur, GDPR)</li>
-                        <li>Configurare domeniu + SSL</li>
-                        <li>Formular de contact</li>
-                        <li>Ghid de utilizare</li>
+                        <li>Temă Shopify personalizată & adaptată brandului</li>
+                        <li>Până la 50 produse încărcate complet</li>
+                        <li>Titluri, descrieri & meta tags optimizate SEO</li>
+                        <li>Procesator de plată integrat (Stripe / Netopia / PayU)</li>
+                        <li>Setări de bază livrare & zone de expediție</li>
+                        <li>Dashboard Shopify configurat & acces complet</li>
+                        <li>Conectare domeniu propriu & SSL</li>
+                        <li>Setări fiscale de bază pentru RO / UE</li>
+                        <li>Formular de contact & pagini legale (T&amp;C, GDPR)</li>
+                        <li>Instruire pentru administrarea zilnică</li>
+                        <li>Ghid de pornire cu checklist complet</li>
+                        <li>Suport 30 de zile post-lansare</li>
                     </ul>
-                    <a href="#contact" class="btn btn-ghost btn-block">Alege Start</a>
+                    <a href="#contact" class="btn btn-ghost btn-block">Solicită Pachetul Start</a>
                 </div>
                 <div class="pricing-card featured">
                     <h3>Business</h3>
-                    <p>Pentru magazine în creștere</p>
+                    <p>Pentru magazine în creștere accelerată</p>
                     <ul>
-                        <li>Tot din pachetul Start +</li>
-                        <li>Până la 500 produse</li>
-                        <li>Generare imagini AI pentru produse</li>
-                        <li>Integrări automate (curierat + facturare)</li>
-                        <li>Aplicații Shopify premium</li>
-                        <li>Optimizare conversii (CRO)</li>
-                        <li>Campanii email & SMS automation</li>
-                        <li>Programe loialitate & discount-uri</li>
-                        <li>Instruire echipă</li>
-                        <li>Suport 30 de zile post-lansare</li>
+                        <li>Tot ce include pachetul Start &hellip;</li>
+                        <li>Până la 500 produse încărcate & optimizate</li>
+                        <li>Generare imagini produse cu AI (realiste)</li>
+                        <li>Generare text & lifestyle pentru produse</li>
+                        <li>Integrări automate complete (curierat + facturare)</li>
+                        <li>Aplicații Shopify premium configurate (review-uri, upsell, loyalty)</li>
+                        <li>Optimizare conversii (CRO) pe pagini cheie</li>
+                        <li>Campanii email automate (welcome, abandon coș, post-comandă)</li>
+                        <li>Pixel tracking & GA4 avansat pentru Ads</li>
+                        <li>Structură SEO tehnică (schema, sitemap, Core Web Vitals)</li>
+                        <li>Sesiuni de training pentru echipa ta (video + live)</li>
+                        <li>Suport prioritar 90 de zile post-lansare</li>
+                        <li>Optimizare lunară & raport de performanță</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary btn-block">Alege Business</a>
+                    <a href="#contact" class="btn btn-primary btn-block">Solicită Pachetul Business</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Custom</h3>
-                    <p>Soluție 100% personalizată</p>
+                    <p>Soluție 100% personalizată, end-to-end</p>
                     <ul>
-                        <li>Magazin Shopify headless / Hydrogen</li>
-                        <li>Design & funcționalități unice</li>
-                        <li>Produse nelimitate</li>
-                        <li>Sisteme custom de preț, stocuri, reguli</li>
-                        <li>Toate integrările automate</li>
-                        <li>AI chat, suport 24/7</li>
-                        <li>Multi-limbă & multi-monede</li>
-                        <li>Marketplace integrations (eMAG, Amazon)</li>
-                        <li>Dezvoltare continuă</li>
-                        <li>SLA enterprise</li>
+                        <li>Tot ce include pachetul Business &hellip;</li>
+                        <li>Magazin Shopify headless / Hydrogen / Next.js</li>
+                        <li>Design unic & funcționalități custom dezvoltate</li>
+                        <li>Produse nelimitate + import automat furnizori</li>
+                        <li>Sisteme custom de preț, stocuri, reguli, promoții</li>
+                        <li>Toate integrările automate (curierat, facturare, ERP, CRM)</li>
+                        <li>AI Chat integrat 24/7 (recomandări, suport, vânzări)</li>
+                        <li>Automatizări personalizate (n8n / Make / Zapier)</li>
+                        <li>Dashboard intern cu KPI-uri personalizate</li>
+                        <li>Aplicații mobile dedicate (iOS + Android)</li>
+                        <li>Multi-piețe, multi-limbi, multi-valute</li>
+                        <li>Dezvoltare continuă & roadmap dedicat</li>
+                        <li>Account manager dedicat & suport 24/7</li>
+                        <li>SLA garantat & monitorizare producție</li>
                     </ul>
-                    <a href="#contact" class="btn btn-ghost btn-block">Alege Custom</a>
+                    <a href="#contact" class="btn btn-ghost btn-block">Solicită Pachetul Custom</a>
                 </div>
             </div>
             <div class="cta-box">
                 <h2>Gata să lansezi magazinul tău online?</h2>
-                <p>Hai să construim împreună un magazin care vinde — cu integrări automate și design care convertește.</p>
+                <p>Hai să construim împreună un magazin care vinde, cu integrări automate și design care convertește.</p>
                 <a href="#contact" class="btn">Solicită Ofertă </a>
             </div>
         </div>
@@ -191,7 +200,7 @@
 
                     <div class="contact-channels">
                         <!-- WhatsApp - buton principal, link direct -->
-                        <a href="https://wa.me/40000000000?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="channel channel-whatsapp">
+                        <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="channel channel-whatsapp">
                             <div class="channel-icon">
                                 <svg viewBox="0 0 24 24" fill="currentColor">
                                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -204,7 +213,6 @@
                                 </div>
                                 <small>Scrie-ne acum. Răspundem în câteva minute</small>
                             </div>
-                            <div class="channel-arrow"></div>
                         </a>
 
                         <!-- Email -->
@@ -219,11 +227,10 @@
                                 <strong>Email</strong>
                                 <small>contact@digital-online.ro</small>
                             </div>
-                            <div class="channel-arrow"></div>
                         </a>
 
                         <!-- Telefon -->
-                        <a href="tel:+40000000000" class="channel">
+                        <a href="tel:+40758653550" class="channel">
                             <div class="channel-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -231,9 +238,8 @@
                             </div>
                             <div class="channel-body">
                                 <strong>Telefon</strong>
-                                <small>+40 (000) 000 000</small>
+                                <small>+40 758 653 550</small>
                             </div>
-                            <div class="channel-arrow"></div>
                         </a>
 
                         <!-- Program -->
@@ -309,7 +315,7 @@
         </div>
         <div class="footer-bottom"><span>© <span id="year">2026</span> Digital Online · Toate drepturile rezervate</span></div>
     </div></footer>
-    <button class="to-top" id="toTop"></button>
+    <button class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="m5 12 7-7 7 7"/></svg></button>
     <script src="js/script.js"></script>
 </body>
 </html>

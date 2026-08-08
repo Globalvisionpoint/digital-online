@@ -271,9 +271,13 @@
     const nav = document.getElementById('nav');
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('open');
+            const isOpen = nav.classList.toggle('open');
+            menuToggle.classList.toggle('is-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+            // Blur after tap so :focus doesn't keep the bold border
+            menuToggle.blur();
             // On mobile, auto-open all dropdowns when menu opens
-            if (nav.classList.contains('open') && window.innerWidth <= 900) {
+            if (isOpen && window.innerWidth <= 900) {
                 document.querySelectorAll('.has-dropdown').forEach(d => d.classList.add('open'));
             } else {
                 document.querySelectorAll('.has-dropdown.open').forEach(d => d.classList.remove('open'));
@@ -573,5 +577,227 @@
         console.log('%cFUTURE OF MARKETING — 2026', 'font-size: 14px; color: #ff073a; letter-spacing: 0.3em;');
         console.log('%ccontact@digital-online.ro', 'font-size: 12px; color: #00ff9d;');
     }
+
+
+    /* ============================================
+       COOKIE CONSENT (GDPR / EU ePrivacy)
+       - Necessary: always on
+       - Analytics: GA4 (optional)
+       - Marketing: Meta Pixel, Google Ads, TikTok (optional)
+       - Stored in localStorage, expires after 365 days
+       - Respects Global Privacy Control (GPC) and Do Not Track (DNT)
+       - Blocks tracking scripts until consent is granted
+       ============================================ */
+    const COOKIE_CONSENT_KEY = 'do_cookie_consent_v1';
+    const COOKIE_CONSENT_MAX_AGE_DAYS = 365;
+
+    const CookieConsent = {
+        get() {
+            try {
+                const raw = localStorage.getItem(COOKIE_CONSENT_KEY);
+                if (!raw) return null;
+                const data = JSON.parse(raw);
+                if (!data || typeof data !== 'object') return null;
+                if (data.expires && Date.now() > data.expires) {
+                    localStorage.removeItem(COOKIE_CONSENT_KEY);
+                    return null;
+                }
+                return data;
+            } catch (e) { return null; }
+        },
+        set(categories) {
+            const data = {
+                necessary: true,
+                analytics: !!categories.analytics,
+                marketing: !!categories.marketing,
+                timestamp: Date.now(),
+                expires: Date.now() + (COOKIE_CONSENT_MAX_AGE_DAYS * 24 * 60 * 60 * 1000),
+                version: 1
+            };
+            try { localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(data)); } catch (e) {}
+            return data;
+        },
+        clear() { try { localStorage.removeItem(COOKIE_CONSENT_KEY); } catch (e) {} },
+        isForcedReject() {
+            if (typeof navigator !== 'undefined') {
+                if (navigator.globalPrivacyControl === true) return true;
+                if (navigator.doNotTrack === '1') return true;
+            }
+            return false;
+        }
+    };
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+
+    function loadAnalytics() {
+        if (window.__ga4_loaded) return;
+        window.__ga4_loaded = true;
+        const id = window.GA4_MEASUREMENT_ID || '';
+        if (!id) return;
+        const s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', id, { anonymize_ip: true });
+    }
+
+    function loadMarketing() {
+        if (window.__fb_pixel_loaded) return;
+        window.__fb_pixel_loaded = true;
+        const id = window.FB_PIXEL_ID || '';
+        if (!id) return;
+        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+        window.fbq('init', id);
+        window.fbq('track', 'PageView');
+    }
+
+    function applyConsent(consent) {
+        if (!consent) return;
+        if (consent.analytics) loadAnalytics();
+        if (consent.marketing) loadMarketing();
+        window.dispatchEvent(new CustomEvent('cookieconsent:applied', { detail: consent }));
+    }
+
+    (function bootstrap() {
+        if (CookieConsent.isForcedReject()) return;
+        const existing = CookieConsent.get();
+        if (existing) { applyConsent(existing); return; }
+        setTimeout(showBanner, 600);
+    })();
+
+    let cookieBanner, cookieModal;
+
+    function ensureBannerElements() {
+        if (!document.getElementById('cookieBanner')) {
+            const div = document.createElement('div');
+            div.id = 'cookieBanner';
+            div.className = 'cookie-banner';
+            div.setAttribute('role', 'dialog');
+            div.setAttribute('aria-live', 'polite');
+            div.setAttribute('aria-label', 'Consimțământ cookie-uri');
+            div.innerHTML =
+                '<h2 class="cookie-banner__title">Confidențialitate & Cookie-uri</h2>' +
+                '<p class="cookie-banner__text">Folosim cookie-uri pentru a îmbunătăți experiența ta, a analiza traficul și a personaliza conținutul. Poți accepta toate, le poți refuza sau poți alege ce categorii permiți. Citește <a href="politica-confidentialitate.html" target="_blank" rel="noopener">Politica de Confidențialitate</a> pentru detalii.</p>' +
+                '<div class="cookie-banner__actions">' +
+                    '<button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-action="accept-all">Acceptă toate</button>' +
+                    '<button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject-all">Refuză</button>' +
+                    '<button type="button" class="cookie-banner__btn cookie-banner__btn--settings" data-cookie-action="settings">Personalizează</button>' +
+                '</div>';
+            document.body.appendChild(div);
+            cookieBanner = div;
+        } else {
+            cookieBanner = document.getElementById('cookieBanner');
+        }
+
+        if (!document.getElementById('cookieModal')) {
+            const m = document.createElement('div');
+            m.id = 'cookieModal';
+            m.className = 'cookie-modal';
+            m.setAttribute('role', 'dialog');
+            m.setAttribute('aria-modal', 'true');
+            m.setAttribute('aria-label', 'Setari cookie-uri');
+            m.innerHTML =
+                '<div class="cookie-modal__panel">' +
+                    '<h2 class="cookie-modal__title">Setari Cookie-uri</h2>' +
+                    '<p class="cookie-modal__intro">Alege ce categorii de cookie-uri permiți. Cookie-urile necesare sunt întotdeauna active pentru ca site-ul să funcționeze corect.</p>' +
+                    '<div class="cookie-modal__list">' +
+                        '<div class="cookie-category">' +
+                            '<div class="cookie-category__head">' +
+                                '<h3 class="cookie-category__name">Necesare</h3>' +
+                                '<label class="cookie-toggle"><input type="checkbox" checked disabled aria-label="Cookie-uri necesare (obligatoriu)"><span class="cookie-toggle__slider"></span></label>' +
+                            '</div>' +
+                            '<p class="cookie-category__desc">Esentiale pentru functionarea site-ului (securitate, sesiune, consimtamant).</p>' +
+                        '</div>' +
+                        '<div class="cookie-category">' +
+                            '<div class="cookie-category__head">' +
+                                '<h3 class="cookie-category__name">Analytics</h3>' +
+                                '<label class="cookie-toggle"><input type="checkbox" id="cookieAnalytics" aria-label="Cookie-uri analytics"><span class="cookie-toggle__slider"></span></label>' +
+                            '</div>' +
+                            '<p class="cookie-category__desc">Ne ajuta sa intelegem cum folosesti site-ul (Google Analytics 4, date anonimizate).</p>' +
+                        '</div>' +
+                        '<div class="cookie-category">' +
+                            '<div class="cookie-category__head">' +
+                                '<h3 class="cookie-category__name">Marketing</h3>' +
+                                '<label class="cookie-toggle"><input type="checkbox" id="cookieMarketing" aria-label="Cookie-uri marketing"><span class="cookie-toggle__slider"></span></label>' +
+                            '</div>' +
+                            '<p class="cookie-category__desc">Folosit pentru reclame personalizate (Meta Pixel, Google Ads, TikTok Pixel).</p>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="cookie-modal__actions">' +
+                        '<button type="button" class="cookie-modal__btn cookie-modal__btn--reject-all" data-cookie-action="reject-all">Refuza toate</button>' +
+                        '<button type="button" class="cookie-modal__btn cookie-modal__btn--accept-all" data-cookie-action="accept-all">Accepta toate</button>' +
+                        '<button type="button" class="cookie-modal__btn cookie-modal__btn--save" data-cookie-action="save-selection">Salveaza selectia</button>' +
+                    '</div>' +
+                '</div>';
+            document.body.appendChild(m);
+            cookieModal = m;
+        } else {
+            cookieModal = document.getElementById('cookieModal');
+        }
+    }
+
+    function showBanner() {
+        ensureBannerElements();
+        requestAnimationFrame(() => cookieBanner.classList.add('is-visible'));
+    }
+    function hideBanner() { if (cookieBanner) cookieBanner.classList.remove('is-visible'); }
+
+    function openModal() {
+        ensureBannerElements();
+        const existing = CookieConsent.get();
+        if (existing) {
+            const a = document.getElementById('cookieAnalytics');
+            const m = document.getElementById('cookieMarketing');
+            if (a) a.checked = !!existing.analytics;
+            if (m) m.checked = !!existing.marketing;
+        }
+        cookieModal.classList.add('is-visible');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        if (cookieModal) cookieModal.classList.remove('is-visible');
+        document.body.style.overflow = '';
+    }
+
+    function acceptAll() {
+        const data = CookieConsent.set({ analytics: true, marketing: true });
+        applyConsent(data); hideBanner(); closeModal();
+        window.dispatchEvent(new CustomEvent('cookieconsent:updated', { detail: data }));
+    }
+    function rejectAll() {
+        const data = CookieConsent.set({ analytics: false, marketing: false });
+        applyConsent(data); hideBanner(); closeModal();
+        window.dispatchEvent(new CustomEvent('cookieconsent:updated', { detail: data }));
+    }
+    function saveSelection() {
+        const a = document.getElementById('cookieAnalytics');
+        const m = document.getElementById('cookieMarketing');
+        const data = CookieConsent.set({
+            analytics: a && a.checked,
+            marketing: m && m.checked
+        });
+        applyConsent(data); hideBanner(); closeModal();
+        window.dispatchEvent(new CustomEvent('cookieconsent:updated', { detail: data }));
+    }
+
+    document.addEventListener('click', (e) => {
+        const target = e.target.closest('[data-cookie-action]');
+        if (!target) return;
+        const action = target.getAttribute('data-cookie-action');
+        if (action === 'accept-all') acceptAll();
+        else if (action === 'reject-all') rejectAll();
+        else if (action === 'settings') openModal();
+        else if (action === 'save-selection') saveSelection();
+    });
+    document.addEventListener('click', (e) => { if (e.target === cookieModal) closeModal(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && cookieModal && cookieModal.classList.contains('is-visible')) closeModal();
+    });
+
+    window.CookieConsent = CookieConsent;
+    window.openCookieSettings = openModal;
+
 
 })();
