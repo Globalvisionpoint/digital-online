@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Mentenanță și reparații">
+    <defs>
+        <linearGradient id="bgGrad3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0c1426"/>
+            <stop offset="100%" stop-color="#0a0a14"/>
+        </linearGradient>
+        <filter id="glow3" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+    </defs>
+
+    <rect width="400" height="300" fill="url(#bgGrad3)"/>
+    <g opacity="0.06" stroke="#00f0ff" stroke-width="0.5">
+        <line x1="0" y1="60" x2="400" y2="60"/>
+        <line x1="0" y1="120" x2="400" y2="120"/>
+        <line x1="0" y1="180" x2="400" y2="180"/>
+        <line x1="0" y1="240" x2="400" y2="240"/>
+    </g>
+
+    <!-- Central wrench/spanner crossed -->
+    <g filter="url(#glow3)">
+        <!-- Wrench 1 (left-tilted) -->
+        <g transform="translate(200, 150) rotate(-25)">
+            <rect x="-60" y="-6" width="120" height="12" rx="6" fill="#00f0ff" opacity="0.9"/>
+            <rect x="60" y="-14" width="14" height="28" rx="2" fill="#00f0ff" opacity="0.9"/>
+            <rect x="-60" y="-14" width="14" height="28" rx="2" fill="#00f0ff" opacity="0.9"/>
+            <!-- Open end detail -->
+            <circle cx="-60" cy="0" r="10" fill="#0a0a14" stroke="#00f0ff" stroke-width="3"/>
+            <circle cx="60" cy="0" r="10" fill="#0a0a14" stroke="#00f0ff" stroke-width="3"/>
+        </g>
+        <!-- Wrench 2 (right-tilted) -->
+        <g transform="translate(200, 150) rotate(25)">
+            <rect x="-60" y="-6" width="120" height="12" rx="6" fill="#ff073a" opacity="0.9"/>
+            <rect x="60" y="-14" width="14" height="28" rx="2" fill="#ff073a" opacity="0.9"/>
+            <rect x="-60" y="-14" width="14" height="28" rx="2" fill="#ff073a" opacity="0.9"/>
+            <circle cx="-60" cy="0" r="10" fill="#0a0a14" stroke="#ff073a" stroke-width="3"/>
+            <circle cx="60" cy="0" r="10" fill="#0a0a14" stroke="#ff073a" stroke-width="3"/>
+        </g>
+    </g>
+
+    <!-- Gear teeth around center -->
+    <g transform="translate(200, 150)">
+        <g fill="#00f0ff" opacity="0.7">
+            <rect x="-3" y="-90" width="6" height="14" rx="1"/>
+            <rect x="-3" y="76" width="6" height="14" rx="1"/>
+            <rect x="-90" y="-3" width="14" height="6" rx="1"/>
+            <rect x="76" y="-3" width="14" height="6" rx="1"/>
+            <rect x="-3" y="-90" width="6" height="14" rx="1" transform="rotate(45)"/>
+            <rect x="-3" y="76" width="6" height="14" rx="1" transform="rotate(45)"/>
+            <rect x="-90" y="-3" width="14" height="6" rx="1" transform="rotate(45)"/>
+            <rect x="76" y="-3" width="14" height="6" rx="1" transform="rotate(45)"/>
+        </g>
+    </g>
+
+    <!-- Floating status indicators -->
+    <g filter="url(#glow3)">
+        <!-- Bug/fixing icon - top left -->
+        <g transform="translate(70, 60)">
+            <rect x="-20" y="-12" width="40" height="24" rx="4" fill="#0a0a14" stroke="#ff073a" stroke-width="1.5"/>
+            <line x1="-15" y1="-12" x2="-15" y2="-18" stroke="#ff073a" stroke-width="1.5"/>
+            <line x1="0" y1="-12" x2="0" y2="-18" stroke="#ff073a" stroke-width="1.5"/>
+            <line x1="15" y1="-12" x2="15" y2="-18" stroke="#ff073a" stroke-width="1.5"/>
+            <line x1="-15" y1="12" x2="-15" y2="18" stroke="#ff073a" stroke-width="1.5"/>
+            <line x1="0" y1="12" x2="0" y2="18" stroke="#ff073a" stroke-width="1.5"/>
+            <line x1="15" y1="12" x2="15" y2="18" stroke="#ff073a" stroke-width="1.5"/>
+            <circle cx="-8" cy="-4" r="2" fill="#ff073a"/>
+            <circle cx="8" cy="-4" r="2" fill="#ff073a"/>
+            <circle cx="0" cy="6" r="2" fill="#ff073a"/>
+        </g>
+        <!-- X mark error - top right -->
+        <g transform="translate(330, 60)">
+            <circle cx="0" cy="0" r="18" fill="#0a0a14" stroke="#ff073a" stroke-width="1.5"/>
+            <line x1="-8" y1="-8" x2="8" y2="8" stroke="#ff073a" stroke-width="2"/>
+            <line x1="8" y1="-8" x2="-8" y2="8" stroke="#ff073a" stroke-width="2"/>
+        </g>
+        <!-- Check mark fixed - bottom right -->
+        <g transform="translate(330, 240)">
+            <circle cx="0" cy="0" r="18" fill="#0a0a14" stroke="#00ff9d" stroke-width="1.5"/>
+            <polyline points="-8,0 -3,6 9,-6" fill="none" stroke="#00ff9d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- Check mark fixed - bottom left -->
+        <g transform="translate(70, 240)">
+            <circle cx="0" cy="0" r="18" fill="#0a0a14" stroke="#00ff9d" stroke-width="1.5"/>
+            <polyline points="-8,0 -3,6 9,-6" fill="none" stroke="#00ff9d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+    </g>
+
+    <!-- Connecting lines -->
+    <line x1="90" y1="78" x2="140" y2="120" stroke="#ff073a" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2"/>
+    <line x1="312" y1="78" x2="260" y2="120" stroke="#ff073a" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2"/>
+    <line x1="312" y1="222" x2="260" y2="180" stroke="#00ff9d" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2"/>
+    <line x1="90" y1="222" x2="140" y2="180" stroke="#00ff9d" stroke-width="0.5" opacity="0.3" stroke-dasharray="2,2"/>
+
+    <!-- Text -->
+    <text x="200" y="270" font-family="JetBrains Mono, monospace" font-size="9" fill="#00f0ff" text-anchor="middle" opacity="0.7" font-weight="700">// MAINTENANCE MODE</text>
+</svg>

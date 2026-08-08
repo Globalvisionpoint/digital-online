@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Site-uri de prezentare">
+    <defs>
+        <linearGradient id="bgGrad1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0c1426"/>
+            <stop offset="100%" stop-color="#0a0a14"/>
+        </linearGradient>
+        <linearGradient id="lineGrad1" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.2"/>
+            <stop offset="50%" stop-color="#00f0ff" stop-opacity="1"/>
+            <stop offset="100%" stop-color="#00f0ff" stop-opacity="0.2"/>
+        </linearGradient>
+        <filter id="glow1" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+    </defs>
+
+    <!-- Background -->
+    <rect width="400" height="300" fill="url(#bgGrad1)"/>
+    <g opacity="0.06" stroke="#00f0ff" stroke-width="0.5">
+        <line x1="0" y1="50" x2="400" y2="50"/>
+        <line x1="0" y1="100" x2="400" y2="100"/>
+        <line x1="0" y1="150" x2="400" y2="150"/>
+        <line x1="0" y1="200" x2="400" y2="200"/>
+        <line x1="0" y1="250" x2="400" y2="250"/>
+        <line x1="80" y1="0" x2="80" y2="300"/>
+        <line x1="160" y1="0" x2="160" y2="300"/>
+        <line x1="240" y1="0" x2="240" y2="300"/>
+        <line x1="320" y1="0" x2="320" y2="300"/>
+    </g>
+
+    <!-- Browser window -->
+    <g filter="url(#glow1)">
+        <rect x="60" y="60" width="280" height="180" rx="2" fill="#0a0a14" stroke="#00f0ff" stroke-width="1.5"/>
+        <!-- Title bar -->
+        <rect x="60" y="60" width="280" height="22" fill="#0f0f1e" stroke="#00f0ff" stroke-width="1.5"/>
+        <circle cx="74" cy="71" r="3" fill="#ff073a"/>
+        <circle cx="86" cy="71" r="3" fill="#ff073a" opacity="0.6"/>
+        <circle cx="98" cy="71" r="3" fill="#00ff9d"/>
+        <rect x="170" y="65" width="60" height="12" rx="2" fill="#00f0ff" opacity="0.15"/>
+        <rect x="174" y="68" width="20" height="6" rx="1" fill="#00f0ff" opacity="0.7"/>
+
+        <!-- Header section -->
+        <rect x="72" y="94" width="80" height="8" rx="1" fill="#00f0ff"/>
+        <rect x="72" y="106" width="120" height="3" rx="1" fill="#7dd3fc" opacity="0.6"/>
+        <rect x="72" y="113" width="100" height="3" rx="1" fill="#7dd3fc" opacity="0.4"/>
+
+        <!-- Hero image placeholder -->
+        <rect x="220" y="94" width="108" height="60" fill="#00f0ff" opacity="0.08" stroke="#00f0ff" stroke-width="0.5" stroke-dasharray="3,2"/>
+        <circle cx="274" cy="124" r="10" fill="#00f0ff" opacity="0.3"/>
+        <polygon points="270,118 270,130 282,124" fill="#00f0ff"/>
+
+        <!-- Content blocks -->
+        <rect x="72" y="160" width="76" height="50" fill="#00f0ff" opacity="0.06" stroke="#00f0ff" stroke-width="0.5"/>
+        <rect x="78" y="166" width="20" height="20" fill="#00f0ff" opacity="0.4"/>
+        <rect x="78" y="190" width="50" height="3" rx="1" fill="#7dd3fc" opacity="0.7"/>
+        <rect x="78" y="197" width="40" height="3" rx="1" fill="#7dd3fc" opacity="0.4"/>
+
+        <rect x="158" y="160" width="76" height="50" fill="#00f0ff" opacity="0.06" stroke="#00f0ff" stroke-width="0.5"/>
+        <rect x="164" y="166" width="20" height="20" fill="#00f0ff" opacity="0.4"/>
+        <rect x="164" y="190" width="55" height="3" rx="1" fill="#7dd3fc" opacity="0.7"/>
+        <rect x="164" y="197" width="35" height="3" rx="1" fill="#7dd3fc" opacity="0.4"/>
+
+        <rect x="244" y="160" width="84" height="50" fill="#00f0ff" opacity="0.06" stroke="#00f0ff" stroke-width="0.5"/>
+        <rect x="250" y="166" width="20" height="20" fill="#00f0ff" opacity="0.4"/>
+        <rect x="250" y="190" width="60" height="3" rx="1" fill="#7dd3fc" opacity="0.7"/>
+        <rect x="250" y="197" width="40" height="3" rx="1" fill="#7dd3fc" opacity="0.4"/>
+
+        <!-- Cursor -->
+        <polygon points="80,140 80,158 86,152 90,160 94,158 90,150 96,150" fill="#ff073a" stroke="#ffffff" stroke-width="0.5"/>
+    </g>
+
+    <!-- Decorative geometric shapes -->
+    <polygon points="40,260 50,250 60,260 50,270" fill="#00f0ff" opacity="0.3"/>
+    <circle cx="360" cy="50" r="5" fill="#ff073a" opacity="0.5"/>
+    <circle cx="360" cy="50" r="10" fill="none" stroke="#ff073a" stroke-width="1" opacity="0.3"/>
+    <circle cx="360" cy="50" r="15" fill="none" stroke="#ff073a" stroke-width="1" opacity="0.15"/>
+    <line x1="240" y1="40" x2="350" y2="40" stroke="url(#lineGrad1)" stroke-width="1"/>
+</svg>

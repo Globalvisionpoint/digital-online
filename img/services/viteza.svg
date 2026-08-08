@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Optimizare viteză">
+    <defs>
+        <linearGradient id="bgGrad4" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0c1426"/>
+            <stop offset="100%" stop-color="#0a0a14"/>
+        </linearGradient>
+        <linearGradient id="lightningGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#00f0ff"/>
+            <stop offset="100%" stop-color="#ff073a"/>
+        </linearGradient>
+        <filter id="glow4" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+    </defs>
+
+    <rect width="400" height="300" fill="url(#bgGrad4)"/>
+    <g opacity="0.06" stroke="#00f0ff" stroke-width="0.5">
+        <line x1="0" y1="75" x2="400" y2="75"/>
+        <line x1="0" y1="150" x2="400" y2="150"/>
+        <line x1="0" y1="225" x2="400" y2="225"/>
+        <line x1="100" y1="0" x2="100" y2="300"/>
+        <line x1="200" y1="0" x2="200" y2="300"/>
+        <line x1="300" y1="0" x2="300" y2="300"/>
+    </g>
+
+    <!-- Speed/performance meter -->
+    <g filter="url(#glow4)">
+        <!-- Outer ring -->
+        <circle cx="200" cy="150" r="100" fill="none" stroke="#00f0ff" stroke-width="1" opacity="0.3"/>
+        <circle cx="200" cy="150" r="90" fill="none" stroke="#00f0ff" stroke-width="1" opacity="0.2"/>
+        <circle cx="200" cy="150" r="80" fill="none" stroke="#00f0ff" stroke-width="1" opacity="0.15"/>
+
+        <!-- Gauge arc -->
+        <path d="M 120 195 A 90 90 0 1 1 280 195" fill="none" stroke="#00f0ff" stroke-width="6" opacity="0.2"/>
+        <path d="M 120 195 A 90 90 0 0 1 280 195" fill="none" stroke="url(#lightningGrad)" stroke-width="6" stroke-linecap="round"/>
+
+        <!-- Tick marks -->
+        <g stroke="#00f0ff" stroke-width="1.5" opacity="0.6">
+            <line x1="200" y1="62" x2="200" y2="72"/>
+            <line x1="288" y1="150" x2="278" y2="150"/>
+            <line x1="200" y1="238" x2="200" y2="228"/>
+            <line x1="112" y1="150" x2="122" y2="150"/>
+        </g>
+
+        <!-- Center needle pointing high -->
+        <line x1="200" y1="150" x2="270" y2="90" stroke="#ff073a" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="200" cy="150" r="8" fill="#00f0ff"/>
+        <circle cx="200" cy="150" r="4" fill="#0a0a14"/>
+    </g>
+
+    <!-- Lightning bolt overlay -->
+    <g filter="url(#glow4)">
+        <polygon points="180,90 220,90 210,140 240,140 175,215 195,160 165,160" fill="url(#lightningGrad)" opacity="0.95" stroke="#ffffff" stroke-width="0.5"/>
+    </g>
+
+    <!-- Speed indicators -->
+    <g font-family="JetBrains Mono, monospace" font-size="8" fill="#00f0ff" opacity="0.7">
+        <text x="200" y="46" text-anchor="middle">100</text>
+        <text x="278" y="142" text-anchor="start">75</text>
+        <text x="200" y="270" text-anchor="middle">0</text>
+        <text x="123" y="142" text-anchor="end">25</text>
+    </g>
+
+    <!-- PageSpeed score callout -->
+    <g filter="url(#glow4)">
+        <rect x="40" y="220" width="100" height="36" rx="2" fill="#0a0a14" stroke="#00ff9d" stroke-width="1"/>
+        <text x="50" y="236" font-family="JetBrains Mono, monospace" font-size="7" fill="#7dd3fc">PAGESPEED</text>
+        <text x="50" y="252" font-family="Orbitron, sans-serif" font-size="14" fill="#00ff9d" font-weight="900">98/100</text>
+    </g>
+
+    <!-- Loading progress bar -->
+    <g filter="url(#glow4)">
+        <rect x="260" y="222" width="100" height="8" rx="1" fill="#0a0a14" stroke="#00f0ff" stroke-width="0.5"/>
+        <rect x="261" y="223" width="95" height="6" rx="0.5" fill="#00f0ff"/>
+        <text x="260" y="252" font-family="JetBrains Mono, monospace" font-size="7" fill="#7dd3fc">LOAD: 0.4s</text>
+    </g>
+
+    <!-- Cache lines -->
+    <g stroke="#ff073a" stroke-width="1" opacity="0.5">
+        <line x1="60" y1="50" x2="75" y2="50"/>
+        <line x1="60" y1="56" x2="80" y2="56"/>
+        <line x1="60" y1="62" x2="70" y2="62"/>
+    </g>
+    <text x="60" y="42" font-family="JetBrains Mono, monospace" font-size="7" fill="#ff073a" opacity="0.7">// cache</text>
+</svg>

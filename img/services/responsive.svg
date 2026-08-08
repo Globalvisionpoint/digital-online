@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Responsive și Mobile-First">
+    <defs>
+        <linearGradient id="bgGrad6" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0c1426"/>
+            <stop offset="100%" stop-color="#0a0a14"/>
+        </linearGradient>
+        <filter id="glow6" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="2" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+    </defs>
+
+    <rect width="400" height="300" fill="url(#bgGrad6)"/>
+    <g opacity="0.06" stroke="#00f0ff" stroke-width="0.5">
+        <line x1="0" y1="60" x2="400" y2="60"/>
+        <line x1="0" y1="150" x2="400" y2="150"/>
+        <line x1="0" y1="240" x2="400" y2="240"/>
+    </g>
+
+    <!-- Desktop monitor (back, biggest) -->
+    <g filter="url(#glow6)">
+        <rect x="50" y="70" width="220" height="140" rx="3" fill="#0a0a14" stroke="#00f0ff" stroke-width="2"/>
+        <rect x="58" y="78" width="204" height="124" fill="#0c1426"/>
+        <!-- Screen content -->
+        <rect x="68" y="88" width="80" height="6" rx="1" fill="#00f0ff"/>
+        <line x1="68" y1="102" x2="180" y2="102" stroke="#7dd3fc" stroke-width="1" opacity="0.6"/>
+        <line x1="68" y1="108" x2="160" y2="108" stroke="#7dd3fc" stroke-width="1" opacity="0.4"/>
+        <rect x="68" y="120" width="184" height="50" fill="#00f0ff" opacity="0.08" stroke="#00f0ff" stroke-width="0.5" stroke-dasharray="3,2"/>
+        <rect x="68" y="178" width="55" height="18" rx="1" fill="#00f0ff" opacity="0.3"/>
+        <line x1="68" y1="202" x2="240" y2="202" stroke="#7dd3fc" stroke-width="1" opacity="0.4"/>
+        <!-- Stand -->
+        <rect x="140" y="210" width="40" height="10" fill="#0a0a14" stroke="#00f0ff" stroke-width="1.5"/>
+        <rect x="110" y="220" width="100" height="6" rx="2" fill="#0a0a14" stroke="#00f0ff" stroke-width="1.5"/>
+    </g>
+
+    <!-- Tablet (middle) -->
+    <g filter="url(#glow6)">
+        <rect x="290" y="80" width="80" height="110" rx="4" fill="#0a0a14" stroke="#00f0ff" stroke-width="1.5"/>
+        <rect x="296" y="92" width="68" height="86" fill="#0c1426"/>
+        <circle cx="330" cy="184" r="2" fill="#00f0ff"/>
+        <!-- Tablet content -->
+        <rect x="302" y="100" width="40" height="4" rx="1" fill="#00f0ff"/>
+        <line x1="302" y1="110" x2="350" y2="110" stroke="#7dd3fc" stroke-width="1" opacity="0.6"/>
+        <line x1="302" y1="115" x2="345" y2="115" stroke="#7dd3fc" stroke-width="1" opacity="0.4"/>
+        <rect x="302" y="124" width="56" height="40" fill="#00f0ff" opacity="0.1" stroke="#00f0ff" stroke-width="0.5" stroke-dasharray="2,2"/>
+        <rect x="302" y="170" width="20" height="6" rx="1" fill="#00f0ff" opacity="0.4"/>
+    </g>
+
+    <!-- Phone (front, smallest) -->
+    <g filter="url(#glow6)">
+        <rect x="130" y="180" width="50" height="86" rx="6" fill="#0a0a14" stroke="#00f0ff" stroke-width="1.5"/>
+        <rect x="135" y="190" width="40" height="68" fill="#0c1426"/>
+        <rect x="148" y="184" width="14" height="3" rx="1.5" fill="#00f0ff" opacity="0.5"/>
+        <circle cx="155" cy="262" r="2" fill="#00f0ff"/>
+        <!-- Phone content -->
+        <rect x="140" y="196" width="22" height="3" rx="1" fill="#00f0ff"/>
+        <line x1="140" y1="203" x2="170" y2="203" stroke="#7dd3fc" stroke-width="0.5" opacity="0.6"/>
+        <line x1="140" y1="207" x2="165" y2="207" stroke="#7dd3fc" stroke-width="0.5" opacity="0.4"/>
+        <rect x="140" y="214" width="30" height="18" fill="#00f0ff" opacity="0.15" stroke="#00f0ff" stroke-width="0.5" stroke-dasharray="2,2"/>
+        <line x1="140" y1="238" x2="170" y2="238" stroke="#7dd3fc" stroke-width="0.5" opacity="0.5"/>
+        <line x1="140" y1="244" x2="160" y2="244" stroke="#7dd3fc" stroke-width="0.5" opacity="0.4"/>
+        <rect x="140" y="250" width="14" height="5" rx="0.5" fill="#00f0ff" opacity="0.5"/>
+    </g>
+
+    <!-- Resize arrows -->
+    <g stroke="#ff073a" stroke-width="1.5" opacity="0.7" fill="#ff073a">
+        <line x1="278" y1="140" x2="290" y2="140"/>
+        <polygon points="290,136 290,144 298,140"/>
+        <line x1="380" y1="140" x2="368" y2="140" transform="translate(-72,0)"/>
+    </g>
+
+    <!-- Resolution labels -->
+    <g font-family="JetBrains Mono, monospace" font-size="8" fill="#00f0ff" opacity="0.7">
+        <text x="160" y="280" text-anchor="middle">DESKTOP</text>
+        <text x="330" y="208" text-anchor="middle">TABLET</text>
+        <text x="155" y="280" text-anchor="middle" opacity="0">PHONE</text>
+    </g>
+
+    <!-- Pixel grid connecting -->
+    <g stroke="#00f0ff" stroke-width="0.5" opacity="0.4">
+        <line x1="270" y1="140" x2="290" y2="140"/>
+        <line x1="180" y1="200" x2="130" y2="200"/>
+    </g>
+
+    <!-- Bottom label -->
+    <text x="320" y="240" font-family="JetBrains Mono, monospace" font-size="8" fill="#00f0ff" opacity="0.7" font-weight="700">// MOBILE-FIRST</text>
+</svg>
