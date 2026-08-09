@@ -620,8 +620,23 @@ h4 { font-size: 1.1rem; }
 /* Base particle — defaults set here, per-particle overrides via inline style */
 .header-particles > .header-particle {
     position: absolute;
-    border-radius: 50%;
-    box-shadow: 0 0 4px currentColor, 0 0 8px currentColor;
+    /* Star-like shape: 4-pointed star via clip-path (more realistic than circle) */
+    border-radius: 0;
+    background: radial-gradient(circle,
+        currentColor 0%,
+        currentColor 35%,
+        transparent 75%);
+    box-shadow: 0 0 4px currentColor;
+    clip-path: polygon(
+        50% 0%,
+        60% 35%,
+        100% 50%,
+        60% 65%,
+        50% 100%,
+        40% 65%,
+        0% 50%,
+        40% 35%
+    );
     animation: header-particle-drift linear infinite;
     will-change: transform, opacity;
 }
@@ -684,7 +699,9 @@ h4 { font-size: 1.1rem; }
         transparent 80%);
     animation: header-planet-halo 4s ease-in-out infinite;
 }
-/* Planet body — radial gradient simulates 3D sphere with light source top-left */
+/* Planet body — radial gradient simulates 3D sphere with light source top-left.
+   Gradient itself doesn't rotate (it represents lighting, not surface).
+   Surface rotation is shown via the grid lines on ::after. */
 .header-particles__planet > .planet-body {
     position: absolute;
     inset: 5px;
@@ -699,7 +716,6 @@ h4 { font-size: 1.1rem; }
     box-shadow:
         0 0 6px rgba(0, 240, 255, 0.5),
         inset 0 0 8px rgba(0, 200, 255, 0.3);
-    animation: header-planet-spin 18s linear infinite;
 }
 /* Meridian ring — thin ellipse around planet for "saturn-like" effect */
 .header-particles__planet > .planet-ring {
@@ -716,26 +732,58 @@ h4 { font-size: 1.1rem; }
         inset 0 0 3px rgba(0, 240, 255, 0.2);
     animation: header-planet-ring-pulse 4s ease-in-out infinite;
 }
-/* Latitude grid lines on planet body for "digital wireframe" look */
+/* Latitude/longitude grid lines on planet surface — THIS ROTATES.
+   Because the grid has visible lines that don't look the same at every angle,
+   the rotation is visually obvious. */
 .header-particles__planet > .planet-body::after {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 50%;
     background:
-        linear-gradient(0deg, transparent 48%, rgba(0, 240, 255, 0.25) 49%, rgba(0, 240, 255, 0.25) 51%, transparent 52%),
-        linear-gradient(90deg, transparent 48%, rgba(0, 240, 255, 0.20) 49%, rgba(0, 240, 255, 0.20) 51%, transparent 52%);
-    background-size: 100% 33.33%, 33.33% 100%;
-    background-position: center, center;
-    background-repeat: no-repeat, no-repeat;
-    opacity: 0.5;
+        /* horizontal latitude line (equator) */
+        linear-gradient(0deg, transparent 48%, rgba(0, 240, 255, 0.45) 49%, rgba(0, 240, 255, 0.45) 51%, transparent 52%),
+        /* vertical longitude line (meridian) */
+        linear-gradient(90deg, transparent 47%, rgba(0, 240, 255, 0.35) 49%, rgba(0, 240, 255, 0.35) 51%, transparent 53%),
+        /* offset latitudes (top + bottom) */
+        linear-gradient(0deg, transparent 23%, rgba(0, 240, 255, 0.20) 24%, rgba(0, 240, 255, 0.20) 26%, transparent 27%),
+        linear-gradient(0deg, transparent 73%, rgba(0, 240, 255, 0.20) 74%, rgba(0, 240, 255, 0.20) 76%, transparent 77%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    background-position: center, center, center, center;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+    opacity: 0.7;
     mix-blend-mode: screen;
-    animation: header-planet-grid 8s linear infinite;
+    animation: header-planet-spin 45s linear infinite;
+}
+
+/* A rotating "marker" on the planet surface — visible reference point
+   showing the rotation clearly. Outer wrapper rotates around planet center;
+   inner dot is offset upward so the rotation traces a circle on the surface. */
+.header-particles__planet > .planet-marker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: header-planet-spin 45s linear infinite;
+}
+.header-particles__planet > .planet-marker > .planet-marker-dot {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border-radius: 50%;
+    background: var(--cyber-neon);
+    box-shadow:
+        0 0 4px var(--cyber-neon),
+        0 0 10px var(--cyber-neon);
 }
 
 @keyframes header-planet-spin {
-    0%   { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 @keyframes header-planet-halo {
     0%, 100% { opacity: 0.55; transform: scale(1); }
