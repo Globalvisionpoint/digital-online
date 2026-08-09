@@ -736,57 +736,42 @@ h4 { font-size: 1.1rem; }
     100% { opacity: 0.45; transform: translateY(-50%) translateX(0); }
 }
 
-/* === TELEMETRY CHIP — mini "mission control" panel showing GPS coordinates.
-   Two lines of monospace data with a pulsing indicator dot.
-   Looks like a system telemetry readout from a sci-fi HUD. */
+/* === SCROLL INDICATOR — small animated arrow + label in bottom-right of header.
+   Tells the user there's more content below. Subtle and functional.
+   Replaces the GPS telemetry chip — fits site theme (a presentation site
+   where users need to know to scroll for more content). */
 .header-particles > .hud-status {
     position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
+    right: 18px;
+    bottom: 4px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 5px 10px 5px 8px;
+    gap: 6px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
-    line-height: 1.4;
-    letter-spacing: 0.08em;
-    color: rgba(0, 240, 255, 0.75);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 2px;
-    background: rgba(0, 240, 255, 0.03);
+    letter-spacing: 0.25em;
+    color: rgba(0, 240, 255, 0.65);
     pointer-events: none;
     text-transform: uppercase;
-    box-shadow:
-        0 0 8px rgba(0, 240, 255, 0.1),
-        inset 0 0 6px rgba(0, 240, 255, 0.04);
-    /* Cyber clipped corner */
-    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+    animation: header-scroll-fade 3s ease-in-out infinite;
 }
-.header-particles > .hud-status::before {
+.header-particles > .hud-status::after {
     content: '';
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--cyber-neon);
-    box-shadow: 0 0 5px var(--cyber-neon);
-    animation: header-status-blink 1.8s ease-in-out infinite;
-    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid rgba(0, 240, 255, 0.7);
+    border-bottom: 1.5px solid rgba(0, 240, 255, 0.7);
+    transform: rotate(45deg);
+    box-shadow: 2px 2px 0 rgba(0, 240, 255, 0.15);
+    animation: header-scroll-bounce 2s ease-in-out infinite;
 }
-.header-particles > .hud-status .hud-line {
-    display: block;
-    white-space: nowrap;
+@keyframes header-scroll-fade {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
 }
-.header-particles > .hud-status .hud-line strong {
-    color: var(--cyber-neon);
-    font-weight: 700;
-    margin-right: 4px;
-    text-shadow: 0 0 4px rgba(0, 240, 255, 0.5);
-}
-@keyframes header-status-blink {
-    0%, 100% { opacity: 1; box-shadow: 0 0 5px var(--cyber-neon); }
-    50%      { opacity: 0.35; box-shadow: 0 0 2px var(--cyber-neon); }
+@keyframes header-scroll-bounce {
+    0%, 100% { transform: rotate(45deg) translate(0, 0); }
+    50%      { transform: rotate(45deg) translate(2px, 2px); }
 }
 
 /* Keep header content above particles */
