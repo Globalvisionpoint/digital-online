@@ -638,18 +638,23 @@ h4 { font-size: 1.1rem; }
     100% { transform: translateX(250%); }
 }
 
-/* === STATUS LEDS — row of 4 small dots that pulse sequentially.
-   Suggests network activity / system heartbeat. === */
-.header-particles > .header-leds {
+/* === STATUS LEDS — row of 4 small dots next to the logo.
+   Positioned RELATIVE to .logo so they always stay adjacent to it
+   regardless of viewport size or layout changes. */
+/* On desktop: logo is in normal flex flow at left. LEDs sit to the right of it. */
+.logo {
+    position: relative;  /* anchor for absolutely-positioned LEDs */
+}
+.header-leds {
     position: absolute;
     top: 50%;
-    left: 200px;
     transform: translateY(-50%);
+    right: -32px;  /* sit just outside the right edge of logo */
     display: flex;
     gap: 6px;
     pointer-events: none;
 }
-.header-particles > .header-leds > .led {
+.header-leds > .led {
     width: 5px;
     height: 5px;
     border-radius: 50%;
@@ -657,10 +662,10 @@ h4 { font-size: 1.1rem; }
     box-shadow: 0 0 6px var(--cyber-neon);
     animation: header-led-pulse 1.6s ease-in-out infinite;
 }
-.header-particles > .header-leds > .led:nth-child(1) { animation-delay: 0.0s; }
-.header-particles > .header-leds > .led:nth-child(2) { animation-delay: 0.4s; }
-.header-particles > .header-leds > .led:nth-child(3) { animation-delay: 0.8s; }
-.header-particles > .header-leds > .led:nth-child(4) { animation-delay: 1.2s; }
+.header-leds > .led:nth-child(1) { animation-delay: 0.0s; }
+.header-leds > .led:nth-child(2) { animation-delay: 0.4s; }
+.header-leds > .led:nth-child(3) { animation-delay: 0.8s; }
+.header-leds > .led:nth-child(4) { animation-delay: 1.2s; }
 @keyframes header-led-pulse {
     0%, 70%, 100% { opacity: 0.3; transform: scale(0.85); }
     20%, 50%      { opacity: 1; transform: scale(1.15); }
