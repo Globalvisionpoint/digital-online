@@ -736,8 +736,9 @@ h4 { font-size: 1.1rem; }
     100% { opacity: 0.45; transform: translateY(-50%) translateX(0); }
 }
 
-/* === STATUS BADGE — small "ONLINE" pill on the right with pulsing dot.
-   Replaces the crosshair — much subtler, fits cyber aesthetic better. */
+/* === TELEMETRY CHIP — mini "mission control" panel showing GPS coordinates.
+   Two lines of monospace data with a pulsing indicator dot.
+   Looks like a system telemetry readout from a sci-fi HUD. */
 .header-particles > .hud-status {
     position: absolute;
     top: 50%;
@@ -745,33 +746,47 @@ h4 { font-size: 1.1rem; }
     transform: translateY(-50%);
     display: flex;
     align-items: center;
-    gap: 6px;
-    padding: 4px 10px;
+    gap: 8px;
+    padding: 5px 10px 5px 8px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    color: rgba(0, 240, 255, 0.7);
+    font-size: 9px;
+    line-height: 1.4;
+    letter-spacing: 0.08em;
+    color: rgba(0, 240, 255, 0.75);
     border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 999px;
-    background: rgba(0, 240, 255, 0.04);
+    border-radius: 2px;
+    background: rgba(0, 240, 255, 0.03);
     pointer-events: none;
     text-transform: uppercase;
     box-shadow:
         0 0 8px rgba(0, 240, 255, 0.1),
-        inset 0 0 4px rgba(0, 240, 255, 0.05);
+        inset 0 0 6px rgba(0, 240, 255, 0.04);
+    /* Cyber clipped corner */
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
 }
 .header-particles > .hud-status::before {
     content: '';
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: var(--cyber-neon);
-    box-shadow: 0 0 6px var(--cyber-neon);
+    box-shadow: 0 0 5px var(--cyber-neon);
     animation: header-status-blink 1.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+.header-particles > .hud-status .hud-line {
+    display: block;
+    white-space: nowrap;
+}
+.header-particles > .hud-status .hud-line strong {
+    color: var(--cyber-neon);
+    font-weight: 700;
+    margin-right: 4px;
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.5);
 }
 @keyframes header-status-blink {
-    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--cyber-neon); }
-    50%      { opacity: 0.4; box-shadow: 0 0 2px var(--cyber-neon); }
+    0%, 100% { opacity: 1; box-shadow: 0 0 5px var(--cyber-neon); }
+    50%      { opacity: 0.35; box-shadow: 0 0 2px var(--cyber-neon); }
 }
 
 /* Keep header content above particles */
