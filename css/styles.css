@@ -700,8 +700,7 @@ h4 { font-size: 1.1rem; }
     animation: header-planet-halo 4s ease-in-out infinite;
 }
 /* Planet body — radial gradient simulates 3D sphere with light source top-left.
-   Gradient itself doesn't rotate (it represents lighting, not surface).
-   Surface rotation is shown via the grid lines on ::after. */
+   Stays static (represents lighting, not surface). */
 .header-particles__planet > .planet-body {
     position: absolute;
     inset: 5px;
@@ -717,7 +716,10 @@ h4 { font-size: 1.1rem; }
         0 0 6px rgba(0, 240, 255, 0.5),
         inset 0 0 8px rgba(0, 200, 255, 0.3);
 }
-/* Meridian ring — thin ellipse around planet for "saturn-like" effect */
+
+/* ORBITAL RING — ellipse around planet that ROTATES 360° around planet center.
+   This creates a visible orbital motion (like Saturn's rings rotating).
+   transform-origin is set to planet center so it pivots correctly. */
 .header-particles__planet > .planet-ring {
     position: absolute;
     top: 50%;
@@ -730,60 +732,33 @@ h4 { font-size: 1.1rem; }
     box-shadow:
         0 0 4px rgba(0, 240, 255, 0.35),
         inset 0 0 3px rgba(0, 240, 255, 0.2);
-    animation: header-planet-ring-pulse 4s ease-in-out infinite;
-}
-/* Latitude/longitude grid lines on planet surface — THIS ROTATES.
-   Because the grid has visible lines that don't look the same at every angle,
-   the rotation is visually obvious. */
-.header-particles__planet > .planet-body::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background:
-        /* horizontal latitude line (equator) */
-        linear-gradient(0deg, transparent 48%, rgba(0, 240, 255, 0.45) 49%, rgba(0, 240, 255, 0.45) 51%, transparent 52%),
-        /* vertical longitude line (meridian) */
-        linear-gradient(90deg, transparent 47%, rgba(0, 240, 255, 0.35) 49%, rgba(0, 240, 255, 0.35) 51%, transparent 53%),
-        /* offset latitudes (top + bottom) */
-        linear-gradient(0deg, transparent 23%, rgba(0, 240, 255, 0.20) 24%, rgba(0, 240, 255, 0.20) 26%, transparent 27%),
-        linear-gradient(0deg, transparent 73%, rgba(0, 240, 255, 0.20) 74%, rgba(0, 240, 255, 0.20) 76%, transparent 77%);
-    background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
-    background-position: center, center, center, center;
-    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
-    opacity: 0.7;
-    mix-blend-mode: screen;
-    animation: header-planet-spin 45s linear infinite;
+    transform-origin: center center;
+    animation: header-planet-orbit 20s linear infinite;
 }
 
-/* A rotating "marker" on the planet surface — visible reference point
-   showing the rotation clearly. Outer wrapper rotates around planet center;
-   inner dot is offset upward so the rotation traces a circle on the surface. */
-.header-particles__planet > .planet-marker {
+/* Secondary ring — smaller, tilted differently, for richer orbital feel */
+.header-particles__planet > .planet-ring-2 {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    animation: header-planet-spin 45s linear infinite;
-}
-.header-particles__planet > .planet-marker > .planet-marker-dot {
-    position: absolute;
-    top: 18%;
+    top: 50%;
     left: 50%;
-    width: 5px;
-    height: 5px;
-    margin-left: -2.5px;
+    width: 46px;
+    height: 9px;
+    border: 1px solid rgba(0, 240, 255, 0.30);
     border-radius: 50%;
-    background: var(--cyber-neon);
+    transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg);
     box-shadow:
-        0 0 4px var(--cyber-neon),
-        0 0 10px var(--cyber-neon);
+        0 0 3px rgba(0, 240, 255, 0.25),
+        inset 0 0 2px rgba(0, 240, 255, 0.15);
+    animation: header-planet-orbit 28s linear infinite reverse;
 }
 
-@keyframes header-planet-spin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes header-planet-orbit {
+    0%   { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
+    100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
+}
+@keyframes header-planet-orbit-2 {
+    0%   { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg); }
+    100% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(-315deg); }
 }
 @keyframes header-planet-halo {
     0%, 100% { opacity: 0.55; transform: scale(1); }
