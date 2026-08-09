@@ -598,10 +598,10 @@ h4 { font-size: 1.1rem; }
 }
 
 /* ============================================
-   HEADER PARTICLES + CYBORG ORB
+   HEADER PARTICLES + CYBORG ORB + DIGITAL PLANET
    Animated background inside the header bar.
-   Particles drift right -> left and fade out.
-   Cyan orb pulses in the top-right corner.
+   Particles drift right -> left and fade out, with 3D depth.
+   A "digital planet" sphere sits in the top-right corner with rings.
    ============================================ */
 .header-particles {
     position: absolute;
@@ -609,11 +609,15 @@ h4 { font-size: 1.1rem; }
     pointer-events: none;
     overflow: hidden;
     z-index: 0;
+    /* Cyber-style clipped corners to match the rest of the site */
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
 }
 .header-particles > * {
     position: relative;
     z-index: 1;
 }
+
+/* Base particle — defaults set here, per-particle overrides via inline style */
 .header-particles > .header-particle {
     position: absolute;
     border-radius: 50%;
@@ -621,6 +625,21 @@ h4 { font-size: 1.1rem; }
     animation: header-particle-drift linear infinite;
     will-change: transform, opacity;
 }
+
+/* DEPTH VARIANTS — 3D perspective illusion */
+.header-particles > .header-particle--far {
+    opacity: 0.20;
+    box-shadow: 0 0 2px currentColor;
+}
+.header-particles > .header-particle--mid {
+    opacity: 0.45;
+    box-shadow: 0 0 4px currentColor, 0 0 8px currentColor;
+}
+.header-particles > .header-particle--near {
+    opacity: 0.70;
+    box-shadow: 0 0 6px currentColor, 0 0 12px currentColor, 0 0 20px currentColor;
+}
+
 @keyframes header-particle-drift {
     0% {
         transform: translate3d(0, 0, 0);
@@ -641,67 +660,104 @@ h4 { font-size: 1.1rem; }
     }
 }
 
-/* Cyborg cyan orb in the top-right corner */
-.header-particles::before {
-    content: '';
+/* DIGITAL PLANET (sphere) in the top-right corner of the header.
+   Built as a multi-layer effect: outer halo + planet body + meridian ring. */
+.header-particles__planet {
     position: absolute;
     top: 50%;
-    right: -20px;
-    width: 90px;
-    height: 90px;
+    right: 8px;
+    width: 70px;
+    height: 70px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+/* Outer halo glow */
+.header-particles__planet::before {
+    content: '';
+    position: absolute;
+    inset: -25px;
     border-radius: 50%;
     background: radial-gradient(circle,
-        rgba(0, 240, 255, 0.20) 0%,
-        rgba(0, 240, 255, 0.08) 30%,
-        rgba(0, 240, 255, 0.02) 60%,
-        transparent 75%);
-    transform: translateY(-50%);
-    animation: header-orb-pulse 3.5s ease-in-out infinite;
-    pointer-events: none;
+        rgba(0, 240, 255, 0.18) 0%,
+        rgba(0, 240, 255, 0.08) 35%,
+        rgba(0, 240, 255, 0.02) 65%,
+        transparent 80%);
+    animation: header-planet-halo 4s ease-in-out infinite;
 }
-.header-particles::after {
-    content: '';
+/* Planet body — radial gradient simulates 3D sphere with light source top-left */
+.header-particles__planet > .planet-body {
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background:
+        radial-gradient(circle at 30% 30%,
+            rgba(180, 240, 255, 0.55) 0%,
+            rgba(0, 240, 255, 0.40) 18%,
+            rgba(0, 180, 220, 0.30) 40%,
+            rgba(5, 80, 120, 0.45) 70%,
+            rgba(2, 20, 40, 0.85) 100%);
+    box-shadow:
+        0 0 8px rgba(0, 240, 255, 0.5),
+        inset 0 0 12px rgba(0, 200, 255, 0.3);
+    animation: header-planet-spin 18s linear infinite;
+}
+/* Meridian ring — thin ellipse around planet for "saturn-like" effect */
+.header-particles__planet > .planet-ring {
     position: absolute;
     top: 50%;
-    right: 18px;
-    width: 12px;
-    height: 12px;
+    left: 50%;
+    width: 90px;
+    height: 18px;
+    border: 1px solid rgba(0, 240, 255, 0.45);
     border-radius: 50%;
-    background: var(--cyber-neon);
+    transform: translate(-50%, -50%) rotateX(75deg);
     box-shadow:
-        0 0 6px var(--cyber-neon),
-        0 0 12px var(--cyber-neon),
-        0 0 20px var(--cyber-neon);
-    transform: translateY(-50%);
-    animation: header-orb-core 2.2s ease-in-out infinite;
-    pointer-events: none;
+        0 0 6px rgba(0, 240, 255, 0.35),
+        inset 0 0 4px rgba(0, 240, 255, 0.2);
+    animation: header-planet-ring-pulse 4s ease-in-out infinite;
 }
-@keyframes header-orb-pulse {
-    0%, 100% {
-        opacity: 0.5;
-        transform: translateY(-50%) scale(1);
-    }
-    50% {
-        opacity: 0.75;
-        transform: translateY(-50%) scale(1.10);
-    }
+/* Latitude grid lines on planet body for "digital wireframe" look */
+.header-particles__planet > .planet-body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background:
+        linear-gradient(0deg, transparent 48%, rgba(0, 240, 255, 0.25) 49%, rgba(0, 240, 255, 0.25) 51%, transparent 52%),
+        linear-gradient(90deg, transparent 48%, rgba(0, 240, 255, 0.20) 49%, rgba(0, 240, 255, 0.20) 51%, transparent 52%);
+    background-size: 100% 33.33%, 33.33% 100%;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    animation: header-planet-grid 8s linear infinite;
 }
-@keyframes header-orb-core {
+
+@keyframes header-planet-spin {
+    0%   { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
+}
+@keyframes header-planet-halo {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50%      { opacity: 0.85; transform: scale(1.08); }
+}
+@keyframes header-planet-ring-pulse {
     0%, 100% {
         opacity: 0.6;
         box-shadow:
-            0 0 6px var(--cyber-neon),
-            0 0 12px var(--cyber-neon),
-            0 0 20px var(--cyber-neon);
+            0 0 6px rgba(0, 240, 255, 0.35),
+            inset 0 0 4px rgba(0, 240, 255, 0.2);
     }
     50% {
-        opacity: 0.8;
+        opacity: 1;
         box-shadow:
-            0 0 8px var(--cyber-neon),
-            0 0 16px var(--cyber-neon),
-            0 0 28px var(--cyber-neon),
-            0 0 40px rgba(0, 240, 255, 0.3);
+            0 0 12px rgba(0, 240, 255, 0.6),
+            inset 0 0 8px rgba(0, 240, 255, 0.4);
     }
+}
+@keyframes header-planet-grid {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 /* Keep header content above particles */

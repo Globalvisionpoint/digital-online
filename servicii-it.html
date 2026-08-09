@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=515">
+    <link rel="stylesheet" href="css/styles.css?v=516">
 
     <!-- Three.js + GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -245,24 +245,32 @@
         </div>
 
         <div class="header-particles" aria-hidden="true">
-            <span class="header-particle" style="left:74.0%;top:24.6%;width:2.2px;height:2.2px;background:#00f0ff;animation-duration:43.0s;animation-delay:-8.9s;opacity:0.53;"></span>
-            <span class="header-particle" style="left:88.0%;top:68.9%;width:3.6px;height:3.6px;background:#00ff9d;animation-duration:40.8s;animation-delay:-9.3s;opacity:0.61;"></span>
-            <span class="header-particle" style="left:64.2%;top:24.5%;width:2.4px;height:2.4px;background:#00ff9d;animation-duration:37.2s;animation-delay:-7.2s;opacity:0.86;"></span>
-            <span class="header-particle" style="left:107.1%;top:75.4%;width:3.9px;height:3.9px;background:#00ff9d;animation-duration:34.9s;animation-delay:-6.8s;opacity:0.75;"></span>
-            <span class="header-particle" style="left:83.9%;top:46.4%;width:3.9px;height:3.9px;background:#00f0ff;animation-duration:38.9s;animation-delay:-10.4s;opacity:0.78;"></span>
-            <span class="header-particle" style="left:78.1%;top:38.6%;width:3.9px;height:3.9px;background:#00f0ff;animation-duration:27.4s;animation-delay:-7.1s;opacity:0.61;"></span>
-            <span class="header-particle" style="left:77.1%;top:56.9%;width:2.2px;height:2.2px;background:#00f0ff;animation-duration:26.0s;animation-delay:-0.9s;opacity:0.92;"></span>
-            <span class="header-particle" style="left:80.4%;top:74.5%;width:3.4px;height:3.4px;background:#ff073a;animation-duration:42.2s;animation-delay:-9.5s;opacity:0.94;"></span>
-            <span class="header-particle" style="left:84.3%;top:26.2%;width:2.6px;height:2.6px;background:#ff073a;animation-duration:32.2s;animation-delay:-6.0s;opacity:0.97;"></span>
-            <span class="header-particle" style="left:103.9%;top:62.5%;width:3.0px;height:3.0px;background:#00f0ff;animation-duration:38.4s;animation-delay:-6.1s;opacity:0.5;"></span>
-            <span class="header-particle" style="left:109.5%;top:44.5%;width:3.6px;height:3.6px;background:#ff073a;animation-duration:33.4s;animation-delay:-4.4s;opacity:0.95;"></span>
-            <span class="header-particle" style="left:70.3%;top:53.5%;width:3.8px;height:3.8px;background:#00f0ff;animation-duration:32.2s;animation-delay:-7.8s;opacity:0.44;"></span>
-            <span class="header-particle" style="left:73.2%;top:40.0%;width:2.8px;height:2.8px;background:#00f0ff;animation-duration:40.4s;animation-delay:-11.6s;opacity:0.76;"></span>
-            <span class="header-particle" style="left:85.0%;top:27.7%;width:2.4px;height:2.4px;background:#ff073a;animation-duration:31.9s;animation-delay:-11.6s;opacity:0.82;"></span>
-            <span class="header-particle" style="left:92.5%;top:60.2%;width:2.3px;height:2.3px;background:#00f0ff;animation-duration:40.1s;animation-delay:-7.7s;opacity:0.6;"></span>
-            <span class="header-particle" style="left:99.7%;top:50.5%;width:4.2px;height:4.2px;background:#ff073a;animation-duration:41.4s;animation-delay:-6.3s;opacity:0.79;"></span>
-            <span class="header-particle" style="left:51.1%;top:33.6%;width:2.9px;height:2.9px;background:#00f0ff;animation-duration:28.6s;animation-delay:-4.1s;opacity:0.86;"></span>
-            <span class="header-particle" style="left:58.3%;top:73.0%;width:2.2px;height:2.2px;background:#00ff9d;animation-duration:44.5s;animation-delay:-1.2s;opacity:0.86;"></span>
+            <span class="header-particle header-particle--far" style="left:40.2%;top:23.9%;width:1.4px;height:1.4px;background:#5a8aff;animation-duration:47.9s;animation-delay:-13.5s;"></span>
+            <span class="header-particle header-particle--near" style="left:84.4%;top:53.2%;width:6.0px;height:6.0px;background:#ffffff;animation-duration:19.2s;animation-delay:-13.3s;"></span>
+            <span class="header-particle header-particle--far" style="left:45.0%;top:70.2%;width:1.0px;height:1.0px;background:#4a90e2;animation-duration:49.7s;animation-delay:-64.5s;"></span>
+            <span class="header-particle header-particle--near" style="left:110.6%;top:29.9%;width:5.2px;height:5.2px;background:#00f0ff;animation-duration:21.0s;animation-delay:-16.7s;"></span>
+            <span class="header-particle header-particle--mid" style="left:77.5%;top:44.5%;width:3.1px;height:3.1px;background:#00f0ff;animation-duration:29.4s;animation-delay:-7.6s;"></span>
+            <span class="header-particle header-particle--far" style="left:76.5%;top:54.3%;width:1.0px;height:1.0px;background:#5a8aff;animation-duration:66.8s;animation-delay:-9.7s;"></span>
+            <span class="header-particle header-particle--far" style="left:45.1%;top:49.8%;width:1.3px;height:1.3px;background:#4a90e2;animation-duration:53.0s;animation-delay:-30.1s;"></span>
+            <span class="header-particle header-particle--mid" style="left:99.5%;top:46.3%;width:3.2px;height:3.2px;background:#a855f7;animation-duration:33.9s;animation-delay:-29.2s;"></span>
+            <span class="header-particle header-particle--far" style="left:49.4%;top:68.9%;width:1.5px;height:1.5px;background:#7eb0ff;animation-duration:68.4s;animation-delay:-68.7s;"></span>
+            <span class="header-particle header-particle--mid" style="left:55.0%;top:15.3%;width:2.7px;height:2.7px;background:#a855f7;animation-duration:40.5s;animation-delay:-26.3s;"></span>
+            <span class="header-particle header-particle--mid" style="left:57.3%;top:48.1%;width:3.4px;height:3.4px;background:#00f0ff;animation-duration:29.2s;animation-delay:-36.5s;"></span>
+            <span class="header-particle header-particle--far" style="left:58.4%;top:69.2%;width:1.4px;height:1.4px;background:#5a8aff;animation-duration:63.6s;animation-delay:-64.6s;"></span>
+            <span class="header-particle header-particle--mid" style="left:101.3%;top:47.2%;width:3.1px;height:3.1px;background:#a855f7;animation-duration:29.2s;animation-delay:-26.4s;"></span>
+            <span class="header-particle header-particle--near" style="left:92.7%;top:76.8%;width:5.9px;height:5.9px;background:#00f0ff;animation-duration:21.7s;animation-delay:-0.3s;"></span>
+            <span class="header-particle header-particle--mid" style="left:87.1%;top:57.6%;width:2.6px;height:2.6px;background:#a855f7;animation-duration:32.4s;animation-delay:-25.2s;"></span>
+            <span class="header-particle header-particle--far" style="left:77.4%;top:40.4%;width:1.6px;height:1.6px;background:#4a90e2;animation-duration:56.7s;animation-delay:-11.7s;"></span>
+            <span class="header-particle header-particle--mid" style="left:87.8%;top:69.9%;width:2.6px;height:2.6px;background:#00d0ff;animation-duration:33.4s;animation-delay:-33.0s;"></span>
+            <span class="header-particle header-particle--mid" style="left:67.5%;top:75.9%;width:2.1px;height:2.1px;background:#00d0ff;animation-duration:41.6s;animation-delay:-29.5s;"></span>
+            <span class="header-particle header-particle--mid" style="left:50.9%;top:41.4%;width:2.2px;height:2.2px;background:#00f0ff;animation-duration:39.7s;animation-delay:-24.6s;"></span>
+            <span class="header-particle header-particle--mid" style="left:86.1%;top:37.5%;width:3.3px;height:3.3px;background:#00f0ff;animation-duration:39.3s;animation-delay:-11.9s;"></span>
+            <span class="header-particle header-particle--far" style="left:37.9%;top:73.3%;width:1.7px;height:1.7px;background:#5a8aff;animation-duration:64.1s;animation-delay:-54.8s;"></span>
+            <span class="header-particle header-particle--near" style="left:123.4%;top:39.3%;width:5.1px;height:5.1px;background:#ffffff;animation-duration:18.2s;animation-delay:-20.4s;"></span>
+        <div class="header-particles__planet" aria-hidden="true">
+            <div class="planet-ring"></div>
+            <div class="planet-body"></div>
+        </div>
         </div>
     </header>
     <div class="header-placeholder" aria-hidden="true"></div>
