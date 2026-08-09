@@ -761,8 +761,8 @@ h4 { font-size: 1.1rem; }
     100% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(-315deg); }
 }
 @keyframes header-planet-halo {
-    0%, 100% { opacity: 0.55; transform: scale(1); }
-    50%      { opacity: 0.85; transform: scale(1.08); }
+    0%, 100% { opacity: 0.55; }
+    50%      { opacity: 0.85; }
 }
 @keyframes header-planet-ring-pulse {
     0%, 100% {
