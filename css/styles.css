@@ -932,7 +932,7 @@ h4 { font-size: 1.1rem; }
     backdrop-filter: blur(20px);
     color: var(--c-text);
     overflow: hidden;
-    padding: 18px 0;
+    padding: 8px 0;
     position: relative;
     z-index: 5;
     border-top: 1px solid var(--c-border);
@@ -948,7 +948,7 @@ h4 { font-size: 1.1rem; }
 }
 .ticker-item {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     color: var(--c-text);
@@ -959,18 +959,18 @@ h4 { font-size: 1.1rem; }
     text-transform: uppercase;
 }
 .ticker-item img {
-    height: 22px;
+    height: 18px;
     width: auto;
     object-fit: contain;
     flex-shrink: 0;
     filter: drop-shadow(0 0 4px rgba(0, 240, 255, 0.4));
 }
-.ticker-item img[src$="xconnector.svg"] { height: 28px; }
-.ticker-item img[src$="logo.svg"] { height: 24px; }
-.ticker-item img[src$="logo-mark.svg"] { height: 26px; width: 26px; }
-.ticker-item img[src$="import-export.svg"] { height: 22px; width: 22px; }
+.ticker-item img[src$="xconnector.svg"] { height: 22px; }
+.ticker-item img[src$="logo.svg"] { height: 18px; }
+.ticker-item img[src$="logo-mark.svg"] { height: 20px; width: 20px; }
+.ticker-item img[src$="import-export.svg"] { height: 18px; width: 18px; }
 .ticker-emoji {
-    font-size: 22px;
+    font-size: 18px;
     line-height: 1;
     display: inline-block;
 }
@@ -1658,6 +1658,82 @@ h4 { font-size: 1.1rem; }
 @media (max-width: 600px) {
     .process-grid { grid-template-columns: 1fr; gap: 20px; }
     .step-card { padding: 24px 4px 16px; }
+}
+
+/* ============================================
+   IMPORT-CHINA — process steps (8 pași import)
+   Mai aerisit, font mai mare, padding generos pe mobile.
+   ============================================ */
+.process-step {
+    background: linear-gradient(135deg, rgba(15, 15, 30, 0.55) 0%, rgba(10, 10, 20, 0.35) 100%);
+    border: 1px solid var(--c-border);
+    border-top: 2px solid var(--cyber-neon);
+    border-radius: 0;
+    padding: 28px 24px 24px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: none;
+    overflow: hidden;
+}
+.process-step::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 50px; height: 50px;
+    background: var(--grad-primary);
+    opacity: 0.1;
+    transform: translate(25px, -25px) rotate(45deg);
+    transition: all 0.4s;
+}
+.process-step:hover {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.08) 0%, rgba(168, 85, 247, 0.05) 100%);
+    transform: translateY(-4px);
+    border-color: var(--c-border-strong);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 240, 255, 0.1);
+}
+.process-step:hover::before { opacity: 0.2; }
+.process-step .step-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--cyber-neon);
+    margin-bottom: 8px;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+.process-step h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--c-text);
+    margin: 0 0 10px;
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+}
+.process-step p {
+    font-size: 0.92rem;
+    color: var(--c-text-2);
+    line-height: 1.65;
+    margin: 0;
+}
+.process-grid--import {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 1100px) {
+    .process-grid--import { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+}
+@media (max-width: 600px) {
+    .process-grid--import { grid-template-columns: 1fr; gap: 18px; }
+    .process-step { padding: 24px 20px 22px; }
+    .process-step .step-num { font-size: 1.4rem; }
+    .process-step h4 { font-size: 1rem; }
+    .process-step p { font-size: 0.88rem; line-height: 1.6; }
 }
 
 /* ============================================
