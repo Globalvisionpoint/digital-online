@@ -719,37 +719,42 @@ h4 { font-size: 1.1rem; }
     50%      { opacity: 1; }
 }
 
-/* === SCROLL INDICATOR — small animated arrow + label in bottom-right of header.
-   Tells the user there's more content below. Subtle and functional.
-   Replaces the GPS telemetry chip — fits site theme (a presentation site
-   where users need to know to scroll for more content). */
-.header-particles > .hud-status {
+/* === SCROLL INDICATOR — positioned RELATIVE to .logo (same anchor as LEDs).
+   Sits just below the LEDs so it visually attaches to the loading animation. */
+.logo {
+    position: relative;  /* anchor for leds + scroll */
+}
+.hud-status {
     position: absolute;
-    right: 80px;
-    bottom: 4px;
+    top: calc(100% + 2px);  /* just below the logo (LEDs are vertically centered) */
+    left: 100%;            /* align with logo right edge */
+    transform: translateX(-100%); /* pull back so the right side aligns with logo right */
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 5px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.25em;
-    color: rgba(0, 240, 255, 0.65);
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: rgba(0, 240, 255, 0.55);
     pointer-events: none;
     text-transform: uppercase;
+    white-space: nowrap;
     animation: header-scroll-fade 3s ease-in-out infinite;
+    z-index: 3;
 }
-.header-particles > .hud-status::after {
+.hud-status::after {
     content: '';
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-right: 1.5px solid rgba(0, 240, 255, 0.7);
     border-bottom: 1.5px solid rgba(0, 240, 255, 0.7);
     transform: rotate(45deg);
-    box-shadow: 2px 2px 0 rgba(0, 240, 255, 0.15);
+    box-shadow: 1px 1px 0 rgba(0, 240, 255, 0.15);
     animation: header-scroll-bounce 2s ease-in-out infinite;
+    flex-shrink: 0;
 }
 @keyframes header-scroll-fade {
-    0%, 100% { opacity: 0.5; }
+    0%, 100% { opacity: 0.4; }
     50%      { opacity: 1; }
 }
 @keyframes header-scroll-bounce {
