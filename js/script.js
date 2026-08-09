@@ -228,7 +228,7 @@
         // mouseover/mouseout bubble (unlike mouseenter/mouseleave), so we check
         // relatedTarget to detect true enter/leave transitions and avoid flicker
         // when the cursor crosses child elements inside an interactive control.
-        const interactiveSelector = 'a, button, .service-card, .dash-card, .process-row, .step-card, .testimonial, .cta-btn, .form-input, .feature, .pricing-card, .why-stat, .channel, .btn, .dropdown li a, .nav-link, .menu-toggle, .to-top, input, select, textarea, .logo, .cookie-banner__btn, .cookie-modal__btn';
+        const interactiveSelector = 'a, button, .service-card, .dash-card, .process-row, .step-card, .testimonial, .cta-btn, .form-input, .feature, .pricing-card, .why-stat, .channel, .btn, .dropdown li a, .nav-link, .menu-toggle, input, select, textarea, .logo, .cookie-banner__btn, .cookie-modal__btn';
         document.addEventListener('mouseover', (e) => {
             const target = e.target.closest(interactiveSelector);
             if (target) cursor.classList.add('hover');
@@ -341,13 +341,11 @@
        UNIFIED SCROLL HANDLER (single rAF loop — no jitter)
        ============================================================ */
     const header = document.getElementById('header');
-    const toTop = document.getElementById('toTop');
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
 
     let scrollTicking = false;
     let lastScrolledState = null;
-    let lastToTopState = null;
     let lastCurrentSection = null;
 
     const handleScroll = () => {
@@ -358,14 +356,6 @@
             if (isScrolled !== lastScrolledState) {
                 lastScrolledState = isScrolled;
                 header.classList.toggle('scrolled', isScrolled);
-            }
-        }
-
-        if (toTop) {
-            const visible = y > 400;
-            if (visible !== lastToTopState) {
-                lastToTopState = visible;
-                toTop.classList.toggle('visible', visible);
             }
         }
 
@@ -394,12 +384,6 @@
         }
     }, { passive: true });
     handleScroll();
-
-    if (toTop) {
-        toTop.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
 
     /* ============================================================
        HEADER PLACEHOLDER (sync height with fixed header)
@@ -476,9 +460,13 @@
             submitBtn.textContent = 'Se trimite...';
             submitBtn.disabled = true;
 
+            // Loading state cu scan-bar animată
+            status.className = 'form-status loading';
+            status.innerHTML = '<span class="form-status__dot"></span> Se procesează solicitarea...';
+
             setTimeout(() => {
                 status.className = 'form-status success';
-                status.innerHTML = '✅ Mulțumim, <strong>' + escape(nume) + '</strong>! Am primit solicitarea ta și te vom contacta în maxim 24 de ore la <strong>' + escape(email) + '</strong>.';
+                status.innerHTML = '✓ Mulțumim, <strong>' + escape(nume) + '</strong>! Am primit solicitarea ta și te vom contacta în maxim 24 de ore la <strong>' + escape(email) + '</strong>.';
                 form.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;

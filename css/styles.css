@@ -692,13 +692,24 @@ h4 { font-size: 1.1rem; }
     font-weight: 500;
     color: var(--c-text-2);
     font-size: 0.72rem;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     transition: all var(--t);
     cursor: none;
     position: relative;
     white-space: nowrap;
-    letter-spacing: 0.15em;
+}
+/* Desktop (>=1025px): mărește vizual fontul fără a crește înălțimea barei,
+   prin transform:scale pe link. Bara rămâne la aceeași înălțime. */
+@media (min-width: 1025px) {
+    .nav-link {
+        font-size: 0.92rem;
+        letter-spacing: 0.18em;
+        transform: scale(1.12);
+        transform-origin: center center;
+        padding: 7px 8px;
+    }
+    .nav-list { gap: 4px; }
 }
 .nav-link::before {
     content: '//';
@@ -2303,15 +2314,105 @@ h4 { font-size: 1.1rem; }
     text-shadow: none;
 }
 .form-check label a { color: var(--cyber-neon); text-decoration: underline; }
+
+/* ----- Form status (loading/error/success) ----- */
 .form-status {
     margin-top: 12px;
     font-size: 0.9rem;
     padding: 12px 16px;
     border-left: 3px solid;
     background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+    min-height: 24px;
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.form-status.error { border-color: var(--cyber-pink); color: var(--cyber-pink); }
-.form-status.success { border-color: var(--cyber-green); color: var(--cyber-green); }
+/* Bara de scan animată care trece prin status (cyber-glitch vibe) */
+.form-status::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 30%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.18), transparent);
+    animation: formScan 2.2s linear infinite;
+    pointer-events: none;
+}
+/* Bară verticală mică la dreapta (scan marker) */
+.form-status::after {
+    content: '';
+    position: absolute;
+    top: 8px; right: 8px;
+    width: 2px; height: calc(100% - 16px);
+    background: currentColor;
+    opacity: 0.6;
+    animation: statusPulse 1.4s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes formScan {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(400%); }
+}
+@keyframes statusPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+    50%      { opacity: 1; transform: scaleY(1); }
+}
+/* Loading state - scan-bar cu pulsating dot */
+.form-status.loading {
+    border-color: var(--cyber-neon);
+    color: var(--cyber-neon);
+    background: rgba(0, 240, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.form-status.loading::before {
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.35), transparent);
+    animation-duration: 1.2s;
+}
+.form-status__dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    background: var(--cyber-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--cyber-neon);
+    animation: dotPulse 0.8s ease-in-out infinite;
+    flex-shrink: 0;
+}
+@keyframes dotPulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.8); }
+    50%      { opacity: 1; transform: scale(1.2); box-shadow: 0 0 14px var(--cyber-neon); }
+}
+/* Glitch shake pe error */
+.form-status.error {
+    border-color: var(--cyber-pink);
+    color: var(--cyber-pink);
+    background: rgba(255, 7, 58, 0.05);
+    animation: statusGlitch 0.4s ease-in-out;
+}
+@keyframes statusGlitch {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-4px); }
+    40%      { transform: translateX(4px); }
+    60%      { transform: translateX(-2px); }
+    80%      { transform: translateX(2px); }
+}
+/* Success — fade-in cu glow expanding */
+.form-status.success {
+    border-color: var(--cyber-green);
+    color: var(--cyber-green);
+    background: rgba(0, 255, 157, 0.05);
+    animation: statusSuccess 0.6s ease-out;
+}
+.form-status.success::before {
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.25), transparent);
+}
+@keyframes statusSuccess {
+    0%   { opacity: 0; transform: translateY(8px) scale(0.98); box-shadow: 0 0 0 rgba(0, 255, 157, 0); }
+    50%  { opacity: 1; box-shadow: 0 0 20px rgba(0, 255, 157, 0.4); }
+    100% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 0 8px rgba(0, 255, 157, 0.2); }
+}
 
 /* ============================================
    FOOTER
