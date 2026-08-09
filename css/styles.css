@@ -665,9 +665,9 @@ h4 { font-size: 1.1rem; }
 .header-particles__planet {
     position: absolute;
     top: 50%;
-    right: 8px;
-    width: 70px;
-    height: 70px;
+    right: 16px;
+    width: 45px;
+    height: 45px;
     transform: translateY(-50%);
     pointer-events: none;
 }
@@ -675,7 +675,7 @@ h4 { font-size: 1.1rem; }
 .header-particles__planet::before {
     content: '';
     position: absolute;
-    inset: -25px;
+    inset: -15px;
     border-radius: 50%;
     background: radial-gradient(circle,
         rgba(0, 240, 255, 0.18) 0%,
@@ -687,7 +687,7 @@ h4 { font-size: 1.1rem; }
 /* Planet body — radial gradient simulates 3D sphere with light source top-left */
 .header-particles__planet > .planet-body {
     position: absolute;
-    inset: 8px;
+    inset: 5px;
     border-radius: 50%;
     background:
         radial-gradient(circle at 30% 30%,
@@ -697,8 +697,8 @@ h4 { font-size: 1.1rem; }
             rgba(5, 80, 120, 0.45) 70%,
             rgba(2, 20, 40, 0.85) 100%);
     box-shadow:
-        0 0 8px rgba(0, 240, 255, 0.5),
-        inset 0 0 12px rgba(0, 200, 255, 0.3);
+        0 0 6px rgba(0, 240, 255, 0.5),
+        inset 0 0 8px rgba(0, 200, 255, 0.3);
     animation: header-planet-spin 18s linear infinite;
 }
 /* Meridian ring — thin ellipse around planet for "saturn-like" effect */
@@ -706,14 +706,14 @@ h4 { font-size: 1.1rem; }
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 90px;
-    height: 18px;
+    width: 58px;
+    height: 12px;
     border: 1px solid rgba(0, 240, 255, 0.45);
     border-radius: 50%;
     transform: translate(-50%, -50%) rotateX(75deg);
     box-shadow:
-        0 0 6px rgba(0, 240, 255, 0.35),
-        inset 0 0 4px rgba(0, 240, 255, 0.2);
+        0 0 4px rgba(0, 240, 255, 0.35),
+        inset 0 0 3px rgba(0, 240, 255, 0.2);
     animation: header-planet-ring-pulse 4s ease-in-out infinite;
 }
 /* Latitude grid lines on planet body for "digital wireframe" look */
