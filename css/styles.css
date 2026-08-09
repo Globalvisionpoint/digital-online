@@ -71,7 +71,7 @@ ul { list-style: none; }
     background: var(--cyber-pink);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10001;
     mix-blend-mode: normal;
     transition: transform 0.15s ease, width 0.25s, height 0.25s, background 0.2s;
     box-shadow: 0 0 16px rgba(255, 7, 58, 0.65), 0 0 32px rgba(255, 7, 58, 0.4);
@@ -91,7 +91,7 @@ ul { list-style: none; }
     border: 1px solid var(--cyber-pink);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9998;
+    z-index: 10000;
     transition: transform 0.3s ease;
     opacity: 0.55;
 }
@@ -2608,7 +2608,7 @@ h4 { font-size: 1.1rem; }
     .menu-toggle span.bars { top: 17px; }
     .menu-toggle::after { top: 23px; }
     .header-inner > .logo { order: 2; position: absolute; left: 50%; transform: translateX(calc(-50% - 14.5px)); display: flex; justify-content: center; align-items: center; pointer-events: none; }
-    .header-inner .logo-img { height: 32px; }
+    .header-inner .logo-img { height: 38px; }
     .header-inner > a.btn { order: 3; flex: 0 0 auto; margin-left: auto; }
     .btn-sm { padding: 8px 12px; font-size: 0.62rem; letter-spacing: 0.08em; white-space: nowrap; }
     /* Mobile dropdown - always show inline when menu is open */
@@ -2682,12 +2682,12 @@ h4 { font-size: 1.1rem; }
     h2 { font-size: 1.5rem; }
     .btn { padding: 12px 22px; font-size: 0.75rem; }
     .footer-grid { grid-template-columns: 1fr; }
-    .header-inner { gap: 6px; padding: 10px 10px; align-items: center; }
+    .header-inner { gap: 6px; padding: 7px 10px; align-items: center; }
     .menu-toggle { width: 34px; height: 34px; flex: 0 0 34px; font-size: 0; background: rgba(0, 240, 255, 0.04); border: 1px solid rgba(0, 240, 255, 0.25); }
     .menu-toggle::before { top: 10px; left: 7px; right: 7px; height: 1.5px; }
     .menu-toggle span.bars { top: 16px; left: 7px; right: 7px; height: 1.5px; }
     .menu-toggle::after { top: 22px; left: 7px; right: 7px; height: 1.5px; }
-    .logo-img { height: 30px; }
+    .logo-img { height: 38px; }
     .footer .logo-img { height: 40px; }
     .btn-sm { padding: 7px 10px; font-size: 0.58rem; letter-spacing: 0.05em; }
 }

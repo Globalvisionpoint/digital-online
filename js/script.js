@@ -223,10 +223,24 @@
         }
         animateCursor();
 
-        const interactiveSelectors = 'a, button, .service-card, .dash-card, .process-row, .step-card, .testimonial, .cta-btn, .form-input, .feature, .pricing-card, .why-stat, .channel, .btn, .dropdown li a, .nav-link, .menu-toggle, .to-top, input, select, textarea, .logo';
-        document.querySelectorAll(interactiveSelectors).forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        // Use event delegation so dynamically-injected elements (cookie banner,
+        // cookie modal, etc.) also trigger the hover state on the custom cursor.
+        // mouseover/mouseout bubble (unlike mouseenter/mouseleave), so we check
+        // relatedTarget to detect true enter/leave transitions and avoid flicker
+        // when the cursor crosses child elements inside an interactive control.
+        const interactiveSelector = 'a, button, .service-card, .dash-card, .process-row, .step-card, .testimonial, .cta-btn, .form-input, .feature, .pricing-card, .why-stat, .channel, .btn, .dropdown li a, .nav-link, .menu-toggle, .to-top, input, select, textarea, .logo, .cookie-banner__btn, .cookie-modal__btn';
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target.closest(interactiveSelector);
+            if (target) cursor.classList.add('hover');
+        });
+        document.addEventListener('mouseout', (e) => {
+            const target = e.target.closest(interactiveSelector);
+            if (!target) return;
+            // Only remove hover when the cursor truly leaves the element
+            // (i.e. moving to a node that is not inside the same interactive target).
+            const related = e.relatedTarget;
+            if (related && target.contains(related)) return;
+            cursor.classList.remove('hover');
         });
     }
 
