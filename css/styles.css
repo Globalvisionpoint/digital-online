@@ -598,10 +598,9 @@ h4 { font-size: 1.1rem; }
 }
 
 /* ============================================
-   HEADER PARTICLES + CYBORG ORB + DIGITAL PLANET
-   Animated background inside the header bar.
-   Particles drift right -> left and fade out, with 3D depth.
-   A "digital planet" sphere sits in the top-right corner with rings.
+   HEADER CYBER-HUD OVERLAY
+   Futuristic cyborg interface elements inspired by military HUDs and
+   sci-fi displays. No particles, no planets — just clean digital artifacts.
    ============================================ */
 .header-particles {
     position: absolute;
@@ -617,170 +616,202 @@ h4 { font-size: 1.1rem; }
     z-index: 1;
 }
 
-/* Base particle — defaults set here, per-particle overrides via inline style */
-.header-particles > .header-particle {
+/* === SCAN LINE — horizontal cyan line that sweeps across the header.
+   Like a radar/scanner beam reading data left to right. === */
+.header-particles > .header-scan {
     position: absolute;
-    /* Star-like shape: 4-pointed star via clip-path (more realistic than circle) */
-    border-radius: 0;
-    background: radial-gradient(circle,
-        currentColor 0%,
-        currentColor 35%,
-        transparent 75%);
-    box-shadow: 0 0 4px currentColor;
-    clip-path: polygon(
-        50% 0%,
-        60% 35%,
-        100% 50%,
-        60% 65%,
-        50% 100%,
-        40% 65%,
-        0% 50%,
-        40% 35%
-    );
-    animation: header-particle-drift linear infinite;
-    will-change: transform, opacity;
-}
-
-/* DEPTH VARIANTS — 3D perspective illusion */
-.header-particles > .header-particle--far {
-    opacity: 0.20;
-    box-shadow: 0 0 2px currentColor;
-}
-.header-particles > .header-particle--mid {
-    opacity: 0.45;
-    box-shadow: 0 0 4px currentColor, 0 0 8px currentColor;
-}
-.header-particles > .header-particle--near {
-    opacity: 0.70;
-    box-shadow: 0 0 6px currentColor, 0 0 12px currentColor, 0 0 20px currentColor;
-}
-
-@keyframes header-particle-drift {
-    0% {
-        transform: translate3d(0, 0, 0);
-        opacity: 0;
-    }
-    8% {
-        opacity: 0.55;
-    }
-    50% {
-        opacity: 0.55;
-    }
-    92% {
-        opacity: 0.25;
-    }
-    100% {
-        transform: translate3d(-130vw, 0, 0);
-        opacity: 0;
-    }
-}
-
-/* DIGITAL PLANET (sphere) in the top-right corner of the header.
-   Built as a multi-layer effect: outer halo + planet body + meridian ring. */
-.header-particles__planet {
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    width: 45px;
-    height: 45px;
-    transform: translateY(-50%);
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(0, 240, 255, 0.05) 30%,
+        rgba(0, 240, 255, 0.45) 50%,
+        rgba(0, 240, 255, 0.05) 70%,
+        transparent 100%);
+    animation: header-scan-sweep 6s linear infinite;
     pointer-events: none;
 }
-/* Outer halo glow */
-.header-particles__planet::before {
+@keyframes header-scan-sweep {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(250%); }
+}
+
+/* === WAVEFORM PULSE — ECG-like horizontal line in the center-right area.
+   Drawn as a series of vertical bars that pulse in sequence (audio visualizer). === */
+.header-particles > .header-waveform {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 18px;
+    pointer-events: none;
+}
+.header-particles > .header-waveform > .wf-bar {
+    width: 2px;
+    background: var(--cyber-neon);
+    border-radius: 1px;
+    box-shadow: 0 0 4px var(--cyber-neon);
+    animation: header-wf-bar 1.2s ease-in-out infinite;
+}
+.header-particles > .header-waveform > .wf-bar:nth-child(1)  { animation-delay: 0.0s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(2)  { animation-delay: 0.1s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(3)  { animation-delay: 0.2s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(4)  { animation-delay: 0.3s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(5)  { animation-delay: 0.4s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(6)  { animation-delay: 0.5s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(7)  { animation-delay: 0.6s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(8)  { animation-delay: 0.7s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(9)  { animation-delay: 0.8s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(10) { animation-delay: 0.9s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(11) { animation-delay: 1.0s; }
+.header-particles > .header-waveform > .wf-bar:nth-child(12) { animation-delay: 1.1s; }
+@keyframes header-wf-bar {
+    0%, 100% { height: 4px; opacity: 0.4; }
+    50%      { height: 18px; opacity: 1; }
+}
+
+/* === STATUS LEDS — row of 4 small dots that pulse sequentially.
+   Suggests network activity / system heartbeat. === */
+.header-particles > .header-leds {
+    position: absolute;
+    top: 50%;
+    left: 200px;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 6px;
+    pointer-events: none;
+}
+.header-particles > .header-leds > .led {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--cyber-neon);
+    box-shadow: 0 0 6px var(--cyber-neon);
+    animation: header-led-pulse 1.6s ease-in-out infinite;
+}
+.header-particles > .header-leds > .led:nth-child(1) { animation-delay: 0.0s; }
+.header-particles > .header-leds > .led:nth-child(2) { animation-delay: 0.4s; }
+.header-particles > .header-leds > .led:nth-child(3) { animation-delay: 0.8s; }
+.header-particles > .header-leds > .led:nth-child(4) { animation-delay: 1.2s; }
+@keyframes header-led-pulse {
+    0%, 70%, 100% { opacity: 0.3; transform: scale(0.85); }
+    20%, 50%      { opacity: 1; transform: scale(1.15); }
+}
+
+/* === HUD BRACKETS — corner [ ] brackets in all 4 corners of the header.
+   Like military targeting reticle brackets. === */
+.header-particles > .hud-bracket {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 1.5px solid rgba(0, 240, 255, 0.55);
+    box-shadow: 0 0 6px rgba(0, 240, 255, 0.35);
+    pointer-events: none;
+    animation: header-bracket-blink 3s ease-in-out infinite;
+}
+/* Top-left bracket: ┌ shape (right + bottom borders) */
+.header-particles > .hud-bracket.tl {
+    top: 4px;
+    left: 4px;
+    border-right: none;
+    border-bottom: none;
+    animation-delay: 0s;
+}
+/* Top-right bracket: ┐ shape (left + bottom borders) */
+.header-particles > .hud-bracket.tr {
+    top: 4px;
+    right: 4px;
+    border-left: none;
+    border-bottom: none;
+    animation-delay: 0.5s;
+}
+/* Bottom-left bracket: └ shape (right + top borders) */
+.header-particles > .hud-bracket.bl {
+    bottom: 4px;
+    left: 4px;
+    border-right: none;
+    border-top: none;
+    animation-delay: 1.0s;
+}
+/* Bottom-right bracket: ┘ shape (left + top borders) */
+.header-particles > .hud-bracket.br {
+    bottom: 4px;
+    right: 4px;
+    border-left: none;
+    border-top: none;
+    animation-delay: 1.5s;
+}
+@keyframes header-bracket-blink {
+    0%, 100% { opacity: 0.5; }
+    50%      { opacity: 1; }
+}
+
+/* === BINARY STREAM — scrolling text like "0 1 1 0 1 0" in faint cyan.
+   Suggests data transmission. === */
+.header-particles > .header-binary {
+    position: absolute;
+    top: 50%;
+    right: 100px;
+    transform: translateY(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: rgba(0, 240, 255, 0.45);
+    text-shadow: 0 0 4px rgba(0, 240, 255, 0.3);
+    white-space: nowrap;
+    pointer-events: none;
+    animation: header-binary-shift 8s steps(20) infinite;
+}
+@keyframes header-binary-shift {
+    0%   { opacity: 0.45; transform: translateY(-50%) translateX(0); }
+    50%  { opacity: 0.7;  transform: translateY(-50%) translateX(-12px); }
+    100% { opacity: 0.45; transform: translateY(-50%) translateX(0); }
+}
+
+/* === TARGET LOCK — small crosshair that pulses on the right side.
+   Suggests "tracking" / "scanning". === */
+.header-particles > .hud-crosshair {
+    position: absolute;
+    top: 50%;
+    right: 60px;
+    transform: translate(50%, -50%);
+    width: 24px;
+    height: 24px;
+    border: 1.5px solid rgba(0, 240, 255, 0.55);
+    border-radius: 50%;
+    box-shadow:
+        0 0 8px rgba(0, 240, 255, 0.4),
+        inset 0 0 6px rgba(0, 240, 255, 0.25);
+    pointer-events: none;
+    animation: header-crosshair-spin 4s linear infinite;
+}
+.header-particles > .hud-crosshair::before,
+.header-particles > .hud-crosshair::after {
     content: '';
     position: absolute;
-    inset: -15px;
-    border-radius: 50%;
-    background: radial-gradient(circle,
-        rgba(0, 240, 255, 0.18) 0%,
-        rgba(0, 240, 255, 0.08) 35%,
-        rgba(0, 240, 255, 0.02) 65%,
-        transparent 80%);
-    animation: header-planet-halo 4s ease-in-out infinite;
+    background: rgba(0, 240, 255, 0.7);
+    box-shadow: 0 0 4px rgba(0, 240, 255, 0.5);
 }
-/* Planet body — radial gradient simulates 3D sphere with light source top-left.
-   Stays static (represents lighting, not surface). */
-.header-particles__planet > .planet-body {
-    position: absolute;
-    inset: 5px;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 30% 30%,
-            rgba(180, 240, 255, 0.55) 0%,
-            rgba(0, 240, 255, 0.40) 18%,
-            rgba(0, 180, 220, 0.30) 40%,
-            rgba(5, 80, 120, 0.45) 70%,
-            rgba(2, 20, 40, 0.85) 100%);
-    box-shadow:
-        0 0 6px rgba(0, 240, 255, 0.5),
-        inset 0 0 8px rgba(0, 200, 255, 0.3);
-}
-
-/* ORBITAL RING — ellipse around planet that ROTATES 360° around planet center.
-   This creates a visible orbital motion (like Saturn's rings rotating).
-   transform-origin is set to planet center so it pivots correctly. */
-.header-particles__planet > .planet-ring {
-    position: absolute;
-    top: 50%;
+.header-particles > .hud-crosshair::before {
+    top: -4px; bottom: -4px;
     left: 50%;
-    width: 58px;
-    height: 12px;
-    border: 1px solid rgba(0, 240, 255, 0.45);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) rotateX(75deg);
-    box-shadow:
-        0 0 4px rgba(0, 240, 255, 0.35),
-        inset 0 0 3px rgba(0, 240, 255, 0.2);
-    transform-origin: center center;
-    animation: header-planet-orbit 20s linear infinite;
+    width: 1.5px;
+    transform: translateX(-50%);
 }
-
-/* Secondary ring — smaller, tilted differently, for richer orbital feel */
-.header-particles__planet > .planet-ring-2 {
-    position: absolute;
+.header-particles > .hud-crosshair::after {
+    left: -4px; right: -4px;
     top: 50%;
-    left: 50%;
-    width: 46px;
-    height: 9px;
-    border: 1px solid rgba(0, 240, 255, 0.30);
-    border-radius: 50%;
-    transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg);
-    box-shadow:
-        0 0 3px rgba(0, 240, 255, 0.25),
-        inset 0 0 2px rgba(0, 240, 255, 0.15);
-    animation: header-planet-orbit 28s linear infinite reverse;
+    height: 1.5px;
+    transform: translateY(-50%);
 }
-
-@keyframes header-planet-orbit {
-    0%   { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(0deg); }
-    100% { transform: translate(-50%, -50%) rotateX(75deg) rotateZ(360deg); }
-}
-@keyframes header-planet-orbit-2 {
-    0%   { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(45deg); }
-    100% { transform: translate(-50%, -50%) rotateX(60deg) rotateZ(-315deg); }
-}
-@keyframes header-planet-halo {
-    0%, 100% { opacity: 0.55; }
-    50%      { opacity: 0.85; }
-}
-@keyframes header-planet-ring-pulse {
-    0%, 100% {
-        opacity: 0.6;
-        box-shadow:
-            0 0 6px rgba(0, 240, 255, 0.35),
-            inset 0 0 4px rgba(0, 240, 255, 0.2);
-    }
-    50% {
-        opacity: 1;
-        box-shadow:
-            0 0 12px rgba(0, 240, 255, 0.6),
-            inset 0 0 8px rgba(0, 240, 255, 0.4);
-    }
-}
-@keyframes header-planet-grid {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+@keyframes header-crosshair-spin {
+    0%   { transform: translate(50%, -50%) rotate(0deg); }
+    100% { transform: translate(50%, -50%) rotate(360deg); }
 }
 
 /* Keep header content above particles */
