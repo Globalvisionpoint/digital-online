@@ -569,13 +569,13 @@ h4 { font-size: 1.1rem; }
    ============================================ */
 .header {
     position: fixed;
-    /* Subtle cyber-tinted glass: deep navy with a hint of cyan glow,
-       keeps the bar visible over any background without blocking
-       the view of canvas/grid/orb behind it. No blur. */
-    background: rgba(5, 12, 24, 0.42);
+    /* Cyber-tinted glass: deep navy with stronger cyan glow, keeps the
+       bar clearly visible over any background without blocking the view
+       of canvas/grid/orb behind it. No blur. */
+    background: rgba(4, 14, 30, 0.55);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.28);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.4);
     z-index: 1000;
     transition: background-color var(--t), box-shadow var(--t), border-color var(--t);
     width: 100%;
@@ -594,11 +594,11 @@ h4 { font-size: 1.1rem; }
     -webkit-backface-visibility: hidden;
 }
 .header.scrolled {
-    background: rgba(5, 12, 24, 0.68);
+    background: rgba(4, 14, 30, 0.78);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    box-shadow: 0 4px 30px rgba(0, 240, 255, 0.12);
-    border-bottom-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 4px 30px rgba(0, 240, 255, 0.18);
+    border-bottom-color: rgba(0, 240, 255, 0.55);
 }
 .header-placeholder {
     display: block;
