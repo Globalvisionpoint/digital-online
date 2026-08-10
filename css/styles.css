@@ -661,6 +661,7 @@ h4 { font-size: 1.1rem; }
 .logo-img {
     height: 46px;
     width: auto;
+    aspect-ratio: 180 / 46; /* Reserves space, prevents CLS while SVG loads */
     display: block;
     filter: none;
 }
@@ -1551,6 +1552,11 @@ h4 { font-size: 1.1rem; }
     position: relative;
     z-index: 5;
     scroll-margin-top: 90px;
+    /* Performance: skip layout/paint for sections outside viewport.
+       Browser will render only when user scrolls near them.
+       contain-intrinsic-size prevents scrollbar jumps. */
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 800px;
 }
 #dashboards.section { padding-top: 40px; padding-bottom: 30px; scroll-margin-top: 40px; }
 #proces.section { padding-top: 40px; padding-bottom: 60px; scroll-margin-top: 40px; }

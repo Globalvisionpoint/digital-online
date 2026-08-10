@@ -183,6 +183,17 @@
         }
         animateScene();
 
+        // Performance: pause three.js animation when tab is hidden
+        // Browser already throttles rAF in background tabs, but we save the
+        // extra render work and any layout/paint triggered by canvas updates.
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                renderer.setAnimationLoop(null);
+            } else {
+                renderer.setAnimationLoop(animateScene);
+            }
+        });
+
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
