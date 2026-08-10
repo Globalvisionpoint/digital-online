@@ -31,7 +31,7 @@ html { scroll-behavior: smooth; }
 body {
     background: var(--cyber-black);
     color: var(--c-text);
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
@@ -39,6 +39,8 @@ body {
     cursor: none;
     min-height: 100vh;
     position: relative;
+    /* font-size-adjust keeps text width stable while webfont loads (CLS=0) */
+    font-size-adjust: from-font;
 }
 
 img { max-width: 100%; display: block; }
@@ -603,6 +605,7 @@ h4 { font-size: 1.1rem; }
 .header-placeholder {
     display: block;
     width: 100%;
+    height: 64px; /* Reserve space so removing/adding the loader doesn't shift content (CLS) */
 }
 .header-inner {
     display: flex;
