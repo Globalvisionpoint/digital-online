@@ -296,6 +296,12 @@
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
     if (menuToggle && nav) {
+        const closeMenu = () => {
+            nav.classList.remove('open');
+            menuToggle.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            document.querySelectorAll('.has-dropdown.open').forEach(d => d.classList.remove('open'));
+        };
         menuToggle.addEventListener('click', () => {
             const isOpen = nav.classList.toggle('open');
             menuToggle.classList.toggle('is-open', isOpen);
@@ -316,9 +322,7 @@
                 if (link.parentElement.classList.contains('has-dropdown') && window.innerWidth <= 900) {
                     return; // Let the dropdown handler handle it
                 }
-                nav.classList.remove('open');
-                // Also close all open dropdowns
-                document.querySelectorAll('.has-dropdown.open').forEach(d => d.classList.remove('open'));
+                closeMenu();
             });
         });
     }
