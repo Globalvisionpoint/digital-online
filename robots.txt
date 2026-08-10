@@ -1,6 +1,9 @@
 # robots.txt - Digital Online
 # https://digital-online.ro/robots.txt
 
+# ============================================================
+# DEFAULT - toate crawlerele
+# ============================================================
 User-agent: *
 Allow: /
 Disallow: /cgi-bin/
@@ -8,21 +11,77 @@ Disallow: /admin/
 Disallow: /tmp/
 Disallow: /*?*
 
-# Aggressive crawlers - throttling
+# ============================================================
+# GOOGLE - reguli explicite fara Crawl-delay (Googlebot il ignora)
+# ============================================================
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+# ============================================================
+# BING - suporta Crawl-delay
+# ============================================================
+User-agent: Bingbot
+Crawl-delay: 5
+
+User-agent: MSNBot-Media
+Crawl-delay: 5
+
+# ============================================================
+# YANDEX - suporta Crawl-delay + Request-rate
+# ============================================================
+User-agent: YandexBot
+Crawl-delay: 10
+Request-rate: 1/10s
+
+# ============================================================
+# AGGRESSIVE / 3rd-PARTY SEO CRAWLERS - throttling
+# ============================================================
 User-agent: AhrefsBot
 Crawl-delay: 10
+Disallow: /cgi-bin/
 
 User-agent: SemrushBot
 Crawl-delay: 10
+Disallow: /cgi-bin/
 
 User-agent: MJ12bot
 Crawl-delay: 10
+Disallow: /cgi-bin/
 
 User-agent: DotBot
 Crawl-delay: 10
+Disallow: /cgi-bin/
 
 User-agent: BLEXBot
 Crawl-delay: 10
+Disallow: /cgi-bin/
 
+User-agent: PetalBot
+Crawl-delay: 30
+Disallow: /cgi-bin/
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# ============================================================
 # Sitemaps
+# ============================================================
 Sitemap: https://digital-online.ro/sitemap.xml
