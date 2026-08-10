@@ -532,7 +532,9 @@
         tl.from('.hero-badge', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' })
           .from('.hero-title', { y: 60, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.5')
           .from('.hero-sub', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
-          .from('.hero-visual', { x: 60, opacity: 0, duration: 1.2, ease: 'power4.out' }, '-=1.0');
+          .from('.hero-visual', { y: 60, opacity: 0, duration: 1.2, ease: 'power4.out' }, '-=1.0');
+        // Note: .hero-orb is animated via CSS @keyframes orbDiagonal (transform: translate)
+        // GSAP would override that transform, so we skip animating it here.
 
         if (typeof ScrollTrigger !== 'undefined') {
             // Parallax disabled — terminal stays fixed in place when scrolling

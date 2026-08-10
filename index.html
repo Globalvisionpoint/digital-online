@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=534">
+    <link rel="stylesheet" href="css/styles.css?v=543">
 
     <!-- Three.js + GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -232,14 +232,32 @@
     <div class="header-placeholder" aria-hidden="true"></div>
 
     
-    <main id="main" tabindex="-1"><!-- HERO -->
+    <main id="main" tabindex="-1">
+    <div class="hero-orb" aria-hidden="true">
+        <div class="orb-container">
+            <div class="orb-core"></div>
+            <div class="orb-ring r1"></div>
+            <div class="orb-ring r2"></div>
+            <div class="orb-ring r3"></div>
+            <div class="orb-particles">
+                <span></span><span></span><span></span><span></span>
+                <span></span><span></span><span></span><span></span>
+            </div>
+            <div class="orb-label">
+                <span>AI</span>
+                <span>3D</span>
+                <span>XR</span>
+            </div>
+        </div>
+    </div>
+    <!-- HERO -->
     <section class="hero" id="acasa">
         <div class="hero-bg">
             <div class="hero-blob blob-1"></div>
             <div class="hero-blob blob-2"></div>
             <div class="hero-blob blob-3"></div>
         </div>
-        <div class="container hero-inner">
+        <div class="container hero-inner has-orb">
             <div class="hero-content">
                 <h1 class="hero-title">
                     Transformăm ideile tale în <span class="grad-text">Afaceri Digitale</span> care funcționează
