@@ -831,7 +831,7 @@ h4 { font-size: 1.1rem; }
    ============================================ */
 .hero {
     position: relative;
-    padding: 40px 0 40px;
+    padding: 20px 0 40px;
     overflow: hidden;
     background: transparent;
     width: 100%;
@@ -877,10 +877,10 @@ h4 { font-size: 1.1rem; }
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 40px;
+    gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0 20px;
+    padding: 0 0 20px;
 }
 .hero-badge {
     display: inline-block;
@@ -895,11 +895,11 @@ h4 { font-size: 1.1rem; }
     text-transform: uppercase;
     color: var(--cyber-neon);
     box-shadow: none;
-    margin-bottom: 16px;
+    margin-bottom: 6px;
     text-shadow: 0 0 8px var(--cyber-neon);
 }
 .hero-title {
-    margin: 8px 0 16px;
+    margin: 0 0 16px;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -2723,7 +2723,7 @@ h4 { font-size: 1.1rem; }
     }
 }
 @media (max-width: 1024px) {
-    .hero-inner { gap: 30px; padding: 10px 0 20px; }
+    .hero-inner { gap: 18px; padding: 0 0 20px; }
     .hero-visual { max-width: 100%; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     /* Extra compress at this range */
@@ -2734,7 +2734,7 @@ h4 { font-size: 1.1rem; }
     .btn-sm { padding: 6px 8px; font-size: 0.55rem; letter-spacing: 0.06em; }
 }
 @media (max-width: 900px) {
-    .hero-inner { gap: 30px; padding: 10px 0 20px; }
+    .hero-inner { gap: 18px; padding: 0 0 20px; }
     .hero-visual { max-width: 100%; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     /* Switch to mobile header layout: menu left, logo center, CTA right */
