@@ -573,9 +573,9 @@ h4 { font-size: 1.1rem; }
        anchored when scrolling. Slightly more transparent over hero,
        more opaque once .scrolled class is added (script.js toggles it
        at y > 30 for the stronger shadow / blur). */
-    background: rgba(5, 5, 10, 0.55);
-    backdrop-filter: blur(14px) saturate(140%);
-    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    background: rgba(5, 5, 10, 0.32);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
     border-bottom: 1px solid var(--c-border);
     z-index: 1000;
     transition: background-color var(--t), box-shadow var(--t), border-color var(--t), backdrop-filter var(--t);
@@ -595,7 +595,7 @@ h4 { font-size: 1.1rem; }
     -webkit-backface-visibility: hidden;
 }
 .header.scrolled {
-    background: rgba(5, 5, 10, 0.9);
+    background: rgba(5, 5, 10, 0.7);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     box-shadow: 0 4px 30px rgba(0, 240, 255, 0.1);
