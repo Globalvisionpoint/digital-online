@@ -947,6 +947,8 @@ h4 { font-size: 1.1rem; }
     pointer-events: none;
     opacity: 0.55;
     animation: orbDiagonal 36s ease-in-out infinite;
+    will-change: transform;   /* GPU layer hint for the slow diagonal sweep */
+    contain: layout paint;
 }
 @keyframes orbDiagonal {
     0%   { top: 5%;  left: 100%; transform: translate(-100%, 0); }
@@ -980,6 +982,7 @@ h4 { font-size: 1.1rem; }
     max-height: 400px;
     animation: float 6s ease-in-out infinite;
     pointer-events: none;
+    will-change: transform;
 }
 @keyframes float {
     50% { transform: translateY(-20px); }
