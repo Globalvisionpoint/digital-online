@@ -8,7 +8,7 @@ Disallow: /admin/
 Disallow: /tmp/
 Disallow: /*?*
 
-# Crawl-delay for aggressive bots
+# Aggressive crawlers - throttling
 User-agent: AhrefsBot
 Crawl-delay: 10
 
@@ -18,9 +18,11 @@ Crawl-delay: 10
 User-agent: MJ12bot
 Crawl-delay: 10
 
+User-agent: DotBot
+Crawl-delay: 10
+
+User-agent: BLEXBot
+Crawl-delay: 10
+
 # Sitemaps
 Sitemap: https://digital-online.ro/sitemap.xml
-Sitemap: https://digital-online.ro/sitemap-pages.xml
-
-# Host
-Host: https://digital-online.ro
