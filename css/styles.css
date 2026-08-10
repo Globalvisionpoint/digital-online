@@ -1,7 +1,3 @@
-/* ============================================
-   DIGITAL ONLINE — Futuristic Cyber Stylesheet
-   Re-skinned for site nou content
-   ============================================ */
 
 :root {
     --cyber-black: #05050a;
@@ -23,11 +19,8 @@
     --grad-primary: linear-gradient(135deg, var(--cyber-neon) 0%, var(--cyber-purple) 50%, var(--cyber-pink) 100%);
     --t: 0.3s ease;
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
 body {
     background: var(--cyber-black);
     color: var(--c-text);
@@ -40,16 +33,13 @@ body {
     min-height: 100vh;
     position: relative;
 }
-
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; transition: color var(--t); }
 a:hover { color: var(--cyber-neon); }
 ul { list-style: none; }
 ::selection { background: var(--cyber-neon); color: var(--cyber-black); }
-
 @media (max-width: 768px) {
     body { cursor: auto; }
-    /* Restore normal cursor on all interactive elements on mobile */
     a, button, .nav-link, .nav-list a, .dropdown li a, .btn,
     .menu-toggle, .header-inner > a.btn, .header-inner > .logo, .logo, .logo-img,
     .card, .pricing-card,
@@ -62,10 +52,6 @@ ul { list-style: none; }
         cursor: pointer !important;
     }
 }
-
-/* ============================================
-   CUSTOM CURSOR (from te)
-   ============================================ */
 .custom-cursor {
     position: fixed;
     width: 22px;
@@ -100,10 +86,6 @@ ul { list-style: none; }
 @media (max-width: 768px) {
     .custom-cursor, .cursor-trail { display: none; }
 }
-
-/* ============================================
-   LOADER
-   ============================================ */
 #loader {
     position: fixed;
     inset: 0;
@@ -116,11 +98,6 @@ ul { list-style: none; }
     transition: opacity 0.8s ease, visibility 0.8s;
 }
 #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
-
-/* Hide header while the loading screen is active.
-   Use display:none (not visibility/opacity) so the header is removed from the
-   layout entirely and never flashes on first paint. The class is added directly
-   on <body> in HTML so it applies before any JS runs. */
 html.is-loading body.is-loading .header,
 body.is-loading .header,
 body.is-loading .header-placeholder {
@@ -133,8 +110,6 @@ body.is-loading .scanlines,
 body.is-loading .vignette {
     visibility: hidden;
 }
-/* While loading, the main content (everything except the loader) is invisible.
-   This prevents any flash of content while the page is still loading. */
 body.is-loading > *:not(#loader) {
     visibility: hidden;
 }
@@ -164,8 +139,6 @@ body.is-loading > *:not(#loader) {
     opacity: 0.3;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* Loader center text overlay */
 .loader-center {
     position: relative;
     z-index: 2;
@@ -180,7 +153,7 @@ body.is-loading > *:not(#loader) {
     letter-spacing: 0.5em;
     color: var(--cyber-neon);
     text-shadow: 0 0 10px var(--cyber-neon), 0 0 20px var(--cyber-neon), 0 0 40px var(--cyber-neon);
-    padding-left: 0.5em; /* compensate for letter-spacing visual offset */
+    padding-left: 0.5em; 
 }
 .loader-status {
     font-family: 'JetBrains Mono', monospace;
@@ -190,8 +163,6 @@ body.is-loading > *:not(#loader) {
     text-transform: uppercase;
     margin-top: 0.75rem;
 }
-
-/* Loader progress bar + percent */
 .loader-progress {
     position: relative;
     z-index: 2;
@@ -220,7 +191,6 @@ body.is-loading > *:not(#loader) {
 .text-glow-cyan { text-shadow: 0 0 10px var(--cyber-neon), 0 0 20px var(--cyber-neon), 0 0 40px var(--cyber-neon); }
 .text-glow-pink { text-shadow: 0 0 10px var(--cyber-pink), 0 0 20px var(--cyber-pink), 0 0 40px var(--cyber-pink); }
 .text-glow-green { text-shadow: 0 0 10px var(--cyber-green), 0 0 20px var(--cyber-green), 0 0 40px var(--cyber-green); }
-
 .gradient-text {
     background: var(--grad-primary);
     -webkit-background-clip: text;
@@ -228,10 +198,6 @@ body.is-loading > *:not(#loader) {
     -webkit-text-fill-color: transparent;
     color: transparent;
 }
-
-/* ============================================
-   3D BACKGROUND + OVERLAYS
-   ============================================ */
 #bg-canvas {
     position: fixed;
     inset: 0;
@@ -281,10 +247,6 @@ body.is-loading > *:not(#loader) {
     pointer-events: none;
     background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
 }
-
-/* ============================================
-   CONTAINER
-   ============================================ */
 .container {
     width: 100%;
     max-width: none;
@@ -297,7 +259,6 @@ body.is-loading > *:not(#loader) {
     max-width: 1900px;
     margin: 0 auto;
 }
-
 h1, h2, h3, h4, h5 {
     font-family: 'Orbitron', 'Inter', sans-serif;
     font-weight: 700;
@@ -319,7 +280,6 @@ h2 {
 h3 { font-size: 1.35rem; }
 h4 { font-size: 1.1rem; }
 .section-head h2 { font-size: clamp(1.9rem, 4vw, 3rem); }
-
 .eyebrow {
     display: inline-block;
     color: var(--cyber-neon);
@@ -335,17 +295,12 @@ h4 { font-size: 1.1rem; }
     border-radius: 0;
     text-shadow: 0 0 8px var(--cyber-neon);
 }
-
 .grad-text {
     background: var(--grad-primary);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-/* ============================================
-   BUTTONS (cyber style)
-   ============================================ */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -385,7 +340,6 @@ h4 { font-size: 1.1rem; }
     border-color: var(--cyber-neon);
 }
 .btn:hover::after { left: 100%; }
-
 .btn-primary {
     background: var(--grad-primary);
     color: var(--cyber-black);
@@ -408,10 +362,6 @@ h4 { font-size: 1.1rem; }
 }
 .btn-sm { padding: 9px 18px; font-size: 0.7rem; letter-spacing: 0.18em; }
 .btn-block { width: 100%; justify-content: center; }
-
-/* ============================================
-   TOP BAR
-   ============================================ */
 .top-bar {
     background: rgba(10, 14, 26, 0.95);
     backdrop-filter: blur(10px);
@@ -452,10 +402,6 @@ h4 { font-size: 1.1rem; }
 .whatsapp-link:hover .wa-icon-sm {
     transform: scale(1.15);
 }
-
-/* ============================================
-   FOOTER WHATSAPP BUTTON — rich CTA
-   ============================================ */
 .footer-wa-link {
     position: relative;
     display: inline-flex;
@@ -472,7 +418,6 @@ h4 { font-size: 1.1rem; }
     cursor: none;
     transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    /* Override generic .footer-col a:hover shift */
     padding-left: 10px !important;
     overflow: visible;
 }
@@ -480,7 +425,6 @@ h4 { font-size: 1.1rem; }
     background: rgba(37, 211, 102, 0.16);
     color: #25D366 !important;
     border-color: #25D366;
-    /* Intense neon glow — LED switched on */
     box-shadow:
         0 0 8px rgba(37, 211, 102, 0.95),
         0 0 20px rgba(37, 211, 102, 0.7),
@@ -489,7 +433,6 @@ h4 { font-size: 1.1rem; }
     transform: translateY(-1px);
     padding-left: 10px !important;
 }
-/* Green circle around icon */
 .footer-wa-link .wa-icon-circle {
     width: 32px;
     height: 32px;
@@ -512,7 +455,6 @@ h4 { font-size: 1.1rem; }
     height: 18px;
     display: block;
 }
-/* Text block */
 .footer-wa-link .wa-text {
     display: flex;
     flex-direction: column;
@@ -541,7 +483,6 @@ h4 { font-size: 1.1rem; }
     color: var(--cyber-neon);
     opacity: 1;
 }
-/* Pulsing live dot */
 .footer-wa-link .wa-live-dot {
     position: absolute;
     top: 4px;
@@ -563,14 +504,8 @@ h4 { font-size: 1.1rem; }
         box-shadow: 0 0 12px rgba(37, 211, 102, 1), 0 0 0 6px rgba(37, 211, 102, 0);
     }
 }
-
-/* ============================================
-   HEADER / NAV
-   ============================================ */
 .header {
     position: fixed;
-    /* Transparent over hero so Three.js / grid / scanlines / blobs show through.
-       When scrolled past hero, .header.scrolled below applies a solid glass bar. */
     background: transparent;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -616,11 +551,6 @@ h4 { font-size: 1.1rem; }
     z-index: 1;
 }
 .header-inner > a.btn { margin-right: 0px; }
-
-/* Desktop only: centrează nav-ul în header (lasă mobile neschimbat)
-   Logo fixat la marginea stângă, nav centrat absolut în viewport, fără CTA
-   în dreapta. Folosim position:absolute pe .nav ca să-l scoatem din flow și
-   să-l centrem pe mijlocul ecranului, nu pe mijlocul spațiului rămas. */
 @media (min-width: 1025px) {
     .header-inner {
         display: flex;
@@ -680,7 +610,6 @@ h4 { font-size: 1.1rem; }
 .logo-text { display: flex; flex-direction: column; line-height: 1; }
 .logo-text strong { font-size: 1.05rem; font-weight: 800; color: var(--c-text); }
 .logo-text span { font-size: 1.1rem; color: #ffffff; font-weight: 700; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.22em; text-shadow: none; }
-
 .nav-list {
     display: flex;
     align-items: center;
@@ -692,24 +621,13 @@ h4 { font-size: 1.1rem; }
     font-weight: 500;
     color: var(--c-text-2);
     font-size: 0.72rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     transition: all var(--t);
     cursor: none;
     position: relative;
     white-space: nowrap;
-}
-/* Desktop (>=1025px): mărește vizual fontul fără a crește înălțimea barei,
-   prin transform:scale pe link. Bara rămâne la aceeași înălțime. */
-@media (min-width: 1025px) {
-    .nav-link {
-        font-size: 0.92rem;
-        letter-spacing: 0.18em;
-        transform: scale(1.12);
-        transform-origin: center center;
-        padding: 7px 8px;
-    }
-    .nav-list { gap: 4px; }
+    letter-spacing: 0.15em;
 }
 .nav-link::before {
     content: '//';
@@ -724,7 +642,6 @@ h4 { font-size: 1.1rem; }
 }
 .nav-link:hover::before, .nav-link.active::before { opacity: 1; }
 .nav-link:hover { text-shadow: 0 0 8px var(--cyber-neon); }
-
 .has-dropdown { position: relative; z-index: 60; }
 .dropdown {
     position: absolute;
@@ -764,7 +681,6 @@ h4 { font-size: 1.1rem; }
     padding-left: 18px;
     border-left-color: var(--cyber-neon);
 }
-
 .menu-toggle {
     display: none;
     background: rgba(0, 240, 255, 0.04);
@@ -808,7 +724,6 @@ h4 { font-size: 1.1rem; }
     box-shadow: none;
     transform: scale(0.96);
 }
-/* Only show focus ring for keyboard nav, not mouse/tap */
 .menu-toggle:focus { outline: none; }
 .menu-toggle:focus:not(:focus-visible) {
     background: rgba(0, 240, 255, 0.04);
@@ -836,10 +751,6 @@ h4 { font-size: 1.1rem; }
     top: 17px;
     transform: rotate(-45deg);
 }
-
-/* ============================================
-   HERO
-   ============================================ */
 .hero {
     position: relative;
     padding: 40px 0 40px;
@@ -880,7 +791,6 @@ h4 { font-size: 1.1rem; }
     bottom: -180px; right: -240px;
     opacity: 0.2;
 }
-
 .hero-inner {
     position: relative;
     z-index: 5;
@@ -934,10 +844,6 @@ h4 { font-size: 1.1rem; }
     padding: 14px 32px;
     font-size: 0.8rem;
 }
-
-/* ============================================
-   TICKER (kept)
-   ============================================ */
 .ticker-bar {
     background: rgba(5, 5, 10, 0.6);
     backdrop-filter: blur(20px);
@@ -999,10 +905,6 @@ h4 { font-size: 1.1rem; }
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
-
-/* ============================================
-   HERO STATS
-   ============================================ */
 .hero-stats {
     display: flex;
     justify-content: center;
@@ -1043,10 +945,6 @@ h4 { font-size: 1.1rem; }
     letter-spacing: 0.2em;
     text-transform: uppercase;
 }
-
-/* ============================================
-   HERO VISUAL (terminal card)
-   ============================================ */
 .hero-visual {
     position: relative;
     height: 400px;
@@ -1110,7 +1008,6 @@ h4 { font-size: 1.1rem; }
     padding: 14px;
 }
 .mini-chart svg { width: 100%; height: 100%; }
-
 .mini-line {
     stroke-dasharray: 1;
     stroke-dashoffset: 1;
@@ -1119,7 +1016,6 @@ h4 { font-size: 1.1rem; }
 .mini-line-2 { animation-delay: 0.8s; }
 .mini-line-3 { animation-delay: 1.6s; }
 .mini-line-4 { animation-delay: 2.4s; }
-
 @keyframes miniDrawLine {
     0% { stroke-dashoffset: 1; }
     70% { stroke-dashoffset: 0; }
@@ -1169,7 +1065,6 @@ h4 { font-size: 1.1rem; }
 .chan-meta-pill .pill-dot { background: var(--cyber-gold); box-shadow: 0 0 6px var(--cyber-gold); }
 .chan-tiktok-pill { color: var(--cyber-green); background: rgba(0, 255, 157, 0.08); border-color: rgba(0, 255, 157, 0.3); }
 .chan-tiktok-pill .pill-dot { background: var(--cyber-green); box-shadow: 0 0 6px var(--cyber-green); }
-
 .card-float {
     position: absolute;
     display: flex;
@@ -1194,10 +1089,6 @@ h4 { font-size: 1.1rem; }
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-8px); }
 }
-
-/* ============================================
-   TERMINAL CARD
-   ============================================ */
 .terminal-card {
     height: 400px;
     display: flex;
@@ -1215,8 +1106,6 @@ h4 { font-size: 1.1rem; }
     padding: 10px 14px;
     gap: 10px;
 }
-
-/* Window controls (minimize, maximize, close) — drawn as SVG glyphs */
 .window-controls {
     display: flex;
     align-items: center;
@@ -1235,8 +1124,6 @@ h4 { font-size: 1.1rem; }
     flex-shrink: 0;
 }
 .window-controls span:hover { color: #ffffff; }
-
-/* Minimize: short horizontal line, centered */
 .win-minimize::before {
     content: '';
     display: block;
@@ -1245,8 +1132,6 @@ h4 { font-size: 1.1rem; }
     background: currentColor;
     border-radius: 1px;
 }
-
-/* Maximize: square outline, centered */
 .win-maximize::before {
     content: '';
     display: block;
@@ -1256,8 +1141,6 @@ h4 { font-size: 1.1rem; }
     border-radius: 1px;
     box-sizing: border-box;
 }
-
-/* Close: X shape */
 .win-close {
     position: relative;
 }
@@ -1333,7 +1216,6 @@ h4 { font-size: 1.1rem; }
 .terminal-container::-webkit-scrollbar { width: 8px; }
 .terminal-container::-webkit-scrollbar-track { background: #012456; }
 .terminal-container::-webkit-scrollbar-thumb { background: #245998; }
-
 .terminal-container .prompt { color: #00e6ff; font-weight: 700; }
 .terminal-container .cmd { color: #ffffff; font-weight: 700; }
 .terminal-container .success { color: #00ff7f; }
@@ -1343,7 +1225,6 @@ h4 { font-size: 1.1rem; }
 .terminal-container .gray { color: #88a0c8; }
 .terminal-container .magenta { color: #ff6ad5; }
 .terminal-container .orange { color: #ff9e3d; }
-
 .terminal-container .cursor {
     display: inline-block;
     width: 7px;
@@ -1357,7 +1238,6 @@ h4 { font-size: 1.1rem; }
     0%, 49% { background-color: #ffffff; }
     50%, 100% { background-color: transparent; }
 }
-
 .terminal-container .line {
     margin-bottom: 2px;
     white-space: pre-wrap;
@@ -1368,10 +1248,6 @@ h4 { font-size: 1.1rem; }
 #output { min-height: 0; }
 #input-line { display: block; }
 #input-line.hidden { display: none; }
-
-/* ============================================
-   SECTIONS
-   ============================================ */
 .section {
     padding: 100px 0;
     width: 100%;
@@ -1411,10 +1287,6 @@ h4 { font-size: 1.1rem; }
     margin-left: auto;
     margin-right: auto;
 }
-
-/* ============================================
-   SERVICES GRID
-   ============================================ */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1507,10 +1379,6 @@ h4 { font-size: 1.1rem; }
     letter-spacing: 0.2em;
     text-shadow: 0 0 8px var(--cyber-neon);
 }
-
-/* ============================================
-   DASHBOARDS
-   ============================================ */
 .dashboards-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1609,10 +1477,6 @@ h4 { font-size: 1.1rem; }
     font-family: 'Orbitron', sans-serif;
 }
 .dash-list li strong.ok { color: var(--cyber-green); text-shadow: 0 0 8px rgba(0, 255, 157, 0.4); }
-
-/* ============================================
-   PROCESS
-   ============================================ */
 .process-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1670,11 +1534,6 @@ h4 { font-size: 1.1rem; }
     .process-grid { grid-template-columns: 1fr; gap: 20px; }
     .step-card { padding: 24px 4px 16px; }
 }
-
-/* ============================================
-   IMPORT-CHINA — process steps (8 pași import)
-   Mai aerisit, font mai mare, padding generos pe mobile.
-   ============================================ */
 .process-step {
     background: linear-gradient(135deg, rgba(15, 15, 30, 0.55) 0%, rgba(10, 10, 20, 0.35) 100%);
     border: 1px solid var(--c-border);
@@ -1746,10 +1605,6 @@ h4 { font-size: 1.1rem; }
     .process-step h4 { font-size: 1rem; }
     .process-step p { font-size: 0.88rem; line-height: 1.6; }
 }
-
-/* ============================================
-   WHY US
-   ============================================ */
 .why-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1791,7 +1646,6 @@ h4 { font-size: 1.1rem; }
     color: var(--c-text);
 }
 .why-item span { color: var(--c-text-2); font-size: 0.93rem; }
-
 .why-stat-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1833,10 +1687,6 @@ h4 { font-size: 1.1rem; }
     letter-spacing: 0.2em;
     text-transform: uppercase;
 }
-
-/* ============================================
-   WHY US - SPLIT LAYOUT
-   ============================================ */
 .why-section-new {
     background: linear-gradient(135deg, rgba(15, 15, 30, 0.6) 0%, rgba(168, 85, 247, 0.05) 100%);
     position: relative;
@@ -1904,8 +1754,6 @@ h4 { font-size: 1.1rem; }
     margin-top: 20px;
     display: inline-flex;
 }
-
-/* Growth chart - keep existing animations */
 .growth-chart {
     margin: 16px auto 0;
     max-width: 420px;
@@ -2043,8 +1891,6 @@ h4 { font-size: 1.1rem; }
     text-transform: uppercase;
     letter-spacing: 0.4px;
 }
-
-/* Right - benefit list */
 .why-right { display: flex; flex-direction: column; gap: 0; }
 .why-right .why-block:last-child { padding-bottom: 0; margin-bottom: 0; }
 .why-block {
@@ -2087,10 +1933,6 @@ h4 { font-size: 1.1rem; }
 @media (max-width: 1024px) {
     .why-grid-new { grid-template-columns: 1fr; gap: 40px; }
 }
-
-/* ============================================
-   CONTACT
-   ============================================ */
 .section-contact {
     background: linear-gradient(135deg, rgba(5, 5, 10, 0.95) 0%, rgba(10, 10, 20, 0.95) 50%, rgba(5, 5, 10, 0.95) 100%);
     color: #fff;
@@ -2214,8 +2056,6 @@ h4 { font-size: 1.1rem; }
     background: #25d366;
     color: #fff;
 }
-
-/* Contact form */
 .contact-form {
     background: rgba(5, 5, 10, 0.6);
     backdrop-filter: blur(20px);
@@ -2314,109 +2154,15 @@ h4 { font-size: 1.1rem; }
     text-shadow: none;
 }
 .form-check label a { color: var(--cyber-neon); text-decoration: underline; }
-
-/* ----- Form status (loading/error/success) ----- */
 .form-status {
     margin-top: 12px;
     font-size: 0.9rem;
     padding: 12px 16px;
     border-left: 3px solid;
     background: rgba(255, 255, 255, 0.03);
-    position: relative;
-    overflow: hidden;
-    min-height: 24px;
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 0.3s ease, transform 0.3s ease;
 }
-/* Bara de scan animată care trece prin status (cyber-glitch vibe) */
-.form-status::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 30%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.18), transparent);
-    animation: formScan 2.2s linear infinite;
-    pointer-events: none;
-}
-/* Bară verticală mică la dreapta (scan marker) */
-.form-status::after {
-    content: '';
-    position: absolute;
-    top: 8px; right: 8px;
-    width: 2px; height: calc(100% - 16px);
-    background: currentColor;
-    opacity: 0.6;
-    animation: statusPulse 1.4s ease-in-out infinite;
-    pointer-events: none;
-}
-@keyframes formScan {
-    0%   { transform: translateX(-100%); }
-    100% { transform: translateX(400%); }
-}
-@keyframes statusPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-    50%      { opacity: 1; transform: scaleY(1); }
-}
-/* Loading state - scan-bar cu pulsating dot */
-.form-status.loading {
-    border-color: var(--cyber-neon);
-    color: var(--cyber-neon);
-    background: rgba(0, 240, 255, 0.05);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.form-status.loading::before {
-    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.35), transparent);
-    animation-duration: 1.2s;
-}
-.form-status__dot {
-    display: inline-block;
-    width: 8px; height: 8px;
-    background: var(--cyber-neon);
-    border-radius: 50%;
-    box-shadow: 0 0 8px var(--cyber-neon);
-    animation: dotPulse 0.8s ease-in-out infinite;
-    flex-shrink: 0;
-}
-@keyframes dotPulse {
-    0%, 100% { opacity: 0.4; transform: scale(0.8); }
-    50%      { opacity: 1; transform: scale(1.2); box-shadow: 0 0 14px var(--cyber-neon); }
-}
-/* Glitch shake pe error */
-.form-status.error {
-    border-color: var(--cyber-pink);
-    color: var(--cyber-pink);
-    background: rgba(255, 7, 58, 0.05);
-    animation: statusGlitch 0.4s ease-in-out;
-}
-@keyframes statusGlitch {
-    0%, 100% { transform: translateX(0); }
-    20%      { transform: translateX(-4px); }
-    40%      { transform: translateX(4px); }
-    60%      { transform: translateX(-2px); }
-    80%      { transform: translateX(2px); }
-}
-/* Success — fade-in cu glow expanding */
-.form-status.success {
-    border-color: var(--cyber-green);
-    color: var(--cyber-green);
-    background: rgba(0, 255, 157, 0.05);
-    animation: statusSuccess 0.6s ease-out;
-}
-.form-status.success::before {
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.25), transparent);
-}
-@keyframes statusSuccess {
-    0%   { opacity: 0; transform: translateY(8px) scale(0.98); box-shadow: 0 0 0 rgba(0, 255, 157, 0); }
-    50%  { opacity: 1; box-shadow: 0 0 20px rgba(0, 255, 157, 0.4); }
-    100% { opacity: 1; transform: translateY(0) scale(1); box-shadow: 0 0 8px rgba(0, 255, 157, 0.2); }
-}
-
-/* ============================================
-   FOOTER
-   ============================================ */
+.form-status.error { border-color: var(--cyber-pink); color: var(--cyber-pink); }
+.form-status.success { border-color: var(--cyber-green); color: var(--cyber-green); }
 .footer {
     background: rgba(5, 5, 10, 0.95);
     border-top: 1px solid var(--c-border);
@@ -2494,8 +2240,6 @@ h4 { font-size: 1.1rem; }
     line-height: 1.6;
     color: var(--c-text-2);
 }
-
-/* To-top button */
 .to-top {
     position: fixed;
     bottom: 20px;
@@ -2544,10 +2288,6 @@ h4 { font-size: 1.1rem; }
     outline: 1.5px solid rgba(0, 240, 255, 0.5);
     outline-offset: 2px;
 }
-
-/* ============================================
-   PAGE HERO (service pages)
-   ============================================ */
 .page-hero {
     position: relative;
     padding: 40px 0 50px;
@@ -2597,10 +2337,6 @@ h4 { font-size: 1.1rem; }
     margin-right: auto;
     text-align: center;
 }
-
-/* ============================================
-   FEATURE GRID (service detail pages)
-   ============================================ */
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2649,10 +2385,6 @@ h4 { font-size: 1.1rem; }
     line-height: 1.6;
     margin: 0;
 }
-
-/* ============================================
-   PRICING CARDS
-   ============================================ */
 .pricing-cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -2726,10 +2458,6 @@ h4 { font-size: 1.1rem; }
     flex-shrink: 0;
     text-shadow: 0 0 8px rgba(0, 255, 157, 0.5);
 }
-
-/* ============================================
-   CTA BOX
-   ============================================ */
 .cta-box {
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%);
     border: 1px solid var(--c-border-strong);
@@ -2765,10 +2493,6 @@ h4 { font-size: 1.1rem; }
 }
 .cta-box .btn { position: relative; background: var(--grad-primary); color: var(--cyber-black); }
 .cta-box .btn:hover { box-shadow: 0 10px 40px rgba(0, 240, 255, 0.5); }
-
-/* ============================================
-   REVEAL ANIMATIONS
-   ============================================ */
 .reveal {
     opacity: 0;
     transform: translateY(40px);
@@ -2778,17 +2502,12 @@ h4 { font-size: 1.1rem; }
     opacity: 1;
     transform: translateY(0);
 }
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 @media (max-width: 1200px) {
     .dashboards-grid { grid-template-columns: repeat(2, 1fr); }
     .feature-grid { grid-template-columns: repeat(2, 1fr); }
     .pricing-cards { grid-template-columns: repeat(2, 1fr); }
     .why-grid-new { grid-template-columns: 1fr; }
     .why-grid { grid-template-columns: 1fr; }
-    /* Keep nav visible as horizontal bar, but compress everything */
     .header-inner { gap: 8px; padding: 6px 14px; flex-wrap: nowrap; }
     .logo-img { height: 36px; }
     .nav { display: block; position: static; padding: 0; background: none; backdrop-filter: none; border: none; }
@@ -2798,9 +2517,6 @@ h4 { font-size: 1.1rem; }
     .menu-toggle { display: none; }
     .btn-sm { padding: 7px 10px; font-size: 0.6rem; letter-spacing: 0.1em; white-space: nowrap; }
 }
-/* Tablet landscape (901-1200px): nav-ul trebuie centrat pe mijlocul ecranului,
-   nu lipit de marginea din dreapta (cum se întâmpla fără această regulă
-   pentru că regula desktop de centering se aplică doar ≥1025px). */
 @media (min-width: 901px) and (max-width: 1200px) {
     .header-inner {
         display: flex;
@@ -2827,7 +2543,6 @@ h4 { font-size: 1.1rem; }
     .hero-inner { gap: 30px; padding: 10px 0 20px; }
     .hero-visual { max-width: 100%; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    /* Extra compress at this range */
     .header-inner { gap: 4px; padding: 5px 10px; }
     .logo-img { height: 30px; }
     .nav-link { padding: 6px 4px; font-size: 0.55rem; letter-spacing: 0.02em; }
@@ -2838,7 +2553,6 @@ h4 { font-size: 1.1rem; }
     .hero-inner { gap: 30px; padding: 10px 0 20px; }
     .hero-visual { max-width: 100%; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
-    /* Switch to mobile header layout: menu left, logo center, CTA right */
     .header-inner { gap: 8px; padding: 10px 14px; position: relative; align-items: center; }
     .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(5, 5, 10, 0.98); backdrop-filter: blur(20px); padding: 20px; border-top: 1px solid var(--c-border); z-index: 60; }
     .nav.open { display: block; }
@@ -2850,11 +2564,9 @@ h4 { font-size: 1.1rem; }
     .menu-toggle span.bars { top: 17px; }
     .menu-toggle::after { top: 23px; }
     .header-inner > .logo { order: 2; position: absolute; left: 50%; transform: translateX(-50%); display: flex; justify-content: center; align-items: center; }
-    /* Logo mai mare pe mobile, dar bara rămâne la aceeași înălțime (scale vizual). */
     .header-inner .logo-img { height: 32px; transform: scale(1.45); transform-origin: center center; }
     .header-inner > a.btn { order: 3; flex: 0 0 auto; margin-left: auto; }
     .btn-sm { padding: 8px 12px; font-size: 0.62rem; letter-spacing: 0.08em; white-space: nowrap; }
-    /* Mobile dropdown - always show inline when menu is open */
     .has-dropdown .dropdown {
         position: static;
         opacity: 1;
@@ -2872,17 +2584,14 @@ h4 { font-size: 1.1rem; }
         overflow: hidden;
         transition: max-height 0.3s ease, padding 0.3s ease, margin 0.3s ease;
     }
-    /* When menu is open on mobile, always show the dropdown */
     .nav.open .has-dropdown .dropdown {
         max-height: 600px;
         padding: 8px 0;
         margin: 4px 0 8px 16px;
     }
-    /* Allow toggling on mobile - when user clicks to close */
     .has-dropdown.open .dropdown {
         max-height: 600px;
     }
-    /* When menu is open, force dropdown to be visible */
     .nav.open .has-dropdown .dropdown {
         opacity: 1 !important;
         visibility: visible !important;
@@ -2937,15 +2646,7 @@ h4 { font-size: 1.1rem; }
     .footer .logo-img { height: 40px; }
     .btn-sm { padding: 7px 10px; font-size: 0.58rem; letter-spacing: 0.05em; }
 }
-
-
-
-/* ============================================
-   ABOUT / COMPANIE SECTION (CV layout)
-   ============================================ */
 .section-trust { padding-top: 80px; padding-bottom: 80px; }
-
-/* Two-column CV card */
 .cv-card {
     display: grid;
     grid-template-columns: 320px 1fr;
@@ -2965,8 +2666,6 @@ h4 { font-size: 1.1rem; }
     box-shadow: 0 0 12px var(--cyber-neon);
     z-index: 2;
 }
-
-/* --- Profile column (left) --- */
 .cv-profile {
     padding: 32px 28px;
     background: linear-gradient(180deg, rgba(0, 240, 255, 0.04) 0%, rgba(168, 85, 247, 0.04) 100%);
@@ -2975,7 +2674,6 @@ h4 { font-size: 1.1rem; }
     flex-direction: column;
     gap: 22px;
 }
-
 .cv-photo {
     position: relative;
     width: 100%;
@@ -3006,7 +2704,6 @@ h4 { font-size: 1.1rem; }
     padding: 4px 9px;
     text-shadow: 0 0 6px var(--cyber-green);
 }
-
 .cv-id {
     border-left: 2px solid var(--cyber-neon);
     padding-left: 12px;
@@ -3026,7 +2723,6 @@ h4 { font-size: 1.1rem; }
     margin-top: 4px;
     letter-spacing: 0.08em;
 }
-
 .cv-meta {
     list-style: none;
     margin: 0;
@@ -3055,7 +2751,6 @@ h4 { font-size: 1.1rem; }
     font-weight: 500;
     text-align: right;
 }
-
 .cv-tags {
     display: flex;
     flex-wrap: wrap;
@@ -3077,16 +2772,12 @@ h4 { font-size: 1.1rem; }
     border-color: var(--c-border-strong);
     background: rgba(0, 240, 255, 0.1);
 }
-
-/* --- Body column (right) --- */
 .cv-body {
     padding: 32px 36px;
     display: flex;
     flex-direction: column;
     gap: 26px;
 }
-
-/* Stats inline row */
 .cv-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -3122,8 +2813,6 @@ h4 { font-size: 1.1rem; }
     text-transform: uppercase;
     margin-top: 4px;
 }
-
-/* Section header inside body */
 .cv-h {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.78rem;
@@ -3133,8 +2822,6 @@ h4 { font-size: 1.1rem; }
     margin-bottom: 14px;
     text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
 }
-
-/* Regions inline */
 .cv-regions {
     display: flex;
     flex-wrap: wrap;
@@ -3153,8 +2840,6 @@ h4 { font-size: 1.1rem; }
     border-color: var(--c-border-strong);
     color: var(--cyber-neon);
 }
-
-/* Experience list */
 .cv-list {
     list-style: none;
     margin: 0;
@@ -3183,8 +2868,6 @@ h4 { font-size: 1.1rem; }
     color: var(--c-text);
     font-weight: 600;
 }
-
-/* Quote */
 .cv-quote {
     position: relative;
     padding: 18px 22px 18px 50px;
@@ -3205,8 +2888,6 @@ h4 { font-size: 1.1rem; }
     color: var(--cyber-neon);
     text-shadow: 0 0 16px var(--cyber-neon);
 }
-
-/* --- Responsive --- */
 @media (max-width: 980px) {
     .cv-card {
         grid-template-columns: 1fr;
@@ -3218,7 +2899,6 @@ h4 { font-size: 1.1rem; }
     }
     .cv-list { grid-template-columns: 1fr; }
 }
-
 @media (max-width: 620px) {
     .section-trust { padding-top: 60px; padding-bottom: 60px; }
     .cv-body { padding: 22px 18px; gap: 22px; }
@@ -3229,10 +2909,6 @@ h4 { font-size: 1.1rem; }
     .cv-quote { padding: 16px 18px 16px 42px; font-size: 0.9rem; }
     .cv-quote-mark { font-size: 2rem; left: 10px; }
 }
-
-/* ============================================
-   COOKIE CONSENT BANNER (GDPR / EU compliant)
-   ============================================ */
 .cookie-banner {
     position: fixed;
     left: 16px;
@@ -3335,8 +3011,6 @@ h4 { font-size: 1.1rem; }
     outline: 2px solid var(--cyber-neon);
     outline-offset: 2px;
 }
-
-/* Cookie settings modal */
 .cookie-modal {
     position: fixed;
     inset: 0;
@@ -3499,10 +3173,6 @@ h4 { font-size: 1.1rem; }
     outline: 2px solid var(--cyber-neon);
     outline-offset: 2px;
 }
-
-/* ============================================
-   LEGAL CONTENT (privacy / terms pages)
-   ============================================ */
 .legal-content {
     max-width: 100%;
 }
@@ -3551,8 +3221,6 @@ h4 { font-size: 1.1rem; }
 .legal-block a:hover {
     color: #fff;
 }
-
-/* Mobile responsiveness */
 @media (max-width: 600px) {
     .cookie-banner {
         left: 8px;
