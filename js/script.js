@@ -441,17 +441,17 @@
 
             if (!nume || !email || !telefon || !mesaj) {
                 status.className = 'form-status error';
-                status.textContent = '⚠️ Te rugăm să completezi toate câmpurile obligatorii.';
+                status.textContent = 'Te rugăm să completezi toate câmpurile obligatorii.';
                 return;
             }
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
                 status.className = 'form-status error';
-                status.textContent = '⚠️ Te rugăm să introduci o adresă de email validă.';
+                status.textContent = 'Te rugăm să introduci o adresă de email validă.';
                 return;
             }
             if (!gdpr) {
                 status.className = 'form-status error';
-                status.textContent = '⚠️ Te rugăm să accepți politica de confidențialitate.';
+                status.textContent = 'Te rugăm să accepți politica de confidențialitate.';
                 return;
             }
 
@@ -460,13 +460,9 @@
             submitBtn.textContent = 'Se trimite...';
             submitBtn.disabled = true;
 
-            // Loading state cu scan-bar animată
-            status.className = 'form-status loading';
-            status.innerHTML = '<span class="form-status__dot"></span> Se procesează solicitarea...';
-
             setTimeout(() => {
                 status.className = 'form-status success';
-                status.innerHTML = '✓ Mulțumim, <strong>' + escape(nume) + '</strong>! Am primit solicitarea ta și te vom contacta în maxim 24 de ore la <strong>' + escape(email) + '</strong>.';
+                status.innerHTML = 'Mulțumim, <strong>' + escape(nume) + '</strong>! Am primit solicitarea ta și te vom contacta în maxim 24 de ore la <strong>' + escape(email) + '</strong>.';
                 form.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
