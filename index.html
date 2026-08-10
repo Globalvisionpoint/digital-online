@@ -44,7 +44,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=532">
+    <link rel="stylesheet" href="css/styles.css?v=533">
 
     <!-- Three.js + GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -168,6 +168,8 @@
 </head>
 <body id="top" class="is-loading">
 
+    <a href="#main" class="skip-link">Sari la continut</a>
+
     <!-- ===== CYBER LAYER ===== -->
 
     <div id="loader">
@@ -228,7 +230,8 @@
     </header>
     <div class="header-placeholder" aria-hidden="true"></div>
 
-    <!-- HERO -->
+    
+    <main id="main" tabindex="-1"><!-- HERO -->
     <section class="hero" id="acasa">
         <div class="hero-bg">
             <div class="hero-blob blob-1"></div>
@@ -661,16 +664,16 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nume">Nume complet *</label>
-                            <input type="text" id="nume" name="nume" required>
+                            <input type="text" id="nume" name="nume" autocomplete="name" required>
                         </div>
                         <div class="form-group">
                             <label for="telefon">Telefon *</label>
-                            <input type="tel" id="telefon" name="telefon" required>
+                            <input type="tel" id="telefon" name="telefon" autocomplete="tel" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
                     </div>
                     <div class="form-group">
                         <label for="serviciu">Serviciul dorit</label>
@@ -691,7 +694,7 @@
                     </div>
                     <div class="form-group">
                         <label for="mesaj">Mesajul tău *</label>
-                        <textarea id="mesaj" name="mesaj" rows="5" required placeholder="Descrie pe scurt ce ai nevoie..."></textarea>
+                        <textarea id="mesaj" name="mesaj" rows="5" autocomplete="off" required placeholder="Descrie pe scurt ce ai nevoie..."></textarea>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" id="gdpr" name="gdpr" required>
@@ -794,6 +797,8 @@
     </section>
 
     <!-- FOOTER -->
+    </main>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -865,7 +870,7 @@
 
 
 
-    <script src="js/script.js?v=358"></script>
+    <script src="js/script.js?v=360"></script>
     <script src="js/terminal.js?v=1"></script>
     <script>
     // Counter-up animat pentru statistici (generic, pe orice .count[data-target])

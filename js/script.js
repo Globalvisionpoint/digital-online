@@ -291,6 +291,27 @@
     }
 
     /* ============================================
+       ARIA-CURRENT="page" on active nav link
+       ============================================ */
+    (function setAriaCurrentPage() {
+        const currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+        const currentHash = window.location.hash;
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.removeAttribute('aria-current');
+            const href = (link.getAttribute('href') || '').toLowerCase();
+            if (!href) return;
+            // Match same-page anchor if we have one, else match file
+            if (href.startsWith('#') && currentHash && href === currentHash) {
+                link.setAttribute('aria-current', 'page');
+            } else if (!href.startsWith('#') && href.includes(currentFile) && currentFile !== '') {
+                link.setAttribute('aria-current', 'page');
+            } else if (currentFile === 'index.html' && href === 'index.html') {
+                link.setAttribute('aria-current', 'page');
+            }
+        });
+    })();
+
+    /* ============================================
        MOBILE MENU
        ============================================ */
     const menuToggle = document.getElementById('menuToggle');
@@ -584,9 +605,9 @@
     }
 
     /* ============================================
-       CONSOLE SIGNATURE
+       CONSOLE SIGNATURE (dev only - stripped in prod)
        ============================================ */
-    if (window.console && console.log) {
+    if (window.console && console.log && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('debug=1'))) {
         console.log('%c⬡ DIGITAL ONLINE ⬡', 'font-size: 32px; font-weight: 900; color: #00f0ff; text-shadow: 0 0 20px #00f0ff;');
         console.log('%cFUTURE OF MARKETING — 2026', 'font-size: 14px; color: #ff073a; letter-spacing: 0.3em;');
         console.log('%ccontact@digital-online.ro', 'font-size: 12px; color: #00ff9d;');

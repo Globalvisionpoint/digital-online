@@ -190,6 +190,8 @@
 </head>
 <body id="top" class="is-loading">
 
+    <a href="#main" class="skip-link">Sari la continut</a>
+
     <!-- ===== CYBER LAYER ===== -->
 
     <div id="loader">
@@ -246,7 +248,8 @@
     </header>
     <div class="header-placeholder" aria-hidden="true"></div>
 
-    <section class="page-hero">
+    
+    <main id="main" tabindex="-1"><section class="page-hero">
         <div class="page-hero-bg">
             <div class="page-blob blob-1"></div>
             <div class="page-blob blob-2"></div>
@@ -375,16 +378,16 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label for="nume">Nume complet *</label>
-                            <input type="text" id="nume" name="nume" required>
+                            <input type="text" id="nume" name="nume" autocomplete="name" required>
                         </div>
                         <div class="form-group">
                             <label for="telefon">Telefon *</label>
-                            <input type="tel" id="telefon" name="telefon" required>
+                            <input type="tel" id="telefon" name="telefon" autocomplete="tel" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" autocomplete="email" required>
                     </div>
                     <div class="form-group">
                         <label for="serviciu">Serviciul dorit</label>
@@ -405,7 +408,7 @@
                     </div>
                     <div class="form-group">
                         <label for="mesaj">Mesajul tău *</label>
-                        <textarea id="mesaj" name="mesaj" rows="5" required placeholder="Descrie pe scurt ce ai nevoie..."></textarea>
+                        <textarea id="mesaj" name="mesaj" rows="5" autocomplete="off" required placeholder="Descrie pe scurt ce ai nevoie..."></textarea>
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" id="gdpr" name="gdpr" required>
@@ -417,6 +420,7 @@
             </div>
         </div>
     </section>
+    </main>
 
     <footer class="footer"><div class="container">
         <div class="footer-grid">

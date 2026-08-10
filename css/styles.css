@@ -3400,6 +3400,48 @@ h4 { font-size: 1.1rem; }
 }
 
 /* ============================================
+   ACCESSIBILITY: skip-link + reduced motion
+   ============================================ */
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 8px;
+    z-index: 999999;
+    padding: 10px 16px;
+    background: var(--cyber-neon);
+    color: var(--cyber-black);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--cyber-neon);
+    box-shadow: 0 0 20px var(--cyber-neon);
+    transition: top 0.2s ease;
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 8px;
+    outline: 2px solid var(--cyber-pink);
+    outline-offset: 2px;
+}
+
+#main { outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .hero-blob, .scanlines, .noise-overlay, .vignette { opacity: 0 !important; }
+    #bg-canvas { display: none !important; }
+    .ticker-track { animation: none !important; }
+}
+
+/* ============================================
    LEGAL CONTENT (privacy / terms pages)
    ============================================ */
 .legal-content {
