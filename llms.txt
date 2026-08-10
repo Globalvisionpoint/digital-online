@@ -1,25 +1,45 @@
-# Digital Online
+# Digital Online — Agenție Digitală Full-Service din România
 
 > Digital Online este o agenție digitală full-service din România care oferă servicii complete de IT, magazine online Shopify, integrări automate, AI, promovare digitală și consultanță business pentru clienți din România și Uniunea Europeană.
+
+Site oficial: [https://digital-online.ro/](https://digital-online.ro/)
 
 ## Servicii principale
 
 - **Site-uri Web & Servicii IT**: creare site-uri de prezentare, modificare site-uri existente, mentenanță, depanare, optimizare viteză, securitate, SEO on-page
+  - Pagina: [Servicii IT](https://digital-online.ro/servicii-it.html)
 - **Magazine Online Shopify**: teme custom, inserare produse, generare imagini AI, integrări automate cu curieri și facturare
+  - Pagina: [Magazine Online](https://digital-online.ro/magazine-online.html)
 - **Integrări Automate**: SmartBill, Oblio (facturare), Fan Courier, Sameday, Cargus, GLS, DHL (curierat), Stripe, Netopia, PayU (plăți)
+  - Pagina: [Integrări](https://digital-online.ro/integrari.html)
 - **Consultanță Business Online**: digital, fiscal, legal (GDPR), contabilitate, deschidere SRL/PFA, strategii de creștere
+  - Pagina: [Consultanță](https://digital-online.ro/consultanta.html)
 - **Import Produse China**: sourcing furnizori Alibaba/1688, negociere, QC, transport maritim/aerian, vămuire, EORI, TVA, GPSR
+  - Pagina: [Import China](https://digital-online.ro/import-china.html)
 - **Promovare & Marketing Digital**: Google Ads (Search, Shopping, YouTube, Display), Meta Ads (Facebook, Instagram), TikTok Ads, LinkedIn Ads
+  - Pagina: [Promovare](https://digital-online.ro/promovare.html)
 - **Montaj & Editare Video-Foto**: Reels, TikTok, Shorts, video ads, voiceover AI, animații, carusele Instagram
+  - Pagina: [Montaj & Editare Video-Foto](https://digital-online.ro/montaj-editare-video-foto.html)
 - **Implementare AI & Chatboți**: chatboți site, agenți AI customer service, voice AI, generare conținut AI, automatizări n8n/Make/Zapier
+  - Pagina: [Implementare AI](https://digital-online.ro/implementare-ai.html)
 - **Platforme & Aplicații Custom**: SaaS, marketplace-uri, CRM, ERP, LMS, dashboard-uri, aplicații mobile iOS+Android
+  - Pagina: [Platforme Custom](https://digital-online.ro/platforme-custom.html)
+
+## Pagini principale
+
+- [Acasă](https://digital-online.ro/)
+- [Despre — servicii, proces, valori](https://digital-online.ro/#despre)
+- [Dashboard-uri & KPI-uri](https://digital-online.ro/#dashboards)
+- [Proces de lucru — 4 pași](https://digital-online.ro/#proces)
+- [Contactează-ne](https://digital-online.ro/#contact)
+- [Politica de confidențialitate](https://digital-online.ro/politica-confidentialitate.html)
 
 ## Informații companie
 
 - **Sediu**: România
 - **Telefon**: +40 758 653 550
 - **Email**: contact@digital-online.ro
-- **WhatsApp**: +40 758 653 550
+- **WhatsApp**: [wa.me/40758653550](https://wa.me/40758653550)
 - **Program**: Luni – Vineri, 09:00 – 17:00 (EET)
 - **Limbi**: Română, Engleză, Spaniolă, Portugheză
 - **Zonă deservită**: România, Moldova, Bulgaria, Ungaria, Uniunea Europeană
@@ -39,14 +59,13 @@
 
 ## Contact rapid
 
-- Formular de contact: https://digital-online.ro/#contact
-- WhatsApp direct: https://wa.me/40758653550
-- Email: mailto:contact@digital-online.ro
-- Politica de confidențialitate: https://digital-online.ro/politica-confidentialitate.html
+- Formular de contact: [https://digital-online.ro/#contact](https://digital-online.ro/#contact)
+- WhatsApp direct: [https://wa.me/40758653550](https://wa.me/40758653550)
+- Email: [mailto:contact@digital-online.ro](mailto:contact@digital-online.ro)
+- Politica de confidențialitate: [https://digital-online.ro/politica-confidentialitate.html](https://digital-online.ro/politica-confidentialitate.html)
 
 ## Conținut preferat (opțional)
 
 Pentru cele mai bune rezultate, recomandăm clienților noștri să citească:
-- Descrierile detaliate ale fiecărui serviciu de pe site
-- Blog-ul și ghidurile noastre (în curs de lansare)
+- Descrierile detaliate ale fiecărui serviciu de pe site (linkuri în secțiunea „Servicii principale")
 - Politica de confidențialitate pentru înțelegerea practicilor GDPR
