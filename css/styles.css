@@ -3442,6 +3442,63 @@ h4 { font-size: 1.1rem; }
 }
 
 /* ============================================
+   HEADER WHATSAPP BUTTON (icon only, right side)
+   ============================================ */
+.header-wa {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    margin-left: auto;
+    margin-right: 0;
+    background: rgba(37, 211, 102, 0.08);
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    border-radius: 50%;
+    transition: background var(--t), transform var(--t), box-shadow var(--t);
+    text-decoration: none;
+    position: relative;
+    z-index: 2;
+}
+.header-wa svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+    filter: drop-shadow(0 0 6px rgba(37, 211, 102, 0.4));
+}
+.header-wa:hover {
+    background: rgba(37, 211, 102, 0.22);
+    transform: translateY(-1px) scale(1.05);
+    box-shadow: 0 0 14px rgba(37, 211, 102, 0.55);
+}
+.header-wa:focus-visible {
+    outline: 2px solid var(--cyber-neon);
+    outline-offset: 2px;
+}
+/* Pulse ring to draw attention */
+.header-wa::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1px solid rgba(37, 211, 102, 0.5);
+    opacity: 0;
+    animation: waHeaderPulse 2.4s ease-in-out infinite;
+}
+@keyframes waHeaderPulse {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.5); }
+}
+@media (max-width: 900px) {
+    .header-wa { order: 3; width: 34px; height: 34px; }
+    .header-wa svg { width: 18px; height: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .header-wa::after { animation: none !important; }
+}
+
+/* ============================================
    LEGAL CONTENT (privacy / terms pages)
    ============================================ */
 .legal-content {
