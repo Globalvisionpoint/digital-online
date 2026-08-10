@@ -571,10 +571,10 @@ h4 { font-size: 1.1rem; }
     position: fixed;
     /* Light glass tint so the bar is visible over any background but
        does not block the view of the canvas/grid behind it. No blur. */
-    background: rgba(5, 5, 10, 0.18);
+    background: rgba(5, 5, 10, 0.28);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
-    border-bottom: 1px solid rgba(0, 240, 255, 0.18);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.22);
     z-index: 1000;
     transition: background-color var(--t), box-shadow var(--t), border-color var(--t);
     width: 100%;
@@ -593,7 +593,7 @@ h4 { font-size: 1.1rem; }
     -webkit-backface-visibility: hidden;
 }
 .header.scrolled {
-    background: rgba(5, 5, 10, 0.35);
+    background: rgba(5, 5, 10, 0.5);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     box-shadow: 0 4px 30px rgba(0, 240, 255, 0.08);
