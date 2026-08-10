@@ -569,12 +569,14 @@ h4 { font-size: 1.1rem; }
    ============================================ */
 .header {
     position: fixed;
-    /* Transparent over hero so Three.js / grid / scanlines / blobs show through.
-       When scrolled past hero, .header.scrolled below applies a solid glass bar. */
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom: 1px solid transparent;
+    /* Always keep a glass background so the header bar stays visually
+       anchored when scrolling. Slightly more transparent over hero,
+       more opaque once .scrolled class is added (script.js toggles it
+       at y > 30 for the stronger shadow / blur). */
+    background: rgba(5, 5, 10, 0.55);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom: 1px solid var(--c-border);
     z-index: 1000;
     transition: background-color var(--t), box-shadow var(--t), border-color var(--t), backdrop-filter var(--t);
     width: 100%;
