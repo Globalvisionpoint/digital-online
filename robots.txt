@@ -66,14 +66,34 @@ User-agent: PetalBot
 Crawl-delay: 30
 Disallow: /cgi-bin/
 
+# ============================================================
+# AI BOTS - separare training (blocat) vs live search/citation (permis)
+# Training: GPTBot, ClaudeBot, CCBot, Bytespider, anthropic-ai
+# Live/citation: OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot
+# ============================================================
 User-agent: GPTBot
 Disallow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
 
 User-agent: ClaudeBot
 Disallow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
 User-agent: anthropic-ai
 Disallow: /
+
+User-agent: PerplexityBot
+Allow: /
 
 User-agent: CCBot
 Disallow: /
