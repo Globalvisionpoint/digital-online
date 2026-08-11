@@ -698,14 +698,15 @@ h4 { font-size: 1.1rem; }
     font-family: 'JetBrains Mono', monospace;
     font-weight: 500;
     color: var(--c-text-2);
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     transition: all var(--t);
     cursor: none;
     position: relative;
     white-space: nowrap;
-    letter-spacing: 0.15em;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
 }
 .nav-link::before {
     content: '//';
