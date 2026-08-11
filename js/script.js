@@ -155,42 +155,68 @@
             mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
         });
 
+        // Animation timing — deltaTime-based with clamp, so the scene keeps
+        // a steady rhythm regardless of background-tab throttling.
+        let lastFrameTime = performance.now();
+        let sceneRunning = true;
+        let sceneRafId = 0;
+
         function animateScene() {
-            requestAnimationFrame(animateScene);
-            targetX += (mouseX * 0.5 - targetX) * 0.05;
-            targetY += (mouseY * 0.3 - targetY) * 0.05;
+            // Clamp deltaTime: never advance the scene by more than a single
+            // ~60fps frame, no matter how long the tab was hidden / throttled.
+            const now = performance.now();
+            let delta = (now - lastFrameTime) / 1000; // seconds
+            if (delta > 1 / 30) delta = 1 / 30;       // cap at 30fps frame
+            lastFrameTime = now;
 
-            particles.rotation.y += 0.0005;
-            particles.rotation.x += 0.0002;
+            // Per-second rotation speeds (independent of fps / dt drift)
+            const k = delta * 60; // normalize: 1 unit = "one frame at 60fps"
 
-            torus.rotation.x += 0.003;
-            torus.rotation.y += 0.005;
-            ico.rotation.x += 0.004;
-            ico.rotation.y -= 0.003;
-            octa.rotation.x -= 0.005;
-            octa.rotation.y += 0.004;
+            targetX += (mouseX * 0.5 - targetX) * 0.05 * k;
+            targetY += (mouseY * 0.3 - targetY) * 0.05 * k;
 
-            camera.position.x += (targetX * 8 - camera.position.x) * 0.02;
-            camera.position.y += (targetY * 5 - camera.position.y) * 0.02;
+            particles.rotation.y += 0.0005 * k;
+            particles.rotation.x += 0.0002 * k;
+
+            torus.rotation.x += 0.003 * k;
+            torus.rotation.y += 0.005 * k;
+            ico.rotation.x += 0.004 * k;
+            ico.rotation.y -= 0.003 * k;
+            octa.rotation.x -= 0.005 * k;
+            octa.rotation.y += 0.004 * k;
+
+            camera.position.x += (targetX * 8 - camera.position.x) * 0.02 * k;
+            camera.position.y += (targetY * 5 - camera.position.y) * 0.02 * k;
             camera.lookAt(scene.position);
 
-            point1.position.x = Math.sin(Date.now() * 0.0005) * 25;
-            point1.position.y = Math.cos(Date.now() * 0.0007) * 25;
-            point2.position.x = Math.cos(Date.now() * 0.0006) * 25;
-            point2.position.y = Math.sin(Date.now() * 0.0008) * 25;
+            // Date.now() based motion: also clamp its effective dt so the
+            // lights don't snap when the tab is restored.
+            const lightNow = lastFrameTime;
+            point1.position.x = Math.sin(lightNow * 0.0005) * 25;
+            point1.position.y = Math.cos(lightNow * 0.0007) * 25;
+            point2.position.x = Math.cos(lightNow * 0.0006) * 25;
+            point2.position.y = Math.sin(lightNow * 0.0008) * 25;
 
             renderer.render(scene, camera);
+
+            if (sceneRunning) {
+                sceneRafId = requestAnimationFrame(animateScene);
+            }
         }
         animateScene();
 
-        // Performance: pause three.js animation when tab is hidden
-        // Browser already throttles rAF in background tabs, but we save the
-        // extra render work and any layout/paint triggered by canvas updates.
+        // Tab visibility: stop the animation loop entirely while the tab is
+        // hidden, and reset the clock on the way back so we never compute a
+        // giant delta (the cause of the "scene speeds up" bug).
         document.addEventListener('visibilitychange', () => {
             if (document.hidden) {
+                sceneRunning = false;
+                if (sceneRafId) cancelAnimationFrame(sceneRafId);
                 renderer.setAnimationLoop(null);
             } else {
-                renderer.setAnimationLoop(animateScene);
+                lastFrameTime = performance.now(); // reset clock
+                sceneRunning = true;
+                sceneRafId = requestAnimationFrame(animateScene);
             }
         });
 
@@ -846,44 +872,6 @@
 
     window.CookieConsent = CookieConsent;
     window.openCookieSettings = openModal;
-
-
-    /* ============================================
-       TAB VISIBILITY — keep animations in sync
-       ============================================
-       Browsers throttle or freeze requestAnimationFrame on hidden tabs.
-       When the user returns, animations using elapsed time (CSS keyframes
-       based on Date.now(), GSAP timelines with long durations, three.js)
-       can "catch up" by jumping to where they would have been had they
-       been running the whole time — causing the fast-forward effect.
-
-       Fix: when the tab is hidden, PAUSE all CSS animations in place via
-       a class on <html>. When visible again, remove the class so they
-       resume exactly where they left off.
-    */
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            document.documentElement.classList.add('animations-paused');
-            return;
-        }
-        document.documentElement.classList.remove('animations-paused');
-
-        // GSAP: disable lag smoothing so it doesn't try to "make up" the
-        // missed time when the ticker resumes after a pause.
-        try {
-            if (typeof gsap !== 'undefined') {
-                gsap.ticker.lagSmoothing(false);
-            }
-        } catch (e) {}
-    });
-
-    /* On initial load, disable GSAP's lag smoothing so a slow connection
-       or hidden-tab scenario doesn't cause animations to fast-forward. */
-    try {
-        if (typeof gsap !== 'undefined') {
-            gsap.ticker.lagSmoothing(false);
-        }
-    } catch (e) {}
 
 
 })();
