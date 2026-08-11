@@ -3690,10 +3690,10 @@ h4 { font-size: 1.1rem; }
 }
 /* Desktop: add breathing room between WhatsApp icon and right edge */
 @media (min-width: 1024px) {
-    .header-wa { margin-right: 24px; }
+    .header-wa { margin-right: 6px; }
 }
 @media (min-width: 1400px) {
-    .header-wa { margin-right: 48px; }
+    .header-wa { margin-right: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
     .header-wa::after { animation: none !important; }
