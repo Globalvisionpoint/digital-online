@@ -12,8 +12,38 @@
     // NOTE: `is-loading` is already on <body> in the HTML so the loader screen
     // shows on first paint with zero flash of header/content. We only remove
     // the class here once loading is complete.
+    //
+    // Performance: only show the full loader animation ONCE per browser
+    // session. On subsequent navigations within the same tab (SPA-style
+    // in-tab nav or back/forward), skip it so the content paints immediately.
+    // This avoids ~2s of artificial delay before LCP and improves perceived
+    // speed. A new tab / window / hard-reload starts a new session and will
+    // see the loader again — which is the intended "tech" first impression.
+    const LOADER_FLAG = 'digitalOnlineLoaderSeen';
+    const loaderAlreadySeen = (function () {
+        try {
+            return sessionStorage.getItem(LOADER_FLAG) === '1';
+        } catch (e) {
+            // sessionStorage may throw in private mode / sandboxed iframes
+            return false;
+        }
+    })();
+
     const loader = document.getElementById('loader');
-    // Safety fallback: if 4 seconds pass and the loader is still showing
+
+    if (loaderAlreadySeen && loader) {
+        // Skip the loader entirely — reveal the page immediately.
+        document.body.classList.remove('is-loading');
+        loader.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        // Kick off hero animation right away (same path the loader takes
+        // when it finishes naturally).
+        startHeroAnimation();
+        // Trigger canvas resize after reveal (viewport may have changed).
+        window.dispatchEvent(new Event('resize'));
+    }
+
+    // Safety fallback: if 8 seconds pass and the loader is still showing
     // (e.g. JS error or very slow assets), force-reveal the page.
     const safetyTimeout = setTimeout(() => {
         if (document.body.classList.contains('is-loading')) {
@@ -22,7 +52,7 @@
             document.body.style.overflow = 'auto';
         }
     }, 8000);
-    if (loader) {
+    if (loader && !loaderAlreadySeen) {
         const loaderBar = document.getElementById('loader-bar');
         const loaderPercent = document.getElementById('loader-percent');
         const loaderText = document.getElementById('loader-text');
@@ -45,6 +75,9 @@
                     loader.classList.add('hidden');
                     document.body.classList.remove('is-loading');
                     document.body.style.overflow = 'auto';
+                    // Mark loader as seen for the rest of this browser
+                    // session — subsequent in-tab navigations will skip it.
+                    try { sessionStorage.setItem(LOADER_FLAG, '1'); } catch (e) { /* noop */ }
                     startHeroAnimation();
                     // Trigger canvas resize after loader hides (viewport may have changed)
                     window.dispatchEvent(new Event('resize'));
