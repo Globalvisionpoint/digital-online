@@ -391,6 +391,7 @@
             nav.classList.remove('open');
             menuToggle.classList.remove('is-open');
             menuToggle.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('menu-open');
             document.querySelectorAll('.has-dropdown.open').forEach(d => d.classList.remove('open'));
         };
         menuToggle.addEventListener('click', () => {
@@ -399,6 +400,8 @@
             menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
             // Blur after tap so :focus doesn't keep the bold border
             menuToggle.blur();
+            // Lock body scroll while mobile menu is open so background doesn't scroll
+            document.body.classList.toggle('menu-open', isOpen && window.innerWidth <= 900);
             // On mobile, auto-open all dropdowns when menu opens
             if (isOpen && window.innerWidth <= 900) {
                 document.querySelectorAll('.has-dropdown').forEach(d => d.classList.add('open'));
