@@ -848,4 +848,42 @@
     window.openCookieSettings = openModal;
 
 
+    /* ============================================
+       TAB VISIBILITY — keep animations in sync
+       ============================================
+       Browsers throttle or freeze requestAnimationFrame on hidden tabs.
+       When the user returns, animations using elapsed time (CSS keyframes
+       based on Date.now(), GSAP timelines with long durations, three.js)
+       can "catch up" by jumping to where they would have been had they
+       been running the whole time — causing the fast-forward effect.
+
+       Fix: when the tab is hidden, PAUSE all CSS animations in place via
+       a class on <html>. When visible again, remove the class so they
+       resume exactly where they left off.
+    */
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            document.documentElement.classList.add('animations-paused');
+            return;
+        }
+        document.documentElement.classList.remove('animations-paused');
+
+        // GSAP: disable lag smoothing so it doesn't try to "make up" the
+        // missed time when the ticker resumes after a pause.
+        try {
+            if (typeof gsap !== 'undefined') {
+                gsap.ticker.lagSmoothing(false);
+            }
+        } catch (e) {}
+    });
+
+    /* On initial load, disable GSAP's lag smoothing so a slow connection
+       or hidden-tab scenario doesn't cause animations to fast-forward. */
+    try {
+        if (typeof gsap !== 'undefined') {
+            gsap.ticker.lagSmoothing(false);
+        }
+    } catch (e) {}
+
+
 })();

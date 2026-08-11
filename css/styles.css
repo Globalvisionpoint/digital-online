@@ -3579,6 +3579,18 @@ h4 { font-size: 1.1rem; }
 }
 
 /* ============================================
+   TAB-VISIBILITY RESYNC
+   When the user switches away from the tab, pause ALL CSS animations
+   in place so they don't fast-forward on return. JS toggles the class
+   on the <html> element via visibilitychange.
+   ============================================ */
+html.animations-paused *,
+html.animations-paused *::before,
+html.animations-paused *::after {
+    animation-play-state: paused !important;
+}
+
+/* ============================================
    HEADER WHATSAPP BUTTON (icon only, right side)
    ============================================ */
 .header-wa {
