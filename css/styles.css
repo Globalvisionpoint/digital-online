@@ -611,13 +611,15 @@ h4 { font-size: 1.1rem; }
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 7px 24px;
+    padding: 7px 20px;
     gap: 24px;
-    max-width: 2200px;
-    margin: 0 auto;
+    width: 100%;
     isolation: isolate;
     position: relative;
     z-index: 1;
+    /* Override .container padding so logo and WhatsApp sit flush at edges */
+    margin: 0;
+    max-width: none;
 }
 .header-inner > a.btn { margin-right: 0px; }
 
@@ -3689,12 +3691,9 @@ h4 { font-size: 1.1rem; }
     .header-wa { order: 3; width: 34px; height: 34px; }
     .header-wa svg { width: 18px; height: 18px; }
 }
-/* Desktop: add breathing room between WhatsApp icon and right edge */
+/* Desktop: WhatsApp icon padding is already handled by .header-inner padding */
 @media (min-width: 1024px) {
-    .header-wa { margin-right: 6px; }
-}
-@media (min-width: 1400px) {
-    .header-wa { margin-right: 16px; }
+    .header-wa { margin-right: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
     .header-wa::after { animation: none !important; }
