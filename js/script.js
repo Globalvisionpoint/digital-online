@@ -601,11 +601,20 @@
             gsap.registerPlugin(ScrollTrigger);
         } catch (e) {}
 
+        // Safe-guard each selector — only animate if at least one matching element exists
         const tl = gsap.timeline();
-        tl.from('.hero-badge', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' })
-          .from('.hero-title', { y: 60, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.5')
-          .from('.hero-sub', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6')
-          .from('.hero-visual', { y: 60, opacity: 0, duration: 1.2, ease: 'power4.out' }, '-=1.0');
+        if (document.querySelector('.hero-badge')) {
+            tl.from('.hero-badge', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' });
+        }
+        if (document.querySelector('.hero-title')) {
+            tl.from('.hero-title', { y: 60, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.5');
+        }
+        if (document.querySelector('.hero-sub')) {
+            tl.from('.hero-sub', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+        }
+        if (document.querySelector('.hero-visual')) {
+            tl.from('.hero-visual', { y: 60, opacity: 0, duration: 1.2, ease: 'power4.out' }, '-=1.0');
+        }
         // Note: .hero-orb is animated via CSS @keyframes orbDiagonal (transform: translate)
         // GSAP would override that transform, so we skip animating it here.
 
