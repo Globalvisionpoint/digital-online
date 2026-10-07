@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://digital-online.ro/</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/"/>
@@ -72,7 +72,19 @@
     </url>
     <url>
         <loc>https://digital-online.ro/politica-confidentialitate.html</loc>
-        <lastmod>2026-08-08</lastmod>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/politica-cookie.html</loc>
+        <lastmod>2026-10-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/termeni-si-conditii.html</loc>
+        <lastmod>2026-10-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>

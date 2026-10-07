@@ -1,924 +1,465 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Online | Servicii Web, Magazine Online, AI & Marketing Digital</title>
-    <meta name="description" content="Digital Online oferă servicii complete de IT, creare site-uri web, magazine online Shopify, integrări automate, consultanță business, promovare digitală, editare video și implementare AI.">
+    <title>Digital Online, Web, Shopify, AI & Marketing Digital</title>
+    <meta name="description" content="Digital Online construiește site-uri, magazine Shopify, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.">
     <link rel="canonical" href="https://digital-online.ro/">
-    <link rel="alternate" hreflang="ro" href="https://digital-online.ro/">
-    <link rel="alternate" hreflang="en" href="https://digital-online.ro/">
-    <link rel="alternate" hreflang="x-default" href="https://digital-online.ro/">
-    <meta name="theme-color" content="#00f0ff">
-    <meta name="msapplication-TileColor" content="#00f0ff">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="googlebot" content="index, follow">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="Digital Online">
-    <meta name="rating" content="general">
-    <meta name="distribution" content="global">
-    <meta name="revisit-after" content="7 days">
-    <meta name="geo.region" content="RO">
-    <meta name="geo.placename" content="București, România">
-    <meta name="geo.position" content="44.4268;26.1025">
-    <meta name="ICBM" content="44.4268, 26.1025">
-    <meta property="og:title" content="Servicii Web, Magazine Online Shopify, AI & Marketing Digital">
-    <meta property="og:description" content="Digital Online oferă servicii complete de IT, magazine Shopify, integrări automate, AI, promovare digitală și consultanță business în România și UE.">
-    <meta property="og:url" content="https://digital-online.ro/">
+    <meta property="og:title" content="Digital Online, Agenție digitală cu echipă senior">
+    <meta property="og:description" content="Site-uri, magazine Shopify, AI și marketing digital construit de oameni cu experiență.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ro_RO">
-    <meta property="og:locale:alternate" content="en_US">
     <meta property="og:site_name" content="Digital Online">
-    <meta property="og:image" content="https://digital-online.ro/img/og-cover.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Servicii Web, Magazine Online Shopify, AI & Marketing Digital">
-    <meta property="og:image:type" content="image/png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@digitalonline">
-    <meta name="twitter:creator" content="@digitalonline">
-    <meta name="twitter:title" content="Servicii Web, Magazine Online Shopify, AI & Marketing Digital">
-    <meta name="twitter:description" content="Digital Online oferă servicii complete de IT, magazine Shopify, integrări automate, AI, promovare digitală și consultanță business în România și UE.">
-    <meta name="twitter:image" content="https://digital-online.ro/img/og-cover.png">
-    <meta name="twitter:image:alt" content="Servicii Web, Magazine Online Shopify, AI & Marketing Digital">
-    <meta name="format-detection" content="telephone=no">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=564">
+    <link rel="preconnect" href="https://fonts.cdnfonts.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/obviously-wide">
+    <link rel="stylesheet" href="css/styles.css?v=20261007-footerlogo1">
 
-    <!-- Three.js + GSAP — deferred so they don't block initial render -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
-    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
-    <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-512.png">
     <link rel="apple-touch-icon" sizes="192x192" href="img/favicon-192.png">
+
     <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": [
-        "LocalBusiness",
-        "ProfessionalService",
-        "Organization"
-    ],
-    "@id": "https://digital-online.ro/#organization",
-    "name": "Digital Online",
-    "alternateName": "Digital Online SRL",
-    "url": "https://digital-online.ro",
-    "logo": "https://digital-online.ro/img/logo-light.svg",
-    "image": "https://digital-online.ro/img/og-cover.png",
-    "description": "Digital Online oferă servicii complete de IT, magazine Shopify, integrări automate, AI, promovare digitală și consultanță business în România și UE.",
-    "telephone": "+40-758-653-550",
-    "email": "contact@digital-online.ro",
-    "priceRange": "$$",
-    "currenciesAccepted": "EUR, RON",
-    "paymentAccepted": "Cash, Credit Card, Bank Transfer",
-    "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "România",
-        "addressLocality": "București",
-        "addressRegion": "RO",
-        "postalCode": "010001",
-        "addressCountry": "RO"
-    },
-    "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "44.4268",
-        "longitude": "26.1025"
-    },
-    "areaServed": [
-        "RO",
-        "MD",
-        "BG",
-        "HU",
-        "EU"
-    ],
-    "openingHoursSpecification": [
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday"
-            ],
-            "opens": "09:00",
-            "closes": "17:00"
-        }
-    ],
-    "sameAs": [
-        "https://www.facebook.com/digitalonline",
-        "https://www.instagram.com/digitalonline",
-        "https://www.linkedin.com/company/digitalonline",
-        "https://www.youtube.com/@digitalonline"
-    ],
-    "contactPoint": [
-        {
-            "@type": "ContactPoint",
-            "telephone": "+40-758-653-550",
-            "contactType": "customer service",
-            "areaServed": [
-                "RO",
-                "MD",
-                "BG",
-                "HU",
-                "EU"
-            ],
-            "availableLanguage": [
-                "Romanian",
-                "English",
-                "Spanish",
-                "Portuguese"
-            ]
-        }
-    ]
-}
-    </script>
-    <script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": "https://digital-online.ro/#website",
-    "url": "https://digital-online.ro",
-    "name": "Digital Online",
-    "description": "Servicii complete de IT, magazine Shopify, integrări automate, AI și marketing digital în România și UE.",
-    "inLanguage": "ro",
-    "publisher": {
-        "@id": "https://digital-online.ro/#organization"
-    },
-    "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://digital-online.ro/?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "ProfessionalService"],
+      "name": "Digital Online",
+      "url": "https://digital-online.ro",
+      "logo": "https://digital-online.ro/img/logo-light.svg",
+      "description": "Agenție digitală cu echipă senior: site-uri, magazine Shopify, integrări automate, AI, marketing.",
+      "telephone": "+40-758-653-550",
+      "email": "contact@digital-online.ro",
+      "priceRange": "$$",
+      "address": { "@type": "PostalAddress", "addressLocality": "București", "addressCountry": "RO" },
+      "areaServed": ["RO","MD","BG","HU","EU"],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "09:00","closes": "17:00"
+      }]
     }
-}
     </script>
 </head>
-<body id="top" class="is-loading">
+<body class="theme">
 
-    <a href="#main" class="skip-link">Sari la continut</a>
+    <a href="#main" class="skip-link">Sari la conținut</a>
 
-    <!-- ===== CYBER LAYER ===== -->
+    <!-- ============================ HEADER (minimal) ============================ -->
+    <header class="header header--minimal" id="topHeader">
+      <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="Acasă, Digital Online">
+          <img src="img/logo.svg" alt="Digital Online" class="logo-img" />
+        </a>
 
-    <div id="loader">
-        <div class="loader-ring"></div>
-        <div class="loader-ring delay-1"></div>
-        <div class="loader-ring delay-2"></div>
-        <div class="loader-center">
-            <div class="loader-title">DIGITAL ONLINE</div>
-            <div class="loader-status" id="loader-text">INITIALIZING SYSTEM</div>
-        </div>
-        <div class="loader-progress">
-            <div id="loader-bar" class="loader-bar"></div>
-        </div>
-        <div class="loader-percent" id="loader-percent">0%</div>
-    </div>
+        <nav class="nav nav--center" id="nav" aria-label="Navigare principală">
+          <ul class="nav-list nav-list--mono">
+            <li><a href="index.html" class="nav-link" aria-label="Acasa">ACASA</a></li>
+            <li class="has-dropdown">
+              <a href="#servicii" class="nav-link nav-dropdown-toggle">SERVICII</a>
+              <ul class="nav-dropdown" role="menu">
+                <li role="none"><a role="menuitem" href="servicii-it.html">Site-uri Web &amp; Servicii IT</a></li>
+                <li role="none"><a role="menuitem" href="magazine-online.html">Magazine Online Shopify</a></li>
+                <li role="none"><a role="menuitem" href="integrari.html">Integrări Automate</a></li>
+                <li role="none"><a role="menuitem" href="consultanta.html">Consultanță Business</a></li>
+                <li role="none"><a role="menuitem" href="import-china.html">Import Produse China</a></li>
+                <li role="none"><a role="menuitem" href="promovare.html">Promovare &amp; Ads</a></li>
+                <li role="none"><a role="menuitem" href="montaj-editare-video-foto.html">Montaj &amp; Editare Video-Foto</a></li>
+                <li role="none"><a role="menuitem" href="implementare-ai.html">Implementare AI &amp; Chatboți</a></li>
+                <li role="none"><a role="menuitem" href="platforme-custom.html">Platforme &amp; Aplicații Custom</a></li>
+              </ul>
+            </li>
+            <li><a href="#proces" class="nav-link">PROCES</a></li>
+            <li><a href="#companie" class="nav-link">DESPRE</a></li>
+            <li><a href="#contact" class="nav-link">CONTACT</a></li>
+          </ul>
+        </nav>
 
-    <canvas id="bg-canvas"></canvas>
-    <div class="grid-overlay"></div>
-    <div class="noise-overlay"></div>
-    <div class="scanlines"></div>
-    <div class="vignette"></div>
+        <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="header-cta">
+          <span>BOOK A CALL</span>
+        </a>
 
-    <div id="cursor" class="custom-cursor"></div>
-    <div id="cursor-trail" class="cursor-trail"></div>
-    <!-- ===== /CYBER LAYER ===== -->
-
-    <!-- TOP BAR REMOVED -->
-
-    <!-- HEADER / NAV -->
-    <header class="header" id="header">
-        <div class="container header-inner">
-            <button class="menu-toggle" id="menuToggle" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><span class="bars"></span></button>
-            <a href="index.html" class="logo" aria-label="Acasă - Digital Online"><img src="img/logo-light.svg" alt="Digital Online" class="logo-img" fetchpriority="high"></a>
-            <nav class="nav" id="nav">
-                <ul class="nav-list">
-                    <li><a href="#top" class="nav-link active">Acasă</a></li>
-                    <li class="has-dropdown">
-                        <a href="#servicii" class="nav-link">Servicii ▾</a>
-                        <ul class="dropdown">
-                            <li><a href="servicii-it.html">Site-uri Web & Servicii IT</a></li>
-                            <li><a href="magazine-online.html">Magazine Online Shopify</a></li>
-                            <li><a href="integrari.html">Integrări Automate</a></li>
-                            <li><a href="consultanta.html">Consultanță Business</a></li>
-                            <li><a href="import-china.html">Import Produse China</a></li>
-                            <li><a href="promovare.html">Promovare & Ads</a></li>
-                            <li><a href="montaj-editare-video-foto.html">Montaj & Editare Video-Foto</a></li>
-                            <li><a href="implementare-ai.html">Implementare AI & Chatboți</a></li>
-                            <li><a href="platforme-custom.html">Platforme & Aplicații Custom</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#dashboards" class="nav-link">Analytics</a></li>
-                    <li><a href="#proces" class="nav-link">Proces</a></li>
-                    <li><a href="#companie" class="nav-link">Despre Noi</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-            <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="header-wa" aria-label="Scrie-ne pe WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Meniu" aria-expanded="false" aria-controls="mobileNav">
+          <span class="menu-icon" aria-hidden="true">☰</span>
+          <span class="close-icon" aria-hidden="true">✕</span>
+        </button>
+      </div>
     </header>
-    <div class="header-placeholder" aria-hidden="true"></div>
 
-    
+    <!-- Mobile nav overlay -->
+    <nav class="nav--mobile-overlay" id="mobileNav" aria-label="Navigare mobil">
+      <button class="mobile-nav-close" id="mobileNavClose" type="button" aria-label="Închide meniul">
+        <span aria-hidden="true">✕</span>
+      </button>
+      <a href="index.html" class="mobile-nav-link">Acasă</a>
+      <div class="mobile-nav-group">
+        <a href="index.html#servicii" class="mobile-nav-link">Servicii</a>
+        <div class="mobile-nav-sub is-open" id="mobileNavServicii">
+          <a href="servicii-it.html" class="mobile-nav-sublink">Site-uri Web &amp; Servicii IT</a>
+          <a href="magazine-online.html" class="mobile-nav-sublink">Magazine Online Shopify</a>
+          <a href="integrari.html" class="mobile-nav-sublink">Integrări Automate</a>
+          <a href="consultanta.html" class="mobile-nav-sublink">Consultanță Business</a>
+          <a href="import-china.html" class="mobile-nav-sublink">Import Produse China</a>
+          <a href="promovare.html" class="mobile-nav-sublink">Promovare &amp; Ads</a>
+          <a href="montaj-editare-video-foto.html" class="mobile-nav-sublink">Montaj &amp; Editare Video-Foto</a>
+          <a href="implementare-ai.html" class="mobile-nav-sublink">Implementare AI &amp; Chatboți</a>
+          <a href="platforme-custom.html" class="mobile-nav-sublink">Platforme &amp; Aplicații Custom</a>
+        </div>
+      </div>
+      <a href="#proces" class="mobile-nav-link">Proces</a>
+      <a href="#companie" class="mobile-nav-link">Despre</a>
+      <a href="#contact" class="mobile-nav-link">Contact</a>
+      <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="nav-cta-mobile">Book a Call</a>
+    </nav>
+
     <main id="main" tabindex="-1">
-    <div class="hero-orb" aria-hidden="true">
-        <div class="orb-container">
-            <div class="orb-core"></div>
-            <div class="orb-ring r1"></div>
-            <div class="orb-ring r2"></div>
-            <div class="orb-ring r3"></div>
-            <div class="orb-particles">
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
-            </div>
-            <div class="orb-label">
-                <span>AI</span>
-                <span>3D</span>
-                <span>XR</span>
-            </div>
+
+      <!-- ============================ HERO (theme style) ============================ -->
+      <section class="hero-theme" id="acasa">
+        <!-- Background image + topo lines -->
+        <div class="hm-bg" aria-hidden="true">
+          <picture>
+            <img src="img/animation.gif" alt="" class="hm-bg-img" loading="eager" decoding="async">
+          </picture>
         </div>
-    </div>
-    <!-- HERO -->
-    <section class="hero" id="acasa">
-        <div class="hero-bg">
-            <div class="hero-blob blob-1"></div>
-            <div class="hero-blob blob-2"></div>
-            <div class="hero-blob blob-3"></div>
+
+        <div class="container hm-inner">
+          <!-- Main image-filled title -->
+          <h1 class="hm-title">
+            <span class="hm-title-fill">DIGITAL</span>
+            <span class="hm-title-fill hm-title-fill--outline">ONLINE</span>
+          </h1>
+
+          <!-- Bottom tagline -->
+          <div class="hm-tagline">
+            <span class="hm-tagline-text">Site-uri web, magazine Shopify, import China, integrări automate, video & foto, promovare multi-channel, AI &amp; chatboți, platforme custom. Construim, automatizăm și creștem business-ul tău online.</span>
+          </div>
         </div>
-        <div class="container hero-inner has-orb">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Transformăm ideile tale în <span class="grad-text">Afaceri Digitale</span> care funcționează
-                </h1>
-                <p class="hero-sub">
-                    Site-uri web, magazine Shopify, import China, integrări automate, video &amp; foto, promovare multi-channel, AI &amp; chatboți, platforme custom. Construim, automatizăm și creștem business-ul tău online.
+
+        <!-- Scroll indicator -->
+        <a href="#servicii" class="hm-scroll" aria-label="Derulează la secțiunea următoare">
+          <span class="hm-scroll-text">SCROLL</span>
+          <span class="hm-scroll-line"></span>
+        </a>
+
+        <!-- Slide indicator (bottom-left, like reference) -->
+
+        <!-- Logo corner (bottom-left, like reference) -->
+      </section>
+
+      <!-- ============================ SERVICES (editorial theme layout) ============================ -->
+      <section class="section hm-services" id="servicii">
+        <div class="container">
+          <div class="section-head hm-section-head" data-reveal>
+            <h2>Nouă direcții, o singură echipă.</h2>
+            <p>De la site de prezentare la platformă custom cu AI. Alegi punctul de plecare, noi construim drumul.</p>
+          </div>
+
+          <!-- Featured services (theme-style) -->
+          <div class="hm-services-featured" data-reveal>
+            <a href="servicii-it.html" class="hm-feature hm-feature--1">
+              <div class="hm-feature-bg hm-feature-bg--services"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Site-uri Web & IT</h3>
+                <p>Landing pages, site-uri corporate, platforme, cod propriu, fără șabloane.</p>
+                <span class="hm-feature-cta">Explore →</span>
+              </div>
+            </a>
+            <a href="magazine-online.html" class="hm-feature hm-feature--2 hm-feature--shopify">
+              <div class="hm-feature-bg hm-feature-bg--shopify"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Magazine Shopify</h3>
+                <p>Setup complet, teme custom, integrări cu curieri și marketplace-uri.</p>
+                <span class="hm-feature-cta">Explore →</span>
+              </div>
+            </a>
+            <a href="promovare.html" class="hm-feature hm-feature--3 hm-feature--promovare">
+              <div class="hm-feature-bg hm-feature-bg--marketing"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Promovare &amp; Ads</h3>
+                <p>Google, Meta, TikTok, campanii măsurate, bugete optimizate.</p>
+                <span class="hm-feature-cta">Explore →</span>
+              </div>
+            </a>
+            <a href="import-china.html" class="hm-feature hm-feature--4">
+              <div class="hm-feature-bg hm-feature-bg--china"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Import China</h3>
+                <p>Sourcing, negociere, logistică, supply chain fără surprize.</p>
+                <span class="hm-feature-cta">Explore →</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Compact services list -->
+          <div class="hm-services-featured hm-services-featured--secondary" data-reveal>
+            <a href="integrari.html" class="hm-feature">
+              <div class="hm-feature-bg hm-feature-bg--automation"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Integrări automate</h3>
+                <p>Facturi, AWB-uri, plăți, CRM, sisteme care lucrează singure 24/7.</p>
+                <span class="hm-feature-cta">EXPLORE →</span>
+              </div>
+            </a>
+            <a href="montaj-editare-video-foto.html" class="hm-feature">
+              <div class="hm-feature-bg hm-feature-bg--video"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Video &amp; Foto</h3>
+                <p>Montaj, editare, producție, pentru ads, social, magazin.</p>
+                <span class="hm-feature-cta">EXPLORE →</span>
+              </div>
+            </a>
+            <a href="consultanta.html" class="hm-feature">
+              <div class="hm-feature-bg hm-feature-bg--consulting"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Consultanță</h3>
+                <p>Audit tehnic, strategie, plan de creștere, conversații directe.</p>
+                <span class="hm-feature-cta">EXPLORE →</span>
+              </div>
+            </a>
+            <a href="platforme-custom.html" class="hm-feature">
+              <div class="hm-feature-bg hm-feature-bg--custom"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>Platforme Custom</h3>
+                <p>Aplicații web, dashboard-uri, marketplace-uri, pe specificul tău.</p>
+                <span class="hm-feature-cta">EXPLORE →</span>
+              </div>
+            </a>
+            <a href="implementare-ai.html" class="hm-feature">
+              <div class="hm-feature-bg hm-feature-bg--ai"></div>
+              <div class="hm-feature-overlay"></div>
+              <div class="hm-feature-content">
+                <h3>AI &amp; Chatboți</h3>
+                <p>Asistenți, clasificare, generare conținut, implementare practică, nu demo.</p>
+                <span class="hm-feature-cta">EXPLORE →</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ PROCES ============================ -->
+      <section class="section" id="proces">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <h2>Patru pași, fără surprize la final.</h2>
+            <p>Procesul e același indiferent că e un site de prezentare sau un magazin cu 3.000 SKU-uri.</p>
+          </div>
+
+          <div class="process-list" data-reveal>
+            <div class="step-card">
+              <h3>Ne contactezi</h3>
+              <p>WhatsApp, email sau formular. Fără formular de 40 de câmpuri. Doar o conversație scurtă.</p>
+            </div>
+            <div class="step-card">
+              <h3>Discutăm</h3>
+              <p>Întrebăm, ascultăm, identificăm constrângerile reale (buget, termen, echipă). Nu vândem pachete.</p>
+            </div>
+            <div class="step-card">
+              <h3>Primești propunerea</h3>
+              <p>Document scris, pe înțelesul tuturor: ce facem, în ce timp, la ce preț. Cu opțiuni reale.</p>
+            </div>
+            <div class="step-card">
+              <h3>Construim</h3>
+              <p>Update-uri săptămânale, demo-uri pe parcurs, plăți eșalonate pe livrabile. Nu cerem 100% în avans.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================ DESPRE NOI (blog/CV style) ============================ -->
+      <section class="hm-about" id="companie">
+        <div class="hm-about-gif" aria-hidden="true"></div>
+        <div class="hm-about-inner">
+
+          <article class="hm-post">
+
+            <!-- Opening -->
+            <header class="hm-post-open">
+              <h2 class="hm-post-title">De ce am pornit Digital Online</h2>
+              <p class="hm-post-lede">
+                Totul a pornit din aceeași întrebare pe care ți-o pui probabil și tu acum: de ce trebuie o afacere digitală să fie complicată? Din 2019, Digital Online a crescut dintr-o mică echipă cu o singură misiune, aceea de a construi sisteme digitale care chiar funcționează, într-o agenție internațională cu peste 1.264 de proiecte livrate în peste 30 de țări, pe 4 continente.
+              </p>
+            </header>
+
+            <!-- Act 1 -->
+            <section class="hm-act hm-act--left">
+              <figure class="hm-act-photo">
+                <img src="img/team-office.jpg" alt="Echipa Digital Online la birou" loading="lazy" />
+                <span class="hm-act-year">2019</span>
+              </figure>
+              <div class="hm-act-body">
+                <div class="hm-act-head">
+                  <h3 class="hm-act-label">Începutul.</h3>
+                </div>
+                <p>
+                  Nu ne-am propus niciodată să fim încă o agenție de site-uri. Ne-am propus să fim partenerul care înțelege și construiește, nu doar livrează. Am pornit de la un adevăr simplu: majoritatea antreprenorilor nu au nevoie de încă un site frumos care stă degeaba. Au nevoie de un sistem. Un site care vinde, un magazin Shopify care rulează automat, integrări care elimină munca manuală, campanii care aduc clienți reali, și un dashboard unde vezi exact ce se întâmplă, în timp real, fără rapoarte cosmetizate.
                 </p>
-            </div>
-            <div class="hero-visual">
-                <div class="hero-card card-main terminal-card">
-                    <div class="card-header">
-                        <span class="ps-icon" aria-hidden="true"></span>
-                        <span class="card-title">live deploy</span>
-                        <div class="window-controls">
-                            <span class="win-minimize" title="Minimize"></span>
-                            <span class="win-maximize" title="Maximize"></span>
-                            <span class="win-close" title="Close"></span>
-                        </div>
-                    </div>
-                    <div class="terminal-container" id="terminal">
-                        <div class="line" id="header">Windows PowerShell<br>Copyright (C) Digital Online SRL. All rights reserved.<br><br>PS C:\\Projects\\digital-online.ro&gt;<br></div>
-                        <div id="output"></div>
-                        <div class="line" id="input-line"><span class="prompt">PS C:\\Projects\\digital-online.ro&gt; </span><span id="typing"></span><span class="cursor"></span></div>
-                    </div>
+              </div>
+            </section>
+
+            <!-- Act 2 -->
+            <section class="hm-act hm-act--right">
+              <figure class="hm-act-photo">
+                <img src="img/team-work.jpg" alt="Echipa Digital Online lucrând" loading="lazy" />
+                <span class="hm-act-year">2024</span>
+              </figure>
+              <div class="hm-act-body">
+                <div class="hm-act-head">
+                  <h3 class="hm-act-label">Ecosistem.</h3>
                 </div>
-            </div>
+                <p>
+                  Așa am construit, an de an, un ecosistem complet: site-uri web și servicii IT, magazine online Shopify, import produse din China, integrări automate, consultanță business, promovare și ads, montaj și editare video-foto, implementare AI și chatboți și platforme custom. Fiecare piesă construită să se conecteze cu celelalte, nu izolat.
+                </p>
+              </div>
+            </section>
+
+            <!-- Closing -->
+            <section class="hm-post-close">
+              <p>
+                Astăzi, echipa noastră de seniori, cu peste 7 ani de experiență fiecare, vorbește direct cu clienții în 4 limbi. Fără intermediari, fără juniori, fără promisiuni goale. Și o regulă pe care n-am încălcat-o niciodată: transparență totală. Vezi datele reale, înțelegi fiecare etapă, și rămâi mereu în control.
+              </p>
+              <p>
+                Nu te lăsăm dependent de noi. Îți explicăm cum funcționează fiecare sistem pe care ți-l construim, ca să poți continua singur oricând vrei. De la primul mesaj pe WhatsApp până la lansare și optimizare continuă, filosofia rămâne aceeași: ascultăm, construim, creștem. Împreună.
+              </p>
+            </section>
+
+          </article>
+
         </div>
-    </section>
+      </section>
 
-        <!-- TICKER SERVICII -->
-    <div class="ticker-bar">
-        <div class="ticker-track">
-            <div class="ticker-item"><img src="img/brands/shopify.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Shopify</span></div>
-            <div class="ticker-item"><img src="img/brands/import-export.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Import China</span></div>
-            <div class="ticker-item"><picture><source srcset="img/brands/xconnector.webp" type="image/webp"><img src="img/brands/xconnector-160.png" alt="" width="22" height="22" loading="lazy" decoding="async"></picture><span>Integrări AWB</span></div>
-            <div class="ticker-item"><img src="img/brands/googleads.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Google Ads</span></div>
-            <div class="ticker-item"><img src="img/brands/meta.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Meta Ads</span></div>
-            <div class="ticker-item"><img src="img/brands/tiktok.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>TikTok Ads</span></div>
-            <div class="ticker-item"><span class="ticker-emoji"></span><span>AI Chatbots</span></div>
-            <div class="ticker-item"><img src="img/brands/premiere-pro.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Editare Video</span></div>
-            <div class="ticker-item"><img src="img/brands/github.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Aplicații Custom</span></div>
-            <div class="ticker-item"><img src="img/logo-mark.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Site-uri Web</span></div>
-            <div class="ticker-item"><img src="img/brands/shopify.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Shopify</span></div>
-            <div class="ticker-item"><picture><source srcset="img/brands/xconnector.webp" type="image/webp"><img src="img/brands/xconnector-160.png" alt="" width="22" height="22" loading="lazy" decoding="async"></picture><span>Integrări AWB</span></div>
-            <div class="ticker-item"><img src="img/brands/googleads.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Google Ads</span></div>
-            <div class="ticker-item"><img src="img/brands/meta.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Meta Ads</span></div>
-            <div class="ticker-item"><img src="img/brands/tiktok.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>TikTok Ads</span></div>
-            <div class="ticker-item"><span class="ticker-emoji"></span><span>AI Chatbots</span></div>
-            <div class="ticker-item"><img src="img/brands/premiere-pro.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Editare Video</span></div>
-            <div class="ticker-item"><img src="img/brands/import-export.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Import China</span></div>
-            <div class="ticker-item"><img src="img/brands/github.svg" alt="" width="22" height="22" loading="lazy" decoding="async"><span>Aplicații Custom</span></div>
-        </div>
-    </div>
-
-    <!-- SERVICII -->
-
-    <!-- DASHBOARDS / ANALYTICS -->
-    <section class="section section-gray" id="dashboards">
+      <!-- ============================ CONTACT — split cu panou foto ============================ -->
+      <section class="section section-contact" id="contact">
         <div class="container">
-            <div class="section-head">
-                <h2>Dashboard-uri analytics integrate<br>pentru fiecare canal</h2>
-                <p>Îți punem la dispoziție panouri de analytics conectate direct la sursele reale. Vezi în timp real ce se întâmplă în afacerea ta.</p>
+          <div class="contact-panel" data-reveal>
+            <div class="cp-media">
+              <div class="cp-media-bg" aria-hidden="true"></div>
+              <div class="cp-content">
+                <h2 class="cp-title">Hai să vorbim</h2>
+                <p class="cp-lede">Spune-ne ce ai nevoie, în două rânduri. Îți răspundem în maximum 24 de ore cu o propunere scrisă: ce facem, cât durează, la ce preț.</p>
+                <div class="cp-rows">
+                  <a class="cp-row" href="mailto:contact@digital-online.ro">
+                    <span class="cp-k">Email</span>
+                    <span class="cp-v">contact@digital-online.ro</span>
+                  </a>
+                  <a class="cp-row" href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener">
+                    <span class="cp-k">WhatsApp
+                      <svg class="cp-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347M12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413"/></svg>
+                    </span>
+                    <span class="cp-v">+40 758 653 550</span>
+                  </a>
+                  <div class="cp-row">
+                    <span class="cp-k">Program</span>
+                    <span class="cp-v">Luni–Vineri · 09:00–17:00</span>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div class="dashboards-grid">
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#fff4e6"><img src="img/brands/googleanalytics.svg" alt=""></div>
-                        <div>
-                            <h4>Google Analytics 4</h4>
-                            <small>Trafic site, comportament, conversii</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>Utilizatori activi</span><strong>14,184</strong></li>
-                        <li><span>Rată conversie</span><strong>6.04%</strong></li>
-                        <li><span>Sursa #1</span><strong>Google Organic</strong></li>
-                    </ul>
-                </div>
-
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#e6f4ff"><img src="img/brands/shopify.svg" alt=""></div>
-                        <div>
-                            <h4>Shopify Dashboard</h4>
-                            <small>Vânzări, comenzi, produse, inventar</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>Vânzări azi</span><strong>11.498 €</strong></li>
-                        <li><span>Comenzi noi</span><strong>857</strong></li>
-                        <li><span>Rată abandon coș</span><strong>7.4%</strong></li>
-                    </ul>
-                </div>
-
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#e6f9f0"><img src="img/brands/invoice.svg" alt=""></div>
-                        <div>
-                            <h4>Facturare Dashboard</h4>
-                            <small>Facturare automată, contabilitate</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>Facturi emise azi</span><strong>857</strong></li>
-                        <li><span>TVA colectat</span><strong>2.415 €</strong></li>
-                        <li><span>Status sincronizare</span><strong class="ok"> OK</strong></li>
-                    </ul>
-                </div>
-
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#fce8e6"><img src="img/brands/googleads.svg" alt=""></div>
-                        <div>
-                            <h4><img src="img/brands/googleads.svg" alt=""><span>Google Ads</span></h4>
-                            <small>Search, Display, Shopping, YouTube</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>Cheltuială azi</span><strong>1.106 €</strong></li>
-                        <li><span>CPC mediu</span><strong>0.08 €</strong></li>
-                        <li><span>ROAS</span><strong>10.4x</strong></li>
-                    </ul>
-                </div>
-
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#e7f3ff"><img src="img/brands/meta.svg" alt=""></div>
-                        <div>
-                            <h4><img src="img/brands/meta.svg" alt=""><span>Meta Ads</span></h4>
-                            <small>Facebook & Instagram</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>Reach azi</span><strong>487,920</strong></li>
-                        <li><span>Cost per lead</span><strong>0.24 €</strong></li>
-                        <li><span>Engagement</span><strong>8.4%</strong></li>
-                    </ul>
-                </div>
-
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#ffffff"><img src="img/brands/tiktok.svg" alt=""></div>
-                        <div>
-                            <h4><img src="img/brands/tiktok.svg" alt=""><span>TikTok Ads</span></h4>
-                            <small>Videoclipuri, Spark Ads, TopView</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>Vizualizări</span><strong>892,140</strong></li>
-                        <li><span>Cost per install</span><strong>0.56 €</strong></li>
-                        <li><span>CTR</span><strong>3.1%</strong></li>
-                    </ul>
-                </div>
-
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#fff0f6"><img src="img/brands/fancourier.svg" alt=""></div>
-                        <div>
-                            <h4>Curierat Tracking</h4>
-                            <small>Fan Courier, Sameday, Cargus, GLS</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>AWB-uri generate azi</span><strong>857</strong></li>
-                        <li><span>Livrate</span><strong>624</strong></li>
-                        <li><span>Status sincronizare</span><strong class="ok"> Auto</strong></li>
-                    </ul>
-                </div>
-
-                <div class="dash-card">
-                    <div class="dash-head">
-                        <div class="dash-icon" style="background:#f3e8ff"><img src="img/brands/openai.svg" alt="AI"></div>
-                        <div>
-                            <h4>AI Agents Panel</h4>
-                            <small>Conversații, automatizări, economie timp</small>
-                        </div>
-                    </div>
-                    <ul class="dash-list">
-                        <li><span>Conversații azi</span><strong>3,482</strong></li>
-                        <li><span>Timp economisit</span><strong>~187h</strong></li>
-                        <li><span>Satisfacție clienți</span><strong>96%</strong></li>
-                    </ul>
-                </div>
-
-            </div>
+            <form class="contact-form" id="contactForm">
+              <div class="contact-form-row">
+                <label class="contact-field">
+                  <span class="contact-field-label">Nume</span>
+                  <input type="text" name="nume" required autocomplete="name" placeholder="Numele tău" />
+                </label>
+                <label class="contact-field">
+                  <span class="contact-field-label">Email</span>
+                  <input type="email" name="email" required autocomplete="email" placeholder="adresa@email.ro" />
+                </label>
+              </div>
+              <label class="contact-field">
+                <span class="contact-field-label">Mesaj</span>
+                <textarea name="mesaj" required rows="3" placeholder="Cu ce te putem ajuta?"></textarea>
+              </label>
+              <div class="contact-form-foot">
+                <p class="form-status" role="status" aria-live="polite"></p>
+                <button type="submit" class="contact-submit"><span>Trimite mesajul</span></button>
+              </div>
+            </form>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- PROCES -->
-    <section class="section" id="proces">
-        <div class="container">
-            <div class="section-head">
-                <h2>Un parcurs simplu,<br>de la primul contact la rezultat</h2>
-                <p>Fie că ai nevoie de un site de prezentare, un magazin online sau oricare dintre serviciile noastre, procesul e același: clar, structurat și gândit să te ajute să iei decizii bune.</p>
-            </div>
-            <div class="process-grid">
-                <div class="step-card">
-                    <h3 class="step-title">Ne contactezi</h3>
-                    <p class="step-text">Completezi formularul de pe site sau ne scrii direct pe WhatsApp. Îți răspundem repede, fără birocrație, fără formulare complicate. Doar o conversație simplă.</p>
-                </div>
-                <div class="step-card">
-                    <h3 class="step-title">Discutăm</h3>
-                    <p class="step-text">Stăm de vorbă despre proiectul tău, obiectivele și provocările pe care le întâmpini. Ascultăm, punem întrebări și înțelegem exact ce ai nevoie înainte de a propune ceva.</p>
-                </div>
-                <div class="step-card">
-                    <h3 class="step-title">Primești o ofertă</h3>
-                    <p class="step-text">Îți trimitem o propunere clară, pe înțelesul tuturor. Fără termeni tehnici complicați, fără costuri ascunse. Știi exact ce primești, în ce timp și la ce preț.</p>
-                </div>
-                <div class="step-card">
-                    <h3 class="step-title">Construim împreună</h3>
-                    <p class="step-text">După ce agreem împreună direcția și condițiile, trecem la implementare. Rămâi implicat pe tot parcursul, primești update-uri regulate și validezi fiecare etapă înainte de a continua.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DE CE NOI -->
-    <section class="section why-section-new" id="despre">
-        <div class="container">
-            </div>
-            <div class="why-grid-new">
-                <div class="why-left">
-                    <h2>Partenerul care înțelege<br>și construiește, nu doar livrează</h2>
-                    <p>Nu suntem doar o agenție care face site-uri. Suntem partenerul tău strategic care transformă idei în sisteme funcționale.</p>
-                    <p>Lucrăm cu tine de la primul concept până la optimizarea continuă. Fără surprize, fără termeni tehnici ascunși, fără costuri neprevăzute.</p>
-
-                    <div class="growth-chart">
-                        <div class="chart-label">Creșterea ta cu noi:</div>
-                        <svg viewBox="0 0 400 110" preserveAspectRatio="xMidYMid meet" class="chart-svg">
-                            <!-- Linie orizontală de bază -->
-                            <line x1="20" y1="92" x2="380" y2="92" stroke="rgba(255,255,255,0.3)" stroke-width="1" class="grid-line" />
-                            <!-- Linii punctate (grid) -->
-                            <line x1="20" y1="20" x2="380" y2="20" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,4" class="grid-line" />
-                            <line x1="20" y1="44" x2="380" y2="44" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,4" class="grid-line" />
-                            <line x1="20" y1="68" x2="380" y2="68" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3,4" class="grid-line" />
-
-                            <!-- Zona de sub curbă (gradient fill) -->
-                            <defs>
-                                <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#ff073a" stop-opacity="0.25" />
-                                    <stop offset="100%" stop-color="#ff073a" stop-opacity="0" />
-                                </linearGradient>
-                            </defs>
-                            <path d="M 30 84 Q 80 80, 100 76 T 180 56 T 260 36 T 340 22 L 380 14 L 380 92 L 30 92 Z"
-                                  fill="url(#chartGradient)" class="area-fill" />
-
-                            <!-- Linia de creștere (curbă) - se desenează progresiv -->
-                            <path d="M 30 84 Q 80 80, 100 76 T 180 56 T 260 36 T 340 22 L 380 14"
-                                  stroke="#ff073a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                                  class="draw-line" pathLength="1" />
-
-                            <!-- Punctele de pe curbă - apar eșalonat -->
-                            <circle cx="30" cy="84" r="4" fill="#ff073a" stroke="#fff" stroke-width="1.5" class="dot dot-1" />
-                            <circle cx="100" cy="76" r="4" fill="#ff073a" stroke="#fff" stroke-width="1.5" class="dot dot-2" />
-                            <circle cx="180" cy="56" r="4" fill="#ff073a" stroke="#fff" stroke-width="1.5" class="dot dot-3" />
-                            <circle cx="260" cy="36" r="4" fill="#ff073a" stroke="#fff" stroke-width="1.5" class="dot dot-4" />
-                            <circle cx="340" cy="22" r="4" fill="#ff073a" stroke="#fff" stroke-width="1.5" class="dot dot-5" />
-                            <circle cx="380" cy="14" r="5" fill="#ff073a" stroke="#fff" stroke-width="2" class="dot dot-6" />
-
-                            <!-- Etichete pe puncte - apar după puncte -->
-                            <text x="30" y="76" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" class="lbl lbl-1">1x</text>
-                            <text x="100" y="68" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" class="lbl lbl-2">2x</text>
-                            <text x="180" y="48" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" class="lbl lbl-3">5x</text>
-                            <text x="260" y="28" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" class="lbl lbl-4">20x</text>
-                            <text x="340" y="14" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" class="lbl lbl-5">50x</text>
-                            <text x="380" y="6" fill="#ff073a" font-size="10" font-weight="800" text-anchor="middle" class="lbl lbl-6">100x </text>
-                        </svg>
-                        <div class="chart-stages">
-                            <span>Start</span>
-                            <span>MVP</span>
-                            <span>Clienți</span>
-                            <span>Scale</span>
-                            <span>Global</span>
-                            <span>Succes</span>
-                        </div>
-                    </div>
-
-                    <a href="#contact" class="btn btn-primary why-cta-btn" style="display:none">Hai să discutăm </a>
-                </div>
-
-                <div class="why-right">
-                    <div class="why-block">
-                        <svg class="why-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            <path d="M9 12l2 2 4-4"></path>
-                        </svg>
-                        <div>
-                            <h4>Soluții personalizate</h4>
-                            <p>Fiecare business e unic. Analizăm specificul tău și construim exact ce ai nevoie, fără șabloane generice.</p>
-                        </div>
-                    </div>
-
-                    <div class="why-block">
-                        <svg class="why-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
-                        </svg>
-                        <div>
-                            <h4>Automatizări reale</h4>
-                            <p>Sisteme care lucrează singure 24/7. Facturi, AWB-uri, plăți, marketing pe pilot automat.</p>
-                        </div>
-                    </div>
-
-                    <div class="why-block">
-                        <svg class="why-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                        <div>
-                            <h4>Transparență totală</h4>
-                            <p>Dashboard-uri cu date reale, vizibile oricând. Zero rapoarte cosmetizate.</p>
-                        </div>
-                    </div>
-
-                    <div class="why-block">
-                        <svg class="why-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                        <div>
-                            <h4>Suport în 4 limbi</h4>
-                            <p>Echipa noastră e la un mesaj distanță. Vorbim engleză, română, spaniolă și portugheză. Răspundem rapid, fără tickete și fără așteptare.</p>
-                        </div>
-                    </div>
-
-                    <div class="why-block">
-                        <svg class="why-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="16 18 22 12 16 6"></polyline>
-                            <polyline points="8 6 2 12 8 18"></polyline>
-                        </svg>
-                        <div>
-                            <h4>Tehnologii moderne</h4>
-                            <p>Stack actualizat, scalabil și ușor de întreținut. Fără soluții învechite.</p>
-                        </div>
-                    </div>
-
-                    <div class="why-block">
-                        <svg class="why-block-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                        </svg>
-                        <div>
-                            <h4>Predare de cunoștințe</h4>
-                            <p>Nu te lăsăm dependent. Îți explicăm totul, cum funcționează, cum continui singur.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="section section-contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Spune-ne despre proiectul tău<br>și construim împreună</h2>
-                    <p>De la primul concept până la lansare și optimizare, echipa noastră lucrează cu tine la fiecare pas. Ne ocupăm de site-uri de prezentare, magazine online Shopify, import produse din China, integrări automate, promovare multi-channel, editare video și foto, implementare AI și platforme web custom.</p>
-                    <p>Scrie-ne pe WhatsApp, trimite-ne un email sau completează formularul. Revenim cu o propunere clară în maxim 24 de ore.</p>
-
-                    <div class="contact-channels">
-                        <!-- WhatsApp - buton principal, link direct -->
-                        <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="channel channel-whatsapp">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <div class="channel-title-row">
-                                    <strong>WhatsApp</strong>
-                                    <span class="live-dot"></span>
-                                </div>
-                                <small>Scrie-ne acum. Răspundem în câteva minute</small>
-                            </div>
-                        </a>
-
-                        <!-- Email -->
-                        <a href="mailto:contact@digital-online.ro" class="channel">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                    <path d="m22 7-10 5L2 7"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <strong>Email</strong>
-                                <small>contact@digital-online.ro</small>
-                            </div>
-                        </a>
-
-                        <!-- Telefon -->
-                        <a href="tel:+40758653550" class="channel">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <strong>Telefon</strong>
-                                <small>+40 758 653 550</small>
-                            </div>
-                        </a>
-
-                        <!-- Program -->
-                        <div class="channel channel-static">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12 6 12 12 16 14"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <strong>Program</strong>
-                                <small>Luni – Vineri · 09:00 – 17:00</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form" id="contactForm" novalidate>
-                    <h3>Solicită o ofertă</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nume">Nume complet *</label>
-                            <input type="text" id="nume" name="nume" autocomplete="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefon">Telefon *</label>
-                            <input type="tel" id="telefon" name="telefon" autocomplete="tel" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" autocomplete="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="serviciu">Serviciul dorit</label>
-                        <select id="serviciu" name="serviciu">
-                            <option value="">Alege serviciul...</option>
-                            <option>Site de prezentare</option>
-                            <option>Magazin online Shopify</option>
-                            <option>Modificare / Mentenanță site existent</option>
-                            <option>Integrări automate (facturare, curierat, plăți)</option>
-                            <option>Consultanță business online</option>
-                            <option>Import produse China</option>
-                            <option>Promovare & Marketing (Google/Meta/TikTok Ads)</option>
-                            <option>Montaj & Editare Video-Foto</option>
-                            <option>Implementare AI & Chatboți</option>
-                            <option>Platformă / Aplicație custom</option>
-                            <option>Altceva</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mesaj">Mesajul tău *</label>
-                        <textarea id="mesaj" name="mesaj" rows="5" autocomplete="off" required placeholder="Descrie pe scurt ce ai nevoie..."></textarea>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" id="gdpr" name="gdpr" required>
-                        <label for="gdpr">Sunt de acord cu prelucrarea datelor personale conform <a href="politica-confidentialitate.html" target="_blank" rel="noopener">politicii de confidențialitate</a>.</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Trimite Solicitarea </button>
-                    <div class="form-status" id="formStatus"></div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-<!-- ÎNCREDERE & TRANSPARENȚĂ (CV companie) -->
-    <section class="section section-trust" id="companie">
-        <div class="container">
-
-            <div class="section-head">
-                <h2>Agenție digitală <span class="gradient-text">internațională</span> cu echipă senior</h2>
-                <p>7+ ani de experiență, proiecte pe 4 continente, comunicare directă în 4 limbi.</p>
-            </div>
-
-            <div class="cv-card">
-
-                <!-- COL 1: profil + imagine mică -->
-                <aside class="cv-profile">
-                    <div class="cv-photo">
-                        <picture><source srcset="img/team.webp" type="image/webp"><img src="img/team.png" alt="Echipa Digital Online" width="800" height="450" loading="lazy" decoding="async"></picture>
-                        <span class="cv-status" style="display:none">● Disponibili</span>
-                    </div>
-
-                    <div class="cv-id">
-                        <div class="cv-name">Digital Online</div>
-                        <div class="cv-role">Agenție digitală · echipă senior</div>
-                    </div>
-
-                    <ul class="cv-meta">
-                        <li><span class="cv-meta-k">Sediu</span><span class="cv-meta-v">Europa</span></li>
-                        <li><span class="cv-meta-k">Fondat</span><span class="cv-meta-v">2019</span></li>
-                        <li><span class="cv-meta-k">Limbi</span><span class="cv-meta-v">RO · EN · ES · PT</span></li>
-                        <li><span class="cv-meta-k">Fus orar</span><span class="cv-meta-v">CET ±3</span></li>
-                        <li><span class="cv-meta-k">Răspuns</span><span class="cv-meta-v">&lt; 24h</span></li>
-                    </ul>
-
-                    <div class="cv-tags">
-                        <span>Web</span><span>Shopify</span><span>Ads</span>
-                        <span>AI</span><span>Video</span><span>Import CN</span>
-                    </div>
-                </aside>
-
-                <!-- COL 2: corp CV -->
-                <div class="cv-body">
-
-                    <!-- Cifre cheie (linie) -->
-                    <div class="cv-row cv-stats">
-                        <div class="cv-stat"><strong>1.264+</strong><span>Proiecte</span></div>
-                        <div class="cv-stat"><strong>30+</strong><span>Țări</span></div>
-                        <div class="cv-stat"><strong>4</strong><span>Limbi</span></div>
-                        <div class="cv-stat"><strong>7+</strong><span>Ani</span></div>
-                    </div>
-
-                    <!-- Prezență -->
-                    <section class="cv-section">
-                        <h4 class="cv-h">// Prezență internațională</h4>
-                        <div class="cv-regions">
-                            <span class="cv-region"> România</span>
-                            <span class="cv-region"> Uniunea Europeană</span>
-                            <span class="cv-region"> Statele Unite</span>
-                            <span class="cv-region"> China</span>
-                            <span class="cv-region"> America Latină</span>
-                        </div>
-                    </section>
-
-                    <!-- Experiență -->
-                    <section class="cv-section">
-                        <h4 class="cv-h">// Experiență</h4>
-                        <ul class="cv-list">
-                            <li><b>Programare web</b> &amp; <b>platforme custom</b>, arhitecturi scalabile, integrări API, sisteme interne.</li>
-                            <li><b>Design &amp; identitate vizuală</b>, brand systems, UI/UX, sisteme de design.</li>
-                            <li><b>Editare video &amp; foto</b>, producție conținut, post-producție, formate scurte pentru Ads.</li>
-                            <li><b>Publicitate plătită</b>, Google Ads, Meta Ads, TikTok Ads, ROAS-driven.</li>
-                            <li><b>Marketing digital</b>, campanii multi-channel, funnel-uri, analytics.</li>
-                            <li><b>Magazine online</b>, Shopify, e-commerce end-to-end, conversii.</li>
-                            <li><b>Import China</b>, logistică, curieri, integrări automate, contabilitate.</li>
-                            <li><b>Integrări automate</b>, XConnector, AWB, CRM, ERP, plăți.</li>
-                            <li><b>AI &amp; chatboți</b>, implementare, training, widget omnichannel.</li>
-                        </ul>
-                    </section>
-
-                    <!-- Citat -->
-                    <blockquote class="cv-quote">
-                        <span class="cv-quote-mark">"</span>
-                        Discuți direct cu specialiști cu experiență de peste 7 ani pe fiecare proiect, fără intermediari, fără juniori, fără promisiuni goale.
-                    </blockquote>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- FOOTER -->
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="logo logo-light"><img src="img/logo-light.svg" alt="Digital Online" class="logo-img"></a>
-                    <p>Partenerul tău digital complet. De la site, la magazin online, la automatizări AI și marketing digital.</p>
-                </div>
-                <div class="footer-col">
-                    <h5>Servicii</h5>
-                    <ul>
-                        <li><a href="servicii-it.html">Site-uri Web & Servicii IT</a></li>
-                        <li><a href="magazine-online.html">Magazine Online</a></li>
-                        <li><a href="integrari.html">Integrări Automate</a></li>
-                        <li><a href="promovare.html">Promovare & Ads</a></li>
-                        <li><a href="montaj-editare-video-foto.html">Montaj & Editare Video-Foto</a></li>
-                        <li><a href="implementare-ai.html">Implementare AI</a></li>
-                        <li><a href="platforme-custom.html">Platforme Custom</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Companie</h5>
-                    <ul>
-                        <li>
-                            <details class="footer-info">
-                                <summary>Informații companie</summary>
-                                <div class="footer-info-body">
-                                    <div class="fib-row"><span>Companie</span><strong>Global Vision Point Limited</strong></div>
-                                    <div class="fib-row"><span>Sediu</span>Suite 2, 260 Main Street, Gibraltar</div>
-                                    <div class="fib-row"><span>Brand</span>Digital Online</div>
-                                    <div class="fib-row"><span>Domeniu</span>Web design, comerț electronic, marketing digital, automatizări, AI</div>
-                                </div>
-                            </details>
-                        </li>
-                        <li><a href="#companie">Despre noi</a></li>
-                        <li><a href="#proces">Procesul nostru</a></li>
-                        <li><a href="#dashboards">Analytics</a></li>
-                        <li><a href="#companie">Încredere & Transparență</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Contact</h5>
-                    <ul>
-                        <li> contact@digital-online.ro</li>
-                        <li> Luni – Vineri: 09:00 – 17:00</li>
-                        <li>
-                            <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="footer-wa-link">
-                                <div class="wa-icon-circle">
-                                    <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                                    </svg>
-                                </div>
-                                <div class="wa-text">
-                                    <strong>Scrie-ne pe WhatsApp</strong>
-                                    <small>Răspundem în câteva minute</small>
-                                </div>
-                                <span class="wa-live-dot" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+      <div class="container footer-inner">
+        <div class="footer-row">
+          <div class="footer-brand">
+            <a href="index.html" class="logo" aria-label="Acasă, Digital Online">
+              <img src="img/logo.svg" alt="Digital Online" class="logo-img" />
+            </a>
+            <p>Partenerul tău digital complet. De la site, la magazin online, la automatizări AI și marketing digital.</p>
+          </div>
+          <div class="footer-cols">
+            <div>
+              <h5>Servicii</h5>
+              <ul>
+                <li><a href="servicii-it.html">Site-uri Web &amp; Servicii IT</a></li>
+                <li><a href="magazine-online.html">Magazine Online</a></li>
+                <li><a href="integrari.html">Integrări Automate</a></li>
+                <li><a href="promovare.html">Promovare &amp; Ads</a></li>
+                <li><a href="montaj-editare-video-foto.html">Montaj &amp; Editare Video-Foto</a></li>
+                <li><a href="implementare-ai.html">Implementare AI</a></li>
+                <li><a href="platforme-custom.html">Platforme Custom</a></li>
+              </ul>
             </div>
-            <div class="footer-bottom">
-                <span>© <span id="year">2026</span> Digital Online · Toate drepturile rezervate</span>
-                
+            <div>
+              <h5>Companie</h5>
+              <ul>
+                <li><a href="#companie">Despre noi</a></li>
+                <li><a href="#proces">Procesul nostru</a></li>
+                <li><a href="#dashboards">Analytics</a></li>
+                <li><a href="#companie">Încredere &amp; Transparență</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
             </div>
+            <div>
+              <h5>Contact</h5>
+              <ul class="footer-contact">
+                <li class="footer-contact-email">
+                  <a href="mailto:contact@digital-online.ro">contact@digital-online.ro</a>
+                </li>
+                <li class="footer-contact-hours">
+                  Luni – Vineri: 09:00 – 17:00
+                </li>
+                <li class="footer-contact-whatsapp">
+                  <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener">
+                    <svg class="wa-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                      <path fill="currentColor" d="M20.52 3.48A11.93 11.93 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.27-1.65a11.92 11.92 0 0 0 5.77 1.47h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.24-6.17-3.45-8.42ZM12.05 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.98 1-3.63-.24-.37a9.88 9.88 0 0 1-1.52-5.27c0-5.46 4.44-9.9 9.9-9.9 2.64 0 5.13 1.03 7 2.9a9.85 9.85 0 0 1 2.9 7c0 5.46-4.44 9.9-9.91 9.9Zm5.44-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07-.3-.15-1.26-.46-2.4-1.48a9.05 9.05 0 0 1-1.67-2.07c-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35Z"/>
+                    </svg>
+                    <span class="wa-text">
+                      <strong>Scrie-ne pe WhatsApp</strong>
+                      <em>Răspundem în câteva minute</em>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+        <div class="footer-bot">
+          <small>© <span id="yr"></span> Digital Online, Toate drepturile rezervate</small>
+        </div>
+      </div>
     </footer>
 
-
-
-    <script defer src="js/script.js?v=364"></script>
-    <script defer src="js/terminal.js?v=1"></script>
-    <script>
-    // Counter-up animat pentru statistici (generic, pe orice .count[data-target])
-    (function() {
-        const nums = document.querySelectorAll('.count[data-target]');
-        if (!nums.length) return;
-        const animate = (el) => {
-            const target = parseInt(el.getAttribute('data-target'), 10);
-            if (!target) return;
-            const duration = 1500;
-            const startTime = performance.now();
-            const step = (now) => {
-                const progress = Math.min((now - startTime) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                el.textContent = Math.floor(eased * target);
-                if (progress < 1) requestAnimationFrame(step);
-                else el.textContent = target;
-            };
-            requestAnimationFrame(step);
-        };
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    nums.forEach(animate);
-                    obs.disconnect();
-                }
-            });
-        }, { threshold: 0.4 });
-        const target = nums[0].closest('.hero-stats, .stats, section');
-        if (target) obs.observe(target);
-    })();
-    </script>
+    <script src="js/script.js?v=20261007-consent1" defer></script>
+    <script src="js/theme.js?v=20261007-consent1" defer></script>
 </body>
 </html>
-

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
@@ -9,8 +9,7 @@
     <link rel="alternate" hreflang="ro" href="https://digital-online.ro/import-china.html">
     <link rel="alternate" hreflang="en" href="https://digital-online.ro/import-china.html">
     <link rel="alternate" hreflang="x-default" href="https://digital-online.ro/import-china.html">
-    <meta name="theme-color" content="#00f0ff">
-    <meta name="msapplication-TileColor" content="#00f0ff">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
     <meta name="author" content="Digital Online">
@@ -43,13 +42,11 @@
     <meta name="format-detection" content="telephone=no">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css?v=564">
-
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css?v=20261007-footerlogo1">
+    <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/obviously-wide">
     <!-- Three.js + GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="img/logo-light.svg">
     <link rel="icon" type="image/png" sizes="192x192" href="img/favicon-192.png">
     <link rel="apple-touch-icon" sizes="192x192" href="img/favicon-192.png">
@@ -184,100 +181,103 @@
 }
     </script>
 </head>
-<body id="top" class="is-loading">
+<body class="theme">
 
-    <a href="#main" class="skip-link">Sari la continut</a>
+    <a href="#main" class="skip-link">Sari la conținut</a>
 
-    <!-- ===== CYBER LAYER ===== -->
+        <header class="header header--minimal" id="topHeader">
+      <div class="container header-inner">
+        <a href="index.html" class="logo" aria-label="Acasă, Digital Online">
+          <img src="img/logo.svg" alt="Digital Online" class="logo-img" />
+        </a>
 
-    <div id="loader">
-        <div class="loader-ring"></div>
-        <div class="loader-ring delay-1"></div>
-        <div class="loader-ring delay-2"></div>
-        <div class="loader-center">
-            <div class="loader-title">DIGITAL ONLINE</div>
-            <div class="loader-status" id="loader-text">INITIALIZING SYSTEM</div>
-        </div>
-        <div class="loader-progress">
-            <div id="loader-bar" class="loader-bar"></div>
-        </div>
-        <div class="loader-percent" id="loader-percent">0%</div>
-    </div>
+        <nav class="nav nav--center" id="nav" aria-label="Navigare principală">
+          <ul class="nav-list nav-list--mono">
+            <li><a href="index.html" class="nav-link">ACASĂ</a></li>
+            <li class="has-dropdown">
+              <button type="button" class="nav-link nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">SERVICII</button>
+              <ul class="nav-dropdown" role="menu">
+                <li role="none"><a role="menuitem" href="servicii-it.html">Site-uri Web &amp; Servicii IT</a></li>
+                <li role="none"><a role="menuitem" href="magazine-online.html">Magazine Online Shopify</a></li>
+                <li role="none"><a role="menuitem" href="integrari.html">Integrări Automate</a></li>
+                <li role="none"><a role="menuitem" href="consultanta.html">Consultanță Business</a></li>
+                <li role="none"><a role="menuitem" href="import-china.html">Import Produse China</a></li>
+                <li role="none"><a role="menuitem" href="promovare.html">Promovare &amp; Ads</a></li>
+                <li role="none"><a role="menuitem" href="montaj-editare-video-foto.html">Montaj &amp; Editare Video-Foto</a></li>
+                <li role="none"><a role="menuitem" href="implementare-ai.html">Implementare AI &amp; Chatboți</a></li>
+                <li role="none"><a role="menuitem" href="platforme-custom.html">Platforme &amp; Aplicații Custom</a></li>
+              </ul>
+            </li>
 
-    <canvas id="bg-canvas"></canvas>
-    <div class="grid-overlay"></div>
-    <div class="noise-overlay"></div>
-    <div class="scanlines"></div>
-    <div class="vignette"></div>
-    <div class="hero-orb" aria-hidden="true">
-        <div class="orb-container">
-            <div class="orb-core"></div>
-            <div class="orb-ring r1"></div>
-            <div class="orb-ring r2"></div>
-            <div class="orb-ring r3"></div>
-            <div class="orb-particles">
-                <span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span>
-            </div>
-            <div class="orb-label">
-                <span>AI</span>
-                <span>3D</span>
-                <span>XR</span>
-            </div>
-        </div>
-    </div>
+            <li><a href="index.html#proces" class="nav-link">PROCES</a></li>
+            <li><a href="index.html#companie" class="nav-link">DESPRE</a></li>
+            <li><a href="index.html#contact" class="nav-link">CONTACT</a></li>
+          </ul>
+        </nav>
 
+        <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="header-cta">
+          <span>BOOK A CALL</span>
+        </a>
 
-    <div id="cursor" class="custom-cursor"></div>
-    <div id="cursor-trail" class="cursor-trail"></div>
-    <!-- ===== /CYBER LAYER ===== -->
-    
-
-    <header class="header" id="header">
-        <div class="container header-inner">
-            <button class="menu-toggle" id="menuToggle" aria-label="Meniu" aria-expanded="false" aria-controls="nav"><span class="bars"></span></button>
-            <a href="index.html" class="logo" aria-label="Acasă - Digital Online"><img src="img/logo-light.svg" alt="Digital Online" class="logo-img"></a>
-            <nav class="nav" id="nav">
-                <ul class="nav-list">
-                    <li><a href="index.html#top" class="nav-link">Acasă</a></li>
-                    <li class="has-dropdown"><a href="index.html#servicii" class="nav-link active">Servicii ▾</a>
-                        <ul class="dropdown">
-                            <li><a href="servicii-it.html">Site-uri Web & Servicii IT</a></li>
-                            <li><a href="magazine-online.html">Magazine Online Shopify</a></li>
-                            <li><a href="integrari.html">Integrări Automate</a></li>
-                            <li><a href="consultanta.html">Consultanță Business</a></li>
-                            <li><a href="import-china.html">Import Produse China</a></li>
-                            <li><a href="promovare.html">Promovare & Ads</a></li>
-                            <li><a href="montaj-editare-video-foto.html">Montaj & Editare Video-Foto</a></li>
-                            <li><a href="implementare-ai.html">Implementare AI & Chatboți</a></li>
-                            <li><a href="platforme-custom.html">Platforme & Aplicații Custom</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.html#dashboards" class="nav-link">Analytics</a></li>
-                    <li><a href="index.html#proces" class="nav-link">Proces</a></li>
-                    <li><a href="index.html#companie" class="nav-link">Despre Noi</a></li>
-                    <li><a href="#contact" class="nav-link">Contact</a></li>
-                </ul>
-            </nav>
-            <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="header-wa" aria-label="Scrie-ne pe WhatsApp"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
-        </div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Meniu" aria-expanded="false" aria-controls="mobileNav">
+          <span class="menu-icon" aria-hidden="true">☰</span>
+          <span class="close-icon" aria-hidden="true">✕</span>
+        </button>
+      </div>
     </header>
-    <div class="header-placeholder" aria-hidden="true"></div>
 
-    
-    <main id="main" tabindex="-1"><section class="page-hero">
-        <div class="page-hero-bg">
-            <div class="page-blob blob-1"></div>
-            <div class="page-blob blob-2"></div>
-            <div class="page-blob blob-3"></div>
+    <!-- Mobile nav overlay -->
+    <nav class="nav--mobile-overlay" id="mobileNav" aria-label="Navigare mobil">
+      <button class="mobile-nav-close" id="mobileNavClose" type="button" aria-label="Închide meniul">
+        <span aria-hidden="true">✕</span>
+      </button>
+      <a href="index.html" class="mobile-nav-link">Acasă</a>
+      <div class="mobile-nav-group">
+        <a href="index.html#servicii" class="mobile-nav-link">Servicii</a>
+        <div class="mobile-nav-sub is-open" id="mobileNavServicii">
+          <a href="servicii-it.html" class="mobile-nav-sublink">Site-uri Web &amp; Servicii IT</a>
+          <a href="magazine-online.html" class="mobile-nav-sublink">Magazine Online Shopify</a>
+          <a href="integrari.html" class="mobile-nav-sublink">Integrări Automate</a>
+          <a href="consultanta.html" class="mobile-nav-sublink">Consultanță Business</a>
+          <a href="import-china.html" class="mobile-nav-sublink">Import Produse China</a>
+          <a href="promovare.html" class="mobile-nav-sublink">Promovare &amp; Ads</a>
+          <a href="montaj-editare-video-foto.html" class="mobile-nav-sublink">Montaj &amp; Editare Video-Foto</a>
+          <a href="implementare-ai.html" class="mobile-nav-sublink">Implementare AI &amp; Chatboți</a>
+          <a href="platforme-custom.html" class="mobile-nav-sublink">Platforme &amp; Aplicații Custom</a>
         </div>
-        <div class="container">
-            <h1>Importul din China,<br><span class="grad-text">fără surprize și dureri de cap</span></h1>
-            <p>Te ghidăm de la identificarea furnizorului, negociere, comandă, control calitate, transport maritim/aerian, vămuire, până la depozitul tău. Cu tot ce ține de fiscal, reglementări și obligativități legale.</p>
+      </div>
+      <a href="index.html#companie" class="mobile-nav-link">Despre</a>
+      <a href="index.html#proces" class="mobile-nav-link">Proces</a>
+      <a href="index.html#contact" class="mobile-nav-link">Contact</a>
+      <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="nav-cta-mobile">Book a Call</a>
+    </nav>
+          <!-- ============================ HERO (theme style) ============================ -->
+      <section class="hero-theme" id="acasa">
+        <div class="hm-bg" aria-hidden="true">
+          <picture>
+            <img src="img/animation.gif" alt="" class="hm-bg-img" loading="eager" decoding="async">
+          </picture>
         </div>
-    </section>
 
-    <section class="section">
+        <div class="container hm-inner">
+
+          <h1 class="hm-title hm-title--service">
+            <span class="hm-title-fill">IMPORT PRODUSE<br>DIN CHINA</span>
+          </h1>
+
+          <div class="hm-tagline">
+            <span class="hm-tagline-text">Găsim furnizori, negociem condițiile și coordonăm importul până când produsele ajung la tine.</span>
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <a href="#main" class="hm-scroll" aria-label="Derulează la conținut">
+          <span class="hm-scroll-text">EXPLORE</span>
+          <span class="hm-scroll-line"></span>
+        </a>
+      </section>
+
+    <main id="main" tabindex="-1"><section class="section">
         <div class="container">
             <div class="section-head">
                 <h2>Pașii importului, simplificați</h2>
@@ -294,7 +294,7 @@
                 <div class="process-step"><div class="step-num">8</div><h4>Etichetare & conformitate</h4><p>Asigurăm conformitatea cu legislația UE/RO: etichete în limba română, CE, marcaje, certificări.</p></div>
             </div>
 
-            <div style="margin-top: 60px;">
+            <div class="mt-60">
                 <div class="section-head">
                     <h2>Servicii complete de consultanță import</h2>
                 </div>
@@ -310,202 +310,75 @@
                     <div class="feature"><h4><span></span> Reglementări & conformitate</h4><p>CE, RoHS, REACH, GPSR, certificări obligatorii, restricții vamale, interdicții.</p></div>
                 </div>
             </div>
-
-            <div class="cta-box">
-                <h2>Plănuiești un import din China?</h2>
-                <p>Hai să analizăm produsul, furnizorul și toate costurile. Consultanță inițială.</p>
-                <a href="#contact" class="btn">Cere Consultanță Import </a>
-            </div>
-        </div>
+</div>
     </section>
 
-    <section class="section section-contact" id="contact">
-        <div class="container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h2>Spune-ne despre proiectul tău<br>și construim împreună</h2>
-                    <p>De la primul concept până la lansare și optimizare, echipa noastră lucrează cu tine la fiecare pas. Ne ocupăm de site-uri de prezentare, magazine online Shopify, import produse din China, integrări automate, promovare multi-channel, editare video și foto, implementare AI și platforme web custom.</p>
-                    <p>Scrie-ne pe WhatsApp, trimite-ne un email sau completează formularul. Revenim cu o propunere clară în maxim 24 de ore.</p>
+</main>
 
-                    <div class="contact-channels">
-                        <!-- WhatsApp - buton principal, link direct -->
-                        <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="channel channel-whatsapp">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <div class="channel-title-row">
-                                    <strong>WhatsApp</strong>
-                                    <span class="live-dot"></span>
-                                </div>
-                                <small>Scrie-ne acum. Răspundem în câteva minute</small>
-                            </div>
-                        </a>
-
-                        <!-- Email -->
-                        <a href="mailto:contact@digital-online.ro" class="channel">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                    <path d="m22 7-10 5L2 7"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <strong>Email</strong>
-                                <small>contact@digital-online.ro</small>
-                            </div>
-                        </a>
-
-                        <!-- Telefon -->
-                        <a href="tel:+40758653550" class="channel">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <strong>Telefon</strong>
-                                <small>+40 758 653 550</small>
-                            </div>
-                        </a>
-
-                        <!-- Program -->
-                        <div class="channel channel-static">
-                            <div class="channel-icon">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"/>
-                                    <polyline points="12 6 12 12 16 14"/>
-                                </svg>
-                            </div>
-                            <div class="channel-body">
-                                <strong>Program</strong>
-                                <small>Luni – Vineri · 09:00 – 17:00</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <form class="contact-form" id="contactForm" novalidate>
-                    <h3>Solicită o ofertă</h3>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="nume">Nume complet *</label>
-                            <input type="text" id="nume" name="nume" autocomplete="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="telefon">Telefon *</label>
-                            <input type="tel" id="telefon" name="telefon" autocomplete="tel" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" autocomplete="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="serviciu">Serviciul dorit</label>
-                        <select id="serviciu" name="serviciu">
-                            <option value="">Alege serviciul...</option>
-                            <option>Site de prezentare</option>
-                            <option>Magazin online Shopify</option>
-                            <option>Modificare / Mentenanță site existent</option>
-                            <option>Integrări automate (facturare, curierat, plăți)</option>
-                            <option>Consultanță business online</option>
-                            <option>Import produse China</option>
-                            <option>Promovare & Marketing (Google/Meta/TikTok Ads)</option>
-                            <option>Montaj & Editare Video-Foto</option>
-                            <option>Implementare AI & Chatboți</option>
-                            <option>Platformă / Aplicație custom</option>
-                            <option>Altceva</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="mesaj">Mesajul tău *</label>
-                        <textarea id="mesaj" name="mesaj" rows="5" autocomplete="off" required placeholder="Descrie pe scurt ce ai nevoie..."></textarea>
-                    </div>
-                    <div class="form-group form-check">
-                        <input type="checkbox" id="gdpr" name="gdpr" required>
-                        <label for="gdpr">Sunt de acord cu prelucrarea datelor personale conform <a href="politica-confidentialitate.html" target="_blank" rel="noopener">politicii de confidențialitate</a>.</label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Trimite Solicitarea </button>
-                    <div class="form-status" id="formStatus"></div>
-                </form>
+        <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-row">
+          <div class="footer-brand">
+            <a href="index.html" class="logo" aria-label="Acasă, Digital Online">
+              <img src="img/logo.svg" alt="Digital Online" class="logo-img" />
+            </a>
+            <p>Partenerul tău digital complet. De la site, la magazin online, la automatizări AI și marketing digital.</p>
+          </div>
+          <div class="footer-cols">
+            <div>
+              <h5>Servicii</h5>
+              <ul>
+                <li><a href="servicii-it.html">Site-uri Web &amp; Servicii IT</a></li>
+                <li><a href="magazine-online.html">Magazine Online</a></li>
+                <li><a href="integrari.html">Integrări Automate</a></li>
+                <li><a href="promovare.html">Promovare &amp; Ads</a></li>
+                <li><a href="montaj-editare-video-foto.html">Montaj &amp; Editare Video-Foto</a></li>
+                <li><a href="implementare-ai.html">Implementare AI</a></li>
+                <li><a href="platforme-custom.html">Platforme Custom</a></li>
+              </ul>
             </div>
+            <div>
+              <h5>Companie</h5>
+              <ul>
+                <li><a href="index.html#companie">Despre noi</a></li>
+                <li><a href="index.html#proces">Procesul nostru</a></li>
+                <li><a href="index.html#dashboards">Analytics</a></li>
+                <li><a href="index.html#companie">Încredere &amp; Transparență</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+              </ul>
+            </div>
+            <div>
+              <h5>Contact</h5>
+              <ul class="footer-contact">
+                <li class="footer-contact-email">
+                  <a href="mailto:contact@digital-online.ro">contact@digital-online.ro</a>
+                </li>
+                <li class="footer-contact-hours">
+                  Luni – Vineri: 09:00 – 17:00
+                </li>
+                <li class="footer-contact-whatsapp">
+                  <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener">
+                    <svg class="wa-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false">
+                      <path fill="currentColor" d="M20.52 3.48A11.93 11.93 0 0 0 12.04 0C5.46 0 .12 5.34.12 11.92c0 2.1.55 4.15 1.6 5.96L0 24l6.27-1.65a11.92 11.92 0 0 0 5.77 1.47h.01c6.58 0 11.92-5.34 11.92-11.92 0-3.18-1.24-6.17-3.45-8.42ZM12.05 21.8h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.98 1-3.63-.24-.37a9.88 9.88 0 0 1-1.52-5.27c0-5.46 4.44-9.9 9.9-9.9 2.64 0 5.13 1.03 7 2.9a9.85 9.85 0 0 1 2.9 7c0 5.46-4.44 9.9-9.91 9.9Zm5.44-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07-.3-.15-1.26-.46-2.4-1.48a9.05 9.05 0 0 1-1.67-2.07c-.17-.3-.02-.46.13-.6.13-.13.3-.34.45-.5.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.42.25-.7.25-1.3.18-1.42-.07-.12-.27-.2-.57-.35Z"/>
+                    </svg>
+                    <span class="wa-text">
+                      <strong>Scrie-ne pe WhatsApp</strong>
+                      <em>Răspundem în câteva minute</em>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="logo logo-light"><img src="img/logo-light.svg" alt="Digital Online" class="logo-img"></a>
-                    <p>Partenerul tău digital complet. De la site, la magazin online, la automatizări AI și marketing digital.</p>
-                </div>
-                <div class="footer-col">
-                    <h5>Servicii</h5>
-                    <ul>
-                        <li><a href="servicii-it.html">Site-uri Web & Servicii IT</a></li>
-                        <li><a href="magazine-online.html">Magazine Online</a></li>
-                        <li><a href="integrari.html">Integrări Automate</a></li>
-                        <li><a href="promovare.html">Promovare & Ads</a></li>
-                        <li><a href="montaj-editare-video-foto.html">Montaj & Editare Video-Foto</a></li>
-                        <li><a href="implementare-ai.html">Implementare AI</a></li>
-                        <li><a href="platforme-custom.html">Platforme Custom</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Companie</h5>
-                    <ul>
-                        <li>
-                            <details class="footer-info">
-                                <summary>Informații companie</summary>
-                                <div class="footer-info-body">
-                                    <div class="fib-row"><span>Companie</span><strong>Global Vision Point Limited</strong></div>
-                                    <div class="fib-row"><span>Sediu</span>Suite 2, 260 Main Street, Gibraltar</div>
-                                    <div class="fib-row"><span>Brand</span>Digital Online</div>
-                                    <div class="fib-row"><span>Domeniu</span>Web design, comerț electronic, marketing digital, automatizări, AI</div>
-                                </div>
-                            </details>
-                        </li>
-                        <li><a href="#companie">Despre noi</a></li>
-                        <li><a href="#proces">Procesul nostru</a></li>
-                        <li><a href="#dashboards">Analytics</a></li>
-                        <li><a href="#companie">Încredere & Transparență</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h5>Contact</h5>
-                    <ul>
-                        <li> contact@digital-online.ro</li>
-                        <li> Luni – Vineri: 09:00 – 17:00</li>
-                        <li>
-                            <a href="https://wa.me/40758653550?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="footer-wa-link">
-                                <div class="wa-icon-circle">
-                                    <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                                    </svg>
-                                </div>
-                                <div class="wa-text">
-                                    <strong>Scrie-ne pe WhatsApp</strong>
-                                    <small>Răspundem în câteva minute</small>
-                                </div>
-                                <span class="wa-live-dot" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <span>© <span id="year">2026</span> Digital Online · Toate drepturile rezervate</span>
-                
-            </div>
+        <div class="footer-bot">
+          <small>© <span id="yr"></span> Digital Online, Toate drepturile rezervate</small>
         </div>
+      </div>
     </footer>
 
-    <script src="js/script.js"></script>
-</body>
-</html>
+    <script src="js/script.js?v=20261007-consent1" defer></script>
+    <script src="js/theme.js?v=20261007-consent1" defer></script>
 
+    </body>
+</html>
