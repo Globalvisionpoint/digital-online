@@ -1,922 +1,269 @@
-/* ============================================
-   DIGITAL ONLINE — Futuristic Engine
-   Combined: original site-nou features + te/cyber effects
-   ============================================ */
-
+/* ============================================================================
+   DIGITAL ONLINE — Editorial main.js
+   No dependencies. IntersectionObserver, custom cursor, scroll-driven motion.
+   ============================================================================ */
 (function () {
-    'use strict';
+  'use strict';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isCoarse = matchMedia('(pointer: coarse)').matches;
 
-    /* ============================================
-       LOADER
-       ============================================ */
-    // NOTE: `is-loading` is already on <body> in the HTML so the loader screen
-    // shows on first paint with zero flash of header/content. We only remove
-    // the class here once loading is complete.
-    //
-    // Performance: only show the full loader animation ONCE per browser
-    // session. On subsequent navigations within the same tab (SPA-style
-    // in-tab nav or back/forward), skip it so the content paints immediately.
-    // This avoids ~2s of artificial delay before LCP and improves perceived
-    // speed. A new tab / window / hard-reload starts a new session and will
-    // see the loader again — which is the intended "tech" first impression.
-    const LOADER_FLAG = 'digitalOnlineLoaderSeen';
-    const loaderAlreadySeen = (function () {
-        try {
-            return sessionStorage.getItem(LOADER_FLAG) === '1';
-        } catch (e) {
-            // sessionStorage may throw in private mode / sandboxed iframes
-            return false;
-        }
+  /* ------- Custom cursor (desktop only) ------- */
+  if (!isCoarse && !reduced) {
+    const c = document.createElement('div');
+    c.className = 'dsh-cursor';
+    document.body.appendChild(c);
+    let tx = 0, ty = 0, rx = 0, ry = 0, mx = 0, my = 0;
+    addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
+    (function tick() {
+      tx += (mx - tx) * 0.18;
+      ty += (my - ty) * 0.18;
+      rx += (mx - rx) * 0.08;
+      ry += (my - ry) * 0.08;
+      c.style.setProperty('--cx', tx + 'px');
+      c.style.setProperty('--cy', ty + 'px');
+      requestAnimationFrame(tick);
     })();
-
-    const loader = document.getElementById('loader');
-
-    if (loaderAlreadySeen && loader) {
-        // Skip the loader entirely — reveal the page immediately.
-        document.body.classList.remove('is-loading');
-        loader.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-        // Kick off hero animation right away (same path the loader takes
-        // when it finishes naturally).
-        startHeroAnimation();
-        // Trigger canvas resize after reveal (viewport may have changed).
-        window.dispatchEvent(new Event('resize'));
-    }
-
-    // Safety fallback: if 8 seconds pass and the loader is still showing
-    // (e.g. JS error or very slow assets), force-reveal the page.
-    const safetyTimeout = setTimeout(() => {
-        if (document.body.classList.contains('is-loading')) {
-            document.body.classList.remove('is-loading');
-            if (loader) loader.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    }, 8000);
-    if (loader && !loaderAlreadySeen) {
-        const loaderBar = document.getElementById('loader-bar');
-        const loaderPercent = document.getElementById('loader-percent');
-        const loaderText = document.getElementById('loader-text');
-        const loadMessages = [
-            'INITIALIZING SYSTEM',
-            'LOADING NEURAL NET',
-            'CALIBRATING PARTICLES',
-            'RENDERING SHADERS',
-            'ESTABLISHING UPLINK',
-            'SYSTEM READY'
-        ];
-        let loadProgress = 0;
-        const loadInterval = setInterval(() => {
-            loadProgress += Math.random() * 12 + 3;
-            if (loadProgress >= 100) {
-                loadProgress = 100;
-                clearInterval(loadInterval);
-                clearTimeout(safetyTimeout);
-                setTimeout(() => {
-                    loader.classList.add('hidden');
-                    document.body.classList.remove('is-loading');
-                    document.body.style.overflow = 'auto';
-                    // Mark loader as seen for the rest of this browser
-                    // session — subsequent in-tab navigations will skip it.
-                    try { sessionStorage.setItem(LOADER_FLAG, '1'); } catch (e) { /* noop */ }
-                    startHeroAnimation();
-                    // Trigger canvas resize after loader hides (viewport may have changed)
-                    window.dispatchEvent(new Event('resize'));
-                }, 400);
-            }
-            if (loaderBar) loaderBar.style.width = loadProgress + '%';
-            if (loaderPercent) loaderPercent.textContent = Math.floor(loadProgress) + '%';
-            if (loaderText) {
-                const msgIndex = Math.min(Math.floor(loadProgress / 20), loadMessages.length - 1);
-                loaderText.textContent = loadMessages[msgIndex];
-            }
-        }, 180);
-        document.body.style.overflow = 'hidden';
-    }
-
-    /* ============================================
-       THREE.JS — 3D PARTICLE BACKGROUND
-       ============================================ */
-    const canvas = document.getElementById('bg-canvas');
-    if (canvas && typeof THREE !== 'undefined') {
-        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(window.innerWidth, window.innerHeight);
-
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 50;
-
-        // Lights
-        const ambient = new THREE.AmbientLight(0x00f0ff, 0.4);
-        scene.add(ambient);
-        const point1 = new THREE.PointLight(0x00f0ff, 2, 100);
-        point1.position.set(20, 20, 20);
-        scene.add(point1);
-        const point2 = new THREE.PointLight(0xff073a, 2, 100);
-        point2.position.set(-20, -20, 20);
-        scene.add(point2);
-        const point3 = new THREE.PointLight(0xff073a, 1.5, 100);
-        point3.position.set(0, 20, -20);
-        scene.add(point3);
-
-        // Particles
-        const particlesCount = 1500;
-        const positions = new Float32Array(particlesCount * 3);
-        const colors = new Float32Array(particlesCount * 3);
-        const colorChoices = [
-            new THREE.Color(0x00f0ff),
-            new THREE.Color(0xff073a),
-            new THREE.Color(0xff073a),
-            new THREE.Color(0x00ff9d)
-        ];
-        for (let i = 0; i < particlesCount; i++) {
-            positions[i * 3] = (Math.random() - 0.5) * 200;
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 200;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 200;
-            const c = colorChoices[Math.floor(Math.random() * colorChoices.length)];
-            colors[i * 3] = c.r;
-            colors[i * 3 + 1] = c.g;
-            colors[i * 3 + 2] = c.b;
-        }
-        const particlesGeo = new THREE.BufferGeometry();
-        particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        particlesGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        const particlesMat = new THREE.PointsMaterial({
-            size: 0.55,
-            vertexColors: true,
-            transparent: true,
-            opacity: 1,
-            blending: THREE.AdditiveBlending
-        });
-        const particles = new THREE.Points(particlesGeo, particlesMat);
-        scene.add(particles);
-
-        // Wireframe geometries (responsive — closer on mobile, wider on desktop)
-        const isMobile = window.innerWidth < 768;
-        const wireScale = isMobile ? 0.55 : 1;
-        const wireOffsetX = isMobile ? 12 : 39;
-        // Ico (red sphere): mobile = -14 X / 28 Y; desktop = -55 X / 18 Y
-        const icoOffsetX = isMobile ? -14 : -55;
-        const icoOffsetY = isMobile ? 28 : 18;
-
-        const torus = new THREE.Mesh(
-            new THREE.TorusGeometry(12 * wireScale, 3.5 * wireScale, 16, 60),
-            new THREE.MeshBasicMaterial({ color: 0x00f0ff, wireframe: true, transparent: true, opacity: isMobile ? 0.5 : 0.35 })
-        );
-        torus.position.set(wireOffsetX, -2, -10);
-        scene.add(torus);
-
-        const ico = new THREE.Mesh(
-            new THREE.IcosahedronGeometry(10 * wireScale, 1),
-            new THREE.MeshBasicMaterial({ color: 0xff073a, wireframe: true, transparent: true, opacity: isMobile ? 0.55 : 0.4 })
-        );
-        ico.position.set(icoOffsetX, icoOffsetY, -12);
-        scene.add(ico);
-
-        const octa = new THREE.Mesh(
-            new THREE.OctahedronGeometry(7 * wireScale, 0),
-            new THREE.MeshBasicMaterial({ color: 0xff073a, wireframe: true, transparent: true, opacity: isMobile ? 0.5 : 0.35 })
-        );
-        octa.position.set(0, -18, -8);
-        scene.add(octa);
-
-        let mouseX = 0, mouseY = 0;
-        let targetX = 0, targetY = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        // Animation timing — deltaTime-based with clamp, so the scene keeps
-        // a steady rhythm regardless of background-tab throttling.
-        let lastFrameTime = performance.now();
-        let sceneRunning = true;
-        let sceneRafId = 0;
-
-        function animateScene() {
-            // Clamp deltaTime: never advance the scene by more than a single
-            // ~60fps frame, no matter how long the tab was hidden / throttled.
-            const now = performance.now();
-            let delta = (now - lastFrameTime) / 1000; // seconds
-            if (delta > 1 / 30) delta = 1 / 30;       // cap at 30fps frame
-            lastFrameTime = now;
-
-            // Per-second rotation speeds (independent of fps / dt drift)
-            const k = delta * 60; // normalize: 1 unit = "one frame at 60fps"
-
-            targetX += (mouseX * 0.5 - targetX) * 0.05 * k;
-            targetY += (mouseY * 0.3 - targetY) * 0.05 * k;
-
-            particles.rotation.y += 0.0005 * k;
-            particles.rotation.x += 0.0002 * k;
-
-            torus.rotation.x += 0.003 * k;
-            torus.rotation.y += 0.005 * k;
-            ico.rotation.x += 0.004 * k;
-            ico.rotation.y -= 0.003 * k;
-            octa.rotation.x -= 0.005 * k;
-            octa.rotation.y += 0.004 * k;
-
-            camera.position.x += (targetX * 8 - camera.position.x) * 0.02 * k;
-            camera.position.y += (targetY * 5 - camera.position.y) * 0.02 * k;
-            camera.lookAt(scene.position);
-
-            // Date.now() based motion: also clamp its effective dt so the
-            // lights don't snap when the tab is restored.
-            const lightNow = lastFrameTime;
-            point1.position.x = Math.sin(lightNow * 0.0005) * 25;
-            point1.position.y = Math.cos(lightNow * 0.0007) * 25;
-            point2.position.x = Math.cos(lightNow * 0.0006) * 25;
-            point2.position.y = Math.sin(lightNow * 0.0008) * 25;
-
-            renderer.render(scene, camera);
-
-            if (sceneRunning) {
-                sceneRafId = requestAnimationFrame(animateScene);
-            }
-        }
-        animateScene();
-
-        // Tab visibility: stop the animation loop entirely while the tab is
-        // hidden, and reset the clock on the way back so we never compute a
-        // giant delta (the cause of the "scene speeds up" bug).
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                sceneRunning = false;
-                if (sceneRafId) cancelAnimationFrame(sceneRafId);
-                renderer.setAnimationLoop(null);
-            } else {
-                lastFrameTime = performance.now(); // reset clock
-                sceneRunning = true;
-                sceneRafId = requestAnimationFrame(animateScene);
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight, false);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        });
-        // Visual viewport (mobile address-bar show/hide)
-        if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', () => {
-                camera.aspect = window.visualViewport.width / window.visualViewport.height;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.visualViewport.width, window.visualViewport.height, false);
-            });
-        }
-    }
-
-    /* ============================================
-       CUSTOM CURSOR
-       ============================================ */
-    const cursor = document.getElementById('cursor');
-    const trail = document.getElementById('cursor-trail');
-    if (cursor && trail) {
-        let cx = 0, cy = 0, tx = 0, ty = 0;
-
-        document.addEventListener('mousemove', (e) => {
-            cx = e.clientX;
-            cy = e.clientY;
-            cursor.style.left = cx - 6 + 'px';
-            cursor.style.top = cy - 6 + 'px';
-        });
-
-        function animateCursor() {
-            requestAnimationFrame(animateCursor);
-            tx += (cx - tx) * 0.15;
-            ty += (cy - ty) * 0.15;
-            trail.style.left = tx - 15 + 'px';
-            trail.style.top = ty - 15 + 'px';
-        }
-        animateCursor();
-
-        // Use event delegation so dynamically-injected elements (cookie banner,
-        // cookie modal, etc.) also trigger the hover state on the custom cursor.
-        // mouseover/mouseout bubble (unlike mouseenter/mouseleave), so we check
-        // relatedTarget to detect true enter/leave transitions and avoid flicker
-        // when the cursor crosses child elements inside an interactive control.
-        const interactiveSelector = 'a, button, .service-card, .dash-card, .process-row, .step-card, .testimonial, .cta-btn, .form-input, .feature, .pricing-card, .why-stat, .channel, .btn, .dropdown li a, .nav-link, .menu-toggle, input, select, textarea, .logo, .cookie-banner__btn, .cookie-modal__btn';
-        document.addEventListener('mouseover', (e) => {
-            const target = e.target.closest(interactiveSelector);
-            if (target) cursor.classList.add('hover');
-        });
-        document.addEventListener('mouseout', (e) => {
-            const target = e.target.closest(interactiveSelector);
-            if (!target) return;
-            // Only remove hover when the cursor truly leaves the element
-            // (i.e. moving to a node that is not inside the same interactive target).
-            const related = e.relatedTarget;
-            if (related && target.contains(related)) return;
-            cursor.classList.remove('hover');
-        });
-    }
-
-    /* ============================================
-       HERO COUNTER ANIMATION
-       ============================================ */
-    function animateCounters() {
-        const counters = document.querySelectorAll('.count[data-target]');
-        if (counters.length === 0) return;
-
-        const duration = 1800;
-        const startTime = performance.now();
-
-        function step(now) {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'), 10);
-                const current = Math.floor(eased * target);
-                counter.textContent = current;
-            });
-
-            if (progress < 1) {
-                requestAnimationFrame(step);
-            } else {
-                counters.forEach(counter => {
-                    const target = parseInt(counter.getAttribute('data-target'), 10);
-                    counter.textContent = target;
-                });
-            }
-        }
-        requestAnimationFrame(step);
-    }
-
-    const counters = document.querySelectorAll('.count[data-target]');
-    if (counters.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    observer.disconnect();
-                }
-            });
-        }, { threshold: 0.3 });
-        counters.forEach(c => observer.observe(c.parentElement.parentElement));
-    }
-
-    /* ============================================
-       ARIA-CURRENT="page" on active nav link
-       ============================================ */
-    (function setAriaCurrentPage() {
-        const currentFile = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
-        const currentHash = window.location.hash;
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.removeAttribute('aria-current');
-            const href = (link.getAttribute('href') || '').toLowerCase();
-            if (!href) return;
-            // Match same-page anchor if we have one, else match file
-            if (href.startsWith('#') && currentHash && href === currentHash) {
-                link.setAttribute('aria-current', 'page');
-            } else if (!href.startsWith('#') && href.includes(currentFile) && currentFile !== '') {
-                link.setAttribute('aria-current', 'page');
-            } else if (currentFile === 'index.html' && href === 'index.html') {
-                link.setAttribute('aria-current', 'page');
-            }
-        });
-    })();
-
-    /* ============================================
-       MOBILE MENU
-       ============================================ */
-    const menuToggle = document.getElementById('menuToggle');
-    const nav = document.getElementById('nav');
-    if (menuToggle && nav) {
-        const closeMenu = () => {
-            nav.classList.remove('open');
-            menuToggle.classList.remove('is-open');
-            menuToggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('menu-open');
-            document.querySelectorAll('.has-dropdown.open').forEach(d => d.classList.remove('open'));
-        };
-        menuToggle.addEventListener('click', () => {
-            const isOpen = nav.classList.toggle('open');
-            menuToggle.classList.toggle('is-open', isOpen);
-            menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-            // Blur after tap so :focus doesn't keep the bold border
-            menuToggle.blur();
-            // Lock body scroll while mobile menu is open so background doesn't scroll
-            document.body.classList.toggle('menu-open', isOpen && window.innerWidth <= 900);
-            // On mobile, auto-open all dropdowns when menu opens
-            if (isOpen && window.innerWidth <= 900) {
-                document.querySelectorAll('.has-dropdown').forEach(d => d.classList.add('open'));
-            } else {
-                document.querySelectorAll('.has-dropdown.open').forEach(d => d.classList.remove('open'));
-            }
-        });
-        // Close menu when clicking on a regular link (not dropdown toggles)
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                // If this link is inside a has-dropdown and we're on mobile, don't close menu
-                if (link.parentElement.classList.contains('has-dropdown') && window.innerWidth <= 900) {
-                    return; // Let the dropdown handler handle it
-                }
-                closeMenu();
-            });
-        });
-    }
-
-    document.querySelectorAll('.has-dropdown > .nav-link').forEach(link => {
-        link.addEventListener('click', (e) => {
-            if (window.innerWidth <= 900) {
-                e.preventDefault();
-                e.stopPropagation();
-                // Close other open dropdowns
-                document.querySelectorAll('.has-dropdown.open').forEach(d => {
-                    if (d !== link.parentElement) d.classList.remove('open');
-                });
-                link.parentElement.classList.toggle('open');
-            }
-        });
+    const sel = 'a,button,[role="button"],.btn,.channel,.dash-card,.step-card,.why-block';
+    document.addEventListener('pointerover', e => {
+      if (e.target.closest(sel)) c.classList.add('is-hover');
     });
+    document.addEventListener('pointerout', e => {
+      if (e.target.closest(sel)) c.classList.remove('is-hover');
+    });
+  }
 
-    /* ============================================================
-       UNIFIED SCROLL HANDLER (single rAF loop — no jitter)
-       ============================================================ */
-    const header = document.getElementById('header');
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    let scrollTicking = false;
-    let lastScrolledState = null;
-    let lastCurrentSection = null;
-
-    const handleScroll = () => {
-        const y = window.scrollY;
-
-        if (header) {
-            const isScrolled = y > 30;
-            if (isScrolled !== lastScrolledState) {
-                lastScrolledState = isScrolled;
-                header.classList.toggle('scrolled', isScrolled);
-            }
+  /* ------- Scroll reveal ------- */
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (reveals.length && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          io.unobserve(entry.target);
         }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('is-revealed'));
+  }
 
-        if (sections.length && navLinks.length) {
-            let current = '';
-            for (const section of sections) {
-                if (y >= section.offsetTop - 120) current = section.id;
-            }
-            if (current !== lastCurrentSection) {
-                lastCurrentSection = current;
-                navLinks.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href === '#' + current) link.classList.add('active');
-                    else if (href && href.startsWith('#')) link.classList.remove('active');
-                });
-            }
-        }
+  /* ------- Services cards: entrance animation (CSS transitions only) -------
+     Specificatii (per index in rand, 0-based):
+       Rand 1 (4 carduri):  card 0,1 vin din stanga;  card 2,3 vin din dreapta
+       Rand 2 (5 carduri):  card 0,1 vin din stanga;  card 3,4 vin din dreapta;
+                            card 2 (mijloc) vine de jos
+     Strategie (puzzle pe randuri de cate doua):
+       1. La init: setam clasa card-left/card-right/card-bottom conform pozitiei.
+       2. IntersectionObserver PER RAND declanseaza .is-visible cand randul intra
+          in viewport.
+       3. In loc sa apara toate deodata, cardurile primesc transition-delay
+          calculat pe "perechi oglinde": (0,n-1) impreuna, apoi (1,n-2) etc.;
+          cardul de jos (mijloc la randul 2) vine ultimul.
+       4. Dupa declansare facem unobserve - ruleaza o singura data.
+     Nota: NU folosim requestAnimationFrame (am avut bug de accelerare la
+     schimbarea de tab). Totul se bazeaza pe CSS transitions + clasa. */
+  function assignEnterDirections(container) {
+    const isSecondary = container.classList.contains('hm-services-featured--secondary');
+    const cards = container.querySelectorAll('.hm-feature');
+    cards.forEach((card, i) => {
+      let enter;
+      if (!isSecondary) {
+        // Rand 1 (4 carduri): 0,1 stanga; 2,3 dreapta
+        enter = (i < 2) ? 'left' : 'right';
+      } else {
+        // Rand 2 (5 carduri): 0,1 stanga; 2 jos; 3,4 dreapta
+        if (i === 2)      enter = 'bottom';
+        else if (i < 2)   enter = 'left';
+        else              enter = 'right';
+      }
+      card.classList.add(`card-${enter}`);
+    });
+  }
 
-        scrollTicking = false;
+  document.querySelectorAll('.hm-services-featured').forEach(assignEnterDirections);
+
+  if ('IntersectionObserver' in window && !reduced) {
+    // Folosim un IntersectionObserver per rand, cu threshold 0 si rootMargin
+    // extins mult in jos (50% viewport) — IO ne notifica doar cand randul
+    // intra EFECTIV in viewport, NU la prima paint cand e inca sub el.
+    // Trigger zone: rect.top <= vh (marginea de sus a atins viewport-ul).
+    const cardObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const rect = entry.target.getBoundingClientRect();
+        // declansam doar cand marginea de sus a randului a intrat in viewport
+        // (nu doar cand e in rootMargin extins)
+        if (rect.top >= window.innerHeight) return;
+        // Puzzle: perechi oglinde (stanga + dreapta deodata), la ~500ms una dupa alta.
+        const cards = Array.from(entry.target.querySelectorAll('.hm-feature'));
+        const n = cards.length;
+        cards.forEach((card, i) => {
+          const pair = Math.min(i, n - 1 - i);
+          const delay = pair * 500;
+          card.style.transitionDelay = `${delay}ms`;
+          card.classList.add('is-visible');
+          const content = card.querySelector('.hm-feature-content');
+          if (content) content.style.transitionDelay = `${800 + delay}ms`;
+        });
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+
+    document.querySelectorAll('.hm-services-featured').forEach(row => {
+      cardObserver.observe(row);
+    });
+  } else {
+    // Fara IO sau reduced motion: afisam tot instant
+    document.querySelectorAll('.hm-services-featured').forEach(row => {
+      row.querySelectorAll('.hm-feature').forEach(card => {
+        card.classList.add('is-visible');
+      });
+    });
+  }
+
+  /* ------- Per-word stagger on .stagger headlines ------- */
+  document.querySelectorAll('.stagger').forEach(h => {
+    const text = h.textContent;
+    const parts = text.split(/(\s+)/);
+    h.textContent = '';
+    parts.forEach(p => {
+      if (/^\s+$/.test(p)) { h.appendChild(document.createTextNode(p)); return; }
+      const w = document.createElement('span');
+      w.className = 'word';
+      w.textContent = p;
+      h.appendChild(w);
+    });
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            const words = h.querySelectorAll('.word');
+            words.forEach((w, i) => setTimeout(() => w.classList.add('is-in'), i * 35));
+            io.unobserve(h);
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(h);
+    }
+  });
+
+  /* ------- Number tally ------- */
+  document.querySelectorAll('.tally[data-to]').forEach(el => {
+    const target = Number(el.dataset.to);
+    const dur = Number(el.dataset.dur || 1800);
+    const dec = Number(el.dataset.dec || 0);
+    if (!('IntersectionObserver' in window) || reduced) { el.textContent = target.toFixed(dec); return; }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (!en.isIntersecting) return;
+        const start = performance.now();
+        (function step(now) {
+          const t = Math.min((now - start) / dur, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = (target * eased).toFixed(dec);
+          if (t < 1) requestAnimationFrame(step);
+          else el.textContent = target.toFixed(dec);
+        })(start);
+        io.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    io.observe(el);
+  });
+
+  /* ------- Header shadow on scroll ------- */
+  const header = document.querySelector('.header');
+  if (header) {
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', scrollY > 8);
     };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
-    window.addEventListener('scroll', () => {
-        if (!scrollTicking) {
-            scrollTicking = true;
-            window.requestAnimationFrame(handleScroll);
-        }
-    }, { passive: true });
-    handleScroll();
-
-    /* ============================================================
-       HEADER PLACEHOLDER (sync height with fixed header)
-       ============================================================ */
-    const headerPlaceholder = document.querySelector('.header-placeholder');
-    if (header && headerPlaceholder) {
-        const syncHeaderHeight = () => {
-            headerPlaceholder.style.height = header.offsetHeight + 'px';
-        };
-        syncHeaderHeight();
-        window.addEventListener('resize', syncHeaderHeight);
-        if (typeof ResizeObserver !== 'undefined') {
-            new ResizeObserver(syncHeaderHeight).observe(header);
-        }
-    }
-
-
-    /* ============================================
-       YEAR
-       ============================================ */
-    const year = document.getElementById('year');
-    if (year) year.textContent = new Date().getFullYear();
-
-    /* ============================================
-       COMPANY DATA TOGGLE
-       ============================================ */
-    const toggleBtn = document.getElementById('toggleCompany');
-    const companyCard = document.getElementById('companyCard');
-    if (toggleBtn && companyCard) {
-        toggleBtn.addEventListener('click', () => {
-            const isOpen = !companyCard.hasAttribute('hidden');
-            if (isOpen) {
-                companyCard.setAttribute('hidden', '');
-                toggleBtn.textContent = 'Afișează datele companiei ▾';
-            } else {
-                companyCard.removeAttribute('hidden');
-                toggleBtn.textContent = 'Ascunde datele companiei ▴';
-            }
-        });
-    }
-
-    /* ============================================
-       CONTACT FORM
-       ============================================ */
-    const form = document.getElementById('contactForm');
-    const status = document.getElementById('formStatus');
-    if (form && status) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const nume = form.nume.value.trim();
-            const email = form.email.value.trim();
-            const telefon = form.telefon.value.trim();
-            const mesaj = form.mesaj.value.trim();
-            const gdpr = form.gdpr.checked;
-
-            if (!nume || !email || !telefon || !mesaj) {
-                status.className = 'form-status error';
-                status.textContent = 'Te rugăm să completezi toate câmpurile obligatorii.';
-                return;
-            }
-            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                status.className = 'form-status error';
-                status.textContent = 'Te rugăm să introduci o adresă de email validă.';
-                return;
-            }
-            if (!gdpr) {
-                status.className = 'form-status error';
-                status.textContent = 'Te rugăm să accepți politica de confidențialitate.';
-                return;
-            }
-
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Se trimite...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                status.className = 'form-status success';
-                status.innerHTML = 'Mulțumim, <strong>' + escape(nume) + '</strong>! Am primit solicitarea ta și te vom contacta în maxim 24 de ore la <strong>' + escape(email) + '</strong>.';
-                form.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                status.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 900);
-        });
-    }
-
-    function escape(str) {
-        const div = document.createElement('div');
-        div.textContent = str;
-        return div.innerHTML;
-    }
-
-    /* ============================================
-       REVEAL ON SCROLL
-       ============================================ */
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.service-card, .dash-card, .process-step, .step-card, .why-stat, .why-block, .pricing-card, .feature, .cta-box, .reveal').forEach(el => {
-        el.classList.add('reveal');
-        revealObserver.observe(el);
+  /* ------- Mobile nav toggle ------- */
+  const toggle = document.getElementById('menuToggle');
+  const nav = document.getElementById('nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
+  }
 
-    /* ============================================
-       HERO ENTRANCE (GSAP)
-       ============================================ */
-    function startHeroAnimation() {
-        if (typeof gsap === 'undefined') return;
-        try {
-            gsap.registerPlugin(ScrollTrigger);
-        } catch (e) {}
+  /* ------- Mark active nav link omitted (no underline on any link) ------- */
 
-        // Safe-guard each selector — only animate if at least one matching element exists
-        const tl = gsap.timeline();
-        if (document.querySelector('.hero-badge')) {
-            tl.from('.hero-badge', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' });
-        }
-        if (document.querySelector('.hero-title')) {
-            tl.from('.hero-title', { y: 60, opacity: 0, duration: 1, ease: 'power4.out' }, '-=0.5');
-        }
-        if (document.querySelector('.hero-sub')) {
-            tl.from('.hero-sub', { y: 30, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.6');
-        }
-        if (document.querySelector('.hero-visual')) {
-            tl.from('.hero-visual', { y: 60, opacity: 0, duration: 1.2, ease: 'power4.out' }, '-=1.0');
-        }
-        // Note: .hero-orb is animated via CSS @keyframes orbDiagonal (transform: translate)
-        // GSAP would override that transform, so we skip animating it here.
-
-        if (typeof ScrollTrigger !== 'undefined') {
-            // Parallax disabled — terminal stays fixed in place when scrolling
-            // gsap.to('.hero-visual', {
-            //     scrollTrigger: {
-            //         trigger: '.hero',
-            //         start: 'top top',
-            //         end: 'bottom top',
-            //         scrub: 1,
-            //         invalidateOnRefresh: true
-            //     },
-            //     y: 80,
-            //     ease: 'none'
-            // });
-        }
-    }
-
-    /* ============================================
-       SMOOTH SCROLL FOR ANCHORS
-       ============================================ */
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || href.length < 2) return;
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        });
+  /* ------- Contact form (front-end only) ------- */
+  const form = document.getElementById('contactForm');
+  if (form) {
+    const status = form.querySelector('.form-status');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      status.textContent = 'Formularul online nu este conectat și mesajul nu a fost trimis. Scrie-ne la contact@digital-online.ro sau contactează-ne pe WhatsApp.';
     });
+  }
 
-    /* ============================================
-       TILT EFFECT ON SERVICE CARDS
-       ============================================ */
-    document.querySelectorAll('.service-card, .dash-card, .pricing-card').forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            card.style.transform = `translateY(-6px) perspective(1000px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = '';
-        });
-    });
-
-    /* ============================================
-       EASTER EGG — KONAMI
-       ============================================ */
-    const konami = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-    let konamiIndex = 0;
-    document.addEventListener('keydown', (e) => {
-        if (e.key === konami[konamiIndex]) {
-            konamiIndex++;
-            if (konamiIndex === konami.length) {
-                document.body.style.animation = 'rainbow 2s linear infinite';
-                setTimeout(() => document.body.style.animation = '', 5000);
-                konamiIndex = 0;
-            }
-        } else {
-            konamiIndex = 0;
-        }
-    });
-    if (!document.getElementById('konami-style')) {
-        const s = document.createElement('style');
-        s.id = 'konami-style';
-        s.textContent = '@keyframes rainbow{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}';
-        document.head.appendChild(s);
+  /* ------- Cursor + scroll-driven dynamic CSS ------- */
+  const s = document.createElement('style');
+  s.textContent = `
+    .dsh-cursor {
+      position: fixed; top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid #F2EEE5; border-radius: 50%;
+      transform: translate(var(--cx,-100px), var(--cy,-100px)) translate(-50%, -50%);
+      pointer-events: none; z-index: 9999;
+      mix-blend-mode: difference;
+      transition: width .25s var(--ease-out, ease), height .25s, border-color .25s;
+      will-change: transform;
     }
+    .dsh-cursor.is-hover { width: 64px; height: 64px; border-color: #8B3A2E; }
+    @media (pointer: coarse) { .dsh-cursor { display: none; } }
+    .header.is-scrolled { background: color-mix(in srgb, var(--paper) 92%, transparent); border-bottom-color: rgba(14,13,11,0.12); }
+  `;
+  document.head.appendChild(s);
 
-    /* ============================================
-       CONSOLE SIGNATURE (dev only - stripped in prod)
-       ============================================ */
-    if (window.console && console.log && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.search.includes('debug=1'))) {
-        console.log('%c⬡ DIGITAL ONLINE ⬡', 'font-size: 32px; font-weight: 900; color: #00f0ff; text-shadow: 0 0 20px #00f0ff;');
-        console.log('%cFUTURE OF MARKETING — 2026', 'font-size: 14px; color: #ff073a; letter-spacing: 0.3em;');
-        console.log('%ccontact@digital-online.ro', 'font-size: 12px; color: #00ff9d;');
+  /* ------- SERVICII anchor: land below section head, frame the cards ------- */
+  function docTop(el) {
+    let y = 0;
+    while (el) { y += el.offsetTop; el = el.offsetParent; }
+    return y;
+  }
+  function focusServicii(smooth) {
+    const sec = document.getElementById('servicii');
+    if (!sec) return false;
+    // Derulează puțin mai jos: chenarele (cardurile) încep exact sub subtitlu,
+    // iar subtitlul rămâne vizibil imediat sub meniul fix.
+    const head = sec.querySelector('.section-head') || sec;
+    const header = document.querySelector('.header');
+    const headerH = header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+    const target = Math.max(0, docTop(head) + head.offsetHeight - headerH - 12);
+    window.scrollTo({ top: target, behavior: smooth && !reduced ? 'smooth' : 'auto' });
+    return true;
+  }
+
+  // Same-page clicks on any anchor pointing to #servicii (nav, scroll indicator, mobile nav)
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href*="#servicii"]');
+    if (!a) return;
+    if (!document.getElementById('servicii')) return; // cross-page: let the browser navigate
+    e.preventDefault();
+    focusServicii(true);
+    if (a.getAttribute('href').indexOf('#servicii') !== -1) {
+      history.replaceState(null, '', a.getAttribute('href'));
     }
+  });
 
-
-    /* ============================================
-       COOKIE CONSENT (GDPR / EU ePrivacy)
-       - Necessary: always on
-       - Analytics: GA4 (optional)
-       - Marketing: Meta Pixel, Google Ads, TikTok (optional)
-       - Stored in localStorage, expires after 365 days
-       - Respects Global Privacy Control (GPC) and Do Not Track (DNT)
-       - Blocks tracking scripts until consent is granted
-       ============================================ */
-    const COOKIE_CONSENT_KEY = 'do_cookie_consent_v1';
-    const COOKIE_CONSENT_MAX_AGE_DAYS = 365;
-
-    const CookieConsent = {
-        get() {
-            try {
-                const raw = localStorage.getItem(COOKIE_CONSENT_KEY);
-                if (!raw) return null;
-                const data = JSON.parse(raw);
-                if (!data || typeof data !== 'object') return null;
-                if (data.expires && Date.now() > data.expires) {
-                    localStorage.removeItem(COOKIE_CONSENT_KEY);
-                    return null;
-                }
-                return data;
-            } catch (e) { return null; }
-        },
-        set(categories) {
-            const data = {
-                necessary: true,
-                analytics: !!categories.analytics,
-                marketing: !!categories.marketing,
-                timestamp: Date.now(),
-                expires: Date.now() + (COOKIE_CONSENT_MAX_AGE_DAYS * 24 * 60 * 60 * 1000),
-                version: 1
-            };
-            try { localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(data)); } catch (e) {}
-            return data;
-        },
-        clear() { try { localStorage.removeItem(COOKIE_CONSENT_KEY); } catch (e) {} },
-        isForcedReject() {
-            if (typeof navigator !== 'undefined') {
-                if (navigator.globalPrivacyControl === true) return true;
-                if (navigator.doNotTrack === '1') return true;
-            }
-            return false;
-        }
-    };
-
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { window.dataLayer.push(arguments); }
-
-    function loadAnalytics() {
-        if (window.__ga4_loaded) return;
-        window.__ga4_loaded = true;
-        const id = window.GA4_MEASUREMENT_ID || '';
-        if (!id) return;
-        const s = document.createElement('script');
-        s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
-        document.head.appendChild(s);
-        gtag('js', new Date());
-        gtag('config', id, { anonymize_ip: true });
+  // Arriving from another page (index.html#servicii) or reloading with the hash:
+  // rulează după scroll-ul nativ al browserului (ca la reload cu hash)
+  if (location.hash === '#servicii') {
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    const apply = () => focusServicii(false);
+    apply();
+    if (document.readyState !== 'complete') {
+      addEventListener('load', apply);
     }
-
-    function loadMarketing() {
-        if (window.__fb_pixel_loaded) return;
-        window.__fb_pixel_loaded = true;
-        const id = window.FB_PIXEL_ID || '';
-        if (!id) return;
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        window.fbq('init', id);
-        window.fbq('track', 'PageView');
-    }
-
-    function applyConsent(consent) {
-        if (!consent) return;
-        if (consent.analytics) loadAnalytics();
-        if (consent.marketing) loadMarketing();
-        window.dispatchEvent(new CustomEvent('cookieconsent:applied', { detail: consent }));
-    }
-
-    (function bootstrap() {
-        if (CookieConsent.isForcedReject()) return;
-        const existing = CookieConsent.get();
-        if (existing) { applyConsent(existing); return; }
-        setTimeout(showBanner, 600);
-    })();
-
-    let cookieBanner, cookieModal;
-
-    function ensureBannerElements() {
-        if (!document.getElementById('cookieBanner')) {
-            const div = document.createElement('div');
-            div.id = 'cookieBanner';
-            div.className = 'cookie-banner';
-            div.setAttribute('role', 'dialog');
-            div.setAttribute('aria-live', 'polite');
-            div.setAttribute('aria-label', 'Consimțământ cookie-uri');
-            div.innerHTML =
-                '<h2 class="cookie-banner__title">Confidențialitate & Cookie-uri</h2>' +
-                '<p class="cookie-banner__text">Folosim cookie-uri pentru a îmbunătăți experiența ta, a analiza traficul și a personaliza conținutul. Poți accepta toate, le poți refuza sau poți alege ce categorii permiți. Citește <a href="politica-confidentialitate.html" target="_blank" rel="noopener">Politica de Confidențialitate</a> pentru detalii.</p>' +
-                '<div class="cookie-banner__actions">' +
-                    '<button type="button" class="cookie-banner__btn cookie-banner__btn--accept" data-cookie-action="accept-all">Acceptă toate</button>' +
-                    '<button type="button" class="cookie-banner__btn cookie-banner__btn--reject" data-cookie-action="reject-all">Refuză</button>' +
-                    '<button type="button" class="cookie-banner__btn cookie-banner__btn--settings" data-cookie-action="settings">Personalizează</button>' +
-                '</div>';
-            document.body.appendChild(div);
-            cookieBanner = div;
-        } else {
-            cookieBanner = document.getElementById('cookieBanner');
-        }
-
-        if (!document.getElementById('cookieModal')) {
-            const m = document.createElement('div');
-            m.id = 'cookieModal';
-            m.className = 'cookie-modal';
-            m.setAttribute('role', 'dialog');
-            m.setAttribute('aria-modal', 'true');
-            m.setAttribute('aria-label', 'Setari cookie-uri');
-            m.innerHTML =
-                '<div class="cookie-modal__panel">' +
-                    '<h2 class="cookie-modal__title">Setari Cookie-uri</h2>' +
-                    '<p class="cookie-modal__intro">Alege ce categorii de cookie-uri permiți. Cookie-urile necesare sunt întotdeauna active pentru ca site-ul să funcționeze corect.</p>' +
-                    '<div class="cookie-modal__list">' +
-                        '<div class="cookie-category">' +
-                            '<div class="cookie-category__head">' +
-                                '<h3 class="cookie-category__name">Necesare</h3>' +
-                                '<label class="cookie-toggle"><input type="checkbox" checked disabled aria-label="Cookie-uri necesare (obligatoriu)"><span class="cookie-toggle__slider"></span></label>' +
-                            '</div>' +
-                            '<p class="cookie-category__desc">Esentiale pentru functionarea site-ului (securitate, sesiune, consimtamant).</p>' +
-                        '</div>' +
-                        '<div class="cookie-category">' +
-                            '<div class="cookie-category__head">' +
-                                '<h3 class="cookie-category__name">Analytics</h3>' +
-                                '<label class="cookie-toggle"><input type="checkbox" id="cookieAnalytics" aria-label="Cookie-uri analytics"><span class="cookie-toggle__slider"></span></label>' +
-                            '</div>' +
-                            '<p class="cookie-category__desc">Ne ajuta sa intelegem cum folosesti site-ul (Google Analytics 4, date anonimizate).</p>' +
-                        '</div>' +
-                        '<div class="cookie-category">' +
-                            '<div class="cookie-category__head">' +
-                                '<h3 class="cookie-category__name">Marketing</h3>' +
-                                '<label class="cookie-toggle"><input type="checkbox" id="cookieMarketing" aria-label="Cookie-uri marketing"><span class="cookie-toggle__slider"></span></label>' +
-                            '</div>' +
-                            '<p class="cookie-category__desc">Folosit pentru reclame personalizate (Meta Pixel, Google Ads, TikTok Pixel).</p>' +
-                        '</div>' +
-                    '</div>' +
-                    '<div class="cookie-modal__actions">' +
-                        '<button type="button" class="cookie-modal__btn cookie-modal__btn--reject-all" data-cookie-action="reject-all">Refuza toate</button>' +
-                        '<button type="button" class="cookie-modal__btn cookie-modal__btn--accept-all" data-cookie-action="accept-all">Accepta toate</button>' +
-                        '<button type="button" class="cookie-modal__btn cookie-modal__btn--save" data-cookie-action="save-selection">Salveaza selectia</button>' +
-                    '</div>' +
-                '</div>';
-            document.body.appendChild(m);
-            cookieModal = m;
-        } else {
-            cookieModal = document.getElementById('cookieModal');
-        }
-    }
-
-    function showBanner() {
-        ensureBannerElements();
-        requestAnimationFrame(() => cookieBanner.classList.add('is-visible'));
-    }
-    function hideBanner() { if (cookieBanner) cookieBanner.classList.remove('is-visible'); }
-
-    function openModal() {
-        ensureBannerElements();
-        const existing = CookieConsent.get();
-        if (existing) {
-            const a = document.getElementById('cookieAnalytics');
-            const m = document.getElementById('cookieMarketing');
-            if (a) a.checked = !!existing.analytics;
-            if (m) m.checked = !!existing.marketing;
-        }
-        cookieModal.classList.add('is-visible');
-        document.body.style.overflow = 'hidden';
-    }
-    function closeModal() {
-        if (cookieModal) cookieModal.classList.remove('is-visible');
-        document.body.style.overflow = '';
-    }
-
-    function acceptAll() {
-        const data = CookieConsent.set({ analytics: true, marketing: true });
-        applyConsent(data); hideBanner(); closeModal();
-        window.dispatchEvent(new CustomEvent('cookieconsent:updated', { detail: data }));
-    }
-    function rejectAll() {
-        const data = CookieConsent.set({ analytics: false, marketing: false });
-        applyConsent(data); hideBanner(); closeModal();
-        window.dispatchEvent(new CustomEvent('cookieconsent:updated', { detail: data }));
-    }
-    function saveSelection() {
-        const a = document.getElementById('cookieAnalytics');
-        const m = document.getElementById('cookieMarketing');
-        const data = CookieConsent.set({
-            analytics: a && a.checked,
-            marketing: m && m.checked
-        });
-        applyConsent(data); hideBanner(); closeModal();
-        window.dispatchEvent(new CustomEvent('cookieconsent:updated', { detail: data }));
-    }
-
-    document.addEventListener('click', (e) => {
-        const target = e.target.closest('[data-cookie-action]');
-        if (!target) return;
-        const action = target.getAttribute('data-cookie-action');
-        if (action === 'accept-all') acceptAll();
-        else if (action === 'reject-all') rejectAll();
-        else if (action === 'settings') openModal();
-        else if (action === 'save-selection') saveSelection();
-    });
-    document.addEventListener('click', (e) => { if (e.target === cookieModal) closeModal(); });
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && cookieModal && cookieModal.classList.contains('is-visible')) closeModal();
-    });
-
-    window.CookieConsent = CookieConsent;
-    window.openCookieSettings = openModal;
-
-
+    // siguranță: încă o trecere după ce browserul termină anchor scroll-ul nativ
+    setTimeout(apply, 120);
+  }
 })();
