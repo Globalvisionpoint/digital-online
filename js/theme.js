@@ -345,6 +345,13 @@
   });
 
   window.openCookieSettings = openSettings;
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element)) return;
+    const trigger = event.target.closest('[data-open-cookie-settings]');
+    if (!trigger) return;
+    event.preventDefault();
+    openSettings();
+  });
   const savedConsent = readConsent();
   banner.hidden = Boolean(savedConsent);
   if (savedConsent) dispatchConsent(savedConsent);
