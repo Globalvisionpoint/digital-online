@@ -2623,20 +2623,21 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   text-align: center;
 }
 .section-showcase .section-head h2 {
-  font-family: 'Instrument Serif', serif;
-  font-weight: 400;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 600;
   font-size: clamp(28px, 4vw, 44px);
   line-height: 1.1;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   margin: 0;
+  color: #ffffff;
 }
 .section-showcase .section-head p {
   margin: 14px auto 0;
   font-family: 'Inter Tight', sans-serif;
   font-size: 15px;
   line-height: 1.6;
-  color: inherit;
-  opacity: 0.7;
+  color: #ffffff;
+  opacity: 1;
   max-width: 56ch;
   text-align: center;
 }
