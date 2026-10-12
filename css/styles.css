@@ -3,6 +3,8 @@
    Dark editorial + image-fill typography + topo overlays
    ============================================================ */
 
+@import url('fonts.css');
+
 @font-face {
   font-family: 'Aspera';
   src: url('../fonts/Aspera.otf') format('opentype');
