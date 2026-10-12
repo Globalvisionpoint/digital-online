@@ -1003,14 +1003,14 @@
 .theme .section p { color: var(--text-2); line-height: 1.6; }
 
 .theme .section-head {
-  margin-bottom: 40px;
+  margin-bottom: 64px;
   max-width: 880px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
 }
 .theme .section-head h2 {
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   line-height: 1.05;
   padding: 0;
 }
@@ -2676,7 +2676,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 }
 /* Elimină spațiul suplimentar dintre imaginea showcase și următoarea secțiune */
 .theme .section-showcase + #main > .section:first-child {
-  padding-top: 64px;
+  padding-top: 48px;
 }
 .section-showcase .section-head h2 {
   font-family: 'Inter Tight', sans-serif;
