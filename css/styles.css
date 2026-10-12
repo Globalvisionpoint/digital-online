@@ -964,8 +964,9 @@
 /* ---------- Generic section overrides ---------- */
 .theme .section {
   background: var(--bg);
-  padding: 20px 0;
+  padding: 64px 0;
 }
+.theme .section.section-gray { padding: 64px 0; }
 
 /* Contact section — sus 48px: titlul serif are ~8px spatiu deasupra glifelor,
    deci vizual 48+8 = 56, egal cu gap-ul de jos (subtitlu→formular). Jos 56px. */
@@ -2661,8 +2662,8 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   text-align: center;
 }
 /* Elimină spațiul suplimentar dintre imaginea showcase și următoarea secțiune */
-.theme .section-showcase + #main .section {
-  padding-top: 0;
+.theme .section-showcase + #main > .section:first-child {
+  padding-top: 40px;
 }
 .section-showcase .section-head h2 {
   font-family: 'Inter Tight', sans-serif;
