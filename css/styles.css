@@ -2616,11 +2616,15 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .btn-ghost { border-color: var(--ash); }
 
 /* ---------- Showcase (full-width reference image) ---------- */
-.section-showcase { padding: 56px 0 72px; }
+.theme .section-showcase { padding: 56px 0 40px; }
 .section-showcase .section-head {
   max-width: 60ch;
   margin: 0 auto 40px;
   text-align: center;
+}
+/* Elimină spațiul suplimentar dintre imaginea showcase și următoarea secțiune */
+.theme .section-showcase + #main .section {
+  padding-top: 0;
 }
 .section-showcase .section-head h2 {
   font-family: 'Inter Tight', sans-serif;
