@@ -1003,7 +1003,7 @@
 .theme .section p { color: var(--text-2); line-height: 1.6; }
 
 .theme .section-head {
-  margin-bottom: 64px;
+  margin-bottom: 56px;
   max-width: 880px;
   margin-left: auto;
   margin-right: auto;
@@ -2676,7 +2676,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 }
 /* Elimină spațiul suplimentar dintre imaginea showcase și următoarea secțiune */
 .theme .section-showcase + #main > .section:first-child {
-  padding-top: 48px;
+  padding-top: 56px;
 }
 .section-showcase .section-head h2 {
   font-family: 'Inter Tight', sans-serif;
