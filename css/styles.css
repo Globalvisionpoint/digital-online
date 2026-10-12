@@ -733,6 +733,44 @@
 .mt-60 { margin-top: 60px; }
 .process-grid--4 { grid-template-columns: repeat(4, 1fr); }
 .legal-container { max-width: 880px; }
+
+/* ---------- Process flow (timeline pe coloane) ---------- */
+.process-flow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+.process-flow__item {
+  padding: 32px 28px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  transition: background 0.2s ease;
+}
+.process-flow__item:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+.process-flow__item h4 {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px;
+  letter-spacing: -0.01em;
+}
+.process-flow__item p {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+@media (max-width: 720px) {
+  .process-flow { grid-template-columns: 1fr; }
+  .process-flow__item { padding: 24px 20px; }
+}
 .legal-footnote {
   text-align: center;
   margin-top: 32px;
