@@ -78,17 +78,21 @@
 
   document.querySelectorAll('.hm-services-featured').forEach(assignEnterDirections);
 
-  /* Feature-grid cards alternate sides in DOM order, which is also the visual
-     order for these row-flow grids. */
-  const featureGrids = document.querySelectorAll('.feature-grid');
-  featureGrids.forEach(grid => {
-    const cards = Array.from(grid.children).filter(el => el.classList.contains('feature'));
-    if (!cards.length) return;
-    cards.forEach((card, i) => {
-      card.classList.add(i % 2 === 0 ? 'feature-in-left' : 'feature-in-right');
-      // al doilea card al fiecarei perechi pleaca putin mai tarziu — „inchiderea
-      // fermoarului" se simte mai clar
-      card.style.setProperty('--fg-delay', (i % 2) * 140 + 'ms');
+  /* Cards in a row-flow grid alternate sides in DOM order, which is also the
+     visual order, so the zigzag works at any column count. */
+  [
+    { grid: '.feature-grid', item: '.feature' },
+    { grid: '.process-flow', item: '.process-flow__item' }
+  ].forEach(({ grid: gridSelector, item: itemSelector }) => {
+    document.querySelectorAll(gridSelector).forEach(grid => {
+      const cards = Array.from(grid.children).filter(el => el.matches(itemSelector));
+      if (!cards.length) return;
+      cards.forEach((card, i) => {
+        card.classList.add(i % 2 === 0 ? 'feature-in-left' : 'feature-in-right');
+        // al doilea card al fiecarei perechi pleaca putin mai tarziu — „inchiderea
+        // fermoarului" se simte mai clar
+        card.style.setProperty('--fg-delay', (i % 2) * 140 + 'ms');
+      });
     });
   });
 
@@ -98,14 +102,16 @@
     '.showcase-figure',
     '.feature-grid > .feature',
     '.hm-services-featured > .hm-feature',
-    '.process-flow__item',
+    '.process-flow > .process-flow__item',
     '.process-list > .step-card',
     '.contact-panel',
     '.hm-about .hm-post'
   ].join(',')));
 
   revealTargets.forEach(target => {
-    if (target.matches('.hm-feature, .feature-grid > .feature')) return;
+    // Cardurile cu intrare laterala au propria lor regula in CSS, deci nu
+    // primesc starea generica de ascuns.
+    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item')) return;
     if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
   });
 
@@ -120,7 +126,7 @@
       target.classList.add('is-visible');
       const content = target.querySelector('.hm-feature-content');
       if (content) content.style.transitionDelay = immediate ? '0ms' : `${800 + delay}ms`;
-    } else if (target.matches('.feature-grid > .feature')) {
+    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item')) {
       target.classList.add('is-visible');
     } else {
       target.classList.add('is-revealed');
