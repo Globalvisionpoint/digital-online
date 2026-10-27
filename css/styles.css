@@ -3051,6 +3051,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   font-weight: 600;
   margin-bottom: 10px;
   letter-spacing: -0.01em;
+  text-align: center;
 }
 .feature--center-title h4 { text-align: center; }
 .feature h4 span {
@@ -3058,7 +3059,15 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   font-style: normal;
   margin-right: 4px;
 }
-.feature p { font-size: var(--step--1); color: var(--ash-2); max-width: 40ch; }
+/* Marcajul decorativ gol nu trebuie să împingă titlul în lateral. */
+.feature h4 span:empty { margin-right: 0; }
+.feature p {
+  font-size: var(--step--1);
+  color: var(--ash-2);
+  max-width: 40ch;
+  margin-inline: auto;
+  text-align: center;
+}
 
 /* CTA box (inner-page call to action) */
 .cta-box {
