@@ -2006,7 +2006,8 @@
   [data-reveal],
   .scroll-reveal-item,
   .feature-grid > .feature,
-  .process-flow > .process-flow__item {
+  .process-flow > .process-flow__item,
+  .process-list > .step-card {
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
@@ -2821,6 +2822,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   counter-reset: step;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  /* Cardurile intra din lateral, ca la grila de servicii. Taiem cadrul ca sa
+     nu apara scroll orizontal sau suprapuneri peste sectiunile vecine. */
+  overflow: hidden;
 }
 @media (max-width: 900px) { .process-list { grid-template-columns: 1fr; } }
 .step-card {
@@ -2935,6 +2939,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .scroll-reveal-item:focus-within,
   .feature-grid > .feature:focus-within,
   .process-flow > .process-flow__item:focus-within,
+  .process-list > .step-card:focus-within,
   .theme .section a.hm-feature:focus {
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -3176,7 +3181,8 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    ============================================================================ */
 @media (scripting: enabled) {
   .feature-grid > .feature,
-  .process-flow > .process-flow__item {
+  .process-flow > .process-flow__item,
+  .process-list > .step-card {
     --fg-shift-x: min(52vw, 700px);
     --fg-enter-dur: 1200ms;
     --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -3190,11 +3196,13 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
      se aplice instant (altfel, la refresh, clasele adăugate aproape simultan de
      JS fac un duș-întors care anulează vizual mișcarea). */
   .feature-grid > .feature.feature-in-left,
-  .process-flow > .process-flow__item.feature-in-left {
+  .process-flow > .process-flow__item.feature-in-left,
+  .process-list > .step-card.feature-in-left {
     transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
   }
   .feature-grid > .feature.feature-in-right,
-  .process-flow > .process-flow__item.feature-in-right {
+  .process-flow > .process-flow__item.feature-in-right,
+  .process-list > .step-card.feature-in-right {
     transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
   }
 }
@@ -3225,6 +3233,26 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
     filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
     background 0.2s ease;
+}
+
+/* Pașii de pe pagina acasă: aceeași intrare în zig-zag. */
+.process-list > .step-card.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, 0) rotate(0deg);
+  filter: blur(0);
+  transition:
+    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+/* Ridicarea la hover se aplica peste starea de repaus, nu peste cea de
+   intrare, ca sa nu anuleze transformarea finala a cardului. */
+.theme .process-list > .step-card.is-visible:hover {
+  transform: translateY(-2px);
 }
 
 /* Reduced motion: arată tot instant, fără transform-uri */

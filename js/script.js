@@ -82,7 +82,8 @@
      visual order, so the zigzag works at any column count. */
   [
     { grid: '.feature-grid', item: '.feature' },
-    { grid: '.process-flow', item: '.process-flow__item' }
+    { grid: '.process-flow', item: '.process-flow__item' },
+    { grid: '.process-list', item: '.step-card' }
   ].forEach(({ grid: gridSelector, item: itemSelector }) => {
     document.querySelectorAll(gridSelector).forEach(grid => {
       const cards = Array.from(grid.children).filter(el => el.matches(itemSelector));
@@ -111,7 +112,7 @@
   revealTargets.forEach(target => {
     // Cardurile cu intrare laterala au propria lor regula in CSS, deci nu
     // primesc starea generica de ascuns.
-    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item')) return;
+    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) return;
     if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
   });
 
@@ -126,7 +127,7 @@
       target.classList.add('is-visible');
       const content = target.querySelector('.hm-feature-content');
       if (content) content.style.transitionDelay = immediate ? '0ms' : `${800 + delay}ms`;
-    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item')) {
+    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) {
       target.classList.add('is-visible');
     } else {
       target.classList.add('is-revealed');
