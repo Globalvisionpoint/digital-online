@@ -12,6 +12,176 @@
     ţ: 't', Ţ: 'T'
   })[character]);
 
+  // ----- Zipper reveal for multi-line hero titles -----
+  /* Service page titles enter alternately from the left and from the right,
+     like the DIGITAL / ONLINE pair on the homepage. A title line that
+     soft-wraps into several visual lines would otherwise animate as a single
+     block, so every rendered line is measured and wrapped in its own span
+     before the reveal starts. Runs before the diacritics pass below, which
+     then strips the generated spans too. */
+  const zipperTitles = Array.from(document.querySelectorAll('.hm-title--split'));
+  const zipperStartedAt = Date.now();
+  const ZIPPER_ENTRANCE_MS = 1600; // 0.35s delay + 1.2s reveal
+
+  const measureTextParts = (fill) => {
+    /* One client rect per character, grouped by top edge. Whitespace that the
+       browser drops at a soft wrap has no rect, so each group runs up to the
+       start of the next one, which keeps the text joined. */
+    const parts = [];
+    const walker = document.createTreeWalker(fill, NodeFilter.SHOW_TEXT);
+    let node;
+
+    while ((node = walker.nextNode())) {
+      const value = node.nodeValue;
+      if (!value || !value.trim()) continue;
+
+      const starts = [];
+      for (let i = 0; i < value.length; i += 1) {
+        const range = document.createRange();
+        range.setStart(node, i);
+        range.setEnd(node, i + 1);
+        const rect = range.getBoundingClientRect();
+        if (!rect.width && !rect.height) continue;
+        if (!starts.length || Math.abs(starts[starts.length - 1].top - rect.top) >= 2) {
+          starts.push({ start: i, top: rect.top });
+        }
+      }
+
+      starts.forEach((start, index) => {
+        parts.push({
+          node,
+          value,
+          start: start.start,
+          end: index + 1 < starts.length ? starts[index + 1].start : value.length,
+          top: start.top
+        });
+      });
+    }
+    return parts;
+  };
+
+  const groupByLine = (parts) => {
+    const lines = [];
+    parts.forEach((part) => {
+      const line = lines[lines.length - 1];
+      if (line && Math.abs(line.top - part.top) < 2) line.parts.push(part);
+      else lines.push({ top: part.top, parts: [part] });
+    });
+    return lines;
+  };
+
+  const readTitlePlans = (fills) => fills.map((fill) => {
+    const parts = fill.querySelector('br') ? [] : measureTextParts(fill);
+    return { fill, lines: parts.length ? groupByLine(parts) : null };
+  });
+
+  const planSignature = (plans) => plans.map(plan => (plan.lines ? plan.lines.length : 1)).join('|');
+
+  const unzipTitle = (title) => {
+    title.querySelectorAll('.hm-line').forEach((line) => line.replaceWith(...line.childNodes));
+    title.querySelectorAll('.hm-title-fill').forEach((fill) => {
+      fill.classList.remove('hm-title-fill--stacked', 'hm-from-left', 'hm-from-right');
+      fill.normalize();
+    });
+  };
+
+  const zipTitle = (title) => {
+    const fills = Array.from(title.querySelectorAll('.hm-title-fill'));
+    if (!fills.length) return;
+
+    /* Measure from a pristine DOM: .hm-line spans are block boxes, so
+       measuring a title that is already zipped would report its old line
+       count and never re-flow after a viewport change. */
+    unzipTitle(title);
+
+    const plans = readTitlePlans(fills);
+    title.classList.add('hm-title--zipper');
+    title.dataset.zipSignature = planSignature(plans);
+
+    // Set before a re-wrap, so a resize never replays the entrance.
+    if (Date.now() - zipperStartedAt > ZIPPER_ENTRANCE_MS) title.classList.add('hm-title--settled');
+
+    let index = 0;
+
+    plans.forEach(({ fill, lines }) => {
+      if (!lines || lines.length < 2) {
+        fill.classList.add(index % 2 ? 'hm-from-right' : 'hm-from-left');
+        index += 1;
+        return;
+      }
+
+      // One text node can straddle a line break: keep the first segment and
+      // clone the rest, so each piece can move to the line it renders on.
+      const byNode = new Map();
+      lines.forEach((line) => line.parts.forEach((part) => {
+        const entries = byNode.get(part.node) || [];
+        entries.push({ part });
+        byNode.set(part.node, entries);
+      }));
+
+      const segments = new Map();
+      byNode.forEach((entries) => {
+        entries.forEach((entry, position) => {
+          const text = entry.part.value.slice(entry.part.start, entry.part.end);
+          if (position === 0) {
+            entry.part.node.nodeValue = text;
+            segments.set(entry.part, entry.part.node);
+          } else {
+            segments.set(entry.part, document.createTextNode(text));
+          }
+        });
+      });
+
+      const lineSpans = lines.map((line) => {
+        const span = document.createElement('span');
+        span.className = `hm-line hm-from-${index % 2 ? 'right' : 'left'}`;
+        index += 1;
+        line.parts.forEach((part) => span.appendChild(segments.get(part)));
+        return span;
+      });
+
+      fill.textContent = '';
+      lineSpans.forEach((span) => fill.appendChild(span));
+      fill.classList.add('hm-title-fill--stacked');
+    });
+  };
+
+  if (zipperTitles.length) {
+    zipperTitles.forEach(zipTitle);
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => zipperTitles.forEach(zipTitle)).catch(() => {});
+    }
+    window.addEventListener('load', () => zipperTitles.forEach(zipTitle));
+
+    let lastWidth = window.innerWidth;
+    let zipperFrame = null;
+    const reflow = () => {
+      lastWidth = window.innerWidth;
+      zipperTitles.forEach(zipTitle);
+    };
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth === lastWidth || zipperFrame) return;
+      lastWidth = window.innerWidth;
+      zipperFrame = requestAnimationFrame(() => {
+        zipperFrame = null;
+        zipperTitles.forEach(zipTitle);
+      });
+    }, { passive: true });
+
+    /* requestAnimationFrame is not delivered while a tab is hidden, so a
+       viewport change made in the background would leave the previous
+       grouping (and a stuck zipperFrame) in place. Re-measure on return. */
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) return;
+      zipperFrame = null;
+      reflow();
+    });
+    window.addEventListener('pageshow', reflow);
+    window.addEventListener('orientationchange', reflow);
+  }
+
   document.querySelectorAll('.nav-list .nav-link, .nav-dropdown a, .mobile-nav-link, .mobile-nav-sublink, .hero-theme .hm-title-fill, .hero-theme .hm-tagline-text').forEach((element) => {
     // Walk child nodes so we don't destroy <br> elements (e.g. in hero titles)
     const walk = (node) => {
@@ -43,7 +213,10 @@
   // ----- Parallax on topo lines (mouse) -----
   if (!reduceMotion && !isTouch) {
     const topo = document.querySelector('.hm-topo');
-    const title = document.querySelector('.hm-title-fill');
+    // A stacked fill no longer paints the texture itself, so drift the first
+    // element that still does.
+    const title = document.querySelector('.hm-title-fill:not(.hm-title-fill--stacked)') ||
+                  document.querySelector('.hm-title-fill');
     const hero = document.querySelector('.hero-theme');
 
     if (topo && hero) {

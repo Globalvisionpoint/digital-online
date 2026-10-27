@@ -32,6 +32,7 @@ site nou/
 - ✅ **Mobile-responsive** complet
 - ✅ **SEO friendly** — meta descriptions, headings ierarhice, breadcrumbs
 - ✅ **Animații subtile** la scroll
+- ✅ **Titluri hero animate** — liniile intră alternativ din stânga și din dreapta, ca un fermoar, urmărind liniile reale de text (rand 1 stânga, rand 2 dreapta, rand 3 stânga), măsurate la runtime deci corecte la orice lățime și după redimensionare (ex. `DIGITAL` / `ONLINE` pe prima pagină)
 - ✅ **Fonturi premium** (Inter + Plus Jakarta Sans) de la Google Fonts
 
 ## Deschidere locală
