@@ -57,26 +57,51 @@
     }
   }
 
-  /* ------- Homepage service-card directions ------- */
-  function assignEnterDirections(container) {
-    const isSecondary = container.classList.contains('hm-services-featured--secondary');
-    const cards = container.querySelectorAll('.hm-feature');
-    cards.forEach((card, i) => {
-      let enter;
-      if (!isSecondary) {
-        // Rand 1 (4 carduri): 0,1 stanga; 2,3 dreapta
-        enter = (i < 2) ? 'left' : 'right';
-      } else {
-        // Rand 2 (5 carduri): 0,1 stanga; 2 jos; 3,4 dreapta
-        if (i === 2)      enter = 'bottom';
-        else if (i < 2)   enter = 'left';
-        else              enter = 'right';
-      }
-      card.classList.add(`card-${enter}`);
+  /* ------- Homepage service-card directions -------
+     Pe desktop cardurile stau in randuri (4 + 5), deci intrarea e cea „de
+     puzzle": perechile vin din laterale, iar cardul din mijloc vine de jos.
+
+     Pe mobil cele doua randuri devin o singura coloana, deci toate cele 9
+     carduri formeaza o lista verticala. Acolo nu mai are rost efectul de
+     puzzle: cardurile se deschid pe rand, alternand stanga/dreapta, ca un
+     fermoar. */
+  const servicesStacked = matchMedia('(max-width: 600px)');
+
+  function assignEnterDirections() {
+    let stackedIndex = 0;
+    document.querySelectorAll('.hm-services-featured').forEach(container => {
+      const isSecondary = container.classList.contains('hm-services-featured--secondary');
+      const cards = container.querySelectorAll('.hm-feature');
+      cards.forEach((card, i) => {
+        let enter;
+        if (servicesStacked.matches) {
+          // Coloana unica: alternare stricta pe toate cele 9 carduri,
+          // continuata de la primul rand la al doilea.
+          enter = (stackedIndex % 2 === 0) ? 'left' : 'right';
+        } else if (!isSecondary) {
+          // Rand 1 (4 carduri): 0,1 stanga; 2,3 dreapta
+          enter = (i < 2) ? 'left' : 'right';
+        } else {
+          // Rand 2 (5 carduri): 0,1 stanga; 2 jos; 3,4 dreapta
+          if (i === 2)      enter = 'bottom';
+          else if (i < 2)   enter = 'left';
+          else              enter = 'right';
+        }
+        stackedIndex += 1;
+        card.classList.remove('card-left', 'card-right', 'card-bottom');
+        card.classList.add(`card-${enter}`);
+      });
     });
   }
 
-  document.querySelectorAll('.hm-services-featured').forEach(assignEnterDirections);
+  assignEnterDirections();
+
+  /* La trecerea peste breakpointul de 600px directia se schimba, dar numai
+     pentru cardurile care nu s-au dezvaluit inca — cele deja vizibile au
+     clasa .is-visible, care anuleaza orice transformare de intrare. */
+  servicesStacked.addEventListener('change', () => {
+    assignEnterDirections();
+  });
 
   /* Cards in a row-flow grid alternate sides in DOM order, which is also the
      visual order, so the zigzag works at any column count. */
@@ -138,8 +163,12 @@
       const cards = Array.from(target.parentElement.querySelectorAll('.hm-feature'));
       const index = cards.indexOf(target);
       const pair = Math.min(index, cards.length - 1 - index);
-      // Focusul cu tastatura nu asteapta: elementul trebuie sa fie vizibil imediat.
-      const delay = immediate ? 0 : pair * 500;
+      /* Pe desktop intarzierea de pereche tine efectul de puzzle: cele doua
+         carduri de pe margine pornesc odata, cele din mijloc dupa ele.
+         Pe mobil coloana este unica, deci fiecare card apare imediat ce
+         intra in ecran — altfel ar astepta un partener aflat cu totul
+         altundeva pe pagina. */
+      const delay = immediate || servicesStacked.matches ? 0 : pair * 500;
       target.style.transitionDelay = `${delay}ms`;
       target.classList.add('is-visible');
       const content = target.querySelector('.hm-feature-content');
