@@ -821,6 +821,9 @@
   gap: 0;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
+  /* Etapele intra din lateral, ca la grila de servicii. Taiem cadrul ca sa
+     nu apara scroll orizontal sau suprapuneri peste sectiunile vecine. */
+  overflow: hidden;
 }
 .process-flow__item {
   padding: 32px 28px;
@@ -2002,7 +2005,8 @@
 @media (prefers-reduced-motion: reduce) {
   [data-reveal],
   .scroll-reveal-item,
-  .feature-grid > .feature {
+  .feature-grid > .feature,
+  .process-flow > .process-flow__item {
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
@@ -2930,6 +2934,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   [data-reveal]:focus-within,
   .scroll-reveal-item:focus-within,
   .feature-grid > .feature:focus-within,
+  .process-flow > .process-flow__item:focus-within,
   .theme .section a.hm-feature:focus {
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -3170,7 +3175,8 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
        Content-Security-Policy din vercel.json nu permite 'unsafe-inline'.
    ============================================================================ */
 @media (scripting: enabled) {
-  .feature-grid > .feature {
+  .feature-grid > .feature,
+  .process-flow > .process-flow__item {
     --fg-shift-x: min(52vw, 700px);
     --fg-enter-dur: 1200ms;
     --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -3183,10 +3189,12 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   /* Stări inițiale — FĂRĂ transition pe starea de bază, ca offset-ul inițial să
      se aplice instant (altfel, la refresh, clasele adăugate aproape simultan de
      JS fac un duș-întors care anulează vizual mișcarea). */
-  .feature-grid > .feature.feature-in-left {
+  .feature-grid > .feature.feature-in-left,
+  .process-flow > .process-flow__item.feature-in-left {
     transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
   }
-  .feature-grid > .feature.feature-in-right {
+  .feature-grid > .feature.feature-in-right,
+  .process-flow > .process-flow__item.feature-in-right {
     transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
   }
 }
@@ -3206,9 +3214,23 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     background var(--t-mid);
 }
 
+/* Aceleași reguli pentru etapele de proces: aceeași intrare în zig-zag. */
+.process-flow > .process-flow__item.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, 0) rotate(0deg);
+  filter: blur(0);
+  transition:
+    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    background 0.2s ease;
+}
+
 /* Reduced motion: arată tot instant, fără transform-uri */
 @media (prefers-reduced-motion: reduce) {
-  .feature-grid > .feature {
+  .feature-grid > .feature,
+  .process-flow > .process-flow__item {
     transition: none !important;
     transform: none !important;
     filter: none !important;
