@@ -481,6 +481,20 @@
 }
 @keyframes hmFadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
+/* Hero entrances wait until the hero itself enters the viewport. */
+@media (scripting: enabled) {
+  .hero-theme:not(.is-in-view) .hm-bg-img,
+  .hero-theme:not(.is-in-view) .hm-eyebrow,
+  .hero-theme:not(.is-in-view) .hm-title-fill,
+  .hero-theme:not(.is-in-view) .hm-line,
+  .hero-theme:not(.is-in-view) .hm-tagline,
+  .hero-theme:not(.is-in-view) .hm-scroll,
+  .hero-theme:not(.is-in-view) .hm-corner-mark,
+  .hero-theme:not(.is-in-view) .hm-slide-indicator {
+    animation-play-state: paused;
+  }
+}
+
 @media (max-width: 600px) {
   .hm-title-fill,
   .hm-title-fill--outline {
@@ -836,7 +850,10 @@
 }
 @media (max-width: 720px) {
   .process-flow { grid-template-columns: 1fr; }
-  .process-flow__item { padding: 24px 20px; }
+  .process-flow__item {
+    padding: 24px 20px;
+    text-align: center;
+  }
 }
 .legal-footnote {
   text-align: center;
@@ -1917,7 +1934,7 @@
   .hm-feature h3 { font-size: 20px; }
   .hm-corner-mark { right: 18px; bottom: 18px; }
   .hm-slide-indicator { left: 18px; bottom: 18px; }
-  .theme .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .theme .footer-cols { grid-template-columns: 1fr; gap: 24px; }
   .theme .footer-brand .logo { transform: none; }
   .theme .footer-row,
   .theme .footer-cols {
@@ -1982,6 +1999,20 @@
 
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  .scroll-reveal-item,
+  .feature-grid > .feature {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .word {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+  }
   .hm-bg-img,
   .hm-title-fill,
   .hm-title-fill--stacked,
@@ -2872,17 +2903,44 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .footer-bottom a:hover { color: var(--rust); }
 
 /* ============================================================================
-   SCROLL REVEAL — performed by main.js; here only the initial state
+   SCROLL REVEAL — start only when each content block enters the viewport.
+   The scripting guard keeps content visible when JavaScript is unavailable.
    ============================================================================ */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 900ms var(--ease-out), transform 900ms var(--ease-out);
+@media (scripting: enabled) {
+  [data-reveal],
+  .scroll-reveal-item {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition:
+      opacity 700ms var(--ease-out),
+      transform 700ms var(--ease-out);
+  }
+  [data-reveal].is-revealed,
+  .scroll-reveal-item.is-revealed {
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+  [data-reveal="rise"] { transform: translateY(40px); }
+  [data-reveal="left"] { transform: translateX(-20px); }
+  [data-reveal="right"] { transform: translateX(20px); }
+
+  [data-reveal]:focus-within,
+  .scroll-reveal-item:focus-within,
+  .feature-grid > .feature:focus-within,
+  .theme .section a.hm-feature:focus {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .theme .section a.hm-feature:focus .hm-feature-content {
+    opacity: 1 !important;
+    transition: none !important;
+  }
 }
-[data-reveal].is-revealed { opacity: 1; transform: none; }
-[data-reveal="rise"] { transform: translateY(40px); }
-[data-reveal="left"] { transform: translateX(-20px); }
-[data-reveal="right"] { transform: translateX(20px); }
 
 /* ============================================================================
    SERVICES — carduri entrance animation (efect de „puzzle")
@@ -2890,23 +2948,27 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
      - rand 1 (4 carduri):   card 1, 2 vin din stanga;  card 3, 4 vin din dreapta
      - rand 2 (5 carduri):   card 1, 2 vin din stanga;  card 4, 5 vin din dreapta;
                               card 3 (Consultanta, mijloc) vine de jos in sus
-     - toate ruleaza SIMULTAN, fara stagger — se „aseseaza" in grila ca un puzzle
+     - fiecare card porneste doar cand intra in viewport; perechile pastreaza
+       stagger-ul discret al efectului puzzle
      - deplasari mari (pe jumatate din latimea randului) + usoara rotatie/blur
        ca sa se simta clar miscarea de „plimbare"
      - CSS transitions declansate de adaugarea clasei .is-visible (fara rAF)
-     - declanseaza si la refresh: JS-ul adauga .is-visible imediat ce randul
-       e deja in viewport la incarcare (IO raporteaza si elementele vizibile
-       la prima paint)
+     - IntersectionObserver observă fiecare card separat, nu întreaga grilă
    ============================================================================ */
-.theme .section a.hm-feature {
-  /* aceeasi viteza/curba ca titlul hero (hmTitleInLeft: 1.2s, cubic-bezier(0.22,1,0.36,1)) */
-  --hm-enter-dur: 1200ms;
-  --hm-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
-  --hm-shift-x: min(52vw, 700px);
-  --hm-shift-y: min(45vh, 420px);
-  opacity: 0;
-  filter: blur(8px);
-  will-change: transform, opacity;
+@media (scripting: enabled) {
+  .theme .section a.hm-feature {
+    /* Match the hero zipper timing for a consistent entrance. */
+    --hm-enter-dur: 1200ms;
+    --hm-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --hm-shift-x: min(52vw, 700px);
+    --hm-shift-y: min(45vh, 420px);
+    opacity: 0;
+    pointer-events: none;
+    filter: blur(8px);
+    will-change: transform, opacity;
+  }
+
+  .hm-feature-content { opacity: 0; }
 }
 
 /* Stari initiale — cardurile „pleaca" din afara cadrului, cu un unghi mic.
@@ -2922,6 +2984,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    offset -> 0 este animata, pe toata durata de 1200ms. */
 .theme .section a.hm-feature.is-visible {
   opacity: 1;
+  pointer-events: auto;
   transform: translate(0, 0) rotate(0deg);
   filter: blur(0);
   transition:
@@ -2930,10 +2993,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     filter var(--hm-enter-dur) var(--hm-enter-ease);
 }
 
-/* Continutul interior — apare spre finalul asezarii in puzzle */
+/* Card content follows the card entrance. */
 .hm-feature-content {
   transition: opacity 600ms ease-out 800ms;
-  opacity: 0;
 }
 .theme .section a.hm-feature.is-visible .hm-feature-content { opacity: 1; }
 
@@ -2945,11 +3007,19 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     transform: none !important;
     filter: none !important;
     opacity: 1 !important;
+    pointer-events: auto !important;
   }
 }
 
 /* Text per-word stagger — animated by main.js on scroll */
-.word { display: inline-block; opacity: 0; transform: translateY(0.5em); transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out); }
+@media (scripting: enabled) {
+  .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  }
+}
 .word.is-in { opacity: 1; transform: none; }
 
 /* Number counter — animated by main.js */
@@ -3097,6 +3167,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     --fg-enter-dur: 1200ms;
     --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
     opacity: 0;
+    pointer-events: none;
     filter: blur(8px);
     will-change: transform, opacity;
   }
@@ -3117,6 +3188,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    scurtă, ca hover-ul să nu fie întârziat de --fg-delay. */
 .feature-grid > .feature.is-visible {
   opacity: 1;
+  pointer-events: auto;
   transform: translate(0, 0) rotate(0deg);
   filter: blur(0);
   transition:

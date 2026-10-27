@@ -6,6 +6,7 @@
   'use strict';
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isCoarse = matchMedia('(pointer: coarse)').matches;
+  const canObserve = 'IntersectionObserver' in window;
 
   /* ------- Custom cursor (desktop only) ------- */
   if (!isCoarse && !reduced) {
@@ -32,37 +33,31 @@
     });
   }
 
-  /* ------- Scroll reveal ------- */
-  const reveals = document.querySelectorAll('[data-reveal]');
-  if (reveals.length && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
-    reveals.forEach(el => io.observe(el));
-  } else {
-    reveals.forEach(el => el.classList.add('is-revealed'));
+  /* ------- Viewport-triggered entrance animations ------- */
+  const hero = document.querySelector('.hero-theme');
+  if (hero) {
+    if (canObserve && !reduced) {
+      const heroObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in-view');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0 });
+      heroObserver.observe(hero);
+      /* Plasa de siguranta: hero-ul este primul lucru vazut, deci nu are voie
+         sa ramana ascuns. Daca observatorul nu livreaza (fila in fundal, tab
+         deschis la rece), il dezvelim oricum dupa o secunda. */
+      setTimeout(() => {
+        const rect = hero.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < innerHeight) hero.classList.add('is-in-view');
+      }, 1200);
+    } else {
+      hero.classList.add('is-in-view');
+    }
   }
 
-  /* ------- Services cards: entrance animation (CSS transitions only) -------
-     Specificatii (per index in rand, 0-based):
-       Rand 1 (4 carduri):  card 0,1 vin din stanga;  card 2,3 vin din dreapta
-       Rand 2 (5 carduri):  card 0,1 vin din stanga;  card 3,4 vin din dreapta;
-                            card 2 (mijloc) vine de jos
-     Strategie (puzzle pe randuri de cate doua):
-       1. La init: setam clasa card-left/card-right/card-bottom conform pozitiei.
-       2. IntersectionObserver PER RAND declanseaza .is-visible cand randul intra
-          in viewport.
-       3. In loc sa apara toate deodata, cardurile primesc transition-delay
-          calculat pe "perechi oglinde": (0,n-1) impreuna, apoi (1,n-2) etc.;
-          cardul de jos (mijloc la randul 2) vine ultimul.
-       4. Dupa declansare facem unobserve - ruleaza o singura data.
-     Nota: NU folosim requestAnimationFrame (am avut bug de accelerare la
-     schimbarea de tab). Totul se bazeaza pe CSS transitions + clasa. */
+  /* ------- Homepage service-card directions ------- */
   function assignEnterDirections(container) {
     const isSecondary = container.classList.contains('hm-services-featured--secondary');
     const cards = container.querySelectorAll('.hm-feature');
@@ -83,56 +78,8 @@
 
   document.querySelectorAll('.hm-services-featured').forEach(assignEnterDirections);
 
-  if ('IntersectionObserver' in window && !reduced) {
-    // Folosim un IntersectionObserver per rand, cu threshold 0 si rootMargin
-    // extins mult in jos (50% viewport) — IO ne notifica doar cand randul
-    // intra EFECTIV in viewport, NU la prima paint cand e inca sub el.
-    // Trigger zone: rect.top <= vh (marginea de sus a atins viewport-ul).
-    const cardObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const rect = entry.target.getBoundingClientRect();
-        // declansam doar cand marginea de sus a randului a intrat in viewport
-        // (nu doar cand e in rootMargin extins)
-        if (rect.top >= window.innerHeight) return;
-        // Puzzle: perechi oglinde (stanga + dreapta deodata), la ~500ms una dupa alta.
-        const cards = Array.from(entry.target.querySelectorAll('.hm-feature'));
-        const n = cards.length;
-        cards.forEach((card, i) => {
-          const pair = Math.min(i, n - 1 - i);
-          const delay = pair * 500;
-          card.style.transitionDelay = `${delay}ms`;
-          card.classList.add('is-visible');
-          const content = card.querySelector('.hm-feature-content');
-          if (content) content.style.transitionDelay = `${800 + delay}ms`;
-        });
-        obs.unobserve(entry.target);
-      });
-    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-
-    document.querySelectorAll('.hm-services-featured').forEach(row => {
-      cardObserver.observe(row);
-    });
-  } else {
-    // Fara IO sau reduced motion: afisam tot instant
-    document.querySelectorAll('.hm-services-featured').forEach(row => {
-      row.querySelectorAll('.hm-feature').forEach(card => {
-        card.classList.add('is-visible');
-      });
-    });
-  }
-
-  /* ------- Feature grid: intrare „fermoar" (zig-zag stanga / dreapta) -------
-     Aceeasi mecanica ca la cardurile de servicii din pagina acasa (offset
-     lateral + blur, declansate de .is-visible prin CSS transitions).
-     Ordinea din DOM = ordinea vizuala a grilei (grid-auto-flow: row implicit),
-     deci iterand copiii si alternand stanga/dreapta obtinem efectul de fermoar
-     la orice latime, fara sa numaram coloanele:
-       3 coloane: L R L / R L R / L R L
-       2 coloane: L R / R L / L R
-       1 coloana: L R L R L ... (pe verticala)
-     Blocul se declanseaza cand grila intra in viewport, ca titlul si paragraful
-     unui card sa nu apara separate de restul grilei. */
+  /* Feature-grid cards alternate sides in DOM order, which is also the visual
+     order for these row-flow grids. */
   const featureGrids = document.querySelectorAll('.feature-grid');
   featureGrids.forEach(grid => {
     const cards = Array.from(grid.children).filter(el => el.classList.contains('feature'));
@@ -145,28 +92,111 @@
     });
   });
 
-  if (featureGrids.length && 'IntersectionObserver' in window && !reduced) {
-    const featureObserver = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        const rect = entry.target.getBoundingClientRect();
-        // Grila deja iesita in sus (ex. reincarcare cu pozitia de scroll
-        // restaurata de browser): o afisam instant, altfel cardurile ar ramane
-        // ascunse pentru totdeauna, fiindca nu mai trec prin viewport.
-        const alreadyPassed = rect.bottom <= 0;
-        if (!entry.isIntersecting && !alreadyPassed) return;
-        entry.target.querySelectorAll('.feature').forEach(card => {
-          card.classList.add('is-visible');
-        });
-        obs.unobserve(entry.target);
+  const revealTargets = new Set(document.querySelectorAll([
+    '[data-reveal]',
+    '.section-head',
+    '.showcase-figure',
+    '.feature-grid > .feature',
+    '.hm-services-featured > .hm-feature',
+    '.process-flow__item',
+    '.process-list > .step-card',
+    '.contact-panel',
+    '.hm-about .hm-post'
+  ].join(',')));
+
+  revealTargets.forEach(target => {
+    if (target.matches('.hm-feature, .feature-grid > .feature')) return;
+    if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
+  });
+
+  function revealTarget(target, immediate) {
+    if (target.matches('.hm-feature')) {
+      const cards = Array.from(target.parentElement.querySelectorAll('.hm-feature'));
+      const index = cards.indexOf(target);
+      const pair = Math.min(index, cards.length - 1 - index);
+      // Focusul cu tastatura nu asteapta: elementul trebuie sa fie vizibil imediat.
+      const delay = immediate ? 0 : pair * 500;
+      target.style.transitionDelay = `${delay}ms`;
+      target.classList.add('is-visible');
+      const content = target.querySelector('.hm-feature-content');
+      if (content) content.style.transitionDelay = immediate ? '0ms' : `${800 + delay}ms`;
+    } else if (target.matches('.feature-grid > .feature')) {
+      target.classList.add('is-visible');
+    } else {
+      target.classList.add('is-revealed');
+    }
+  }
+
+  // Linkurile ascunse pana la scroll raman in ordinea de tabulare, deci la
+  // focus trebuie dezvelite imediat, fara intarzierea de pereche.
+  document.addEventListener('focusin', event => {
+    let target = event.target;
+    while (target && target !== document.body) {
+      if (revealTargets.has(target)) revealTarget(target, true);
+      target = target.parentElement;
+    }
+  });
+
+  if (!reduced) {
+    /* Pozitia de LAYOUT (fara transform) a fiecarui element, masurata fata de
+       document. offsetTop nu este afectat de transformari CSS, deci ramane
+       corect chiar daca elementul este momentan mutat in afara cadrului:
+       exact cazul cardurilor care intra din laterala, taiate de overflow-ul
+       parintelui. */
+    const layoutPosition = new WeakMap();
+
+    const measureLayout = () => {
+      revealTargets.forEach(target => {
+        let top = 0;
+        let node = target;
+        while (node) {
+          top += node.offsetTop;
+          node = node.offsetParent;
+        }
+        layoutPosition.set(target, top);
       });
-    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-    featureGrids.forEach(grid => featureObserver.observe(grid));
+    };
+
+    const pending = new Set(revealTargets);
+
+    const revealReached = () => {
+      const viewTop = window.scrollY;
+      const viewBottom = viewTop + window.innerHeight;
+      // Elementul incepe sa se dezveleasca putin inainte sa atinga limita de
+      // jos a ecranului, ca sa fie deja incadrat in momentul in care intra.
+      const triggerLine = viewBottom - window.innerHeight * 0.12;
+      pending.forEach(target => {
+        const top = layoutPosition.get(target);
+        if (top === undefined) return;
+        // A trecut deja pe sub marginea de sus (ex. scroll restaurat de browser):
+        // il arata direct, altfel ar ramane ascuns pentru totdeauna.
+        const passed = top + target.offsetHeight <= viewTop;
+        const reached = top <= triggerLine;
+        if (!passed && !reached) return;
+        revealTarget(target);
+        pending.delete(target);
+      });
+    };
+
+    measureLayout();
+    revealReached();
+
+    /* Verificarea ruleaza direct in handler, fara requestAnimationFrame:
+       rAF este incetinit in filele din fundal, deci un tab deschis la rece
+       ar ramane cu continutul ascuns pana la prima interactiune. */
+    addEventListener('scroll', revealReached, { passive: true });
+
+    // La redimensionare se schimba layout-ul, deci masuram din nou.
+    let resizeTimer = null;
+    addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        measureLayout();
+        revealReached();
+      }, 150);
+    }, { passive: true });
   } else {
-    featureGrids.forEach(grid => {
-      grid.querySelectorAll('.feature').forEach(card => {
-        card.classList.add('is-visible');
-      });
-    });
+    revealTargets.forEach(revealTarget);
   }
 
   /* ------- Per-word stagger on .stagger headlines ------- */
@@ -181,17 +211,22 @@
       w.textContent = p;
       h.appendChild(w);
     });
-    if ('IntersectionObserver' in window) {
+    const revealWords = () => {
+      const words = h.querySelectorAll('.word');
+      words.forEach((w, i) => setTimeout(() => w.classList.add('is-in'), i * 35));
+    };
+    if (canObserve && !reduced) {
       const io = new IntersectionObserver(entries => {
         entries.forEach(en => {
           if (en.isIntersecting) {
-            const words = h.querySelectorAll('.word');
-            words.forEach((w, i) => setTimeout(() => w.classList.add('is-in'), i * 35));
+            revealWords();
             io.unobserve(h);
           }
         });
       }, { threshold: 0.3 });
       io.observe(h);
+    } else {
+      revealWords();
     }
   });
 
