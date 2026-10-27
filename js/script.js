@@ -89,11 +89,26 @@
       const cards = Array.from(grid.children).filter(el => el.matches(itemSelector));
       if (!cards.length) return;
       cards.forEach((card, i) => {
-        card.classList.add(i % 2 === 0 ? 'feature-in-left' : 'feature-in-right');
+        card.classList.add(i % 2 === 0 ? 'enter-left' : 'enter-right');
         // al doilea card al fiecarei perechi pleaca putin mai tarziu — „inchiderea
         // fermoarului" se simte mai clar
         card.style.setProperty('--fg-delay', (i % 2) * 140 + 'ms');
       });
+    });
+  });
+
+  /* Sectiunea „DESPRE NOI" este o coloana editoriala, nu o grila, deci directia
+     vine din compozitia blocului: actul cu fotografia in stanga intra din
+     stanga, cel cu fotografia in dreapta intra din dreapta. Blocurile
+     centrate deschid si inchid fluxul in aceeasi ordine. */
+  [
+    { selector: '.hm-post-open', side: 'left' },
+    { selector: '.hm-act--left', side: 'left' },
+    { selector: '.hm-act--right', side: 'right' },
+    { selector: '.hm-post-close', side: 'right' }
+  ].forEach(({ selector, side }) => {
+    document.querySelectorAll(selector).forEach(el => {
+      el.classList.add(side === 'left' ? 'enter-left' : 'enter-right');
     });
   });
 
@@ -105,14 +120,16 @@
     '.hm-services-featured > .hm-feature',
     '.process-flow > .process-flow__item',
     '.process-list > .step-card',
-    '.contact-panel',
-    '.hm-about .hm-post'
+    '.hm-post-open',
+    '.hm-act',
+    '.hm-post-close',
+    '.contact-panel'
   ].join(',')));
 
   revealTargets.forEach(target => {
     // Cardurile cu intrare laterala au propria lor regula in CSS, deci nu
     // primesc starea generica de ascuns.
-    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) return;
+    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-open, .hm-act, .hm-post-close')) return;
     if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
   });
 
@@ -127,8 +144,15 @@
       target.classList.add('is-visible');
       const content = target.querySelector('.hm-feature-content');
       if (content) content.style.transitionDelay = immediate ? '0ms' : `${800 + delay}ms`;
-    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) {
+    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-open, .hm-act, .hm-post-close')) {
       target.classList.add('is-visible');
+      // Panoul de sticla din sectiunea „Despre noi" preia fundalul prin
+      // backdrop-filter. Un filter pe un parinte creeaza un alt backdrop root,
+      // deci il eliminam la final ca sticla sa ramana ca inainte.
+      if (target.matches('.hm-post-open, .hm-act, .hm-post-close')) {
+        const delay = parseInt(target.style.getPropertyValue('--fg-delay')) || 0;
+        setTimeout(() => { target.style.filter = 'none'; }, 1200 + delay + 80);
+      }
     } else {
       target.classList.add('is-revealed');
     }
