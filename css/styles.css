@@ -2007,7 +2007,10 @@
   .scroll-reveal-item,
   .feature-grid > .feature,
   .process-flow > .process-flow__item,
-  .process-list > .step-card {
+  .process-list > .step-card,
+  .hm-post-open,
+  .hm-act,
+  .hm-post-close {
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
@@ -2940,6 +2943,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .feature-grid > .feature:focus-within,
   .process-flow > .process-flow__item:focus-within,
   .process-list > .step-card:focus-within,
+  .hm-post-open:focus-within,
+  .hm-act:focus-within,
+  .hm-post-close:focus-within,
   .theme .section a.hm-feature:focus {
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -3164,7 +3170,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    FEATURE GRID — intrare „fermoar" (zig-zag stânga / dreapta)
    Aceeași mecanică și aceleași valori ca la cardurile de servicii din pagina
    acasă (.theme .section a.hm-feature):
-     - JS pune pe fiecare card clasa .feature-in-left / .feature-in-right,
+     - JS pune pe fiecare card clasa .enter-left / .enter-right,
        alternând strict după ordinea din DOM — care este și ordinea vizuală a
        grilei, fiindcă grid-auto-flow este implicit „row". Rezultă:
          mobil, 1 coloană  -> L R L R L ... pe verticală (fermoar);
@@ -3195,14 +3201,14 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   /* Stări inițiale — FĂRĂ transition pe starea de bază, ca offset-ul inițial să
      se aplice instant (altfel, la refresh, clasele adăugate aproape simultan de
      JS fac un duș-întors care anulează vizual mișcarea). */
-  .feature-grid > .feature.feature-in-left,
-  .process-flow > .process-flow__item.feature-in-left,
-  .process-list > .step-card.feature-in-left {
+  .feature-grid > .feature.enter-left,
+  .process-flow > .process-flow__item.enter-left,
+  .process-list > .step-card.enter-left {
     transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
   }
-  .feature-grid > .feature.feature-in-right,
-  .process-flow > .process-flow__item.feature-in-right,
-  .process-list > .step-card.feature-in-right {
+  .feature-grid > .feature.enter-right,
+  .process-flow > .process-flow__item.enter-right,
+  .process-list > .step-card.enter-right {
     transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
   }
 }
@@ -3253,6 +3259,54 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    intrare, ca sa nu anuleze transformarea finala a cardului. */
 .theme .process-list > .step-card.is-visible:hover {
   transform: translateY(-2px);
+}
+
+/* ============================================================================
+   DESPRE NOI — intrare in zig-zag pe blocurile sectiunii
+   Sectiunea este o coloana editoriala, nu o grila, deci directia vine din
+   compozitia fiecarui bloc: actul cu fotografia in stanga intra din stanga,
+   cel cu fotografia in dreapta intra din dreapta. Blocurile centrate
+   (deschiderea si inchiderea) deschid si inchid fluxul in aceeasi ordine.
+   Panoul de sticla din acte foloseste backdrop-filter, de aceea filtrul de
+   intrare este eliminat la final (JS) ca fundalul sa ramana netarat ca in
+  ainte — altfel blur(0) ar schimba zona de fundal din care se preia sticla.
+   ============================================================================ */
+@media (scripting: enabled) {
+  .hm-post-open,
+  .hm-act,
+  .hm-post-close {
+    --fg-shift-x: min(52vw, 700px);
+    --fg-enter-dur: 1200ms;
+    --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    pointer-events: none;
+    filter: blur(8px);
+    will-change: transform, opacity;
+  }
+
+  .hm-post-open.enter-left,
+  .hm-act.enter-left,
+  .hm-post-close.enter-left {
+    transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
+  }
+  .hm-post-open.enter-right,
+  .hm-act.enter-right,
+  .hm-post-close.enter-right {
+    transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
+  }
+}
+
+.hm-post-open.is-visible,
+.hm-act.is-visible,
+.hm-post-close.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(0, 0) rotate(0deg);
+  filter: blur(0);
+  transition:
+    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms);
 }
 
 /* Reduced motion: arată tot instant, fără transform-uri */
