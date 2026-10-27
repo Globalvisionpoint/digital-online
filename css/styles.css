@@ -828,6 +828,9 @@
   border-bottom: 1px solid var(--line);
   background: transparent;
   transition: background 0.2s ease;
+  /* Titlul si textul etapei sunt centrate, la fel ca restul continutului
+     de pe paginile interne. */
+  text-align: center;
 }
 .process-flow__item:hover {
   background: rgba(255, 255, 255, 0.03);
@@ -845,14 +848,13 @@
   font-size: 14px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.75);
-  margin: 0;
+  margin: 0 auto;
+  /* Randul ramane lizibil si centrat, in loc sa se intinda pe toata coloana. */
+  max-width: 46ch;
 }
 @media (max-width: 720px) {
   .process-flow { grid-template-columns: 1fr; }
-  .process-flow__item {
-    padding: 24px 20px;
-    text-align: center;
-  }
+  .process-flow__item { padding: 24px 20px; }
 }
 .legal-footnote {
   text-align: center;
