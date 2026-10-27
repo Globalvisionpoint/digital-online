@@ -122,6 +122,53 @@
     });
   }
 
+  /* ------- Feature grid: intrare „fermoar" (zig-zag stanga / dreapta) -------
+     Aceeasi mecanica ca la cardurile de servicii din pagina acasa (offset
+     lateral + blur, declansate de .is-visible prin CSS transitions).
+     Ordinea din DOM = ordinea vizuala a grilei (grid-auto-flow: row implicit),
+     deci iterand copiii si alternand stanga/dreapta obtinem efectul de fermoar
+     la orice latime, fara sa numaram coloanele:
+       3 coloane: L R L / R L R / L R L
+       2 coloane: L R / R L / L R
+       1 coloana: L R L R L ... (pe verticala)
+     Blocul se declanseaza cand grila intra in viewport, ca titlul si paragraful
+     unui card sa nu apara separate de restul grilei. */
+  const featureGrids = document.querySelectorAll('.feature-grid');
+  featureGrids.forEach(grid => {
+    const cards = Array.from(grid.children).filter(el => el.classList.contains('feature'));
+    if (!cards.length) return;
+    cards.forEach((card, i) => {
+      card.classList.add(i % 2 === 0 ? 'feature-in-left' : 'feature-in-right');
+      // al doilea card al fiecarei perechi pleaca putin mai tarziu — „inchiderea
+      // fermoarului" se simte mai clar
+      card.style.setProperty('--fg-delay', (i % 2) * 140 + 'ms');
+    });
+  });
+
+  if (featureGrids.length && 'IntersectionObserver' in window && !reduced) {
+    const featureObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        const rect = entry.target.getBoundingClientRect();
+        // Grila deja iesita in sus (ex. reincarcare cu pozitia de scroll
+        // restaurata de browser): o afisam instant, altfel cardurile ar ramane
+        // ascunse pentru totdeauna, fiindca nu mai trec prin viewport.
+        const alreadyPassed = rect.bottom <= 0;
+        if (!entry.isIntersecting && !alreadyPassed) return;
+        entry.target.querySelectorAll('.feature').forEach(card => {
+          card.classList.add('is-visible');
+        });
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
+    featureGrids.forEach(grid => featureObserver.observe(grid));
+  } else {
+    featureGrids.forEach(grid => {
+      grid.querySelectorAll('.feature').forEach(card => {
+        card.classList.add('is-visible');
+      });
+    });
+  }
+
   /* ------- Per-word stagger on .stagger headlines ------- */
   document.querySelectorAll('.stagger').forEach(h => {
     const text = h.textContent;

@@ -3034,6 +3034,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border: var(--hair);
+  /* Cardurile intra din afara cadrului — taiem exact ca la .hm-services-featured,
+     ca sa nu apara scroll orizontal sau suprapuneri peste secțiunile vecine. */
+  overflow: hidden;
 }
 @media (max-width: 900px) { .feature-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
@@ -3067,6 +3070,70 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   max-width: 40ch;
   margin-inline: auto;
   text-align: center;
+}
+
+/* ============================================================================
+   FEATURE GRID — intrare „fermoar" (zig-zag stânga / dreapta)
+   Aceeași mecanică și aceleași valori ca la cardurile de servicii din pagina
+   acasă (.theme .section a.hm-feature):
+     - JS pune pe fiecare card clasa .feature-in-left / .feature-in-right,
+       alternând strict după ordinea din DOM — care este și ordinea vizuală a
+       grilei, fiindcă grid-auto-flow este implicit „row". Rezultă:
+         mobil, 1 coloană  -> L R L R L ... pe verticală (fermoar);
+         tabletă, 2 coloane -> L R / R L / L R (zig-zag);
+         desktop, 3 coloane -> L R L / R L R / L R L (zig-zag).
+     - mișcarea e declanșată de clasa .is-visible, prin CSS transitions —
+       NU folosim requestAnimationFrame (același motiv ca la pagina acasă).
+     - cardurile pleacă din afara cadrului; overflow-ul este tăiat de
+       .feature-grid, deci nu apare scroll orizontal.
+     - starea inițială ascunsă se aplică DOAR când CSS-ul vede că JS rulează
+       (@media (scripting: enabled)); fără JS cardurile rămân vizibile, nu
+       blocate la opacity 0. Nu folosim un script inline, fiindcă
+       Content-Security-Policy din vercel.json nu permite 'unsafe-inline'.
+   ============================================================================ */
+@media (scripting: enabled) {
+  .feature-grid > .feature {
+    --fg-shift-x: min(52vw, 700px);
+    --fg-enter-dur: 1200ms;
+    --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0;
+    filter: blur(8px);
+    will-change: transform, opacity;
+  }
+
+  /* Stări inițiale — FĂRĂ transition pe starea de bază, ca offset-ul inițial să
+     se aplice instant (altfel, la refresh, clasele adăugate aproape simultan de
+     JS fac un duș-întors care anulează vizual mișcarea). */
+  .feature-grid > .feature.feature-in-left {
+    transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
+  }
+  .feature-grid > .feature.feature-in-right {
+    transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
+  }
+}
+
+/* Stare finală — transition-ul e definit AICI (starea nouă), deci doar
+   mișcarea offset -> 0 este animată. Background-ul rămâne pe durata lui
+   scurtă, ca hover-ul să nu fie întârziat de --fg-delay. */
+.feature-grid > .feature.is-visible {
+  opacity: 1;
+  transform: translate(0, 0) rotate(0deg);
+  filter: blur(0);
+  transition:
+    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
+    background var(--t-mid);
+}
+
+/* Reduced motion: arată tot instant, fără transform-uri */
+@media (prefers-reduced-motion: reduce) {
+  .feature-grid > .feature {
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* CTA box (inner-page call to action) */
