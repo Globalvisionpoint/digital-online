@@ -402,6 +402,71 @@
              hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
 }
 
+/* ---------- Split hero titles ----------
+   Same reveal as the index DIGITAL / ONLINE pair: the first title line enters
+   from the left, the next from the right and so on, like a zipper.
+
+   A long title line soft-wraps into several visual lines, while :nth-child
+   counts elements and not rendered lines. theme.js therefore measures the
+   rendered lines, wraps each one in a .hm-line span and marks it with an
+   explicit direction, so the zigzag follows the lines the visitor sees.
+   Without JS the :nth-child rule below still alternates whole spans.
+   Direction classes are only ever added next to .hm-title--zipper, so they
+   always beat the fallback rule on specificity. */
+.hm-title--split {
+  gap: 0;
+}
+
+.hm-title--split:not(.hm-title--zipper) .hm-title-fill:nth-child(even) {
+  animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+}
+
+/* One rendered line of a wrapped title. Font, letter-spacing, text stroke and
+   text fill colour are inherited from the parent fill; only the texture and
+   the reveal have to be repeated here. */
+.hm-title--split .hm-line {
+  display: block;
+  max-width: 100%;
+  background-image: url('../img/animation.webp');
+  background-size: 100% 300%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: rgba(255, 255, 255, 0.24);
+  background-blend-mode: screen;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* A wrapped fill only stacks its lines; the lines run the reveal instead. */
+.hm-title--split .hm-title-fill--stacked {
+  background-image: none;
+  background-color: transparent;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+
+.hm-title--split .hm-from-left {
+  opacity: 0;
+  animation: hmTitleInLeft 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+}
+
+.hm-title--split .hm-from-right {
+  opacity: 0;
+  animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
+             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+}
+
+/* Added before a re-wrap, so a resized title never replays the entrance. */
+.hm-title--split.hm-title--settled .hm-from-left,
+.hm-title--split.hm-title--settled .hm-from-right {
+  opacity: 1;
+  transform: none;
+  animation: hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+}
+
 @keyframes hmTitleInLeft {
   from { opacity: 0; transform: translateX(-110%); }
   to { opacity: 1; transform: translateX(0); }
@@ -1919,6 +1984,8 @@
 @media (prefers-reduced-motion: reduce) {
   .hm-bg-img,
   .hm-title-fill,
+  .hm-title-fill--stacked,
+  .hm-line,
   .hm-eyebrow,
   .hm-tagline,
   .hm-slide-indicator,
