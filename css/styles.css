@@ -812,7 +812,6 @@
 
 /* Spacing + layout utilities (replace inline styles) */
 .mt-60 { margin-top: 60px; }
-.process-grid--4 { grid-template-columns: repeat(4, 1fr); }
 .legal-container { max-width: 880px; }
 
 /* ---------- Process flow (timeline pe coloane) ---------- */
