@@ -158,69 +158,6 @@
     el.classList.add(i % 2 === 0 ? 'enter-left' : 'enter-right');
   });
 
-  /* ---- Elementele care se dezvaluie ---- */
-  /* Fiecare bloc de continut de pe site intra in zig-zag: vine din stanga sau
-     din dreapta, in functie de pozitia lui in pagina. */
-  const revealTargets = new Set(document.querySelectorAll([
-    '[data-reveal]',
-    '.showcase-figure',
-    '.feature-grid > .feature',
-    '.hm-services-featured > .hm-feature',
-    '.process-flow > .process-flow__item',
-    '.process-list > .step-card',
-    '.cp-media',
-    '.contact-form',
-    '.legal-block',
-    '.legal-content > .eyebrow',
-    '.legal-content > h1',
-    '.footer-row',
-    '.footer-contact'
-  ].join(',')));
-
-  /* Panoul de contact e impartit in doua: partea cu foto si formularul.
-     Panoul ramane doar rama in care se strange cele doua jumatati. */
-  document.querySelectorAll('.contact-panel').forEach(panel => {
-    panel.classList.remove('fg-animated', 'fg-from-right', 'is-revealed', 'is-visible');
-    revealTargets.delete(panel);
-  });
-
-  /* Titlul si subtitlul fiecarei sectiuni intra separat: titlul din stanga,
-     subtitlul din dreapta — la fel ca in sectiunea „Despre noi". Containerul
-     .section-head ramane doar un suport, el nu se animeaza. */
-  const sectionHeads = [];
-  document.querySelectorAll('.section-head').forEach(head => {
-    const title = head.querySelector('h2, h1');
-    const sub = head.querySelector('p');
-    if (title) { sectionHeads.push(title); revealTargets.delete(head); }
-    if (sub) { sectionHeads.push(sub); revealTargets.delete(head); }
-  });
-  sectionHeads.forEach(el => revealTargets.add(el));
-
-  /* Toate elementele antrenate de scroll primesc aceeasi clasa, ca sa aiba
-     aceeasi stare initiala si sa fie tratate identic de motor. */
-  revealTargets.forEach(target => target.classList.add('fg-animated'));
-
-  /* ---- Directia laterala pentru blocurile care nu sunt carduri ---- */
-  /* Titlul vine din stanga, subtitlul din dreapta; la fel blocurile legale si
-     cele doua coloane de subsol, care alterneaza pe rand. */
-  document.querySelectorAll('.section-head').forEach(head => {
-    const title = head.querySelector('h2, h1');
-    const sub = head.querySelector('p');
-    if (title) title.classList.add('fg-from-left');
-    if (sub) sub.classList.add('fg-from-right');
-  });
-  document.querySelectorAll('.legal-content').forEach(content => {
-    const items = [...content.querySelectorAll(':scope > .eyebrow, :scope > h1, :scope > .legal-block')];
-    items.forEach((el, i) => el.classList.add(i % 2 === 0 ? 'fg-from-left' : 'fg-from-right'));
-  });
-  document.querySelectorAll('.footer-row').forEach(el => el.classList.add('fg-from-left'));
-  document.querySelectorAll('.footer-contact').forEach(el => el.classList.add('fg-from-right'));
-  document.querySelectorAll('.showcase-figure').forEach(el => el.classList.add('fg-from-left'));
-  /* Panoul de contact se strange in doua: jumatatea cu foto vine din stanga,
-     formularul din dreapta. */
-  document.querySelectorAll('.cp-media').forEach(el => el.classList.add('fg-from-left'));
-  document.querySelectorAll('.contact-form').forEach(el => el.classList.add('fg-from-right'));
-
   /* ---- Motorul comun ---- */
   /* Fiecare element primeste: tipul deplasarii (card = lateral, bloc = sus),
      distanta de scroll pe care se desfasoara intrarea si un prag de
@@ -243,19 +180,133 @@
   const isCard = target => target.matches(
     '.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, ' +
     '.section-head > h2, .section-head > h1, .section-head > p, .legal-block, ' +
-    '.legal-content > .eyebrow, .legal-content > h1, .footer-row, .footer-contact, ' +
+    '.legal-content > .eyebrow, .legal-content > h1, .legal-content > p, ' +
+    '.footer-brand, .footer-cols > div, .footer-bot > small, .legal-footer-links, ' +
     '.showcase-figure, .cp-media, .contact-form'
   );
 
-  revealTargets.forEach(target => {
-    register(target, isCard(target) ? 'card' : 'block', 0);
-  });
+  /* ---- Elementele care se dezvaluie ---- */
+  /* Fiecare bloc de continut de pe site intra in zig-zag: vine din stanga sau
+     din dreapta, in functie de pozitia lui in pagina.
 
-  // Panourile sectiunii „Despre noi" sunt apropriate, deci fiecare incepe putin
-  // mai tarziu decat precedentul — ca un fermoar.
-  aboutBlocks.forEach((el, i) => {
-    register(el, 'card', i * 26);
-  });
+     Colectarea se repeta la DOMContentLoaded: theme.js (tot diferit, dar
+     executat inaintea evenimentului) injecteaza linkurile legale in subsol,
+     deci abia atunci DOM-ul este cel final. */
+  const revealTargets = new Set();
+  const sectionHeads = [];
+
+  function collectRevealTargets() {
+    revealTargets.clear();
+    sectionHeads.length = 0;
+
+    document.querySelectorAll([
+      '[data-reveal]',
+      '.showcase-figure',
+      '.feature-grid > .feature',
+      '.hm-services-featured > .hm-feature',
+      '.process-flow > .process-flow__item',
+      '.process-list > .step-card',
+      '.cp-media',
+      '.contact-form',
+      '.legal-block',
+      '.legal-content > .eyebrow',
+      '.legal-content > h1',
+      '.legal-content > p',
+      '.footer-brand',
+      '.footer-cols > div',
+      '.footer-bot > small',
+            '.legal-footer-links'
+    ].join(',')).forEach(el => revealTargets.add(el));
+
+    /* Panoul de contact e impartit in doua: partea cu foto si formularul.
+       Panoul ramane doar rama in care se strange cele doua jumatati. */
+    document.querySelectorAll('.contact-panel').forEach(panel => {
+      panel.classList.remove('fg-animated', 'fg-from-right', 'is-revealed', 'is-visible');
+      panel.style.removeProperty('--fg-progress');
+      revealTargets.delete(panel);
+    });
+
+    /* Subsolul se impartie la fel: randul ramane rama, iar fiecare coloana
+       intra separat, alternativ. */
+    document.querySelectorAll('.footer-row, .footer-bot').forEach(el => {
+      el.classList.remove('fg-animated', 'fg-from-left', 'fg-from-right', 'is-revealed', 'is-visible');
+      el.style.removeProperty('--fg-progress');
+      revealTargets.delete(el);
+    });
+
+    /* Titlul si subtitlul fiecarei sectiuni intra separat: titlul din stanga,
+       subtitlul din dreapta — la fel ca in sectiunea „Despre noi". Containerul
+       .section-head ramane doar un suport, el nu se animeaza.
+
+       Fiecare copil direct al capului (titlu, subtitlu, numar de pas) intra pe
+       rand, in zig-zag: primul din stanga, al doilea din dreapta. */
+    document.querySelectorAll('.section-head').forEach(head => {
+      head.querySelectorAll(':scope > h1, :scope > h2, :scope > p').forEach((el, i) => {
+        sectionHeads.push({ el, slot: i });
+        revealTargets.add(el);
+      });
+      revealTargets.delete(head);
+    });
+
+    /* Elementele care ies din colectie sunt scoase din motor: un link din
+       subsol inlocuit de theme.js nu mai are pe ce sa se sprijine, deci
+       trebuie sa fie vizibil, nu sa ramana in starea de asteptare. */
+    scrollDriven.forEach(item => {
+      if (revealTargets.has(item.el) || aboutBlocks.includes(item.el)) return;
+      revealNow(item.el);
+    });
+
+    /* Toate elementele antrenate de scroll primesc aceeasi clasa, ca sa aiba
+       aceeasi stare initiala si sa fie tratate identic de motor. */
+    revealTargets.forEach(target => target.classList.add('fg-animated'));
+  }
+
+  /* ---- Directia laterala ---- */
+    /* Blocurile care nu se stivuiesc pe verticala primesc directia aici.
+       Atribuirea este deterministica (depinde doar de ordinea din DOM), deci
+       poate fi repetata fara sa schimbe ceva: un element isi pastreaza mereu
+       aceeasi parte din care intra. */
+    function assignDirections() {
+      sectionHeads.forEach(({ el, slot }) => {
+        el.classList.add(slot % 2 === 0 ? 'fg-from-left' : 'fg-from-right');
+      });
+
+      document.querySelectorAll('.legal-content').forEach(content => {
+        content.querySelectorAll(':scope > .eyebrow, :scope > h1, :scope > p, :scope > .legal-block')
+          .forEach((el, i) => {
+            el.classList.add(i % 2 === 0 ? 'fg-from-left' : 'fg-from-right');
+          });
+      });
+
+      document.querySelectorAll('.showcase-figure').forEach(el => {
+        el.classList.add('fg-from-left');
+      });
+
+      /* Panoul de contact se strange in doua: jumatatea cu foto vine din stanga,
+         formularul din dreapta. */
+      document.querySelectorAll('.cp-media').forEach(el => {
+        el.classList.add('fg-from-left');
+      });
+      document.querySelectorAll('.contact-form').forEach(el => {
+        el.classList.add('fg-from-right');
+      });
+
+      /* Subsolul: brandul vine din stanga, cele trei coloane alterneaza, iar
+         linia de jos (drepturi + linkuri legale) se desparte la randul ei.
+         Linkurile legale sunt adaugate de theme.js, de aceea colectarea se face
+         abia dupa DOMContentLoaded. */
+      document.querySelectorAll('.footer').forEach(footer => {
+        const blocks = [
+          ...footer.querySelectorAll('.footer-brand'),
+          ...footer.querySelectorAll('.footer-cols > div'),
+          ...footer.querySelectorAll('.footer-bot > small'),
+          ...footer.querySelectorAll('.legal-footer-links')
+        ];
+        blocks.forEach((el, i) => {
+          el.classList.add(i % 2 === 0 ? 'fg-from-left' : 'fg-from-right');
+        });
+      });
+    }
 
   function measureLayout() {
     const all = new Set([...revealTargets, ...aboutBlocks]);
@@ -272,29 +323,60 @@
 
   const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
 
-  function updateScrollDriven() {
-    const viewTop = window.scrollY;
-    const viewBottom = viewTop + window.innerHeight;
-    // Elementul incepe sa se dezveleasca putin inainte sa atinga limita de
-    // jos a ecranului, ca sa fie deja incadrat in momentul in care intra.
-    const triggerLine = viewBottom - window.innerHeight * 0.12;
+  /* ---- Inregistrarea elementelor in motor ---- */
+  /* Motorul este gol la fiecare colectare: altfel, la o a doua trecere,
+     elementele ar fi prinse de doua ori. */
+  function registerTargets() {
+    scrollDriven.length = 0;
 
-    scrollDriven.forEach(item => {
-      const { el, offset } = item;
-      if (pinned.has(el)) return;
-      const top = layoutPosition.get(el);
-      if (top === undefined) return;
-      const travel = TRAVEL[item.kind]();
-      let progress = (triggerLine - top - offset) / travel;
-      // Elementul a trecut deja de marginea de sus a ecranului: e oricum
-      // trecut, deci trebuie sa fie la locul lui final.
-      if (top + el.offsetHeight <= viewTop) progress = 1;
-      // Subsolul e ultimul element al paginii: nu mai poate cobori, deci
-      // calatoria lui nu se poate termina. Cand e deja intreg pe ecran, e
-      // considerat complet intrat.
-      const atPageEnd = viewBottom >= document.documentElement.scrollHeight - 2;
-      if (atPageEnd && top + el.offsetHeight <= viewBottom && top >= viewTop) progress = 1;
-      progress = Math.max(0, Math.min(1, progress));
+    revealTargets.forEach(target => {
+      register(target, isCard(target) ? 'card' : 'block', 0);
+    });
+
+    // Panourile sectiunii „Despre noi" sunt apropriate, deci fiecare incepe
+    // putin mai tarziu decat precedentul — ca un fermoar.
+    aboutBlocks.forEach((el, i) => {
+      register(el, 'card', i * 26);
+    });
+  }
+
+  /* Dezvaluire imediata, pentru elementele care si-au pierdut intrarea (un
+     link din subsol reactualizat de theme.js, de exemplu). */
+  function revealNow(el) {
+    pinned.add(el);
+    el.style.setProperty('--fg-progress', '1');
+    el.classList.add('is-visible', 'is-revealed');
+  }
+
+  function updateScrollDriven() {
+      const docH = document.documentElement.scrollHeight;
+      const viewTop = window.scrollY;
+      const viewBottom = viewTop + window.innerHeight;
+      // Elementul incepe sa se dezveleasca putin inainte sa atinga limita de
+      // jos a ecranului, ca sa fie deja incadrat in momentul in care intra.
+      const triggerLine = viewBottom - window.innerHeight * 0.12;
+      // Cat de aproape de capatul paginii este derularea. Ultimele elemente nu
+      // mai au spatiu ca sa isi incheie calatoria, deci acolo merg fortate.
+      const nearBottom = docH - viewBottom <= Math.max(8, window.innerHeight * 0.03);
+
+      scrollDriven.forEach(item => {
+        const { el, offset } = item;
+        if (!el.isConnected) return;
+        if (pinned.has(el)) return;
+        const top = layoutPosition.get(el);
+        if (top === undefined) return;
+        const travel = TRAVEL[item.kind]();
+        // Spatiul de derulare ramas dupa momentul in care elementul ar porni.
+        // Daca e mai mic decat calatoria obisnuita, animatia se comprima exact
+        // cat sa se termine cand pagina ajunge la capat.
+        const room = docH - window.innerHeight * 0.12 - top - offset;
+        const span = room > 0 && room < travel ? room : travel;
+        let progress = (triggerLine - top - offset) / span;
+        // Elementul a trecut deja de marginea de sus a ecranului: e oricum
+        // trecut, deci trebuie sa fie la locul lui final.
+        if (top + el.offsetHeight <= viewTop) progress = 1;
+        if (nearBottom && top + el.offsetHeight <= viewBottom && top >= viewTop) progress = 1;
+        progress = Math.max(0, Math.min(1, progress));
       const eased = easeOutCubic(progress);
       if (item.last === eased) return;
       item.last = eased;
@@ -309,25 +391,51 @@
   }
 
   if (!reduced) {
-    measureLayout();
-    updateScrollDriven();
-    updateHeroDrift();
+    /* Pornirea se face dupa ce DOM-ul este complet: theme.js (diferit, dar
+       executat inaintea evenimentului) mai adauga linkurile legale in subsol,
+       deci colectarea facuta la incarcare ar rata exact acele elemente. */
+    const boot = () => {
+      collectRevealTargets();
+      assignDirections();
+      registerTargets();
+      measureLayout();
+      updateScrollDriven();
+      updateHeroDrift();
+    };
+    if (document.readyState === 'complete') {
+          boot();
+    } else {
+          document.addEventListener('DOMContentLoaded', boot);
+    }
 
     /* Verificarea ruleaza direct in handler, fara requestAnimationFrame:
        rAF este incetinit in filele din fundal, deci un tab deschis la rece
        ar ramane cu continutul ascuns pana la prima interactiune. */
     addEventListener('scroll', updateScrollDriven, { passive: true });
 
-    // La redimensionare se schimba layout-ul, deci masuram din nou.
+        /* La redimensionare se schimba layout-ul, deci masuram din nou. */
     let resizeTimer = null;
-    addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        measureLayout();
-        updateScrollDriven();
-        updateHeroDrift();
-      }, 150);
-    }, { passive: true });
+        const remeasure = () => {
+          measureLayout();
+          updateScrollDriven();
+          updateHeroDrift();
+        };
+        addEventListener('resize', () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(remeasure, 150);
+        }, { passive: true });
+
+        /* Imaginile si fonturile schimba inaltimea paginii dupa DOMContentLoaded,
+           deci pozitiile masurate atunci raman in urma pe paginile scurte si
+           ultimele elemente nu mai ajung niciodata la capatul calatoriei.
+           Remasuram ori de cate ori inaltimea documentului se schimba. */
+        if ('ResizeObserver' in window) {
+          new ResizeObserver(remeasure).observe(document.body);
+        }
+        addEventListener('load', remeasure);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(remeasure);
+        }
   } else {
     // Fara animatie: totul trebuie sa fie vizibil.
     if (hero) hero.style.setProperty('--hero-drift', '0');
@@ -335,8 +443,15 @@
       el.style.setProperty('--fg-progress', '1');
       el.classList.add('is-visible', 'is-revealed');
     };
-    revealTargets.forEach(show);
-    aboutBlocks.forEach(show);
+    const showAll = () => {
+      revealTargets.forEach(show);
+      aboutBlocks.forEach(show);
+    };
+    if (document.readyState === 'complete') {
+          showAll();
+    } else {
+          document.addEventListener('DOMContentLoaded', showAll);
+    }
   }
 
   /* ---- Focus cu tastatura ---- */
