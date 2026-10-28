@@ -168,13 +168,21 @@
     '.hm-services-featured > .hm-feature',
     '.process-flow > .process-flow__item',
     '.process-list > .step-card',
-    '.contact-panel',
+    '.cp-media',
+    '.contact-form',
     '.legal-block',
     '.legal-content > .eyebrow',
     '.legal-content > h1',
     '.footer-row',
     '.footer-contact'
   ].join(',')));
+
+  /* Panoul de contact e impartit in doua: partea cu foto si formularul.
+     Panoul ramane doar rama in care se strange cele doua jumatati. */
+  document.querySelectorAll('.contact-panel').forEach(panel => {
+    panel.classList.remove('fg-animated', 'fg-from-right', 'is-revealed', 'is-visible');
+    revealTargets.delete(panel);
+  });
 
   /* Titlul si subtitlul fiecarei sectiuni intra separat: titlul din stanga,
      subtitlul din dreapta — la fel ca in sectiunea „Despre noi". Containerul
@@ -208,7 +216,10 @@
   document.querySelectorAll('.footer-row').forEach(el => el.classList.add('fg-from-left'));
   document.querySelectorAll('.footer-contact').forEach(el => el.classList.add('fg-from-right'));
   document.querySelectorAll('.showcase-figure').forEach(el => el.classList.add('fg-from-left'));
-  document.querySelectorAll('.contact-panel').forEach(el => el.classList.add('fg-from-right'));
+  /* Panoul de contact se strange in doua: jumatatea cu foto vine din stanga,
+     formularul din dreapta. */
+  document.querySelectorAll('.cp-media').forEach(el => el.classList.add('fg-from-left'));
+  document.querySelectorAll('.contact-form').forEach(el => el.classList.add('fg-from-right'));
 
   /* ---- Motorul comun ---- */
   /* Fiecare element primeste: tipul deplasarii (card = lateral, bloc = sus),
@@ -233,7 +244,7 @@
     '.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, ' +
     '.section-head > h2, .section-head > h1, .section-head > p, .legal-block, ' +
     '.legal-content > .eyebrow, .legal-content > h1, .footer-row, .footer-contact, ' +
-    '.showcase-figure, .contact-panel'
+    '.showcase-figure, .cp-media, .contact-form'
   );
 
   revealTargets.forEach(target => {
