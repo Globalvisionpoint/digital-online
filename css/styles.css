@@ -2945,32 +2945,42 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    The scripting guard keeps content visible when JavaScript is unavailable.
    ============================================================================ */
 @media (scripting: enabled) {
-  [data-reveal],
-  .scroll-reveal-item {
+  /* Orice element antrenat de scroll primeste clasa .fg-animated de la JS.
+     Aici e starea lui ascinsa; miscarea vine din --fg-progress. */
+  .fg-animated {
     --fg-progress: 0;
+    /* Deplasarea laterala cu care vine elementul. JS pune clasa .fg-from-left
+       sau .fg-from-right; fara ea, elementul urca doar. */
+    --fg-x: 0px;
+    --fg-y: 20px;
+    --fg-rot: 0deg;
     opacity: var(--fg-progress);
     pointer-events: none;
-    transform: translateY(calc(20px * (1 - var(--fg-progress))));
+    transform:
+      translateX(calc(var(--fg-x) * (1 - var(--fg-progress))))
+      translateY(calc(var(--fg-y) * (1 - var(--fg-progress))))
+      rotate(calc(var(--fg-rot) * (1 - var(--fg-progress))));
   }
-  [data-reveal].is-revealed,
-  .scroll-reveal-item.is-revealed {
+  .fg-animated.is-revealed {
     pointer-events: auto;
     transform: none;
   }
-  [data-reveal="rise"] { transform: translateY(calc(40px * (1 - var(--fg-progress)))); }
-  [data-reveal="left"] { transform: translateX(calc(-20px * (1 - var(--fg-progress)))); }
-  [data-reveal="right"] { transform: translateX(calc(20px * (1 - var(--fg-progress)))); }
 
-  [data-reveal]:focus-within,
-  .scroll-reveal-item:focus-within,
-  .feature-grid > .feature:focus-within,
-  .process-flow > .process-flow__item:focus-within,
-  .process-list > .step-card:focus-within,
-  .hm-post-title:focus-within,
-  .hm-post-lede:focus-within,
-  .hm-act-photo:focus-within,
-  .hm-act-body:focus-within,
-  .hm-post-close > p:focus-within,
+  /* Directia laterala, valabila pentru orice element. Titlurile si
+     subtitlurile sectiunilor vin din laterale, la fel ca in sectiunea
+     „Despre noi": titlul din stanga, subtitlul din dreapta. */
+  .fg-from-left {
+    --fg-x: calc(var(--fg-shift-x, min(52vw, 700px)) * -1);
+    --fg-y: 0px;
+    --fg-rot: -2.5deg;
+  }
+  .fg-from-right {
+    --fg-x: var(--fg-shift-x, min(52vw, 700px));
+    --fg-y: 0px;
+    --fg-rot: 2.5deg;
+  }
+
+  .fg-animated:focus-within,
   .theme .section a.hm-feature:focus {
     --fg-progress: 1 !important;
     opacity: 1 !important;

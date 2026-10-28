@@ -159,23 +159,56 @@
   });
 
   /* ---- Elementele care se dezvaluie ---- */
+  /* Fiecare bloc de continut de pe site intra in zig-zag: vine din stanga sau
+     din dreapta, in functie de pozitia lui in pagina. */
   const revealTargets = new Set(document.querySelectorAll([
     '[data-reveal]',
-    '.section-head',
     '.showcase-figure',
     '.feature-grid > .feature',
     '.hm-services-featured > .hm-feature',
     '.process-flow > .process-flow__item',
     '.process-list > .step-card',
-    '.contact-panel'
+    '.contact-panel',
+    '.legal-block',
+    '.legal-content > .eyebrow',
+    '.legal-content > h1',
+    '.footer-row',
+    '.footer-contact'
   ].join(',')));
 
-  revealTargets.forEach(target => {
-    // Cardurile cu intrare laterala au propria lor regula in CSS, deci nu
-    // primesc starea generica de ascuns.
-    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) return;
-    if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
+  /* Titlul si subtitlul fiecarei sectiuni intra separat: titlul din stanga,
+     subtitlul din dreapta — la fel ca in sectiunea „Despre noi". Containerul
+     .section-head ramane doar un suport, el nu se animeaza. */
+  const sectionHeads = [];
+  document.querySelectorAll('.section-head').forEach(head => {
+    const title = head.querySelector('h2, h1');
+    const sub = head.querySelector('p');
+    if (title) { sectionHeads.push(title); revealTargets.delete(head); }
+    if (sub) { sectionHeads.push(sub); revealTargets.delete(head); }
   });
+  sectionHeads.forEach(el => revealTargets.add(el));
+
+  /* Toate elementele antrenate de scroll primesc aceeasi clasa, ca sa aiba
+     aceeasi stare initiala si sa fie tratate identic de motor. */
+  revealTargets.forEach(target => target.classList.add('fg-animated'));
+
+  /* ---- Directia laterala pentru blocurile care nu sunt carduri ---- */
+  /* Titlul vine din stanga, subtitlul din dreapta; la fel blocurile legale si
+     cele doua coloane de subsol, care alterneaza pe rand. */
+  document.querySelectorAll('.section-head').forEach(head => {
+    const title = head.querySelector('h2, h1');
+    const sub = head.querySelector('p');
+    if (title) title.classList.add('fg-from-left');
+    if (sub) sub.classList.add('fg-from-right');
+  });
+  document.querySelectorAll('.legal-content').forEach(content => {
+    const items = [...content.querySelectorAll(':scope > .eyebrow, :scope > h1, :scope > .legal-block')];
+    items.forEach((el, i) => el.classList.add(i % 2 === 0 ? 'fg-from-left' : 'fg-from-right'));
+  });
+  document.querySelectorAll('.footer-row').forEach(el => el.classList.add('fg-from-left'));
+  document.querySelectorAll('.footer-contact').forEach(el => el.classList.add('fg-from-right'));
+  document.querySelectorAll('.showcase-figure').forEach(el => el.classList.add('fg-from-left'));
+  document.querySelectorAll('.contact-panel').forEach(el => el.classList.add('fg-from-right'));
 
   /* ---- Motorul comun ---- */
   /* Fiecare element primeste: tipul deplasarii (card = lateral, bloc = sus),
@@ -195,8 +228,12 @@
     scrollDriven.push({ el, kind, offset: offset || 0, last: -1 });
   }
 
+  /* Elementele cu intrare laterala se misca pe orizontala; restul urca. */
   const isCard = target => target.matches(
-    '.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card'
+    '.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, ' +
+    '.section-head > h2, .section-head > h1, .section-head > p, .legal-block, ' +
+    '.legal-content > .eyebrow, .legal-content > h1, .footer-row, .footer-contact, ' +
+    '.showcase-figure, .contact-panel'
   );
 
   revealTargets.forEach(target => {
@@ -241,6 +278,11 @@
       // Elementul a trecut deja de marginea de sus a ecranului: e oricum
       // trecut, deci trebuie sa fie la locul lui final.
       if (top + el.offsetHeight <= viewTop) progress = 1;
+      // Subsolul e ultimul element al paginii: nu mai poate cobori, deci
+      // calatoria lui nu se poate termina. Cand e deja intreg pe ecran, e
+      // considerat complet intrat.
+      const atPageEnd = viewBottom >= document.documentElement.scrollHeight - 2;
+      if (atPageEnd && top + el.offsetHeight <= viewBottom && top >= viewTop) progress = 1;
       progress = Math.max(0, Math.min(1, progress));
       const eased = easeOutCubic(progress);
       if (item.last === eased) return;
