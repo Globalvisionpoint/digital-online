@@ -57,17 +57,37 @@
     }
   }
 
-  /* ------- Homepage service-card directions -------
-     Pe desktop cardurile stau in randuri (4 + 5), deci intrarea e cea „de
-     puzzle": perechile vin din laterale, iar cardul din mijloc vine de jos.
+  /* Hero-ul raspunde la scroll: continutul urca si se estompeaza pe masura ce
+     iesi din ecran, si revine la loc daca urci inapoi. */
+  const heroInner = hero && hero.querySelector('.hm-inner');
+  function updateHeroDrift() {
+    if (!heroInner) return;
+    const height = hero.offsetHeight || innerHeight;
+    const drift = Math.max(0, Math.min(1, scrollY / (height * 0.75)));
+    hero.style.setProperty('--hero-drift', drift.toFixed(4));
+  }
 
+  /* ==========================================================================
+     SCROLL-DRIVEN ENTRANCES
+     Toate intrarile de pe site sunt antrenate de scroll: JS calculeaza pentru
+     fiecare element un grad de avans (0 = neatins, 1 = complet intrat) din
+     pozitia lui fata de viewport, iar CSS-ul transforma gradul in miscare.
+     Astfel:
+       - animatia urmeaza scrollul exact (daca te-ai opri, elementul ramane
+         in punctul in care l-ai lasat);
+       - urcand inapoi, elementele se retrag;
+       - un salt direct la o sectiune nu lasa elemente goale care asteapta.
+     Nimic nu depinde de ceas: totul se calculeaza din --fg-progress.
+     ========================================================================== */
+
+  /* ---- Directia de intrare a cardurilor de servicii ---- */
+  /* Pe desktop cardurile stau in randuri (4 + 5), deci intrarea e cea „de
+     puzzle": perechile vin din laterale, iar cardul din mijloc vine de jos.
      Pe mobil cele doua randuri devin o singura coloana, deci toate cele 9
-     carduri formeaza o lista verticala. Acolo nu mai are rost efectul de
-     puzzle: cardurile se deschid pe rand, alternand stanga/dreapta, ca un
-     fermoar. */
+     carduri formeaza o lista verticala: alternare stricta, ca un fermoar. */
   const servicesStacked = matchMedia('(max-width: 600px)');
 
-  function assignEnterDirections() {
+  function assignServiceDirections() {
     let stackedIndex = 0;
     document.querySelectorAll('.hm-services-featured').forEach(container => {
       const isSecondary = container.classList.contains('hm-services-featured--secondary');
@@ -93,18 +113,12 @@
       });
     });
   }
+  assignServiceDirections();
+  servicesStacked.addEventListener('change', assignServiceDirections);
 
-  assignEnterDirections();
-
-  /* La trecerea peste breakpointul de 600px directia se schimba, dar numai
-     pentru cardurile care nu s-au dezvaluit inca — cele deja vizibile au
-     clasa .is-visible, care anuleaza orice transformare de intrare. */
-  servicesStacked.addEventListener('change', () => {
-    assignEnterDirections();
-  });
-
-  /* Cards in a row-flow grid alternate sides in DOM order, which is also the
-     visual order, so the zigzag works at any column count. */
+  /* ---- Directia de intrare a grilelor pe randuri ---- */
+  /* Cardurile dintr-o grila alterneaza dupa ordinea din DOM, care este si
+     ordinea vizuala, ca zig-zag-ul sa functioneze la orice numar de coloane. */
   [
     { grid: '.feature-grid', item: '.feature' },
     { grid: '.process-flow', item: '.process-flow__item' },
@@ -115,33 +129,26 @@
       if (!cards.length) return;
       cards.forEach((card, i) => {
         card.classList.add(i % 2 === 0 ? 'enter-left' : 'enter-right');
-        // al doilea card al fiecarei perechi pleaca putin mai tarziu — „inchiderea
-        // fermoarului" se simte mai clar
-        card.style.setProperty('--fg-delay', (i % 2) * 140 + 'ms');
       });
     });
   });
 
-  /* Sectiunea „DESPRE NOI" are opt panouri distincte: titlul, lede-ul, apoi
-     pentru fiecare act foto + panoul de sticla, si la final cele doua
-     panouri de inchidere. Fiecare se deschide separat, in alternanta stricta
-     stanga/dreapta, ca un fermoar pe toata lungimea sectiunii.
+  /* ---- Sectiunea „DESPRE NOI": opt panouri ---- */
+  /* Titlul, lede-ul, apoi pentru fiecare act foto + panoul de sticla, si la
+     final cele doua panouri de inchidere. Fiecare se deschide separat, in
+     alternanta stricta stanga/dreapta, ca un fermoar pe toata lungimea
+     sectiunii.
 
      Ordinea de mai jos este cea VIZUALA (stanga-dreapta pe fiecare rand), nu
      cea din DOM: in primul act panoul de sticla este peste marginea din
      dreapta a foto, in al doilea peste marginea din stanga. Asa directia
-     alterneaza corect pe rand, iar blocurile se deschid pe rand.
-
-     Panourile sunt apropiate unele de altele, deci adesea trec linia de
-     declansare in acelasi scroll. De aceea fiecare are un prag propriu
-     (--fg-offset), intarit in scroll, ca sa se deschida pe rand. */
+     alterneaza corect pe rand. */
   const aboutBlocks = [
     document.querySelector('.hm-post-title'),
     document.querySelector('.hm-post-lede'),
     ...[...document.querySelectorAll('.hm-act')].flatMap(act => {
       const photo = act.querySelector('.hm-act-photo');
       const body = act.querySelector('.hm-act-body');
-      // Panoul de sticla se suprapune peste marginea interioara a foto.
       return act.classList.contains('hm-act--right') ? [body, photo] : [photo, body];
     }),
     ...document.querySelectorAll('.hm-post-close > p')
@@ -149,14 +156,9 @@
 
   aboutBlocks.forEach((el, i) => {
     el.classList.add(i % 2 === 0 ? 'enter-left' : 'enter-right');
-    el.classList.add('hm-scroll-driven');
-    // Prag de intarziere, in pixeli de scroll: fiecare panou incepe putin mai
-    // tarziu decat precedentul, ca un fermoar. Valoarea e mica intentionat —
-    // panourile sunt deja separate de spatiul dintre ele, iar o intarziere
-    // prea mare ar impiedica ultimele panouri sa ajunga la locul lor.
-    el.style.setProperty('--fg-offset', `${i * 26}px`);
   });
 
+  /* ---- Elementele care se dezvaluie ---- */
   const revealTargets = new Set(document.querySelectorAll([
     '[data-reveal]',
     '.section-head',
@@ -175,147 +177,93 @@
     if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
   });
 
-  function revealTarget(target, immediate) {
-    if (target.matches('.hm-feature')) {
-      const cards = Array.from(target.parentElement.querySelectorAll('.hm-feature'));
-      const index = cards.indexOf(target);
-      const pair = Math.min(index, cards.length - 1 - index);
-      /* Pe desktop intarzierea de pereche tine efectul de puzzle: cele doua
-         carduri de pe margine pornesc odata, cele din mijloc dupa ele.
-         Pe mobil coloana este unica, deci fiecare card apare imediat ce
-         intra in ecran — altfel ar astepta un partener aflat cu totul
-         altundeva pe pagina. */
-      const delay = immediate || servicesStacked.matches ? 0 : pair * 500;
-      target.style.transitionDelay = `${delay}ms`;
-      target.classList.add('is-visible');
-      const content = target.querySelector('.hm-feature-content');
-      if (content) content.style.transitionDelay = immediate ? '0ms' : `${800 + delay}ms`;
-    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) {
-      target.classList.add('is-visible');
-    } else {
-      target.classList.add('is-revealed');
-    }
+  /* ---- Motorul comun ---- */
+  /* Fiecare element primeste: tipul deplasarii (card = lateral, bloc = sus),
+     distanta de scroll pe care se desfasoara intrarea si un prag de
+     intarziere, ca elementele apropiate sa se deschida pe rand. */
+  const scrollDriven = [];
+  const layoutPosition = new WeakMap();
+  const pinned = new Set();
+
+  const TRAVEL = {
+    card: () => Math.max(window.innerHeight * 0.32, 220),
+    block: () => Math.max(window.innerHeight * 0.22, 160)
+  };
+
+  function register(el, kind, offset) {
+    if (!el) return;
+    scrollDriven.push({ el, kind, offset: offset || 0, last: -1 });
   }
 
-  // Linkurile ascunse pana la scroll raman in ordinea de tabulare, deci la
-  // focus trebuie dezvelite imediat, fara intarzierea de pereche.
-  const aboutPinned = new Set();
-  document.addEventListener('focusin', event => {
-    let target = event.target;
-    while (target && target !== document.body) {
-      if (revealTargets.has(target)) revealTarget(target, true);
-      if (aboutBlocks.includes(target)) {
-        // Panoul ramane dezvelit: la urmatorul scroll nu trebuie sa
-        // reaparitia lui sa-l ascunda din nou.
-        aboutPinned.add(target);
-        target.style.opacity = '1';
-        target.style.transform = 'none';
-        target.style.filter = 'none';
-        target.style.pointerEvents = 'auto';
-      }
-      target = target.parentElement;
-    }
+  const isCard = target => target.matches(
+    '.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card'
+  );
+
+  revealTargets.forEach(target => {
+    register(target, isCard(target) ? 'card' : 'block', 0);
   });
 
+  // Panourile sectiunii „Despre noi" sunt apropriate, deci fiecare incepe putin
+  // mai tarziu decat precedentul — ca un fermoar.
+  aboutBlocks.forEach((el, i) => {
+    register(el, 'card', i * 26);
+  });
+
+  function measureLayout() {
+    const all = new Set([...revealTargets, ...aboutBlocks]);
+    all.forEach(target => {
+      let top = 0;
+      let node = target;
+      while (node) {
+        top += node.offsetTop;
+        node = node.offsetParent;
+      }
+      layoutPosition.set(target, top);
+    });
+  }
+
+  const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+  function updateScrollDriven() {
+    const viewTop = window.scrollY;
+    const viewBottom = viewTop + window.innerHeight;
+    // Elementul incepe sa se dezveleasca putin inainte sa atinga limita de
+    // jos a ecranului, ca sa fie deja incadrat in momentul in care intra.
+    const triggerLine = viewBottom - window.innerHeight * 0.12;
+
+    scrollDriven.forEach(item => {
+      const { el, offset } = item;
+      if (pinned.has(el)) return;
+      const top = layoutPosition.get(el);
+      if (top === undefined) return;
+      const travel = TRAVEL[item.kind]();
+      let progress = (triggerLine - top - offset) / travel;
+      // Elementul a trecut deja de marginea de sus a ecranului: e oricum
+      // trecut, deci trebuie sa fie la locul lui final.
+      if (top + el.offsetHeight <= viewTop) progress = 1;
+      progress = Math.max(0, Math.min(1, progress));
+      const eased = easeOutCubic(progress);
+      if (item.last === eased) return;
+      item.last = eased;
+      el.style.setProperty('--fg-progress', eased.toFixed(4));
+      // Clasele de repaus se pun doar cand elementul e complet intrat, ca
+      // hover-ul sa se aplice pe cardurile deja asezate.
+      el.classList.toggle('is-visible', progress >= 1);
+      el.classList.toggle('is-revealed', progress >= 1);
+    });
+
+    updateHeroDrift();
+  }
+
   if (!reduced) {
-    /* Pozitia de LAYOUT (fara transform) a fiecarui element, masurata fata de
-       document. offsetTop nu este afectat de transformari CSS, deci ramane
-       corect chiar daca elementul este momentan mutat in afara cadrului:
-       exact cazul cardurilor care intra din laterala, taiate de overflow-ul
-       parintelui. */
-    const layoutPosition = new WeakMap();
-
-    const measureLayout = () => {
-      const all = new Set([...revealTargets, ...aboutBlocks]);
-      all.forEach(target => {
-        let top = 0;
-        let node = target;
-        while (node) {
-          top += node.offsetTop;
-          node = node.offsetParent;
-        }
-        layoutPosition.set(target, top);
-      });
-    };
-
-    const pending = new Set(revealTargets);
-
-    /* Sectiunea „Despre noi" se deschide in functie de pozitia de scroll, nu
-       printr-o tranzitie cu intarziere. Gradul de avans al fiecarui panou se
-       calculeaza din distanta fata de linia de declansare, deci:
-         - animatia urmeaza scrollul exact (daca te-ai opri, panoul ramane
-           in punctul in care l-ai lasat);
-         - urcand inapoi, panourile se retrag;
-         - un salt direct in sectiune nu lasa panouri goale care asteapta. */
-    const aboutState = new WeakMap();
-    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
-
-    const updateAbout = () => {
-      const viewTop = window.scrollY;
-      const viewBottom = viewTop + window.innerHeight;
-      const triggerLine = viewBottom - window.innerHeight * 0.12;
-      // Distanta de scroll pe care se desfasoara intrarea unui panou.
-      const travel = Math.max(window.innerHeight * 0.32, 220);
-
-      aboutBlocks.forEach(el => {
-        const top = layoutPosition.get(el);
-        if (top === undefined) return;
-        if (aboutPinned.has(el)) return;
-        const offset = parseInt(el.style.getPropertyValue('--fg-offset')) || 0;
-        // 0 = abia la linia de declansare, 1 = complet intrat.
-        let progress = (triggerLine - top - offset) / travel;
-        // Panoul a trecut deja de marginea de sus a ecranului: e oricum trecut,
-        // deci trebuie sa fie la locul lui final.
-        if (top + el.offsetHeight <= viewTop) progress = 1;
-        progress = Math.max(0, Math.min(1, progress));
-        const eased = easeOutCubic(progress);
-
-        const state = aboutState.get(el);
-        if (state && state.progress === progress) return;
-
-        const shift = parseFloat(getComputedStyle(el).getPropertyValue('--fg-shift-x')) || 700;
-        const dir = el.classList.contains('enter-left') ? -1 : 1;
-        const offsetX = shift * dir * (1 - eased);
-        const rotate = 2.5 * dir * (1 - eased);
-        const blur = 8 * (1 - eased);
-
-        el.style.transform = `translateX(${offsetX}px) rotate(${rotate}deg)`;
-        el.style.opacity = String(eased);
-        el.style.filter = progress >= 1 ? 'none' : `blur(${blur}px)`;
-        el.style.pointerEvents = progress >= 1 ? 'auto' : 'none';
-        el.classList.toggle('is-visible', progress >= 1);
-
-        aboutState.set(el, { progress });
-      });
-    };
-
-    const revealReached = () => {
-      const viewTop = window.scrollY;
-      const viewBottom = viewTop + window.innerHeight;
-      // Elementul incepe sa se dezveleasca putin inainte sa atinga limita de
-      // jos a ecranului, ca sa fie deja incadrat in momentul in care intra.
-      const triggerLine = viewBottom - window.innerHeight * 0.12;
-      pending.forEach(target => {
-        const top = layoutPosition.get(target);
-        if (top === undefined) return;
-        // A trecut deja pe sub marginea de sus (ex. scroll restaurat de browser):
-        // il arata direct, altfel ar ramane ascuns pentru totdeauna.
-        const passed = top + target.offsetHeight <= viewTop;
-        const reached = top <= triggerLine;
-        if (!passed && !reached) return;
-        revealTarget(target);
-        pending.delete(target);
-      });
-      updateAbout();
-    };
-
     measureLayout();
-    revealReached();
+    updateScrollDriven();
+    updateHeroDrift();
 
     /* Verificarea ruleaza direct in handler, fara requestAnimationFrame:
        rAF este incetinit in filele din fundal, deci un tab deschis la rece
        ar ramane cu continutul ascuns pana la prima interactiune. */
-    addEventListener('scroll', revealReached, { passive: true });
+    addEventListener('scroll', updateScrollDriven, { passive: true });
 
     // La redimensionare se schimba layout-ul, deci masuram din nou.
     let resizeTimer = null;
@@ -323,19 +271,35 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         measureLayout();
-        revealReached();
+        updateScrollDriven();
+        updateHeroDrift();
       }, 150);
     }, { passive: true });
   } else {
-    revealTargets.forEach(revealTarget);
-    // Fara animatie, panourile sectiunii „Despre noi" trebuie sa fie vizibile.
-    aboutBlocks.forEach(el => {
-      el.style.opacity = '1';
-      el.style.transform = 'none';
-      el.style.filter = 'none';
-      el.style.pointerEvents = 'auto';
-    });
+    // Fara animatie: totul trebuie sa fie vizibil.
+    if (hero) hero.style.setProperty('--hero-drift', '0');
+    const show = el => {
+      el.style.setProperty('--fg-progress', '1');
+      el.classList.add('is-visible', 'is-revealed');
+    };
+    revealTargets.forEach(show);
+    aboutBlocks.forEach(show);
   }
+
+  /* ---- Focus cu tastatura ---- */
+  /* Elementele ascunse raman in ordinea de tabulare, deci la focus trebuie
+     dezvelite imediat — si raman dezvelite cat timp au focusul. */
+  document.addEventListener('focusin', event => {
+    let target = event.target;
+    while (target && target !== document.body) {
+      if (revealTargets.has(target) || aboutBlocks.includes(target)) {
+        pinned.add(target);
+        target.style.setProperty('--fg-progress', '1');
+        target.classList.add('is-visible', 'is-revealed');
+      }
+      target = target.parentElement;
+    }
+  });
 
   /* ------- Per-word stagger on .stagger headlines ------- */
   document.querySelectorAll('.stagger').forEach(h => {

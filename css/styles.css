@@ -495,6 +495,25 @@
   }
 }
 
+/* Hero-ul raspunde la scroll: continutul urca si se estompeaza pe masura ce
+   iesi din ecran, si revine la loc daca urci inapoi. --hero-drift este
+   scris de JS din pozitia de scroll (0 = neatins, 1 = iesit complet).
+   Se aplica pe .hm-inner, deci nu interfereaza cu animatiile de intrare ale
+   titlului, care raman keyframes. */
+@media (scripting: enabled) {
+  .hero-theme .hm-inner {
+    /* --hero-drift NU se seteaza aici: elementul care il consuma nu trebuie
+       sa il redefineasca, altfel ar suprascrie valoarea mostenita de la
+       .hero-theme. Valoarea de rezerva vine din var(--hero-drift, 0). */
+    opacity: calc(1 - var(--hero-drift, 0) * 0.85);
+    transform: translateY(calc(var(--hero-drift, 0) * -90px));
+    will-change: transform, opacity;
+  }
+  .hero-theme .hm-scroll {
+    opacity: calc(1 - var(--hero-drift, 0) * 1.6);
+  }
+}
+
 @media (max-width: 600px) {
   .hm-title-fill,
   .hm-title-fill--outline {
@@ -1121,7 +1140,7 @@
 .theme .step-card {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--line);
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.3s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .theme .step-card:hover {
@@ -2917,28 +2936,30 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .footer-bottom a:hover { color: var(--rust); }
 
 /* ============================================================================
-   SCROLL REVEAL — start only when each content block enters the viewport.
+   SCROLL REVEAL — toate intrarile sunt antrenate de scroll
+   Fiecare element primeste de la JS o variabila --fg-progress (0 = neatins,
+   1 = complet intrat), calculata din pozitia lui fata de viewport. CSS-ul
+   transforma aceasta valoare in miscare, deci animatia urmeaza scrollul in
+   ambele sensuri: cobori, elementele intra; urci, se retrag.
+
    The scripting guard keeps content visible when JavaScript is unavailable.
    ============================================================================ */
 @media (scripting: enabled) {
   [data-reveal],
   .scroll-reveal-item {
-    opacity: 0;
+    --fg-progress: 0;
+    opacity: var(--fg-progress);
     pointer-events: none;
-    transform: translateY(20px);
-    transition:
-      opacity 700ms var(--ease-out),
-      transform 700ms var(--ease-out);
+    transform: translateY(calc(20px * (1 - var(--fg-progress))));
   }
   [data-reveal].is-revealed,
   .scroll-reveal-item.is-revealed {
-    opacity: 1;
     pointer-events: auto;
     transform: none;
   }
-  [data-reveal="rise"] { transform: translateY(40px); }
-  [data-reveal="left"] { transform: translateX(-20px); }
-  [data-reveal="right"] { transform: translateX(20px); }
+  [data-reveal="rise"] { transform: translateY(calc(40px * (1 - var(--fg-progress)))); }
+  [data-reveal="left"] { transform: translateX(calc(-20px * (1 - var(--fg-progress)))); }
+  [data-reveal="right"] { transform: translateX(calc(20px * (1 - var(--fg-progress)))); }
 
   [data-reveal]:focus-within,
   .scroll-reveal-item:focus-within,
@@ -2951,15 +2972,14 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .hm-act-body:focus-within,
   .hm-post-close > p:focus-within,
   .theme .section a.hm-feature:focus {
+    --fg-progress: 1 !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
     filter: none !important;
-    transition: none !important;
   }
   .theme .section a.hm-feature:focus .hm-feature-content {
     opacity: 1 !important;
-    transition: none !important;
   }
 }
 
@@ -2978,47 +2998,52 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    ============================================================================ */
 @media (scripting: enabled) {
   .theme .section a.hm-feature {
-    /* Match the hero zipper timing for a consistent entrance. */
-    --hm-enter-dur: 1200ms;
-    --hm-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --hm-shift-x: min(52vw, 700px);
     --hm-shift-y: min(45vh, 420px);
-    opacity: 0;
+    --fg-progress: 0;
+    opacity: var(--fg-progress);
     pointer-events: none;
-    filter: blur(8px);
     will-change: transform, opacity;
   }
 
-  .hm-feature-content { opacity: 0; }
+  /* Filtreul de miscare se aplica DOAR cat timp cardul intra. Odata asezat,
+     declaratia dispare din cascada si ramane doar blur(0) — exact ca inainte.
+     Conteaza pentru randare: filtrul e cel care creeaza backdrop root-ul in
+     care mix-blend-mode: screen de pe ::after se aplica peste foto. */
+  .theme .section a.hm-feature:not(.is-visible) {
+    filter: blur(calc(8px * (1 - var(--fg-progress))));
+  }
+
+  /* Continutul cardului apare putin mai tarziu decat cardul, ca inainte. */
+  .hm-feature-content {
+    opacity: min(1, max(0, calc((var(--fg-progress) - 0.18) / 0.82)));
+  }
 }
 
-/* Stari initiale — cardurile „pleaca" din afara cadrului, cu un unghi mic.
-   FARA transition pe starea de baza: offset-ul initial se aplica instant
-   (altfel, la refresh, cele 2 clase adaugate aproape simultan de JS fac
-   un dus-intors care anuleaza vizual miscarea de puzzle). */
-.theme .section a.hm-feature.card-left   { transform: translateX(calc(var(--hm-shift-x) * -1)) rotate(-2.5deg); }
-.theme .section a.hm-feature.card-right  { transform: translateX(var(--hm-shift-x)) rotate(2.5deg); }
-.theme .section a.hm-feature.card-bottom { transform: translateY(var(--hm-shift-y)) rotate(1.5deg); }
+/* Directia de intrare: --fg-x / --fg-y spune de unde vine cardul, iar
+   --fg-rot unghiul initial. Miscarea e derivata din --fg-progress, deci
+   urmeaza scrollul in ambele sensuri. */
+.theme .section a.hm-feature.card-left   { --fg-x: calc(var(--hm-shift-x) * -1); --fg-y: 0px; --fg-rot: -2.5deg; }
+.theme .section a.hm-feature.card-right  { --fg-x: var(--hm-shift-x); --fg-y: 0px; --fg-rot: 2.5deg; }
+.theme .section a.hm-feature.card-bottom { --fg-x: 0px; --fg-y: var(--hm-shift-y); --fg-rot: 1.5deg; }
 
-/* Stare finala — JS adauga .is-visible direct pe fiecare card din rand.
-   Transition-ul e definit AICI (starea noua), deci doar miscarea
-   offset -> 0 este animata, pe toata durata de 1200ms. */
+.theme .section a.hm-feature {
+  transform:
+    translateX(calc(var(--fg-x) * (1 - var(--fg-progress))))
+    translateY(calc(var(--fg-y) * (1 - var(--fg-progress))))
+    rotate(calc(var(--fg-rot) * (1 - var(--fg-progress))));
+}
+
+/* La repaus transformarea si filtrul devin exact cele de dinainte:
+   translate(0,0) rotate(0deg) si blur(0). Nu sunt doar valori egale — filtrul
+   e cel care creeaza backdrop root-ul in care mix-blend-mode: screen de pe
+   ::after se aplica peste foto. Cu "none" sticla de jos ar tinti textul in
+   loc sa-l lase curat. */
 .theme .section a.hm-feature.is-visible {
-  opacity: 1;
   pointer-events: auto;
   transform: translate(0, 0) rotate(0deg);
   filter: blur(0);
-  transition:
-    transform var(--hm-enter-dur) var(--hm-enter-ease),
-    opacity var(--hm-enter-dur) var(--hm-enter-ease),
-    filter var(--hm-enter-dur) var(--hm-enter-ease);
 }
-
-/* Card content follows the card entrance. */
-.hm-feature-content {
-  transition: opacity 600ms ease-out 800ms;
-}
-.theme .section a.hm-feature.is-visible .hm-feature-content { opacity: 1; }
 
 /* Reduced motion: anuleaza tot, arata instant fara transform-uri */
 @media (prefers-reduced-motion: reduce) {
@@ -3194,70 +3219,60 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .process-flow > .process-flow__item,
   .process-list > .step-card {
     --fg-shift-x: min(52vw, 700px);
-    --fg-enter-dur: 1200ms;
-    --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
-    opacity: 0;
+    --fg-progress: 0;
+    opacity: var(--fg-progress);
     pointer-events: none;
-    filter: blur(8px);
     will-change: transform, opacity;
   }
 
-  /* Stări inițiale — FĂRĂ transition pe starea de bază, ca offset-ul inițial să
-     se aplice instant (altfel, la refresh, clasele adăugate aproape simultan de
-     JS fac un duș-întors care anulează vizual mișcarea). */
+  /* Filtreul de miscare se aplica doar cat timp cardul intra. */
+  .feature-grid > .feature:not(.is-visible),
+  .process-flow > .process-flow__item:not(.is-visible),
+  .process-list > .step-card:not(.is-visible) {
+    filter: blur(calc(8px * (1 - var(--fg-progress))));
+  }
+
+  /* Directia de intrare: --fg-x spune de unde vine cardul, --fg-rot unghiul
+     initial. Miscarea e derivata din --fg-progress, deci urmeaza scrollul in
+     ambele sensuri — la fel ca in sectiunea „Despre noi". */
   .feature-grid > .feature.enter-left,
   .process-flow > .process-flow__item.enter-left,
   .process-list > .step-card.enter-left {
-    transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
+    --fg-x: calc(var(--fg-shift-x) * -1);
+    --fg-y: 0px;
+    --fg-rot: -2.5deg;
   }
   .feature-grid > .feature.enter-right,
   .process-flow > .process-flow__item.enter-right,
   .process-list > .step-card.enter-right {
-    transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
+    --fg-x: var(--fg-shift-x);
+    --fg-y: 0px;
+    --fg-rot: 2.5deg;
+  }
+
+  .feature-grid > .feature,
+  .process-flow > .process-flow__item,
+  .process-list > .step-card {
+    transform:
+      translateX(calc(var(--fg-x) * (1 - var(--fg-progress))))
+      translateY(calc(var(--fg-y) * (1 - var(--fg-progress))))
+      rotate(calc(var(--fg-rot) * (1 - var(--fg-progress))));
+  }
+
+  /* La repaus, transformarea si filtrul devin exact cele de dinainte. */
+  .feature-grid > .feature.is-visible,
+  .process-flow > .process-flow__item.is-visible,
+  .process-list > .step-card.is-visible {
+    transform: translate(0, 0) rotate(0deg);
+    filter: blur(0);
   }
 }
 
-/* Stare finală — transition-ul e definit AICI (starea nouă), deci doar
-   mișcarea offset -> 0 este animată. Background-ul rămâne pe durata lui
-   scurtă, ca hover-ul să nu fie întârziat de --fg-delay. */
-.feature-grid > .feature.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(0, 0) rotate(0deg);
-  filter: blur(0);
-  transition:
-    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    background var(--t-mid);
-}
-
-/* Aceleași reguli pentru etapele de proces: aceeași intrare în zig-zag. */
-.process-flow > .process-flow__item.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(0, 0) rotate(0deg);
-  filter: blur(0);
-  transition:
-    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    background 0.2s ease;
-}
-
-/* Pașii de pe pagina acasă: aceeași intrare în zig-zag. */
-.process-list > .step-card.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(0, 0) rotate(0deg);
-  filter: blur(0);
-  transition:
-    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
+/* Stare de repaus: JS adauga .is-visible cand progresul ajunge la 1, ca
+   hover-ul sa se aplice doar pe cardurile deja intrate. */
+.feature-grid > .feature.is-visible { pointer-events: auto; }
+.process-flow > .process-flow__item.is-visible { pointer-events: auto; }
+.process-list > .step-card.is-visible { pointer-events: auto; }
 
 /* Ridicarea la hover se aplica peste starea de repaus, nu peste cea de
    intrare, ca sa nu anuleze transformarea finala a cardului. */
@@ -3290,12 +3305,19 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .hm-act-body,
   .hm-post-close > p {
     --fg-shift-x: min(52vw, 700px);
-    --fg-enter-dur: 1200ms;
-    --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
-    opacity: 0;
+    --fg-progress: 0;
+    opacity: var(--fg-progress);
     pointer-events: none;
-    filter: blur(8px);
     will-change: transform, opacity;
+  }
+
+  /* Filtreul de miscare se aplica doar cat timp panoul intra. */
+  .hm-post-title:not(.is-visible),
+  .hm-post-lede:not(.is-visible),
+  .hm-act-photo:not(.is-visible),
+  .hm-act-body:not(.is-visible),
+  .hm-post-close > p:not(.is-visible) {
+    filter: blur(calc(8px * (1 - var(--fg-progress))));
   }
 
   .hm-post-title.enter-left,
@@ -3303,50 +3325,58 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .hm-act-photo.enter-left,
   .hm-act-body.enter-left,
   .hm-post-close > p.enter-left {
-    transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
+    --fg-x: calc(var(--fg-shift-x) * -1);
+    --fg-y: 0px;
+    --fg-rot: -2.5deg;
   }
   .hm-post-title.enter-right,
   .hm-post-lede.enter-right,
   .hm-act-photo.enter-right,
   .hm-act-body.enter-right,
   .hm-post-close > p.enter-right {
-    transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
+    --fg-x: var(--fg-shift-x);
+    --fg-y: 0px;
+    --fg-rot: 2.5deg;
   }
-}
 
-.hm-post-title.is-visible,
-.hm-post-lede.is-visible,
-.hm-act-photo.is-visible,
-.hm-act-body.is-visible,
-.hm-post-close > p.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translate(0, 0) rotate(0deg);
-  filter: blur(0);
-  transition:
-    transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
-    filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms);
-}
+  .hm-post-title,
+  .hm-post-lede,
+  .hm-act-photo,
+  .hm-act-body,
+  .hm-post-close > p {
+    transform:
+      translateX(calc(var(--fg-x) * (1 - var(--fg-progress))))
+      translateY(calc(var(--fg-y) * (1 - var(--fg-progress))))
+      rotate(calc(var(--fg-rot) * (1 - var(--fg-progress))));
+  }
 
-/* Panourile antrenate de scroll nu folosesc tranzitie: transform-ul si
-   opacitatea sunt scrise direct de JS, in functie de pozitia de scroll. */
-.hm-post-title.hm-scroll-driven,
-.hm-post-lede.hm-scroll-driven,
-.hm-act-photo.hm-scroll-driven,
-.hm-act-body.hm-scroll-driven,
-.hm-post-close > p.hm-scroll-driven {
-  transition: none;
+  /* La repaus, transformarea si filtrul devin exact cele de dinainte. */
+  .hm-post-title.is-visible,
+  .hm-post-lede.is-visible,
+  .hm-act-photo.is-visible,
+  .hm-act-body.is-visible,
+  .hm-post-close > p.is-visible {
+    pointer-events: auto;
+    transform: translate(0, 0) rotate(0deg);
+    filter: blur(0);
+  }
 }
 
 /* Reduced motion: arată tot instant, fără transform-uri */
 @media (prefers-reduced-motion: reduce) {
   .feature-grid > .feature,
-  .process-flow > .process-flow__item {
+  .process-flow > .process-flow__item,
+  .process-list > .step-card,
+  .hm-post-title,
+  .hm-post-lede,
+  .hm-act-photo,
+  .hm-act-body,
+  .hm-post-close > p {
     transition: none !important;
     transform: none !important;
     filter: none !important;
     opacity: 1 !important;
+    pointer-events: auto !important;
   }
 }
 
