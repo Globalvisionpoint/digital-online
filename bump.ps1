@@ -10,6 +10,9 @@ foreach ($f in $files) {
     if ($c -match 'theme\.js\?v=[\w\-]+') {
         $c = $c -replace 'theme\.js\?v=[\w\-]+', "theme.js?v=$v"
     }
+    if ($c -match 'script\.js\?v=[\w\-]+') {
+        $c = $c -replace 'script\.js\?v=[\w\-]+', "script.js?v=$v"
+    }
     if ($c.Length -gt 1000) {
         Set-Content $f.FullName -NoNewline -Value $c
         Write-Host "[OK] $($f.Name) ($origLen -> $($c.Length))"

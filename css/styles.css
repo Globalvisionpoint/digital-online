@@ -2995,6 +2995,16 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     --fg-shift-x: min(38vw, 520px);
   }
 
+  /* Coloanele subsolului sunt inguste, deci se deplaseaza mai putin, ca
+     fermoarul sa se citeasca fara sa iasa din cadru. */
+  .footer-brand.fg-from-left,
+  .footer-cols > div.fg-from-left,
+  .footer-cols > div.fg-from-right,
+  .footer-bot > small.fg-from-left,
+  .footer-bot > nav.fg-from-right {
+    --fg-shift-x: min(20vw, 280px);
+  }
+
   .fg-animated:focus-within,
   .theme .section a.hm-feature:focus {
     --fg-progress: 1 !important;
