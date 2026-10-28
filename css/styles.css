@@ -2567,7 +2567,10 @@ q::after  { content: close-quote; font-family: 'Instrument Serif', serif; font-s
   scroll-margin-top: 110px;
 }
 
-/* Panou: stanga foto, dreapta formular, despartite printr-o hairline. */
+/* Panou: stanga foto, dreapta formular, despartite printr-o hairline.
+   Cele doua jumatati intra din laterale si se strang intre ele, ca un
+   fermoar. Formularul are fundal propriu, ca zona lui sa nu para goala in
+   timpul miscarii. */
 .contact-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -2682,6 +2685,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   flex-direction: column;
   gap: 16px;
   padding: 30px;
+  /* Fundal propriu: jumatatea se deplaseaza in timpul intrarii, iar zona
+     ei nu trebuie sa para goala. */
+  background: var(--bg, var(--paper));
 }
 .contact-form-row {
   display: grid;
@@ -2978,6 +2984,15 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     --fg-x: var(--fg-shift-x, min(52vw, 700px));
     --fg-y: 0px;
     --fg-rot: 2.5deg;
+  }
+
+  /* Jumatatile panoului de contact alatura partea cu foto si formularul, deci
+     se deplaseaza doar cat latimea lor, nu toata latimea ecranului. */
+  .cp-media.fg-from-left {
+    --fg-shift-x: min(38vw, 520px);
+  }
+  .contact-form.fg-from-right {
+    --fg-shift-x: min(38vw, 520px);
   }
 
   .fg-animated:focus-within,
