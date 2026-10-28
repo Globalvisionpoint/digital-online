@@ -16,11 +16,11 @@
   --bg: #0a0a0a;
   --bg-2: #111114;
   --bg-3: #16161a;
-  /* Fundalul paginii este semi-transparent, ca secventa de imagi de dedesubt
+  /* Fundalul paginii este semi-transparent, ca secventa de nori de dedesubt
      sa se vada prin sectiuni. Panourile si cardurile raman opace, ca sa se
      citeasca ca suprafete solide peste fundal. */
-  --bg-page: rgba(10, 10, 10, 0.88);
-  --bg-2-page: rgba(17, 17, 20, 0.88);
+  --bg-page: rgba(10, 10, 10, 0.78);
+  --bg-2-page: rgba(17, 17, 20, 0.78);
   --text: #ffffff;
   --text-2: #ffffff;
   --text-3: #ffffff;
@@ -249,7 +249,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: rgba(5, 5, 5, 0.72);
+  background: rgba(5, 5, 5, 0.62);
   isolation: isolate;
 }
 
@@ -273,9 +273,9 @@
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
-  /* Fundalul este intunecat, ca grila sa se citeasca ca textura, nu ca
-     decoratie care atrage atentia peste continut. */
-  filter: saturate(0.85) contrast(1.05) brightness(0.55);
+  /* Norii sunt deja ajustati la luminozitatea potrivita, deci nu mai
+     intunecam canvasul: aici fundalul trebuie sa se vadă. */
+  filter: saturate(0.9) contrast(1.02);
 }
 
 /* Pe ecrane mici se foloseste setul de cadre la jumatate din latime. */
@@ -359,7 +359,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/animation.webp?v=131bb-1793236432');
+  background-image: url('../img/animation.webp?v=131bb-1793237396');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -444,7 +444,7 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/animation.webp?v=131bb-1793236432');
+  background-image: url('../img/animation.webp?v=131bb-1793237396');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1206,7 +1206,7 @@
 
 /* ---------- FOOTER (theme theme) ---------- */
 .theme .footer {
-  background: rgba(0, 0, 0, 0.90);
+  background: rgba(0, 0, 0, 0.80);
   padding: 40px 0 24px;
   color: var(--text);
 }
