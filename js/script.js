@@ -122,19 +122,34 @@
     });
   });
 
-  /* Sectiunea „DESPRE NOI" este o coloana editoriala, nu o grila, deci directia
-     vine din compozitia blocului: actul cu fotografia in stanga intra din
-     stanga, cel cu fotografia in dreapta intra din dreapta. Blocurile
-     centrate deschid si inchid fluxul in aceeasi ordine. */
-  [
-    { selector: '.hm-post-open', side: 'left' },
-    { selector: '.hm-act--left', side: 'left' },
-    { selector: '.hm-act--right', side: 'right' },
-    { selector: '.hm-post-close', side: 'right' }
-  ].forEach(({ selector, side }) => {
-    document.querySelectorAll(selector).forEach(el => {
-      el.classList.add(side === 'left' ? 'enter-left' : 'enter-right');
-    });
+  /* Sectiunea „DESPRE NOI" are opt panouri distincte: titlul, lede-ul, apoi
+     pentru fiecare act foto + panoul de sticla, si la final cele doua
+     panouri de inchidere. Fiecare se deschide separat, in alternanta stricta
+     stanga/dreapta, ca un fermoar pe toata lungimea sectiunii.
+
+     Ordinea de mai jos este cea VIZUALA (stanga-dreapta pe fiecare rand), nu
+     cea din DOM: in primul act panoul de sticla este peste marginea din
+     dreapta a foto, in al doilea peste marginea din stanga. Asa directia
+     alterneaza corect pe rand, iar blocurile se deschid pe rand.
+
+     Panourile sunt apropiate unele de altele, deci adesea trec linia de
+     declansare in acelasi scroll. Intarzierea cumulativa le deschide pe rand,
+     ca la celelalte sectiuni cu efect de fermoar. */
+  const aboutBlocks = [
+    document.querySelector('.hm-post-title'),
+    document.querySelector('.hm-post-lede'),
+    ...[...document.querySelectorAll('.hm-act')].flatMap(act => {
+      const photo = act.querySelector('.hm-act-photo');
+      const body = act.querySelector('.hm-act-body');
+      // Panoul de sticla se suprapune peste marginea interioara a foto.
+      return act.classList.contains('hm-act--right') ? [body, photo] : [photo, body];
+    }),
+    ...document.querySelectorAll('.hm-post-close > p')
+  ].filter(Boolean);
+
+  aboutBlocks.forEach((el, i) => {
+    el.classList.add(i % 2 === 0 ? 'enter-left' : 'enter-right');
+    el.style.setProperty('--fg-delay', `${i * 130}ms`);
   });
 
   const revealTargets = new Set(document.querySelectorAll([
@@ -145,16 +160,18 @@
     '.hm-services-featured > .hm-feature',
     '.process-flow > .process-flow__item',
     '.process-list > .step-card',
-    '.hm-post-open',
-    '.hm-act',
-    '.hm-post-close',
+    '.hm-post-title',
+    '.hm-post-lede',
+    '.hm-act-photo',
+    '.hm-act-body',
+    '.hm-post-close > p',
     '.contact-panel'
   ].join(',')));
 
   revealTargets.forEach(target => {
     // Cardurile cu intrare laterala au propria lor regula in CSS, deci nu
     // primesc starea generica de ascuns.
-    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-open, .hm-act, .hm-post-close')) return;
+    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-title, .hm-post-lede, .hm-act-photo, .hm-act-body, .hm-post-close > p')) return;
     if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
   });
 
@@ -173,12 +190,12 @@
       target.classList.add('is-visible');
       const content = target.querySelector('.hm-feature-content');
       if (content) content.style.transitionDelay = immediate ? '0ms' : `${800 + delay}ms`;
-    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-open, .hm-act, .hm-post-close')) {
+    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-title, .hm-post-lede, .hm-act-photo, .hm-act-body, .hm-post-close > p')) {
       target.classList.add('is-visible');
       // Panoul de sticla din sectiunea „Despre noi" preia fundalul prin
       // backdrop-filter. Un filter pe un parinte creeaza un alt backdrop root,
       // deci il eliminam la final ca sticla sa ramana ca inainte.
-      if (target.matches('.hm-post-open, .hm-act, .hm-post-close')) {
+      if (target.matches('.hm-post-title, .hm-post-lede, .hm-act-photo, .hm-act-body, .hm-post-close > p')) {
         const delay = parseInt(target.style.getPropertyValue('--fg-delay')) || 0;
         setTimeout(() => { target.style.filter = 'none'; }, 1200 + delay + 80);
       }
