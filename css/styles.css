@@ -1241,7 +1241,7 @@
   color: var(--text-2);
   font-size: 14px;
   line-height: 1.5;
-  max-width: 36ch;
+  max-width: min(36ch, 100%);
   margin: 16px 0 0;
 }
 
