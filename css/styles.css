@@ -3266,14 +3266,22 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 }
 
 /* ============================================================================
-   DESPRE NOI — intrare in zig-zag pe cele opt panouri ale sectiunii
+   DESPRE NOI — intrare in zig-zag, antrenata direct de scroll
    Titlul, lede-ul, apoi pentru fiecare act foto + panoul de sticla, si la
    final cele doua panouri de inchidere. Fiecare se deschide separat, in
    alternanta stricta stanga/dreapta — un fermoar pe toata lungimea sectiunii.
 
-   Panourile de sticla folosesc backdrop-filter, de aceea filtrul de intrare
-   este eliminat la final (JS) ca fundalul sa ramana netarat ca inainte —
-   altfel blur(0) ar schimba zona de fundal din care se preia sticla.
+   Aici miscarea NU este o tranzitie cu intarziere, ci este calculata in JS
+   din pozitia de scroll: panoul isi are propriul grad de avans, proportional
+   cu distanta fata de linia de declansare. Astfel:
+     - animatia este strict sincronizata cu scrollul (daca te-ai opri, panoul
+       ramane in punctul in care l-ai lasat, nu mai fura inainte);
+     - daca urci inapoi, panourile se retrag;
+     - saltul direct la sectiune nu lasa panouri goale in asteptare.
+
+   Panourile de sticla folosesc backdrop-filter, de aceea filtrul este
+   eliminat la final ca fundalul sa ramana netarat ca inainte — altfel
+   blur(0) ar schimba zona de fundal din care se preia sticla.
    ============================================================================ */
 @media (scripting: enabled) {
   .hm-post-title,
@@ -3319,6 +3327,16 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     transform var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
     opacity var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms),
     filter var(--fg-enter-dur) var(--fg-enter-ease) var(--fg-delay, 0ms);
+}
+
+/* Panourile antrenate de scroll nu folosesc tranzitie: transform-ul si
+   opacitatea sunt scrise direct de JS, in functie de pozitia de scroll. */
+.hm-post-title.hm-scroll-driven,
+.hm-post-lede.hm-scroll-driven,
+.hm-act-photo.hm-scroll-driven,
+.hm-act-body.hm-scroll-driven,
+.hm-post-close > p.hm-scroll-driven {
+  transition: none;
 }
 
 /* Reduced motion: arată tot instant, fără transform-uri */
