@@ -360,7 +360,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/animation.webp');
+  background-image: url('../img/animation.webp?v=131bb-1793235294');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -445,7 +445,7 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/animation.webp');
+  background-image: url('../img/animation.webp?v=131bb-1793235294');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -3845,7 +3845,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('../img/animation.webp');
+  background-image: url('../img/animation.webp?v=131bb-1793235294');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
