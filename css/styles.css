@@ -249,18 +249,34 @@
 }
 
 /* The hero backdrop lives on a single element: the same animated texture is
-   already painted by the title fill, so a second <img> of it was pure waste. */
+   already painted by the title fill, so a second <img> of it was pure waste.
+   Fundalul este acum o secventa de imagi derulata de scroll (js/sequence.js).
+   Panoul canvas are un cadru static ca rezerva, ca sa apara ceva si fara JS
+   sau inainte de primul cadru descarcat. */
 .hm-bg {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image: url('../img/animation.webp');
+  background-image: url('../img/seq/f000.webp');
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
   filter: saturate(0.85) contrast(1.05) brightness(0.78);
   transform: scale(1.05);
   animation: hmBgDrift 24s ease-in-out infinite alternate;
+}
+
+/* Canvasul deseneaza peste rezerva statica. */
+.hm-seq {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+/* Pe ecrane mici se foloseste setul de cadre la jumatate din latime. */
+@media (max-width: 859px) {
+  .hm-bg { background-image: url('../img/seq/m/f000.webp'); }
 }
 
 @keyframes hmBgDrift {
