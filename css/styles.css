@@ -359,7 +359,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/animation.webp?v=131bb-1793237396');
+  background-image: url('../img/title-sky.webp?v=131bb-1793238467');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -372,7 +372,10 @@
   -webkit-text-stroke: clamp(0.55px, 0.07vw, 1.1px) rgba(255, 255, 255, 0.85);
   paint-order: stroke fill;
 
-  filter: brightness(2.1) saturate(1.45) drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
+  /* Filtrele vechi (brightness 2.1, saturate 1.45) erau calibrate pentru
+     textura zgomotoasa dinainte si ar face norii sa arda in alb. Cu norii,
+     un boost usor pastreaza forma literelor si lasa cerul sa se citeasca. */
+  filter: brightness(1.5) saturate(1.15) drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
   opacity: 0;
   transform: translateX(0);
   animation: hmTitleInLeft 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
@@ -444,7 +447,7 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/animation.webp?v=131bb-1793237396');
+  background-image: url('../img/title-sky.webp?v=131bb-1793238467');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
