@@ -2008,9 +2008,11 @@
   .feature-grid > .feature,
   .process-flow > .process-flow__item,
   .process-list > .step-card,
-  .hm-post-open,
-  .hm-act,
-  .hm-post-close {
+  .hm-post-title,
+  .hm-post-lede,
+  .hm-act-photo,
+  .hm-act-body,
+  .hm-post-close > p {
     opacity: 1 !important;
     pointer-events: auto !important;
     transform: none !important;
@@ -2943,9 +2945,11 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .feature-grid > .feature:focus-within,
   .process-flow > .process-flow__item:focus-within,
   .process-list > .step-card:focus-within,
-  .hm-post-open:focus-within,
-  .hm-act:focus-within,
-  .hm-post-close:focus-within,
+  .hm-post-title:focus-within,
+  .hm-post-lede:focus-within,
+  .hm-act-photo:focus-within,
+  .hm-act-body:focus-within,
+  .hm-post-close > p:focus-within,
   .theme .section a.hm-feature:focus {
     opacity: 1 !important;
     pointer-events: auto !important;
@@ -3262,19 +3266,21 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 }
 
 /* ============================================================================
-   DESPRE NOI — intrare in zig-zag pe blocurile sectiunii
-   Sectiunea este o coloana editoriala, nu o grila, deci directia vine din
-   compozitia fiecarui bloc: actul cu fotografia in stanga intra din stanga,
-   cel cu fotografia in dreapta intra din dreapta. Blocurile centrate
-   (deschiderea si inchiderea) deschid si inchid fluxul in aceeasi ordine.
-   Panoul de sticla din acte foloseste backdrop-filter, de aceea filtrul de
-   intrare este eliminat la final (JS) ca fundalul sa ramana netarat ca in
-  ainte — altfel blur(0) ar schimba zona de fundal din care se preia sticla.
+   DESPRE NOI — intrare in zig-zag pe cele opt panouri ale sectiunii
+   Titlul, lede-ul, apoi pentru fiecare act foto + panoul de sticla, si la
+   final cele doua panouri de inchidere. Fiecare se deschide separat, in
+   alternanta stricta stanga/dreapta — un fermoar pe toata lungimea sectiunii.
+
+   Panourile de sticla folosesc backdrop-filter, de aceea filtrul de intrare
+   este eliminat la final (JS) ca fundalul sa ramana netarat ca inainte —
+   altfel blur(0) ar schimba zona de fundal din care se preia sticla.
    ============================================================================ */
 @media (scripting: enabled) {
-  .hm-post-open,
-  .hm-act,
-  .hm-post-close {
+  .hm-post-title,
+  .hm-post-lede,
+  .hm-act-photo,
+  .hm-act-body,
+  .hm-post-close > p {
     --fg-shift-x: min(52vw, 700px);
     --fg-enter-dur: 1200ms;
     --fg-enter-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -3284,21 +3290,27 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     will-change: transform, opacity;
   }
 
-  .hm-post-open.enter-left,
-  .hm-act.enter-left,
-  .hm-post-close.enter-left {
+  .hm-post-title.enter-left,
+  .hm-post-lede.enter-left,
+  .hm-act-photo.enter-left,
+  .hm-act-body.enter-left,
+  .hm-post-close > p.enter-left {
     transform: translateX(calc(var(--fg-shift-x) * -1)) rotate(-2.5deg);
   }
-  .hm-post-open.enter-right,
-  .hm-act.enter-right,
-  .hm-post-close.enter-right {
+  .hm-post-title.enter-right,
+  .hm-post-lede.enter-right,
+  .hm-act-photo.enter-right,
+  .hm-act-body.enter-right,
+  .hm-post-close > p.enter-right {
     transform: translateX(var(--fg-shift-x)) rotate(2.5deg);
   }
 }
 
-.hm-post-open.is-visible,
-.hm-act.is-visible,
-.hm-post-close.is-visible {
+.hm-post-title.is-visible,
+.hm-post-lede.is-visible,
+.hm-act-photo.is-visible,
+.hm-act-body.is-visible,
+.hm-post-close > p.is-visible {
   opacity: 1;
   pointer-events: auto;
   transform: translate(0, 0) rotate(0deg);
