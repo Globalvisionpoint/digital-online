@@ -80,34 +80,30 @@
     if (pick !== drawn && draw(frames[pick])) drawn = pick;
   }
 
-  /* Progresul secventei: 0 cat timp hero-ul nu a fost derulat, 1 cand hero-ul
-     a iesit complet din ecran. Asa se misca fundalul in ritm cu restul
-     continutului, care urca si se estompeaza odata cu el.
+  /* Progresul secventei pe document: 0 la inceputul paginii, 1 la final.
+     Fundalul evolueaza pe toata lungimea paginii, pana la footer, si se
+     repeta in bucla: secventa este un loop perfect, deci cadrul 39 se
+     continua lin cu cadrul 0.
 
-     Pozitiile se masoara prin offsetTop/offsetHeight, nu prin
-     getBoundingClientRect: fundalul are o animatie de drift care ii muta
-     permanent cadrul, iar rect-ul transformat ar face ca progresul sa
-     oscileze in loc sa depinda doar de scroll. */
-  function docTop(el) {
-    let top = 0;
-    while (el) {
-      top += el.offsetTop;
-      el = el.offsetParent;
-    }
-    return top;
+     Ritmul este constant per pixel derulat, ca fundalul sa se miste in ritm
+     constant, indiferent cat de lunga e pagina. */
+  function totalScroll() {
+    const doc = document.documentElement;
+    return Math.max(1, (doc.scrollHeight || doc.offsetHeight) - window.innerHeight);
   }
 
-  function progress() {
-    const hero = canvas.closest('.hero-theme') || canvas;
-    const travel = hero.offsetHeight || window.innerHeight;
-    const p = (window.scrollY - docTop(hero)) / travel;
-    return Math.max(0, Math.min(1, p));
+  /* Numarul de bucle se potriveste cu lungimea paginii: o pagina scurta
+     are o singura bucla, una lunga are mai multe, dar fiecare bucla are
+     aproximativ aceeasi lungime in pixeli. */
+  function loops() {
+    const travel = totalScroll();
+    return Math.max(1, Math.min(6, Math.round(travel / 1800)));
   }
 
   function frameAt() {
-    const p = progress();
-    const idx = Math.round(p * (FRAMES - 1));
-    return Math.max(0, Math.min(FRAMES - 1, idx));
+    const p = window.scrollY / totalScroll();
+    const idx = Math.floor(p * FRAMES * loops());
+    return ((idx % FRAMES) + FRAMES) % FRAMES;
   }
 
   let ticking = false;

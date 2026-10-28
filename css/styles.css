@@ -16,6 +16,11 @@
   --bg: #0a0a0a;
   --bg-2: #111114;
   --bg-3: #16161a;
+  /* Fundalul paginii este semi-transparent, ca secventa de imagi de dedesubt
+     sa se vada prin sectiuni. Panourile si cardurile raman opace, ca sa se
+     citeasca ca suprafete solide peste fundal. */
+  --bg-page: rgba(10, 10, 10, 0.88);
+  --bg-2-page: rgba(17, 17, 20, 0.88);
   --text: #ffffff;
   --text-2: #ffffff;
   --text-3: #ffffff;
@@ -244,44 +249,38 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #050505;
+  background: rgba(5, 5, 5, 0.72);
   isolation: isolate;
 }
 
-/* The hero backdrop lives on a single element: the same animated texture is
-   already painted by the title fill, so a second <img> of it was pure waste.
-   Fundalul este acum o secventa de imagi derulata de scroll (js/sequence.js).
-   Panoul canvas are un cadru static ca rezerva, ca sa apara ceva si fara JS
-   sau inainte de primul cadru descarcat. */
-.hm-bg {
-  position: absolute;
+/* SECVENTA DE IMAGI — fundalul intregii pagini.
+   Canvasul este fix, cat un ecran, si are z-index negativ, deci se deseneaza
+   inaintea oricarui continut: fundal de fapt, nu decoratie peste continut.
+   Cadrele se schimba in functie de pozitia de scroll pe document, deci
+   fundalul evolueaza continuu de la sus pana la footer si se repeta in bucla.
+
+   Primul cadru este si rezerva in CSS, ca sa apara ceva si fara JS sau inainte
+   de primul cadru descarcat. */
+.hm-seq {
+  position: fixed;
   inset: 0;
   z-index: -1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
   background-image: url('../img/seq/f000.webp');
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
-  filter: saturate(0.85) contrast(1.05) brightness(0.78);
-  transform: scale(1.05);
-  animation: hmBgDrift 24s ease-in-out infinite alternate;
-}
-
-/* Canvasul deseneaza peste rezerva statica. */
-.hm-seq {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: transparent;
+  /* Fundalul este intunecat, ca grila sa se citeasca ca textura, nu ca
+     decoratie care atrage atentia peste continut. */
+  filter: saturate(0.85) contrast(1.05) brightness(0.55);
 }
 
 /* Pe ecrane mici se foloseste setul de cadre la jumatate din latime. */
 @media (max-width: 859px) {
-  .hm-bg { background-image: url('../img/seq/m/f000.webp'); }
-}
-
-@keyframes hmBgDrift {
-  from { transform: scale(1.05) translate3d(0, 0, 0); }
-  to   { transform: scale(1.10) translate3d(-1.5%, -1%, 0); }
+  .hm-seq { background-image: url('../img/seq/m/f000.webp'); }
 }
 
 .hm-topo {
@@ -360,7 +359,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/animation.webp?v=131bb-1793235294');
+  background-image: url('../img/animation.webp?v=131bb-1793236432');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -445,7 +444,7 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/animation.webp?v=131bb-1793235294');
+  background-image: url('../img/animation.webp?v=131bb-1793236432');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -500,7 +499,6 @@
 
 /* Hero entrances wait until the hero itself enters the viewport. */
 @media (scripting: enabled) {
-  .hero-theme:not(.is-in-view) .hm-bg,
   .hero-theme:not(.is-in-view) .hm-eyebrow,
   .hero-theme:not(.is-in-view) .hm-title-fill,
   .hero-theme:not(.is-in-view) .hm-line,
@@ -684,7 +682,7 @@
 /* ---------- SUB-INTRO ---------- */
 .hm-intro {
   padding: 50px 0 50px;
-  background: var(--bg);
+  background: var(--bg-page);
   border-bottom: 1px solid var(--line-2);
 }
 
@@ -753,7 +751,7 @@
 /* ---------- SERVICES — Featured grid ---------- */
 .hm-services {
   padding: 56px 0;
-  background: var(--bg);
+  background: var(--bg-page);
   position: relative;
 }
 
@@ -1087,7 +1085,7 @@
 
 /* ---------- Generic section overrides ---------- */
 .theme .section {
-  background: var(--bg);
+  background: var(--bg-page);
   padding: 64px 0;
 }
 .theme .section.section-gray { padding: 64px 0; }
@@ -1208,7 +1206,7 @@
 
 /* ---------- FOOTER (theme theme) ---------- */
 .theme .footer {
-  background: #000000;
+  background: rgba(0, 0, 0, 0.90);
   padding: 40px 0 24px;
   color: var(--text);
 }
@@ -2060,7 +2058,6 @@
     transform: none !important;
     transition: none !important;
   }
-  .hm-bg,
   .hm-title-fill,
   .hm-title-fill--stacked,
   .hm-line,
@@ -2134,7 +2131,7 @@
 
 /* Section gray bg (alt section) */
 .theme .section.section-gray {
-  background: var(--bg-2);
+  background: var(--bg-2-page);
 }
 
 /* ---------- Feature grid (consultanta etc.) ---------- */
@@ -2176,7 +2173,7 @@
 
 /* ---------- Form (contact) ---------- */
 .theme .section-contact {
-  background: var(--bg);
+  background: var(--bg-page);
   color: var(--text);
 }
 .theme .contact-info {
@@ -3832,7 +3829,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .hm-about {
   position: relative;
   padding: 48px 0;
-  background: var(--bg);
+  background: var(--bg-page);
   color: var(--text);
   overflow: hidden;
   isolation: isolate;
@@ -3840,20 +3837,6 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 }
 
 .theme .section.hm-about { padding: 48px 0; }
-
-.hm-about-gif {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: url('../img/animation.webp?v=131bb-1793235294');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  /* animația din fundal se vede clar, dar rămâne suficient de discretă
-     încât textul alb de deasupra să fie perfect lizibil */
-  opacity: 0.18;
-  pointer-events: none;
-}
 
 .hm-about-inner {
   position: relative;
