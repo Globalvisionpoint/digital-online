@@ -1,0 +1,6 @@
+bump.ps1
+.git/
+.gitignore
+.vercelignore
+.venv/
+README.md

@@ -40,7 +40,11 @@
     <meta name="twitter:image" content="https://digital-online.ro/img/og-cover.png">
     <meta name="twitter:image:alt" content="Consultanță Business Online | Digital Online">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="css/styles.css?v=131bb-1793211589">
+    <link rel="preload" href="fonts/Aspera.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="img/animation.webp" as="image">
+    <link rel="stylesheet" href="css/styles.css?v=131bb-1793216531">
     <!-- Three.js + GSAP -->
         <link rel="icon" type="image/x-icon" href="img/favicon.ico">
     <link rel="icon" type="image/svg+xml" href="img/logo-light.svg">
@@ -56,7 +60,7 @@
     ],
     "@id": "https://digital-online.ro/#organization",
     "name": "Digital Online",
-    "alternateName": "Digital Online SRL",
+    "alternateName": "Global Vision Point Limited",
     "url": "https://digital-online.ro",
     "logo": "https://digital-online.ro/img/logo-light.svg",
     "image": "https://digital-online.ro/img/og-cover.png",
@@ -249,11 +253,7 @@
     </nav>
           <!-- ============================ HERO (theme style) ============================ -->
       <section class="hero-theme" id="acasa">
-        <div class="hm-bg" aria-hidden="true">
-          <picture>
-            <img src="img/animation.webp" alt="" class="hm-bg-img" loading="eager" decoding="async">
-          </picture>
-        </div>
+        <div class="hm-bg" aria-hidden="true"></div>
 
         <div class="container hm-inner">
 
@@ -282,7 +282,7 @@
             <p>Analiză, strategie și planuri practice pentru business-uri care vor să crească sustenabil.</p>
           </div>
           <figure class="showcase-figure">
-            <img src="img/hero-consultanta.jpg" alt="Echipă în ședință de consultanță strategică" loading="lazy" />
+            <img src="img/hero-consultanta.webp" width="1440" height="1080" alt="Echipă în ședință de consultanță strategică" loading="lazy" />
           </figure>
         </div>
       </section>
@@ -339,7 +339,6 @@
               <ul>
                 <li><a href="index.html#companie">Despre noi</a></li>
                 <li><a href="index.html#proces">Procesul nostru</a></li>
-                <li><a href="index.html#dashboards">Analytics</a></li>
                 <li><a href="index.html#companie">Încredere &amp; Transparență</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
               </ul>
@@ -374,8 +373,8 @@
       </div>
     </footer>
 
-    <script src="js/script.js?v=131bb-1793211589" defer></script>
-    <script src="js/theme.js?v=131bb-1793211589" defer></script>
+    <script src="js/script.js?v=131bb-1793216531" defer></script>
+    <script src="js/theme.js?v=131bb-1793216531" defer></script>
 
     </body>
 </html>

@@ -1,0 +1,6 @@
+.venv/
+.vercel/
+.DS_Store
+Thumbs.db
+*.log
+bump.ps1

@@ -15,7 +15,11 @@
     <meta property="og:locale" content="ro_RO">
     <meta property="og:site_name" content="Digital Online">
 
-    <link rel="stylesheet" href="css/styles.css?v=131bb-1793211589">
+    <link rel="preload" href="fonts/Aspera.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="img/animation.webp" as="image">
+    <link rel="stylesheet" href="css/styles.css?v=131bb-1793216531">
 
     <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
@@ -117,12 +121,8 @@
 
       <!-- ============================ HERO (theme style) ============================ -->
       <section class="hero-theme" id="acasa">
-        <!-- Background image + topo lines -->
-        <div class="hm-bg" aria-hidden="true">
-          <picture>
-            <img src="img/animation.webp" alt="" class="hm-bg-img" loading="eager" decoding="async">
-          </picture>
-        </div>
+        <!-- Animated hero backdrop (painted by CSS) -->
+        <div class="hm-bg" aria-hidden="true"></div>
 
         <div class="container hm-inner">
           <!-- Main image-filled title -->
@@ -294,7 +294,7 @@
             <!-- Act 1 -->
             <section class="hm-act hm-act--left">
               <figure class="hm-act-photo">
-                <img src="img/team-office.jpg" alt="Echipa Digital Online la birou" loading="lazy" />
+                <img src="img/team-office.webp" width="1200" height="800" alt="Echipa Digital Online la birou" loading="lazy" />
                 <span class="hm-act-year">2019</span>
               </figure>
               <div class="hm-act-body">
@@ -310,7 +310,7 @@
             <!-- Act 2 -->
             <section class="hm-act hm-act--right">
               <figure class="hm-act-photo">
-                <img src="img/team-work.jpg" alt="Echipa Digital Online lucrând" loading="lazy" />
+                <img src="img/team-work.webp" width="900" height="600" alt="Echipa Digital Online lucrând" loading="lazy" />
                 <span class="hm-act-year">2024</span>
               </figure>
               <div class="hm-act-body">
@@ -419,7 +419,6 @@
               <ul>
                 <li><a href="#companie">Despre noi</a></li>
                 <li><a href="#proces">Procesul nostru</a></li>
-                <li><a href="#dashboards">Analytics</a></li>
                 <li><a href="#companie">Încredere &amp; Transparență</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
@@ -454,7 +453,7 @@
       </div>
     </footer>
 
-    <script src="js/script.js?v=131bb-1793211589" defer></script>
-    <script src="js/theme.js?v=131bb-1793211589" defer></script>
+    <script src="js/script.js?v=131bb-1793216531" defer></script>
+    <script src="js/theme.js?v=131bb-1793216531" defer></script>
 </body>
 </html>
