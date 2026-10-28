@@ -133,8 +133,8 @@
      alterneaza corect pe rand, iar blocurile se deschid pe rand.
 
      Panourile sunt apropiate unele de altele, deci adesea trec linia de
-     declansare in acelasi scroll. Intarzierea cumulativa le deschide pe rand,
-     ca la celelalte sectiuni cu efect de fermoar. */
+     declansare in acelasi scroll. De aceea fiecare are un prag propriu
+     (--fg-offset), intarit in scroll, ca sa se deschida pe rand. */
   const aboutBlocks = [
     document.querySelector('.hm-post-title'),
     document.querySelector('.hm-post-lede'),
@@ -149,7 +149,12 @@
 
   aboutBlocks.forEach((el, i) => {
     el.classList.add(i % 2 === 0 ? 'enter-left' : 'enter-right');
-    el.style.setProperty('--fg-delay', `${i * 130}ms`);
+    el.classList.add('hm-scroll-driven');
+    // Prag de intarziere, in pixeli de scroll: fiecare panou incepe putin mai
+    // tarziu decat precedentul, ca un fermoar. Valoarea e mica intentionat —
+    // panourile sunt deja separate de spatiul dintre ele, iar o intarziere
+    // prea mare ar impiedica ultimele panouri sa ajunga la locul lor.
+    el.style.setProperty('--fg-offset', `${i * 26}px`);
   });
 
   const revealTargets = new Set(document.querySelectorAll([
@@ -160,18 +165,13 @@
     '.hm-services-featured > .hm-feature',
     '.process-flow > .process-flow__item',
     '.process-list > .step-card',
-    '.hm-post-title',
-    '.hm-post-lede',
-    '.hm-act-photo',
-    '.hm-act-body',
-    '.hm-post-close > p',
     '.contact-panel'
   ].join(',')));
 
   revealTargets.forEach(target => {
     // Cardurile cu intrare laterala au propria lor regula in CSS, deci nu
     // primesc starea generica de ascuns.
-    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-title, .hm-post-lede, .hm-act-photo, .hm-act-body, .hm-post-close > p')) return;
+    if (target.matches('.hm-feature, .feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) return;
     if (!target.matches('[data-reveal]')) target.classList.add('scroll-reveal-item');
   });
 
@@ -190,15 +190,8 @@
       target.classList.add('is-visible');
       const content = target.querySelector('.hm-feature-content');
       if (content) content.style.transitionDelay = immediate ? '0ms' : `${800 + delay}ms`;
-    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card, .hm-post-title, .hm-post-lede, .hm-act-photo, .hm-act-body, .hm-post-close > p')) {
+    } else if (target.matches('.feature-grid > .feature, .process-flow > .process-flow__item, .process-list > .step-card')) {
       target.classList.add('is-visible');
-      // Panoul de sticla din sectiunea „Despre noi" preia fundalul prin
-      // backdrop-filter. Un filter pe un parinte creeaza un alt backdrop root,
-      // deci il eliminam la final ca sticla sa ramana ca inainte.
-      if (target.matches('.hm-post-title, .hm-post-lede, .hm-act-photo, .hm-act-body, .hm-post-close > p')) {
-        const delay = parseInt(target.style.getPropertyValue('--fg-delay')) || 0;
-        setTimeout(() => { target.style.filter = 'none'; }, 1200 + delay + 80);
-      }
     } else {
       target.classList.add('is-revealed');
     }
@@ -206,10 +199,20 @@
 
   // Linkurile ascunse pana la scroll raman in ordinea de tabulare, deci la
   // focus trebuie dezvelite imediat, fara intarzierea de pereche.
+  const aboutPinned = new Set();
   document.addEventListener('focusin', event => {
     let target = event.target;
     while (target && target !== document.body) {
       if (revealTargets.has(target)) revealTarget(target, true);
+      if (aboutBlocks.includes(target)) {
+        // Panoul ramane dezvelit: la urmatorul scroll nu trebuie sa
+        // reaparitia lui sa-l ascunda din nou.
+        aboutPinned.add(target);
+        target.style.opacity = '1';
+        target.style.transform = 'none';
+        target.style.filter = 'none';
+        target.style.pointerEvents = 'auto';
+      }
       target = target.parentElement;
     }
   });
@@ -223,7 +226,8 @@
     const layoutPosition = new WeakMap();
 
     const measureLayout = () => {
-      revealTargets.forEach(target => {
+      const all = new Set([...revealTargets, ...aboutBlocks]);
+      all.forEach(target => {
         let top = 0;
         let node = target;
         while (node) {
@@ -235,6 +239,55 @@
     };
 
     const pending = new Set(revealTargets);
+
+    /* Sectiunea „Despre noi" se deschide in functie de pozitia de scroll, nu
+       printr-o tranzitie cu intarziere. Gradul de avans al fiecarui panou se
+       calculeaza din distanta fata de linia de declansare, deci:
+         - animatia urmeaza scrollul exact (daca te-ai opri, panoul ramane
+           in punctul in care l-ai lasat);
+         - urcand inapoi, panourile se retrag;
+         - un salt direct in sectiune nu lasa panouri goale care asteapta. */
+    const aboutState = new WeakMap();
+    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+    const updateAbout = () => {
+      const viewTop = window.scrollY;
+      const viewBottom = viewTop + window.innerHeight;
+      const triggerLine = viewBottom - window.innerHeight * 0.12;
+      // Distanta de scroll pe care se desfasoara intrarea unui panou.
+      const travel = Math.max(window.innerHeight * 0.32, 220);
+
+      aboutBlocks.forEach(el => {
+        const top = layoutPosition.get(el);
+        if (top === undefined) return;
+        if (aboutPinned.has(el)) return;
+        const offset = parseInt(el.style.getPropertyValue('--fg-offset')) || 0;
+        // 0 = abia la linia de declansare, 1 = complet intrat.
+        let progress = (triggerLine - top - offset) / travel;
+        // Panoul a trecut deja de marginea de sus a ecranului: e oricum trecut,
+        // deci trebuie sa fie la locul lui final.
+        if (top + el.offsetHeight <= viewTop) progress = 1;
+        progress = Math.max(0, Math.min(1, progress));
+        const eased = easeOutCubic(progress);
+
+        const state = aboutState.get(el);
+        if (state && state.progress === progress) return;
+
+        const shift = parseFloat(getComputedStyle(el).getPropertyValue('--fg-shift-x')) || 700;
+        const dir = el.classList.contains('enter-left') ? -1 : 1;
+        const offsetX = shift * dir * (1 - eased);
+        const rotate = 2.5 * dir * (1 - eased);
+        const blur = 8 * (1 - eased);
+
+        el.style.transform = `translateX(${offsetX}px) rotate(${rotate}deg)`;
+        el.style.opacity = String(eased);
+        el.style.filter = progress >= 1 ? 'none' : `blur(${blur}px)`;
+        el.style.pointerEvents = progress >= 1 ? 'auto' : 'none';
+        el.classList.toggle('is-visible', progress >= 1);
+
+        aboutState.set(el, { progress });
+      });
+    };
 
     const revealReached = () => {
       const viewTop = window.scrollY;
@@ -253,6 +306,7 @@
         revealTarget(target);
         pending.delete(target);
       });
+      updateAbout();
     };
 
     measureLayout();
@@ -274,6 +328,13 @@
     }, { passive: true });
   } else {
     revealTargets.forEach(revealTarget);
+    // Fara animatie, panourile sectiunii „Despre noi" trebuie sa fie vizibile.
+    aboutBlocks.forEach(el => {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      el.style.filter = 'none';
+      el.style.pointerEvents = 'auto';
+    });
   }
 
   /* ------- Per-word stagger on .stagger headlines ------- */
