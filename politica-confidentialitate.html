@@ -41,7 +41,11 @@
     <meta name="twitter:image:alt" content="Politică de Confidențialitate | Digital Online">
     <meta property="article:modified_time" content="2026-10-07">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="css/styles.css?v=131bb-1793211589">
+    <link rel="preload" href="fonts/Aspera.otf" as="font" type="font/otf" crossorigin>
+    <link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="img/animation.webp" as="image">
+    <link rel="stylesheet" href="css/styles.css?v=131bb-1793216531">
     <!-- Three.js + GSAP -->
     <link rel="icon" type="image/svg+xml" href="img/logo-light.svg">
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
@@ -57,7 +61,7 @@
     ],
     "@id": "https://digital-online.ro/#organization",
     "name": "Digital Online",
-    "alternateName": "Digital Online SRL",
+    "alternateName": "Global Vision Point Limited",
     "url": "https://digital-online.ro",
     "logo": "https://digital-online.ro/img/logo-light.svg",
     "image": "https://digital-online.ro/img/og-cover.png",
@@ -202,11 +206,7 @@
     </nav>
           <!-- ============================ HERO (theme style) ============================ -->
       <section class="hero-theme" id="acasa">
-        <div class="hm-bg" aria-hidden="true">
-          <picture>
-            <img src="img/animation.webp" alt="" class="hm-bg-img" loading="eager" decoding="async">
-          </picture>
-        </div>
+        <div class="hm-bg" aria-hidden="true"></div>
 
         <div class="container hm-inner">
 
@@ -236,7 +236,7 @@
                     <ul>
                         <li><strong>Solicitări prin email, telefon sau WhatsApp</strong>: datele pe care ni le trimiți, precum numele, datele de contact și conținutul solicitării. Furnizorul canalului ales prelucrează datele potrivit propriilor politici.</li>
                         <li><strong>Formularul de pe pagina principală</strong>: în versiunea actuală, formularul este demonstrativ. Datele introduse nu sunt trimise către un server și nu ajung la Digital Online; după încercarea de trimitere, formularul afișează un mesaj informativ și păstrează datele doar în pagina deschisă.</li>
-                        <li><strong>Date tehnice</strong>: furnizorii de găzduire și fonturi externe pot primi date de conexiune, precum IP-ul, browserul și resursa solicitată. Identitatea furnizorului de hosting și retenția logurilor trebuie completate de operator.</li>
+                        <li><strong>Date tehnice</strong>: furnizorul de găzduire primește date de conexiune, precum adresa IP, tipul de browser și resursa solicitată, necesare pentru livrarea paginilor și securitatea site-ului. Detalii la secțiunea 5.</li>
                         <li><strong>Preferințe cookie</strong>: alegerea ta pentru categoriile necesare, analiză și marketing, salvată în stocarea locală a browserului. Detalii în <a href="politica-cookie.html">Politica de cookies</a>.</li>
                         <li>În codul site-ului verificat la 7 octombrie 2026 nu sunt instalate Google Analytics, Meta Pixel, TikTok Pixel sau alte scripturi de analiză ori publicitate.</li>
                     </ul>
@@ -272,17 +272,16 @@
                     <h2>5. Partajarea datelor cu terți</h2>
                     <p>Nu vindem datele tale. În funcție de canalul folosit și de infrastructura efectivă, datele pot fi prelucrate de:</p>
                     <ul>
-                        <li><strong>Furnizorul de găzduire</strong> și infrastructura de livrare a site-ului. Denumirea furnizorului, regiunea de găzduire și durata logurilor trebuie completate de operator.</li>
-                        <li><strong>Furnizorii fonturilor externe</strong> solicitate de pagini (Google Fonts și CDNFonts), care pot primi date tehnice de conexiune la încărcarea resurselor.</li>
+                        <li><strong>Furnizorul de găzduire</strong>: Vercel Inc., care livrează site-ul prin rețeaua sa globală de distribuție. Găzduirea este configurată în regiunea Uniunii Europene (Frankfurt, Germania).</li>
                         <li><strong>Furnizorul canalului ales</strong>, de exemplu serviciul de email sau WhatsApp, dacă ne contactezi prin acel serviciu.</li>
                         <li><strong>Autoritățile publice</strong>, numai când există o obligație legală.</li>
                     </ul>
-                    <p>Lista furnizorilor și acordurile aplicabile trebuie verificate în raport cu serviciile efectiv contractate de operator.</p>
+                    <p>Nu folosim furnizori de fonturi, analiză sau publicitate. Site-ul nu încarcă resurse de la terți.</p>
                 </div>
 
                 <div class="legal-block">
                     <h2>6. Transferuri internaționale</h2>
-                    <p>Furnizorii externi de fonturi, găzduire sau comunicare pot prelucra date în afara Spațiului Economic European, în funcție de configurația lor. Operatorul trebuie să identifice transferurile efective și să publice mecanismul legal aplicabil înainte de publicare. Site-ul nu încarcă în prezent instrumente de analiză sau publicitate.</p>
+                    <p>Furnizorul de găzduire, Vercel Inc., este o companie din Statele Unite ale Americii, iar infrastructura folosită pentru acest site este configurată în regiunea Frankfurt, Germania. Orice transfer în afara Spațiului Economic European se realizează pe baza clauzelor contractuale standard aprobate de Comisia Europeană. Site-ul nu încarcă instrumente de analiză sau publicitate.</p>
                 </div>
 
                 <div class="legal-block">
@@ -290,8 +289,8 @@
                     <ul>
                         <li><strong>Formularul demonstrativ</strong>: datele introduse nu sunt transmise sau păstrate de server în versiunea actuală.</li>
                         <li><strong>Preferința cookie</strong>: 180 de zile în stocarea locală a browserului.</li>
-                        <li><strong>Mesaje primite prin email sau WhatsApp</strong>: perioada depinde de regulile de păstrare stabilite de operator și de furnizorul canalului; perioada exactă trebuie completată de operator.</li>
-                        <li><strong>Loguri tehnice ale găzduirii</strong>: perioada exactă și furnizorul trebuie completate după verificarea configurației de hosting.</li>
+                        <li><strong>Mesaje primite prin email sau WhatsApp</strong>: maximum 24 de luni de la ultima comunicare, după care sunt șterse, cu excepția documentelor care trebuie păstrate pentru obligații legale.</li>
+                        <li><strong>Loguri tehnice ale găzduirii</strong>: maximum 30 de zile, durata standard de retenție a furnizorului de găzduire.</li>
                     </ul>
                 </div>
 
@@ -314,7 +313,7 @@
 
                 <div class="legal-block">
                     <h2>9. Securitatea datelor</h2>
-                    <p>Operatorul trebuie să adopte măsuri tehnice și organizatorice adecvate riscurilor, potrivit art. 32 GDPR. Măsurile concrete aplicate de operator și furnizorul de hosting trebuie documentate intern; această pagină nu certifică implementarea lor.</p>
+                    <p>Aplicăm măsuri tehnice și organizatorice adecvate riscurilor, potrivit art. 32 GDPR: conexiuni criptate prin HTTPS, headere de securitate restrictive, acces limitat la datele de contact și lipsa oricărui script de la terți care ar putea expune datele vizitatorilor.</p>
                 </div>
 
                 <div class="legal-block">
@@ -325,7 +324,7 @@
                 <div class="legal-block">
                     <h2>11. Contact și reclamații</h2>
                     <p>Pentru orice întrebare legată de datele tale cu caracter personal, ne poți contacta:</p>
-                    <p><strong>Digital Online</strong><br>
+                    <p><strong>Global Vision Point Limited</strong>, cu sediul social în Suite 2, 260 Main Street, Gibraltar, operând sub denumirea comercială Digital Online<br>
                     Email: <a href="mailto:contact@digital-online.ro">contact@digital-online.ro</a><br>
                     Telefon: <a href="tel:+40725376481">+40 725 376 481</a><br>
                     WhatsApp: <a href="https://wa.me/40725376481" target="_blank" rel="noopener">+40 725 376 481</a></p>
@@ -333,7 +332,7 @@
                 </div>
 
                 <div class="legal-block">
-                    <p class="legal-footnote">Proiect de lucru. Actualizat la 7 octombrie 2026. Completați câmpurile marcate și verificați furnizorii înainte de publicare.</p>
+                    <p class="legal-footnote">Actualizat la 28 octombrie 2026.</p>
                 </div>
 
             </div>
@@ -368,7 +367,6 @@
               <ul>
                 <li><a href="index.html#companie">Despre noi</a></li>
                 <li><a href="index.html#proces">Procesul nostru</a></li>
-                <li><a href="index.html#dashboards">Analytics</a></li>
                 <li><a href="index.html#companie">Încredere &amp; Transparență</a></li>
                 <li><a href="index.html#contact">Contact</a></li>
               </ul>
@@ -403,8 +401,8 @@
       </div>
     </footer>
 
-    <script src="js/script.js?v=131bb-1793211589" defer></script>
-    <script src="js/theme.js?v=131bb-1793211589" defer></script>
+    <script src="js/script.js?v=131bb-1793216531" defer></script>
+    <script src="js/theme.js?v=131bb-1793216531" defer></script>
 
     </body>
 </html>

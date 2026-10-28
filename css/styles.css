@@ -248,15 +248,16 @@
   isolation: isolate;
 }
 
-.hm-bg { position: absolute; inset: 0; z-index: -1; }
-
-.hm-bg-img {
+/* The hero backdrop lives on a single element: the same animated texture is
+   already painted by the title fill, so a second <img> of it was pure waste. */
+.hm-bg {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 40%;
+  z-index: -1;
+  background-image: url('../img/animation.webp');
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
   filter: saturate(0.85) contrast(1.05) brightness(0.78);
   transform: scale(1.05);
   animation: hmBgDrift 24s ease-in-out infinite alternate;
@@ -483,7 +484,7 @@
 
 /* Hero entrances wait until the hero itself enters the viewport. */
 @media (scripting: enabled) {
-  .hero-theme:not(.is-in-view) .hm-bg-img,
+  .hero-theme:not(.is-in-view) .hm-bg,
   .hero-theme:not(.is-in-view) .hm-eyebrow,
   .hero-theme:not(.is-in-view) .hm-title-fill,
   .hero-theme:not(.is-in-view) .hm-line,
@@ -819,15 +820,15 @@
   z-index: 0;
 }
 
-.hm-feature-bg--services    { background-image: url('../img/services/services.jpg'); }
-.hm-feature-bg--shopify     { background-image: url('../img/services/shopify.jpg'); }
-.hm-feature-bg--marketing   { background-image: url('../img/services/marketing.jpg'); }
-.hm-feature-bg--china       { background-image: url('../img/services/china.jpg'); }
-.hm-feature-bg--automation  { background-image: url('../img/services/automation.jpg'); }
-.hm-feature-bg--video       { background-image: url('../img/services/video.jpg'); }
-.hm-feature-bg--consulting  { background-image: url('../img/services/consulting.jpg'); }
-.hm-feature-bg--custom      { background-image: url('../img/services/custom.jpg'); }
-.hm-feature-bg--ai          { background-image: url('../img/services/ai.jpg'); }
+.hm-feature-bg--services    { background-image: url('../img/services/services.webp'); }
+.hm-feature-bg--shopify     { background-image: url('../img/services/shopify.webp'); }
+.hm-feature-bg--marketing   { background-image: url('../img/services/marketing.webp'); }
+.hm-feature-bg--china       { background-image: url('../img/services/china.webp'); }
+.hm-feature-bg--automation  { background-image: url('../img/services/automation.webp'); }
+.hm-feature-bg--video       { background-image: url('../img/services/video.webp'); }
+.hm-feature-bg--consulting  { background-image: url('../img/services/consulting.webp'); }
+.hm-feature-bg--custom      { background-image: url('../img/services/custom.webp'); }
+.hm-feature-bg--ai          { background-image: url('../img/services/ai.webp'); }
 
 /* Spacing + layout utilities (replace inline styles) */
 .mt-60 { margin-top: 60px; }
@@ -2043,7 +2044,7 @@
     transform: none !important;
     transition: none !important;
   }
-  .hm-bg-img,
+  .hm-bg,
   .hm-title-fill,
   .hm-title-fill--stacked,
   .hm-line,
@@ -2591,7 +2592,7 @@ q::after  { content: close-quote; font-family: 'Instrument Serif', serif; font-s
   position: absolute;
   inset: 0;
   z-index: -2;
-  background-image: url('../img/contact.jpg');
+  background-image: url('../img/contact.webp');
   background-size: cover;
   background-position: center;
   filter: saturate(0.82) brightness(0.72);
