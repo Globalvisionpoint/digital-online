@@ -2376,6 +2376,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html {
   scroll-behavior: smooth;
+  /* Elementele antrenate de scroll pornesc din afara cadrului, deci latimea
+     documentului crestea si pagina putea fi trasa lateral pe mobil. `clip`
+     taie surplusul fara sa creeze un container de scroll, deci pozitionarea
+     fixa (header, banner, meniu mobil) ramane neatinsa. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 body {
   background: var(--paper);
