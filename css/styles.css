@@ -273,9 +273,9 @@
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
-  /* Norii sunt deja ajustati la luminozitatea potrivita, deci nu mai
-     intunecam canvasul: aici fundalul trebuie sa se vadă. */
-  filter: saturate(0.9) contrast(1.02);
+  /* Norii sunt alb-negru, la fel ca restul site-ului: fara grayscale, cerul
+     ar introduce o nuanta rece pe un site monocrom. */
+  filter: grayscale(1) contrast(1.06);
 }
 
 /* Pe ecrane mici se foloseste setul de cadre la jumatate din latime. */
@@ -359,7 +359,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/title-sky.webp?v=131bb-1793239540');
+  background-image: url('../img/title-sky.webp?v=131bb-1793239920');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -374,8 +374,10 @@
 
   /* Filtrele vechi (brightness 2.1, saturate 1.45) erau calibrate pentru
      textura zgomotoasa dinainte si ar face norii sa arda in alb. Cu norii,
-     un boost usor pastreaza forma literelor si lasa cerul sa se citeasca. */
-  filter: brightness(1.5) saturate(1.15) drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
+     un boost usor pastreaza forma literelor si lasa cerul sa se citeasca.
+     Norii sunt alb-negru, la fel ca restul site-ului: filtrul de culoare
+     al fundalului ar scoate orice nuanta, deci norii trebuie grayscale. */
+  filter: grayscale(1) brightness(1.5) contrast(1.08) drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
   opacity: 0;
   transform: translateX(0);
   animation: hmTitleInLeft 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
@@ -447,7 +449,7 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/title-sky.webp?v=131bb-1793239540');
+  background-image: url('../img/title-sky.webp?v=131bb-1793239920');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
