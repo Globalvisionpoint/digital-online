@@ -359,7 +359,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/title-sky.webp?v=131bb-1793238467');
+  background-image: url('../img/title-sky.webp?v=131bb-1793239540');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -379,7 +379,7 @@
   opacity: 0;
   transform: translateX(0);
   animation: hmTitleInLeft 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
   overflow-wrap: normal;
   word-break: keep-all;
   max-width: 100%;
@@ -418,7 +418,7 @@
 
 .hm-title-fill--outline {
   animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
 }
 
 /* ---------- Split hero titles ----------
@@ -438,7 +438,7 @@
 
 .hm-title--split:not(.hm-title--zipper) .hm-title-fill:nth-child(even) {
   animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
 }
 
 /* One rendered line of a wrapped title. Font, letter-spacing, text stroke and
@@ -447,7 +447,7 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/title-sky.webp?v=131bb-1793238467');
+  background-image: url('../img/title-sky.webp?v=131bb-1793239540');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -469,13 +469,13 @@
 .hm-title--split .hm-from-left {
   opacity: 0;
   animation: hmTitleInLeft 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
 }
 
 .hm-title--split .hm-from-right {
   opacity: 0;
   animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
 }
 
 /* Added before a re-wrap, so a resized title never replays the entrance. */
@@ -483,7 +483,7 @@
 .hm-title--split.hm-title--settled .hm-from-right {
   opacity: 1;
   transform: none;
-  animation: hmTextureDrift 10s 1.55s ease-in-out infinite alternate;
+  animation: hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
 }
 
 @keyframes hmTitleInLeft {
