@@ -4,7 +4,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://digital-online.ro/</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
         <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/"/>
@@ -18,7 +18,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/servicii-it.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -29,7 +29,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/magazine-online.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -40,7 +40,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/integrari.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -51,7 +51,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/consultanta.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -62,7 +62,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/import-china.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -73,7 +73,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/promovare.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -84,7 +84,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/montaj-editare-video-foto.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -95,7 +95,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/implementare-ai.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -106,7 +106,7 @@
     </url>
     <url>
         <loc>https://digital-online.ro/platforme-custom.html</loc>
-        <lastmod>2026-10-12</lastmod>
+        <lastmod>2024-10-12</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
         <image:image>
@@ -117,19 +117,19 @@
     </url>
     <url>
         <loc>https://digital-online.ro/politica-confidentialitate.html</loc>
-        <lastmod>2026-10-07</lastmod>
+        <lastmod>2024-10-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
         <loc>https://digital-online.ro/politica-cookie.html</loc>
-        <lastmod>2026-10-07</lastmod>
+        <lastmod>2024-10-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
     <url>
         <loc>https://digital-online.ro/termeni-si-conditii.html</loc>
-        <lastmod>2026-10-07</lastmod>
+        <lastmod>2024-10-07</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
