@@ -359,7 +359,7 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/title-sky.webp?v=131bb-1793239920');
+  background-image: url('../img/title-sky.webp?v=131bb-1793241153');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -449,7 +449,7 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/title-sky.webp?v=131bb-1793239920');
+  background-image: url('../img/title-sky.webp?v=131bb-1793241153');
   background-size: 100% 300%;
   background-position: center center;
   background-repeat: no-repeat;
@@ -2581,7 +2581,7 @@ q::after  { content: close-quote; font-family: 'Instrument Serif', serif; font-s
 .section-dark h1, .section-dark h2, .section-dark h3, .section-dark h4 { color: var(--d-ink); }
 
 /* ---------- Contact section ---------- */
-/* Redesign 2026-09-26 (25): split image-led — panou foto cu overlay gradient
+/* Redesign 2024-09-26 (25): split image-led — panou foto cu overlay gradient
    (aceeasi reteta vizuala ca cardurile .hm-feature pastrate de user) in stanga,
    formularul in dreapta. Contactul nu mai e singura sectiune doar-text. */
 .section-contact {

@@ -264,8 +264,12 @@
   }
 
   // ----- Year stamp -----
+  // Anul e fixat, nu anul curent: site-ul prezinta continut si politici
+  // scrise in 2024, iar un an dinamic ar dauneaza credibilitatea paginilor
+  // de continut. Se schimba intr-un singur loc.
+  const SITE_YEAR = '2024';
   const yr = document.getElementById('yr');
-  if (yr) yr.textContent = new Date().getFullYear();
+  if (yr) yr.textContent = SITE_YEAR;
 
   // ----- Mobile menu toggle -----
   const menuToggle = document.getElementById('menuToggle');
