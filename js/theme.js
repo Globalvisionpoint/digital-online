@@ -437,42 +437,86 @@
   ui.innerHTML = `
     <section class="cookie-banner" aria-labelledby="cookie-banner-title" hidden>
       <div class="cookie-banner-copy">
-        <h2 id="cookie-banner-title">Preferințe cookie</h2>
-        <p>Reținem alegerea ta în stocarea locală necesară. În prezent, site-ul nu încarcă instrumente opționale de analiză sau publicitate. Poți consulta <a href="politica-cookie.html">politica de cookies</a>.</p>
+        <h2 id="cookie-banner-title"></h2>
+        <p></p>
       </div>
       <div class="cookie-banner-actions">
-        <button type="button" data-cookie-reject>Respinge opționale</button>
-        <button type="button" data-cookie-settings>Setări</button>
-        <button type="button" data-cookie-accept>Acceptă toate</button>
+        <button type="button" data-cookie-reject></button>
+        <button type="button" data-cookie-settings></button>
+        <button type="button" data-cookie-accept></button>
       </div>
     </section>
     <dialog class="cookie-dialog" aria-labelledby="cookie-dialog-title" aria-describedby="cookie-dialog-description">
       <div class="cookie-dialog-head">
         <div>
-          <p class="cookie-dialog-eyebrow">CONTROLUL PREFERINȚELOR</p>
-          <h2 id="cookie-dialog-title">Setări cookie</h2>
+          <p class="cookie-dialog-eyebrow"></p>
+          <h2 id="cookie-dialog-title"></h2>
         </div>
-        <button class="cookie-dialog-close" type="button" data-cookie-close aria-label="Închide setările">×</button>
+        <button class="cookie-dialog-close" type="button" data-cookie-close aria-label="">×</button>
       </div>
-      <p id="cookie-dialog-description">Poți schimba alegerea oricând din linkul „Setări cookie” din subsol. Preferința se păstrează 180 de zile.</p>
+      <p id="cookie-dialog-description"></p>
       <div class="cookie-category">
-        <div><strong>Strict necesare</strong><p>Necesare pentru reținerea preferinței tale; sunt mereu active.</p></div>
-        <input type="checkbox" checked disabled aria-label="Cookie-uri strict necesare, mereu active">
+        <div><strong></strong><p></p></div>
+        <input type="checkbox" checked disabled aria-label="">
       </div>
       <label class="cookie-category" for="cookie-analytics">
-        <span><strong>Analiză</strong><span class="cookie-category-note">Nu este activă în prezent pe acest site.</span></span>
+        <span><strong></strong><span class="cookie-category-note"></span></span>
         <input id="cookie-analytics" type="checkbox">
       </label>
       <label class="cookie-category" for="cookie-marketing">
-        <span><strong>Marketing</strong><span class="cookie-category-note">Nu este activ în prezent pe acest site.</span></span>
+        <span><strong></strong><span class="cookie-category-note"></span></span>
         <input id="cookie-marketing" type="checkbox">
       </label>
       <div class="cookie-dialog-actions">
-        <button type="button" data-cookie-close>Închide</button>
-        <button type="button" data-cookie-save>Salvează preferințele</button>
+        <button type="button" data-cookie-close></button>
+        <button type="button" data-cookie-save></button>
       </div>
-      <p class="cookie-dialog-note">Salvarea unei preferințe nu activează instrumente care nu sunt instalate pe site.</p>
+      <p class="cookie-dialog-note"></p>
     </dialog>`;
+
+  /* Fill in the translated copy. The strings live in js/i18n-ui.js so
+     the cookie banner reads in the same language as the page. */
+  const tr = (key) => (window.t ? window.t(key) : key);
+  const bannerTitle = ui.querySelector('#cookie-banner-title');
+  const bannerBody = ui.querySelector('.cookie-banner-copy p');
+  const dialogEyebrow = ui.querySelector('.cookie-dialog-eyebrow');
+  const dialogTitle = ui.querySelector('#cookie-dialog-title');
+  const dialogDescription = ui.querySelector('#cookie-dialog-description');
+  const closeButton = ui.querySelector('.cookie-dialog-close');
+  const necessaryBlock = ui.querySelector('.cookie-category > div');
+  const necessaryTitle = necessaryBlock.querySelector('strong');
+  const necessaryBody = necessaryBlock.querySelector('p');
+  const necessaryInput = ui.querySelector('.cookie-category input');
+  const analyticsBlock = ui.querySelector('label[for="cookie-analytics"]');
+  const analyticsTitle = analyticsBlock.querySelector('strong');
+  const analyticsNote = analyticsBlock.querySelector('.cookie-category-note');
+  const marketingBlock = ui.querySelector('label[for="cookie-marketing"]');
+  const marketingTitle = marketingBlock.querySelector('strong');
+  const marketingNote = marketingBlock.querySelector('.cookie-category-note');
+  const closeAction = ui.querySelector('[data-cookie-close]:not(.cookie-dialog-close)');
+  const saveAction = ui.querySelector('[data-cookie-save]');
+  const dialogNote = ui.querySelector('.cookie-dialog-note');
+
+  bannerTitle.textContent = tr('cookie.title');
+  bannerBody.innerHTML = tr('cookie.body');
+  ui.querySelector('[data-cookie-reject]').textContent = tr('cookie.reject');
+  ui.querySelector('[data-cookie-settings]').textContent = tr('cookie.settings');
+  ui.querySelector('[data-cookie-accept]').textContent = tr('cookie.accept');
+  dialogEyebrow.textContent = tr('cookie.dialog.eyebrow');
+  dialogTitle.textContent = tr('cookie.dialog.title');
+  closeButton.setAttribute('aria-label', tr('cookie.dialog.close'));
+  dialogDescription.textContent = tr('cookie.dialog.description');
+  necessaryTitle.textContent = tr('cookie.necessary.title');
+  necessaryBody.textContent = tr('cookie.necessary.body');
+  necessaryInput.setAttribute('aria-label', tr('cookie.necessary.aria'));
+  analyticsTitle.textContent = tr('cookie.analytics.title');
+  analyticsNote.textContent = tr('cookie.analytics.note');
+  marketingTitle.textContent = tr('cookie.marketing.title');
+  marketingNote.textContent = tr('cookie.marketing.note');
+  closeAction.textContent = tr('cookie.close');
+  saveAction.textContent = tr('cookie.save');
+  dialogNote.textContent = tr('cookie.note');
+
   document.body.append(ui);
 
   const banner = ui.querySelector('.cookie-banner');
@@ -535,10 +579,15 @@
 
   const footerBottom = document.querySelector('.footer-bot');
   if (footerBottom && !footerBottom.querySelector('.legal-footer-links')) {
+    const tr = (key) => (window.t ? window.t(key) : key);
     const legalLinks = document.createElement('nav');
     legalLinks.className = 'legal-footer-links';
-    legalLinks.setAttribute('aria-label', 'Informații legale');
-    legalLinks.innerHTML = '<a href="politica-confidentialitate.html">Confidențialitate</a><a href="politica-cookie.html">Politica de cookies</a><a href="termeni-si-conditii.html">Termeni și condiții</a><button type="button" data-cookie-settings>Setări cookie</button>';
+    legalLinks.setAttribute('aria-label', tr('footer.legal.label'));
+    legalLinks.innerHTML = `<a href="politica-confidentialitate.html"></a><a href="politica-cookie.html"></a><a href="termeni-si-conditii.html"></a><button type="button" data-cookie-settings></button>`;
+    legalLinks.querySelector('a[href="politica-confidentialitate.html"]').textContent = tr('footer.privacy');
+    legalLinks.querySelector('a[href="politica-cookie.html"]').textContent = tr('footer.cookies');
+    legalLinks.querySelector('a[href="termeni-si-conditii.html"]').textContent = tr('footer.terms');
+    legalLinks.querySelector('[data-cookie-settings]').textContent = tr('footer.cookieSettings');
     footerBottom.append(legalLinks);
     legalLinks.querySelector('[data-cookie-settings]').addEventListener('click', openSettings);
   }

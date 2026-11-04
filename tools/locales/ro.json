@@ -1,0 +1,5715 @@
+{
+  "$schema": "Digital Online i18n catalog — source strings extracted from the Romanian pages.",
+  "locale": "ro",
+  "generatedBy": "tools/extract.mjs",
+  "pages": [
+    "consultanta.html",
+    "implementare-ai.html",
+    "import-china.html",
+    "index.html",
+    "integrari.html",
+    "magazine-online.html",
+    "montaj-editare-video-foto.html",
+    "platforme-custom.html",
+    "politica-confidentialitate.html",
+    "politica-cookie.html",
+    "promovare.html",
+    "servicii-it.html",
+    "termeni-si-conditii.html"
+  ],
+  "strings": [
+    {
+      "key": "1-ce-date-colectăm#77vzx0",
+      "source": "1. Ce date colectăm",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "1-furnizorul#1dwvk78",
+      "source": "1. Furnizorul",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "10-modificări-ale-politicii#gs01ut",
+      "source": "10. Modificări ale politicii",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "11-contact-și-reclamații#1gaepyd",
+      "source": "11. Contact și reclamații",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "180-de-zile-în-stocarea-locală-a-browser#9b6kw3",
+      "source": ": 180 de zile în stocarea locală a browserului.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "2-scopul-site-ului-și-solicitarea-servic#ssgdcp",
+      "source": "2. Scopul site-ului și solicitarea serviciilor",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "2-temeiul-legal-al-prelucrării#nvi3f4",
+      "source": "2. Temeiul legal al prelucrării",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "3-drepturi-asupra-conținutului#159s4wr",
+      "source": "3. Drepturi asupra conținutului",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "3-scopul-prelucrării#166x62o",
+      "source": "3. Scopul prelucrării",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "30-de-zile#rj40o5",
+      "source": "30 de zile",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "4-cookie-uri-și-tehnologii-similare#lejp48",
+      "source": "4. Cookie-uri și tehnologii similare",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "4-utilizarea-site-ului-și-linkuri-extern#76lu9p",
+      "source": "4. Utilizarea site-ului și linkuri externe",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "5-informații-rezultate-și-răspundere#fohe4q",
+      "source": "5. Informații, rezultate și răspundere",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "5-partajarea-datelor-cu-terți#1rjko6t",
+      "source": "5. Partajarea datelor cu terți",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "6-contracte-cu-consumatorii#1xflw81",
+      "source": "6. Contracte cu consumatorii",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "6-transferuri-internaționale#12p5482",
+      "source": "6. Transferuri internaționale",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "7-date-personale-și-cookies#cum3a8",
+      "source": "7. Date personale și cookies",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "7-perioada-de-stocare-a-datelor#5ebvv9",
+      "source": "7. Perioada de stocare a datelor",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "8-drepturile-tale-conform-gdpr#q4fpsi",
+      "source": "8. Drepturile tale conform GDPR",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "8-lege-aplicabilă-și-contact#14pmaje",
+      "source": "8. Lege aplicabilă și contact",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "9-securitatea-datelor#1ipjgkx",
+      "source": "9. Securitatea datelor",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "a-b-testing-constant-scalare-ce-funcțion#vksw90",
+      "source": "A/B testing constant, scalare ce funcționează, oprire ce nu convertește. Rapoarte săptămânale.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "acasă-digital-online#19w3df3",
+      "source": "Acasă, Digital Online",
+      "context": "Accessible label of the \"logo\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "consultanta.html <a aria-label>",
+        "implementare-ai.html <a aria-label>",
+        "import-china.html <a aria-label>",
+        "index.html <a aria-label>",
+        "integrari.html <a aria-label>",
+        "magazine-online.html <a aria-label>",
+        "montaj-editare-video-foto.html <a aria-label>",
+        "platforme-custom.html <a aria-label>",
+        "politica-confidentialitate.html <a aria-label>",
+        "politica-cookie.html <a aria-label>",
+        "promovare.html <a aria-label>",
+        "servicii-it.html <a aria-label>",
+        "termeni-si-conditii.html <a aria-label>"
+      ]
+    },
+    {
+      "key": "acasa#3j8q7y",
+      "source": "ACASA",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "index.html <a>"
+      ]
+    },
+    {
+      "key": "acasă#3j8qdb",
+      "source": "ACASĂ",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "acasa#3jy5a6",
+      "source": "Acasa",
+      "context": "Accessible label of the \"nav-link\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "index.html <a aria-label>"
+      ]
+    },
+    {
+      "key": "acasă#3jy5eo",
+      "source": "Acasă",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "acces-complet-la-dashboard-ul-shopify-cu#1cq96hz",
+      "source": "Acces complet la dashboard-ul Shopify cu toate datele: vânzări, comenzi, produse, inventar, conversii.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "acești-termeni-se-completează-cu-oferta-#e7ubnw",
+      "source": "Acești termeni se completează cu oferta sau contractul individual încheiat pentru fiecare proiect.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "actualizat-la-28-octombrie-2024#k4556w",
+      "source": "Actualizat la 28 octombrie 2024.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "actualizată-la-7-octombrie-2024-această-#lhslah",
+      "source": "Actualizată la 7 octombrie 2024. Această pagină descrie versiunea actuală a codului site-ului și trebuie reverificată ori de câte ori sunt adăugate servicii sau scripturi.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "actualizați-la-28-octombrie-2024-acești-#gjjpbz",
+      "source": "Actualizați la 28 octombrie 2024. Acești termeni descriu utilizarea site-ului de prezentare. Ei nu înlocuiesc o ofertă sau un contract individual pentru servicii.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "adaptabile-la-orice-industrie-e-commerce#174ub7h",
+      "source": "Adaptabile la orice industrie: e-commerce, B2B, servicii, imobiliare, medical, HoReCa, etc.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "adăugăm-toate-produsele-tale-cu-titluri-#ryb04e",
+      "source": "Adăugăm toate produsele tale cu titluri SEO-friendly, descrieri optimizate, imagini și variante complete.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "administrarea-relației-contractuale-și-r#1fhrna7",
+      "source": "Administrarea relației contractuale și respectarea obligațiilor legale, dacă se încheie un contract.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "ads-în-news-feed-marketplace-reels-stori#z5hn56",
+      "source": "Ads în News Feed, Marketplace, Reels, Stories. Audiențe precise, retargeting puternic.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "agent-de-vânzări-ai-recomandă-produse-ră#ciot57",
+      "source": "Agent de vânzări AI, recomandă produse, răspunde la întrebări, crește rata de conversie în magazin.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "agenți-ai-de-customer-service#hn8lqy",
+      "source": "Agenți AI de customer service",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "agenți-ai-personalizați-pentru-procesele#l2mluc",
+      "source": "Agenți AI personalizați pentru procesele tale specifice, antrenați pe datele și limbajul tău.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "agenți-care-preiau-conversațiile-cu-clie#1ce7v37",
+      "source": "Agenți care preiau conversațiile cu clienții 24/7, rezolvă probleme simple, escaladează la oameni când e nevoie.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "agenție-digitală-cu-echipă-senior-site-u#vbs25l",
+      "source": "Agenție digitală cu echipă senior: site-uri, magazine Shopify, integrări automate, AI, marketing.",
+      "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "index.html JSON-LD"
+      ]
+    },
+    {
+      "key": "ai-chatboți#rotktm",
+      "source": "AI & Chatboți",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "ai-chatboți#x610ax",
+      "source": "AI & CHATBOȚI",
+      "context": "Text inside <span>.",
+      "places": [
+        "implementare-ai.html <span>"
+      ]
+    },
+    {
+      "key": "ai-integrat-în-fluxurile-tale#wp4rp9",
+      "source": "AI integrat în fluxurile tale.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "ai-pentru-shopify-e-commerce#2z9vi3",
+      "source": "AI pentru Shopify / e-commerce",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "ai-sales-assistant#72t9ep",
+      "source": "AI Sales Assistant",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "ai-următoarele-drepturi-pe-care-le-poți-#1u3k6gx",
+      "source": "Ai următoarele drepturi pe care le poți exercita oricând, gratuit, scriindu-ne la",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "alegem-transport-maritim-lcl-fcl-aerian-#1f3kw37",
+      "source": "Alegem transport maritim (LCL/FCL), aerian sau curier (DHL, FedEx). Optimizăm costul vs. timp.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "alegerea-ta-pentru-categoriile-necesare-#xzico",
+      "source": ": alegerea ta pentru categoriile necesare, analiză și marketing, salvată în stocarea locală a browserului. Detalii în",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "ambalaj-etichetare#7me8h",
+      "source": "Ambalaj & etichetare",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "analiză-date-cu-ai#f2r9c7",
+      "source": "Analiză date cu AI",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "analiză-nișă-piață#1bkbk0o",
+      "source": "Analiză nișă & piață",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "analiză-strategie-și-planuri-practice-pe#w5qez2",
+      "source": "Analiză, strategie și planuri practice pentru business-uri care vor să crească sustenabil.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "analiză#wrenkx",
+      "source": "Analiză:",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-cookie.html <strong>"
+      ]
+    },
+    {
+      "key": "analizăm-afacerea-concurența-publicul-ți#1kcobjr",
+      "source": "Analizăm afacerea, concurența, publicul țintă. Definim obiective clare (vânzări, lead-uri, trafic, awareness).",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "analizăm-costul-total-produs-transport-t#1pel5wt",
+      "source": "Analizăm costul total (produs + transport + taxe + depozitare) și optimizăm pentru marjă maximă.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "animații-2d-3d-logo-reveal-uri-explainer#1t19x7v",
+      "source": "Animații 2D/3D, logo reveal-uri, explainer video-uri, infografice animate.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "animații-motion-graphics#u7rzs5",
+      "source": "Animații & motion graphics",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "api-uri-integrări#1984mdl",
+      "source": "API-uri & integrări",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "aplicăm-măsuri-tehnice-și-organizatorice#1eylshp",
+      "source": "Aplicăm măsuri tehnice și organizatorice adecvate riscurilor, potrivit art. 32 GDPR: conexiuni criptate prin HTTPS, headere de securitate restrictive, acces limitat la datele de contact și lipsa oricărui script de la terți care ar putea expune datele vizitatorilor.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "aplicații-construite-pentru-tine#1h4kg2w",
+      "source": "Aplicații construite pentru tine.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "aplicații-cu-capabilități-ai-chat-recoma#10i09hh",
+      "source": "Aplicații cu capabilități AI: chat, recomandări, analiză imagini, generare conținut.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "aplicații-mobile-ios-android#8n81do",
+      "source": "Aplicații mobile (iOS + Android)",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "aplicații-native-sau-cross-platform-cu-r#14a4u3c",
+      "source": "Aplicații native sau cross-platform cu React Native, Flutter, Swift, Kotlin. Publicare App Store & Google Play.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "aplicații-shopify#f8169q",
+      "source": "Aplicații Shopify",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "aplicații-web-complexe-cu-dashboard-aute#glgq47",
+      "source": "Aplicații web complexe cu dashboard, autentificare, plăți, admin panel. Stack: Next.js, React, Node.js, Python.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "aplicații-web-dashboard-uri-marketplace-#drvv27",
+      "source": "Aplicații web, dashboard-uri, marketplace-uri, pe specificul tău.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "aplicații#1r72bkr",
+      "source": "APLICAȚII",
+      "context": "Text inside <span>.",
+      "places": [
+        "platforme-custom.html <span>"
+      ]
+    },
+    {
+      "key": "app-install-ads#aoxsdx",
+      "source": "App Install Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "arătarea-produsului-în-acțiune-încredere#a634uz",
+      "source": "Arătarea produsului în acțiune. Încredere, transparență, dorință de cumpărare.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "art-15-să-afli-ce-date-prelucrăm-despre-#kvt0oh",
+      "source": "(art. 15): să afli ce date prelucrăm despre tine.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-16-să-corectezi-date-inexacte#1va975z",
+      "source": "(art. 16): să corectezi date inexacte.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-18#z75ozm",
+      "source": "(art. 18).",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-20#z769zv",
+      "source": "(art. 20).",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-21-inclusiv-față-de-marketing-direct#10njosg",
+      "source": "(art. 21), inclusiv față de marketing direct.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-22#z76bod",
+      "source": "(art. 22).",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-6-alin-1-lit-a-gdpr-dacă-vor-fi-intr#193qs5c",
+      "source": "(art. 6 alin. (1) lit. (a) GDPR), dacă vor fi introduse tehnologii opționale care îl necesită. În prezent, site-ul nu activează instrumente de analiză sau publicitate.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-6-alin-1-lit-b-gdpr-pentru-a-răspund#1m0qyd7",
+      "source": "(art. 6 alin. (1) lit. (b) GDPR), pentru a răspunde unei solicitări de ofertă.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-6-alin-1-lit-c-gdpr-dacă-apare-o-rel#11cdyj9",
+      "source": "(art. 6 alin. (1) lit. (c) GDPR), dacă apare o relație contractuală sau o obligație legală relevantă.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "art-6-alin-1-lit-f-gdpr-pentru-funcționa#i1it76",
+      "source": "(art. 6 alin. (1) lit. (f) GDPR), pentru funcționarea și securizarea site-ului, în limitele aplicabile.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "așa-am-construit-an-de-an-un-ecosistem-c#cey2pd",
+      "source": "Așa am construit, an de an, un ecosistem complet: site-uri web și servicii IT, magazine online Shopify, import produse din China, integrări automate, consultanță business, promovare și ads, montaj și editare video-foto, implementare AI și chatboți și platforme custom. Fiecare piesă construită să se conecteze cu celelalte, nu izolat.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "asigurăm-ambalaj-corespunzător-transport#zlf3x",
+      "source": "Asigurăm ambalaj corespunzător transportului, etichete în română, coduri de bare, EAN-13.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "asigurăm-conformitatea-cu-legislația-ue-#1x341pr",
+      "source": "Asigurăm conformitatea cu legislația UE/RO: etichete în limba română, CE, marcaje, certificări.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "asigurarea-funcționării-și-securității-s#bqyna5",
+      "source": "Asigurarea funcționării și securității site-ului.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "asistent-vocal-ai-care-preia-apeluri-fac#u6ral6",
+      "source": "Asistent vocal AI care preia apeluri, face programări, oferă informații, în loc de secretar/ă.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "asistenți-clasificare-generare-conținut-#w7sgmk",
+      "source": "Asistenți, clasificare, generare conținut, implementare practică, nu demo.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "astăzi-echipa-noastră-de-seniori-cu-pest#u3igxm",
+      "source": "Astăzi, echipa noastră de seniori, cu peste 7 ani de experiență fiecare, vorbește direct cu clienții în 4 limbi. Fără intermediari, fără juniori, fără promisiuni goale. Și o regulă pe care n-am încălcat-o niciodată: transparență totală. Vezi datele reale, înțelegi fiecare etapă, și rămâi mereu în control.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "atragi-atenția-identifici-problema-arăți#932sbg",
+      "source": "Atragi atenția, identifici problema, arăți soluția. Formă clasică, funcționează pe toate platformele.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "audit-furnizor#1wk7kcb",
+      "source": "Audit furnizor",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "audit-strategie#1lz6umi",
+      "source": "Audit & Strategie",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "audit-tehnic-strategie-plan-de-creștere-#1va2r9y",
+      "source": "Audit tehnic, strategie, plan de creștere, conversații directe.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "automate-pentru-business#1abvusv",
+      "source": "AUTOMATE PENTRU BUSINESS",
+      "context": "Text inside <span>.",
+      "places": [
+        "integrari.html <span>"
+      ]
+    },
+    {
+      "key": "automatizare-email-uri#7s8pds",
+      "source": "Automatizare email-uri",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "automatizare-fluxuri#c8yu5m",
+      "source": "Automatizare fluxuri",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "autoritățile-publice#au3seh",
+      "source": "Autoritățile publice",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "b2b-lead-generation-targetare-pe-industr#hyp5pf",
+      "source": "B2B, lead generation, targetare pe industrii, funcții, companii. Ideal pentru servicii profesionale.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "bannere-pe-milioane-de-site-uri-partener#e3ujye",
+      "source": "Bannere pe milioane de site-uri partenere. Retargeting, audiențe personalizate, lookalike.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "bannere-postări-cover-uri-generate-rapid#189x9wl",
+      "source": "Bannere, postări, cover-uri, generate rapid cu AI, adaptate brandului.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "before-after#1doidjt",
+      "source": "Before / After",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "book-a-call#1mmw4y5",
+      "source": "Book a Call",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "book-a-call#1uh1yjx",
+      "source": "BOOK A CALL",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "bot-vocal-text-pe-whatsapp-preia-convers#1g2r3tx",
+      "source": "Bot vocal + text pe WhatsApp, preia conversații, face programări, trimite oferte.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "brand-awareness#tuqhw5",
+      "source": "Brand Awareness",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "business#1fswkdt",
+      "source": "BUSINESS",
+      "context": "Text inside <span>.",
+      "places": [
+        "consultanta.html <span>"
+      ]
+    },
+    {
+      "key": "campanii-care-aduc-rezultate#l3c965",
+      "source": "Campanii care aduc rezultate.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "campanii-pe-google-meta-și-tiktok-optimi#1r43qvr",
+      "source": "Campanii pe Google, Meta și TikTok, optimizate constant pentru vizibilitate, clienți și vânzări.",
+      "context": "Text inside <span>.",
+      "places": [
+        "promovare.html <span>"
+      ]
+    },
+    {
+      "key": "campanii-pentru-black-friday-crăciun-red#1eyyqbc",
+      "source": "Campanii pentru Black Friday, Crăciun, reduceri sezoniere, lansări de produse.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "campanii-pentru-magazine-online-shopping#17856c6",
+      "source": "Campanii pentru magazine online: Shopping, Dynamic Remarketing, Advantage+, Performance Max.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "când-campaniile-funcționează-le-scalăm-b#1arnagx",
+      "source": "Când campaniile funcționează, le scalăm: bugete mai mari, noi audiențe, noi canale, noi piețe.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "cargus#1biqe96",
+      "source": "Cargus",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "carusele-instagram#yfg5j3",
+      "source": "Carusele Instagram",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "carusele-vizuale-cu-informații-statistic#vtbesl",
+      "source": "Carusele vizuale cu informații, statistici, citate, tutoriale, pentru engagement și salvare.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "categorii-și-opțiuni#19eu14d",
+      "source": "Categorii și opțiuni",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "ce-acoperim-în-consultanță#1fvckwe",
+      "source": "Ce acoperim în consultanță",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "ce-construim-pentru-tine#1p1xev3",
+      "source": "Ce construim pentru tine",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "ce-folosește-site-ul-acum#55s93k",
+      "source": "Ce folosește site-ul acum",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "ce-implementăm-cu-ai-pentru-tine#1n34ubc",
+      "source": "Ce implementăm cu AI pentru tine",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "ce-includem-în-serviciile-noastre-it#1suf6zm",
+      "source": "Ce includem în serviciile noastre IT",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "ce-integrăm-pentru-tine#ryw14k",
+      "source": "Ce integrăm pentru tine",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "ce-rohs-reach-gpsr-certificări-obligator#1j356pk",
+      "source": "CE, RoHS, REACH, GPSR, certificări obligatorii, restricții vamale, interdicții.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "ce-tipuri-de-platforme-construim#15qqvq9",
+      "source": "Ce tipuri de platforme construim",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "certificat-ssl-protecție-împotriva-atacu#1ngvg6k",
+      "source": "Certificat SSL, protecție împotriva atacurilor, backup-uri automate, monitorizare continuă.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "chatbot-ai-integrat-pe-site-ul-tău-răspu#1vljin0",
+      "source": "Chatbot AI integrat pe site-ul tău, răspunde instant la întrebări, ghidează vizitatorii, captează lead-uri.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "chatboți-agenți-ai-și-automatizări-care-#1gde1lx",
+      "source": "Chatboți, agenți AI și automatizări care reduc timpul echipei și îmbunătățesc experiența clienților.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "chatboți-care-răspund-pe-site-whatsapp-f#txndf8",
+      "source": "Chatboți care răspund pe site, WhatsApp, Facebook Messenger, instant, 24/7.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "chatboți-pe-site#1bvz0sk",
+      "source": "Chatboți pe site",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "clarificăm-direcția-procesele-și-priorit#j4ktqh",
+      "source": "Clarificăm direcția, procesele și prioritățile digitale pentru decizii mai bune și rezultate măsurabile.",
+      "context": "Text inside <span>.",
+      "places": [
+        "consultanta.html <span>"
+      ]
+    },
+    {
+      "key": "claritate-pentru-decizii-de-business#i1a95s",
+      "source": "Claritate pentru decizii de business.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "clasificare-tarifară-calcul-taxe-vamale-#cufda4",
+      "source": "Clasificare tarifară, calcul taxe vamale, TVA, accize, taxe antidumping dacă e cazul.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "clienți-mulțumiți-care-povestesc-experie#1ug9jnp",
+      "source": "Clienți mulțumiți care povestesc experiența. Încredere și conversii.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "clipuri-aftermovie-pentru-nunți-conferin#ih7lmb",
+      "source": "Clipuri aftermovie pentru nunți, conferințe, lansări, evenimente corporate.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "clipuri-care-se-folosesc-la-ads#1ii9m8j",
+      "source": "Clipuri care se folosesc la ads",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "clipuri-profesionale-pentru-meta-ads-you#5mh8o9",
+      "source": "Clipuri profesionale pentru Meta Ads, YouTube Ads, TikTok Ads, cu hook în prima secundă.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "clipuri-scurte-verticale-dinamice-perfec#1o7g7v2",
+      "source": "Clipuri scurte, verticale, dinamice, perfect optimizate pentru engagement și reach organic.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "cod-și-dezvoltare-aplicații-custom#lhevm7",
+      "source": "Cod și dezvoltare aplicații custom",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "platforme-custom.html <img alt>"
+      ]
+    },
+    {
+      "key": "colaborări-cu-influenceri-ugc-user-gener#10ms37x",
+      "source": "Colaborări cu influenceri, UGC (user generated content), campanii cu ambasadori de brand.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "colaj-cu-site-uri-premiate-pe-awwwards-r#pe1xqe",
+      "source": "Colaj cu site-uri premiate pe Awwwards — referință pentru design editorial",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "servicii-it.html <img alt>"
+      ]
+    },
+    {
+      "key": "comandă-qc#1kiuw9g",
+      "source": "Comandă & QC",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "companie#1f05agh",
+      "source": "Companie",
+      "context": "",
+      "places": [
+        "consultanta.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html text",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "promovare.html text",
+        "servicii-it.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "comunități-private-forumuri-chat-feed-pr#102k2hr",
+      "source": "Comunități private, forumuri, chat, feed, profiluri, grupuri, pentru companii sau nișe.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "conectăm-facturarea-curieratul-plățile-ș#13llzzi",
+      "source": "Conectăm facturarea, curieratul, plățile și marketingul într-un flux care lucrează automat.",
+      "context": "Text inside <span>.",
+      "places": [
+        "integrari.html <span>"
+      ]
+    },
+    {
+      "key": "conectare-cu-cargus-awb-uri-automate-sta#yn7kkj",
+      "source": "Conectare cu Cargus, AWB-uri automate, status sincronizat, costuri calculate dinamic.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "conectare-cu-fan-courier-sameday-cargus-#p5zlrc",
+      "source": "Conectare cu Fan Courier, Sameday, Cargus, GLS, DHL, generare AWB-uri direct din Shopify.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "conectare-cu-orice-platformă-de-e-commer#1uh88z2",
+      "source": "Conectare cu orice platformă de e-commerce: Shopify, WooCommerce, custom.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "conectare-la-google-analytics-4-search-c#r5l4r9",
+      "source": "Conectare la Google Analytics 4, Search Console, dashboard-uri personalizate pentru monitorizare.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "configurăm-google-ads-meta-business-tikt#7bwwg3",
+      "source": "Configurăm Google Ads, Meta Business, TikTok Ads, pixeli, tracking, conversii. Audităm ce există deja.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "consimțământ#1ebnz7h",
+      "source": "Consimțământ",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "construim-în-sprinturi-cu-demo-uri-regul#rprooi",
+      "source": "Construim în sprinturi, cu demo-uri regulate. Adaptați produsul pe parcurs.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "construim-magazine-shopify-rapide-clare-#smn99b",
+      "source": "Construim magazine Shopify rapide, clare și pregătite pentru vânzări, automatizări și creștere.",
+      "context": "Text inside <span>.",
+      "places": [
+        "magazine-online.html <span>"
+      ]
+    },
+    {
+      "key": "construim-un-plan-complet-obiective-buge#xezrbk",
+      "source": "Construim un plan complet: obiective, bugete, timeline, KPI-uri, proiecții financiare.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "construim#22gnbd",
+      "source": "Construim",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "consultanță-business-online-digital-onli#142u23u",
+      "source": "Consultanță Business Online | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "consultanta.html <title>"
+      ]
+    },
+    {
+      "key": "consultanță-business-online#1h86c23",
+      "source": "Consultanță Business Online",
+      "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html JSON-LD"
+      ]
+    },
+    {
+      "key": "consultanță-business#45ahuu",
+      "source": "Consultanță Business",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "consultanță-completă-pentru-deschiderea-#239sgx",
+      "source": "Consultanță completă pentru deschiderea și susținerea unui magazin online: digital, fiscal, legal și procedural.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "consultanta.html meta description"
+      ]
+    },
+    {
+      "key": "consultanță-completă-pentru-deschiderea-#s6usw8",
+      "source": "Consultanță completă pentru deschiderea și creșterea magazinului online: digital, fiscal, legal (GDPR), procedural și operațional.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "consultanta.html meta og:description"
+      ]
+    },
+    {
+      "key": "consultanță-și-cumpărare-produse-din-chi#1riiggd",
+      "source": "Consultanță și cumpărare produse din China, transport, import, proceduri vamale, reguli și obligativități fiscale.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "import-china.html meta description"
+      ]
+    },
+    {
+      "key": "consultanță-și-cumpărare-produse-din-chi#1yiq5yh",
+      "source": "Consultanță și cumpărare produse din China, transport maritim/aerian, import, proceduri vamale, reguli fiscale și obligativități legale.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "import-china.html meta og:description"
+      ]
+    },
+    {
+      "key": "consultanță#1vzc7zu",
+      "source": "Consultanță",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "consultanță#uz80uw",
+      "source": "CONSULTANȚĂ",
+      "context": "Text inside <span>.",
+      "places": [
+        "consultanta.html <span>"
+      ]
+    },
+    {
+      "key": "contabilitate#1fhtwlk",
+      "source": "Contabilitate",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "contact#1fq9irv",
+      "source": "Contact:",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "contact#1s5kfu9",
+      "source": "CONTACT",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "contact#ehd0xd",
+      "source": "Contact",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "container-și-logistică-internațională-de#cnwqgh",
+      "source": "Container și logistică internațională de import",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "import-china.html <img alt>"
+      ]
+    },
+    {
+      "key": "content-în-stilul-celor-creați-de-utiliz#yen3ub",
+      "source": "Content în stilul celor creați de utilizatori, dar produși profesional. Funcționează excelent pe TikTok și Reels.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "conținut-vizual-care-prinde#ia47s6",
+      "source": "Conținut vizual care prinde.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "contracte-internaționale#1f1lbbg",
+      "source": "Contracte internaționale",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "creăm-platforme-și-aplicații-personaliza#189z9wj",
+      "source": "Creăm platforme și aplicații personalizate de la zero, exact cum ai nevoie. Spune-ne ideea, noi o construim.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "platforme-custom.html meta description"
+      ]
+    },
+    {
+      "key": "creăm-platforme-și-aplicații-personaliza#z56ds",
+      "source": "Creăm platforme și aplicații personalizate de la zero: SaaS, marketplace-uri, CRM, ERP, LMS, dashboard-uri, aplicații mobile.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "platforme-custom.html meta og:description"
+      ]
+    },
+    {
+      "key": "creăm-videoclipuri-realiste-cu-ai-person#cd8d7g",
+      "source": "Creăm videoclipuri realiste cu AI, personaje, scene, voiceover, fără filmări fizice.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "creăm-vizualuri-unice-lifestyle-mockup-u#192kmq8",
+      "source": "Creăm vizualuri unice, lifestyle, mockup-uri și imagini promoționale generate AI pentru fiecare produs.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "creare-campanii#afhzax",
+      "source": "Creare Campanii",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "creare-conținut#14cf0y",
+      "source": "Creare conținut",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "creare-magazine-online-shopify-de-la-zer#1l9w6tb",
+      "source": "Creare magazine online Shopify de la zero, teme custom, inserare produse, SEO, generare imagini AI, configurări personalizate.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "magazine-online.html meta description"
+      ]
+    },
+    {
+      "key": "creare-magazine-online-shopify-de-la-zer#4phl90",
+      "source": "Creare magazine online Shopify de la zero, teme custom, inserare produse, SEO, generare imagini AI, integrări automate cu curieri și facturare.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "magazine-online.html meta og:description"
+      ]
+    },
+    {
+      "key": "creare-site-uri-de-prezentare-modificare#1h1l1xu",
+      "source": "Creare site-uri de prezentare, modificare site-uri existente, întreținere, depanare bug-uri, optimizare viteză și securitate.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "servicii-it.html meta description"
+      ]
+    },
+    {
+      "key": "creare-site-uri-de-prezentare-modificare#1s6clqc",
+      "source": "Creare site-uri de prezentare, modificare site-uri existente, mentenanță, depanare, optimizare viteză și securitate SEO on-page.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "servicii-it.html meta og:description"
+      ]
+    },
+    {
+      "key": "creare-titluri-seo#by32z5",
+      "source": "Creare titluri & SEO",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "creștere-scalare#dbgpk9",
+      "source": "Creștere & Scalare",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "crm-uri-personalizate#s9qdj9",
+      "source": "CRM-uri personalizate",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "cu-sediul-social-în-suite-2-260-main-str#1pcvjf9",
+      "source": ", cu sediul social în Suite 2, 260 Main Street, Gibraltar, operând sub denumirea comercială Digital Online",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "cu-sediul-social-în-suite-2-260-main-str#ukt6c9",
+      "source": ", cu sediul social în Suite 2, 260 Main Street, Gibraltar, sub denumirea comercială Digital Online.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "cum-decurge-un-proiect-custom#buyzgd",
+      "source": "Cum decurge un proiect custom",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "cum-lucrăm-procesul-nostru#xznrf8",
+      "source": "Cum lucrăm, procesul nostru",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "custom-ai-solutions#ys75kq",
+      "source": "Custom AI Solutions",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "custom#1b9l0xs",
+      "source": "CUSTOM",
+      "context": "Text inside <span>.",
+      "places": [
+        "platforme-custom.html <span>"
+      ]
+    },
+    {
+      "key": "customer-service#1ce14dk",
+      "source": "Customer service",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "dacă-nu-ești-mulțumit-de-răspunsul-nostr#ykqq2x",
+      "source": "Dacă nu ești mulțumit de răspunsul nostru, ai dreptul să depui o plângere la Autoritatea Națională de Supraveghere a Prelucrării Datelor cu Caracter Personal (ANSPDCP):",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "dacă-un-serviciu-este-contractat-de-un-c#1papcb5",
+      "source": "Dacă un serviciu este contractat de un consumator la distanță, informațiile precontractuale, prețul, modalitatea de executare și drepturile de retragere aplicabile vor fi furnizate înainte de încheierea acelui contract, potrivit legislației aplicabile. Această pagină nu înlătură drepturile legale ale consumatorilor.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "dacă-vrei-ceva-cu-totul-diferit-de-shopi#p57lic",
+      "source": "Dacă vrei ceva cu totul diferit de Shopify standard, construim o soluție complet personalizată, pe Shopify Hydrogen sau headless commerce.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "dashboard-cu-toate-datele-cost-conversii#6uakz0",
+      "source": "Dashboard cu toate datele: cost, conversii, ROAS, CPA, performanță per canal, per campanie, per produs.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "dashboard-de-marketing-digital-și-campan#rn00u0",
+      "source": "Dashboard de marketing digital și campanii paid",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "promovare.html <img alt>"
+      ]
+    },
+    {
+      "key": "dashboard-uri-interne#wznclb",
+      "source": "Dashboard-uri interne",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "date-tehnice#28x1dv",
+      "source": "Date tehnice",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "datele-introduse-nu-sunt-transmise-sau-p#rk94d2",
+      "source": ": datele introduse nu sunt transmise sau păstrate de server în versiunea actuală.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "datele-pe-care-ni-le-trimiți-precum-nume#1nco71z",
+      "source": ": datele pe care ni le trimiți, precum numele, datele de contact și conținutul solicitării. Furnizorul canalului ales prelucrează datele potrivit propriilor politici.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "datele-prelucrate-depind-de-modul-în-car#1w5nzsp",
+      "source": "Datele prelucrate depind de modul în care alegi să ne contactezi:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "datele-primite-prin-canalele-de-contact-#4otri0",
+      "source": "Datele primite prin canalele de contact sunt folosite pentru:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "de-ce-am-pornit-digital-online#jb7y4j",
+      "source": "De ce am pornit Digital Online",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "de-exemplu-serviciul-de-email-sau-whatsa#vqor6e",
+      "source": ", de exemplu serviciul de email sau WhatsApp, dacă ne contactezi prin acel serviciu.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "de-la-chatboți-simpli-la-agenți-ai-compl#iijziq",
+      "source": "De la chatboți simpli la agenți AI complecși care preiau sarcini reale din afacerea ta.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "de-la-conținut-organic-la-reclame-premiu#qevkx",
+      "source": "De la conținut organic la reclame premium, cu sau fără AI.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "de-la-designul-temei-până-la-ultimul-pro#3yml99",
+      "source": "De la designul temei până la ultimul produs încărcat, ne ocupăm de absolut tot.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "de-la-furnizor-din-china-până-la-depozit#ko0jtr",
+      "source": "De la furnizor din China până la depozitul tău: sourcing, transport, vamă și conformitate.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "de-la-mvp-la-platforme-enterprise-web-mo#jcr83c",
+      "source": "De la MVP la platforme enterprise: web, mobile, SaaS, marketplace-uri și dashboard-uri custom.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "de-la-mvp-uri-la-platforme-enterprise-fo#1jtbjlg",
+      "source": "De la MVP-uri la platforme enterprise, folosim tehnologii moderne și scalabile.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "de-la-primire#17byvwh",
+      "source": "de la primire.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "de-la-simple-pagini-de-prezentare-la-sit#f653bf",
+      "source": "De la simple pagini de prezentare la site-uri complexe, cu tot ce ai nevoie pentru a-ți face afacerea vizibilă online.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "de-la-site-de-prezentare-la-platformă-cu#wn9hd4",
+      "source": "De la site de prezentare la platformă custom cu AI. Alegi punctul de plecare, noi construim drumul.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "declarații-vamale-tva-la-import-intrasta#1nuif0j",
+      "source": "Declarații vamale, TVA la import, intrastat, contabilitate, facturi emise corect.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "demersuri-la-cererea-ta-înainte-de-înche#1dn5l3p",
+      "source": "Demersuri la cererea ta înainte de încheierea unui contract",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "depanare-bug-uri-erori-probleme-de-funcț#1cul1kf",
+      "source": "Depanare bug-uri, erori, probleme de funcționare. Ne ocupăm de orice fel de defecțiune tehnică.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "depunem-eforturi-pentru-ca-informațiile-#4w0iky",
+      "source": "Depunem eforturi pentru ca informațiile prezentate să fie utile și actuale, dar acestea pot fi modificate. Rezultatele unui proiect depind de cerințe, materiale, platforme și factori care pot să nu fie controlați de furnizor; rezultatele concrete se stabilesc, dacă este cazul, în contractul individual.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "derulează-la-conținut#13ivx2k",
+      "source": "Derulează la conținut",
+      "context": "Accessible label of the \"hm-scroll\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "consultanta.html <a aria-label>",
+        "implementare-ai.html <a aria-label>",
+        "import-china.html <a aria-label>",
+        "integrari.html <a aria-label>",
+        "magazine-online.html <a aria-label>",
+        "montaj-editare-video-foto.html <a aria-label>",
+        "platforme-custom.html <a aria-label>",
+        "politica-confidentialitate.html <a aria-label>",
+        "promovare.html <a aria-label>",
+        "servicii-it.html <a aria-label>"
+      ]
+    },
+    {
+      "key": "derulează-la-secțiunea-următoare#z96l3f",
+      "source": "Derulează la secțiunea următoare",
+      "context": "Accessible label of the \"hm-scroll\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "index.html <a aria-label>"
+      ]
+    },
+    {
+      "key": "deschide-setări-cookie-din-subsol-schimb#za369a",
+      "source": "Deschide „Setări cookie” din subsol, schimbă opțiunile și salvează. Poți șterge și înregistrarea din setările browserului. Dacă tehnologiile folosite de site se schimbă, actualizăm această politică și versiunea consimțământului.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "deschidere-firmă#1g5ar6u",
+      "source": "Deschidere firmă",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "design-automat#izkqca",
+      "source": "Design automat",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "design-și-conținut-pentru-instagram-stor#1p86ijo",
+      "source": "Design și conținut pentru Instagram Stories, Snapchat, Facebook Stories.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "design-unic-adaptat-brandului-tău-nu-fol#1l7hn9i",
+      "source": "Design unic, adaptat brandului tău. Nu folosim teme generice, ci creăm experiențe vizuale unice.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "despre-noi#89diku",
+      "source": "Despre noi",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "despre#1bll1pk",
+      "source": "DESPRE",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "despre#1c8vurs",
+      "source": "Despre",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "detaliile-despre-stocarea-locală-a-alege#7n5b6z",
+      "source": "Detaliile despre stocarea locală a alegerii, opțiunile din banner, durata preferinței și instrumentele active sunt descrise în",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "dezvoltăm-aplicații-dashboard-uri-și-mar#rq5i0j",
+      "source": "Dezvoltăm aplicații, dashboard-uri și marketplace-uri adaptate exact modului tău de lucru.",
+      "context": "Text inside <span>.",
+      "places": [
+        "platforme-custom.html <span>"
+      ]
+    },
+    {
+      "key": "dezvoltare-api-rest-graphql-microservici#skov19",
+      "source": "Dezvoltare API REST/GraphQL, microservicii, integrări cu sisteme terțe.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "dezvoltare-iterativă#697h00",
+      "source": "Dezvoltare iterativă",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "diagramă-de-integrări-automate-pentru-bu#zhvhzr",
+      "source": "Diagramă de integrări automate pentru business",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "integrari.html <img alt>"
+      ]
+    },
+    {
+      "key": "digital-online-agenție-digitală-cu-echip#3tzk0d",
+      "source": "Digital Online, Agenție digitală cu echipă senior",
+      "context": "Social share title. This is what appears when the page is shared on Facebook, LinkedIn or X. Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "index.html meta og:title"
+      ]
+    },
+    {
+      "key": "digital-online-construiește-site-uri-mag#1fg8ybl",
+      "source": "Digital Online construiește site-uri, magazine Shopify, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "index.html meta description"
+      ]
+    },
+    {
+      "key": "digital-online-oferă-servicii-complete-d#lfjo9c",
+      "source": "Digital Online oferă servicii complete de IT, magazine Shopify, integrări automate, AI, promovare digitală și consultanță business în România și UE.",
+      "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html JSON-LD",
+        "implementare-ai.html JSON-LD",
+        "import-china.html JSON-LD",
+        "integrari.html JSON-LD",
+        "magazine-online.html JSON-LD",
+        "montaj-editare-video-foto.html JSON-LD",
+        "platforme-custom.html JSON-LD",
+        "politica-confidentialitate.html JSON-LD",
+        "promovare.html JSON-LD",
+        "servicii-it.html JSON-LD"
+      ]
+    },
+    {
+      "key": "digital-online-toate-drepturile-rezervat#7p8wmq",
+      "source": "© Digital Online, Toate drepturile rezervate",
+      "context": "Small print, usually a legal or supplementary note.",
+      "places": [
+        "consultanta.html <small>",
+        "implementare-ai.html <small>",
+        "import-china.html <small>",
+        "index.html <small>",
+        "integrari.html <small>",
+        "magazine-online.html <small>",
+        "montaj-editare-video-foto.html <small>",
+        "platforme-custom.html <small>",
+        "politica-confidentialitate.html <small>",
+        "politica-cookie.html <small>",
+        "promovare.html <small>",
+        "servicii-it.html <small>",
+        "termeni-si-conditii.html <small>"
+      ]
+    },
+    {
+      "key": "digital-online-toate-drepturile-rezervat#fnchc9",
+      "source": "Digital Online, Toate drepturile rezervate",
+      "context": "",
+      "places": [
+        "consultanta.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html text",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "promovare.html text",
+        "servicii-it.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "digital-online-web-shopify-ai-marketing-#16it08s",
+      "source": "Digital Online, Web, Shopify, AI & Marketing Digital",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "index.html <title>"
+      ]
+    },
+    {
+      "key": "digital-online#1h6hh3c",
+      "source": "Digital Online",
+      "context": "The name of the company in the structured data. Keep the brand name \"Digital Online\" untranslated. | Alt text of the <img> inside \"logo-img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "consultanta.html JSON-LD",
+        "implementare-ai.html JSON-LD",
+        "import-china.html JSON-LD",
+        "index.html JSON-LD",
+        "integrari.html JSON-LD",
+        "magazine-online.html JSON-LD",
+        "montaj-editare-video-foto.html JSON-LD",
+        "platforme-custom.html JSON-LD",
+        "politica-confidentialitate.html JSON-LD",
+        "politica-cookie.html <img alt>",
+        "promovare.html JSON-LD",
+        "servicii-it.html JSON-LD",
+        "termeni-si-conditii.html <img alt>"
+      ]
+    },
+    {
+      "key": "digital#age803",
+      "source": "DIGITAL",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "digitală-ads#1vc7cbn",
+      "source": "DIGITALĂ & ADS",
+      "context": "Text inside <span>.",
+      "places": [
+        "promovare.html <span>"
+      ]
+    },
+    {
+      "key": "din-acest-link#1r1os8u",
+      "source": "din acest link",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "politica-confidentialitate.html <a>"
+      ]
+    },
+    {
+      "key": "din-china#1l5tyb",
+      "source": "DIN CHINA",
+      "context": "Text inside <span>.",
+      "places": [
+        "import-china.html <span>"
+      ]
+    },
+    {
+      "key": "discutăm#1r2s7gh",
+      "source": "Discutăm",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "discuție-viziune#b7gg52",
+      "source": "Discuție & viziune",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "document-scris-pe-înțelesul-tuturor-ce-f#1lxzjza",
+      "source": "Document scris, pe înțelesul tuturor: ce facem, în ce timp, la ce preț. Cu opțiuni reale.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "dreptul-de-a-depune-plângere#15ju9kv",
+      "source": "Dreptul de a depune plângere",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-de-a-fi-uitat-art-17#2uhtm5",
+      "source": "(„dreptul de a fi uitat\", art. 17).",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "dreptul-de-a-nu-fi-supus-unei-decizii-au#nccz6b",
+      "source": "Dreptul de a nu fi supus unei decizii automate",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-de-a-retrage-consimțământul#l4c5u",
+      "source": "Dreptul de a retrage consimțământul",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-de-acces#c23b7x",
+      "source": "Dreptul de acces",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-la-opoziție#1b9y4a4",
+      "source": "Dreptul la opoziție",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-la-portabilitatea-datelor#1jg7soi",
+      "source": "Dreptul la portabilitatea datelor",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-la-rectificare#a6sq8j",
+      "source": "Dreptul la rectificare",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-la-restricționarea-prelucrării#x9lf64",
+      "source": "Dreptul la restricționarea prelucrării",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "dreptul-la-ștergere#1tgjf5l",
+      "source": "Dreptul la ștergere",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "după-primire-te-ajutăm-să-listezi-produs#16j8ih8",
+      "source": "După primire, te ajutăm să listezi produsele în magazinul tău online: titluri, descrieri, imagini, SEO.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "e-commerce-ads#wy9uca",
+      "source": "E-commerce Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "echipa-digital-online-la-birou#zb4k2o",
+      "source": "Echipa Digital Online la birou",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "index.html <img alt>"
+      ]
+    },
+    {
+      "key": "echipa-digital-online-lucrând#1i31efw",
+      "source": "Echipa Digital Online lucrând",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "index.html <img alt>"
+      ]
+    },
+    {
+      "key": "echipă-în-ședință-de-consultanță-strateg#nyh1zf",
+      "source": "Echipă în ședință de consultanță strategică",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "consultanta.html <img alt>"
+      ]
+    },
+    {
+      "key": "ecosistem#p85z1b",
+      "source": "Ecosistem.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "editare-foto-produse#11szrq5",
+      "source": "Editare foto produse",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "editare-video-profesională-fotografie-de#l51k2t",
+      "source": "Editare video profesională, fotografie de produs și conținut generat AI pentru ads și social media.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "email-contact-digital-online-ro#4oe588",
+      "source": "Email contact@digital-online.ro",
+      "context": "Link label showing an email address. Keep the address unchanged.",
+      "places": [
+        "index.html <a>"
+      ]
+    },
+    {
+      "key": "email-marketing#164a2hb",
+      "source": "Email Marketing",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "email-uri-personalizate-generate-ai-welc#1nr7hm5",
+      "source": "Email-uri personalizate generate AI, welcome, follow-up, re-engagement, oferte dinamice.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "email#1d1fz53",
+      "source": "Email:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "email#3mzikt",
+      "source": "Email",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "erp-personalizat-gestiune-stocuri-logist#ku0ic8",
+      "source": "ERP personalizat, gestiune stocuri, logistică, warehouse management.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "etichetare-conformitate#cii2k4",
+      "source": "Etichetare & conformitate",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "exemple-de-direcție-vizuală#d6596",
+      "source": "Exemple de direcție vizuală.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "exemple-de-fluxuri-automatizate#1ye0soj",
+      "source": "Exemple de fluxuri automatizate.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "exemple-de-magazine-shopify#1r9u2yi",
+      "source": "Exemple de magazine Shopify.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "exemple-de-sarcini-pe-care-le-înlocuim-c#1d15qdr",
+      "source": "Exemple de sarcini pe care le înlocuim cu AI",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "explore#15p7xz8",
+      "source": "EXPLORE",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "explore#1jhvnzq",
+      "source": "Explore →",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "explore#n6bzp2",
+      "source": "EXPLORE →",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "extragere-automată-de-date-din-documente#1evws54",
+      "source": "Extragere automată de date din documente, facturi, email-uri, fără introducere manuală.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "facturare-automată-la-fiecare-comandă-si#1aqyf2c",
+      "source": "Facturare automată la fiecare comandă. Sincronizare clienți, produse, plăți. TVA calculat corect, e-Factura respectată.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "facturare-automată#8w8ytc",
+      "source": "Facturare automată",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "facturi-awb-uri-plăți-crm-sisteme-care-l#l0lwn8",
+      "source": "Facturi, AWB-uri, plăți, CRM, sisteme care lucrează singure 24/7.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "fan-courier#1d81jrn",
+      "source": "Fan Courier",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "fiecare-canal-are-specificul-lui-alegem-#1eo9ctq",
+      "source": "Fiecare canal are specificul lui, alegem împreună combinația optimă pentru afacerea ta.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "fiecare-etapă-a-importului-explicată-cla#cqo4g",
+      "source": "Fiecare etapă a importului explicată clar, cu suport practic la fiecare pas.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "fiecare-produs-primește-titlu-descriere-#wj0vs6",
+      "source": "Fiecare produs primește titlu, descriere, meta tags optimizate pentru Google și pentru rată de conversie.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "folosim-inteligența-artificială-pentru-a#isfyen",
+      "source": "Folosim inteligența artificială pentru a genera imagini realiste pentru produsele tale, optimizate pentru web.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "formulare-whatsapp-click-apeluri-captare#19br42o",
+      "source": "Formulare, WhatsApp Click, apeluri, captare lead-uri calificate pentru echipa ta de vânzări.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "formularul-de-contact-de-pe-pagina-princ#xnpwof",
+      "source": "Formularul de contact de pe pagina principală este demonstrativ și nu transmite mesajele. Pentru solicitări reale folosește emailul, telefonul sau WhatsApp.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "formularul-de-pe-pagina-principală#1s485gh",
+      "source": "Formularul de pe pagina principală",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "formularul-demonstrativ#1ezv38u",
+      "source": "Formularul demonstrativ",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "foto-video-produse#1aghi4",
+      "source": "Foto & video produse",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "furnizorul-canalului-ales#3h6jhk",
+      "source": "Furnizorul canalului ales",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "furnizorul-de-găzduire-primește-date-de-#1208wj5",
+      "source": ": furnizorul de găzduire primește date de conexiune, precum adresa IP, tipul de browser și resursa solicitată, necesare pentru livrarea paginilor și securitatea site-ului. Detalii la secțiunea 5.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "furnizorul-de-găzduire-vercel-inc-este-o#lu032i",
+      "source": "Furnizorul de găzduire, Vercel Inc., este o companie din Statele Unite ale Americii, iar infrastructura folosită pentru acest site este configurată în regiunea Frankfurt, Germania. Orice transfer în afara Spațiului Economic European se realizează pe baza clauzelor contractuale standard aprobate de Comisia Europeană. Site-ul nu încarcă instrumente de analiză sau publicitate.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "furnizorul-de-găzduire#ignxu3",
+      "source": "Furnizorul de găzduire",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "găsim-furnizori-negociem-condițiile-și-c#1845t1p",
+      "source": "Găsim furnizori, negociem condițiile și coordonăm importul până când produsele ajung la tine.",
+      "context": "Text inside <span>.",
+      "places": [
+        "import-china.html <span>"
+      ]
+    },
+    {
+      "key": "generare-awb-uri-direct-din-comandă-stat#1q2h5m8",
+      "source": "Generare AWB-uri direct din comandă. Status tracking actualizat în timp real, etichete printabile.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "generare-conținut-ai#1mhrq6r",
+      "source": "Generare conținut AI",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "generare-imagini-ai#mv55ue",
+      "source": "Generare imagini AI",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "generare-imagini-noi#188mvyq",
+      "source": "Generare imagini noi",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "generare-video-cu-ai#1v1aa7b",
+      "source": "Generare video cu AI",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "gestionăm-toate-formalitățile-vamale-cod#1f2eqal",
+      "source": "Gestionăm toate formalitățile vamale, coduri HS, taxe vamale, TVA, declarații, EORI.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "gestionare-comenzi-cu-plată-ramburs-flux#1nueqih",
+      "source": "Gestionare comenzi cu plată ramburs, fluxuri automate pentru curierat.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "global-vision-point-limited#17lkleo",
+      "source": "Global Vision Point Limited",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>",
+        "termeni-si-conditii.html <strong>"
+      ]
+    },
+    {
+      "key": "gls-dhl-dpd#1p6h9ax",
+      "source": "GLS / DHL / DPD",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "google-ads-meta-ads-facebook-instagram-t#1rdlmqd",
+      "source": "Google Ads, Meta Ads (Facebook, Instagram), TikTok Ads. Creare, gestionare și optimizare campanii pentru orice tip de afacere în RO și UE.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "promovare.html meta og:description"
+      ]
+    },
+    {
+      "key": "google-ads-meta-ads-facebook-instagram-t#5pp158",
+      "source": "Google Ads, Meta Ads (Facebook, Instagram), TikTok Ads. Creare și gestionare campanii pentru orice tip de afacere.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "promovare.html meta description"
+      ]
+    },
+    {
+      "key": "google-ads-search#jh2mxo",
+      "source": "Google Ads, Search",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "google-analytics-integrat#90zgdk",
+      "source": "Google Analytics integrat",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "google-display-network#qf8aci",
+      "source": "Google Display Network",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "google-maps-facebook-local-geo-targeting#11cgmul",
+      "source": "Google Maps, Facebook Local, Geo-targeting, pentru business-uri locale cu rază limitată.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "google-meta-tiktok-campanii-măsurate-bug#1ev9v2d",
+      "source": "Google, Meta, TikTok, campanii măsurate, bugete optimizate.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "google-shopping#12hl6y",
+      "source": "Google Shopping",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "hai-să-vorbim#15gce3g",
+      "source": "Hai să vorbim",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "hook-problem-solution#1l5bi0q",
+      "source": "Hook + Problem + Solution",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "hosting-domeniu#mqh7y0",
+      "source": "Hosting & Domeniu",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "iar-preferințele-browserului-în#lts66w",
+      "source": ", iar preferințele browserului în",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "identificăm-furnizori-verificați-pe-alib#sxfalv",
+      "source": "Identificăm furnizori verificați pe Alibaba, 1688, Made-in-China. Verificăm legitimitatea, calitatea, certificările.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "imagini-produse-ai#s21lsl",
+      "source": "Imagini produse & AI",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "imagini-unice-lifestyle-mockup-uri-ilust#10s20k4",
+      "source": "Imagini unice, lifestyle, mockup-uri, ilustratii, generative fill, perfecte pentru ads și site.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "implementăm-funcționalități-personalizat#qg6byk",
+      "source": "Implementăm funcționalități personalizate: reguli de preț, discount-uri automate, programe de loialitate, abonamente.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "implementare-ai-chatboți-digital-online#zxq7yk",
+      "source": "Implementare AI & Chatboți | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "implementare-ai.html <title>"
+      ]
+    },
+    {
+      "key": "implementare-ai-chatboți#3zh431",
+      "source": "Implementare AI & Chatboți",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian. | Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html JSON-LD",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "implementare-ai#q7x8uq",
+      "source": "Implementare AI",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "implementare#1gy3bvs",
+      "source": "IMPLEMENTARE",
+      "context": "Text inside <span>.",
+      "places": [
+        "implementare-ai.html <span>"
+      ]
+    },
+    {
+      "key": "import-china#1i7t3hf",
+      "source": "Import China",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "import-produse-china#1qt3dxh",
+      "source": "Import Produse China",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "import-produse-din-china-digital-online#qq81r",
+      "source": "Import Produse din China | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "import-china.html <title>"
+      ]
+    },
+    {
+      "key": "import-produse-din-china#c8d88w",
+      "source": "Import Produse din China",
+      "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "import-china.html JSON-LD"
+      ]
+    },
+    {
+      "key": "import-produse#a5r4ki",
+      "source": "IMPORT PRODUSE",
+      "context": "Text inside <span>.",
+      "places": [
+        "import-china.html <span>"
+      ]
+    },
+    {
+      "key": "în-codul-site-ului-verificat-la-7-octomb#20f5gj",
+      "source": "În codul site-ului verificat la 7 octombrie 2024 nu sunt instalate Google Analytics, Meta Pixel, TikTok Pixel sau alte scripturi de analiză ori publicitate.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "în-funcție-de-solicitare-și-de-etapa-rel#pcoi1p",
+      "source": "În funcție de solicitare și de etapa relației, temeiul poate fi:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "în-orice-moment-art-7-alin-3#1ifjnxv",
+      "source": "în orice moment (art. 7 alin. 3).",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "în-versiunea-actuală-formularul-este-dem#1cnhynt",
+      "source": ": în versiunea actuală, formularul este demonstrativ. Datele introduse nu sunt trimise către un server și nu ajung la Digital Online; după încercarea de trimitere, formularul afișează un mesaj informativ și păstrează datele doar în pagina deschisă.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "înapoi-la-site#b2gd0s",
+      "source": "Înapoi la site",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "politica-cookie.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "încărcare-rapidă-scor-pagespeed-mare-opt#qy9pdx",
+      "source": "Încărcare rapidă, scor PageSpeed mare, optimizare imagini, cache, CDN, toate pentru o experiență fluidă.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "începutul#ljc781",
+      "source": "Începutul.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "închide-meniul#1vujaa0",
+      "source": "Închide meniul",
+      "context": "Accessible label of the \"mobile-nav-close\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "consultanta.html <button aria-label>",
+        "implementare-ai.html <button aria-label>",
+        "import-china.html <button aria-label>",
+        "index.html <button aria-label>",
+        "integrari.html <button aria-label>",
+        "magazine-online.html <button aria-label>",
+        "montaj-editare-video-foto.html <button aria-label>",
+        "platforme-custom.html <button aria-label>",
+        "politica-confidentialitate.html <button aria-label>",
+        "promovare.html <button aria-label>",
+        "servicii-it.html <button aria-label>"
+      ]
+    },
+    {
+      "key": "încredere-transparență#1xjokrh",
+      "source": "Încredere & Transparență",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "influencer-marketing#1pjfjle",
+      "source": "Influencer Marketing",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "informații-despre-preferințele-de-cookie#ixa1b9",
+      "source": "Informații despre preferințele de cookies și stocarea locală folosită de site-ul Digital Online.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "politica-cookie.html meta description"
+      ]
+    },
+    {
+      "key": "informații-legale#tg9p7r",
+      "source": "INFORMAȚII LEGALE",
+      "context": "",
+      "places": [
+        "politica-cookie.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "inserare-produse#1c9xkqo",
+      "source": "Inserare produse",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "inspecție-calitate#1lxx053",
+      "source": "Inspecție calitate",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "instalăm-și-configurăm-aplicațiile-potri#1hdinud",
+      "source": "Instalăm și configurăm aplicațiile potrivite pentru nevoile tale: review-uri, upsell, email marketing, analytics.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "integrare-ai-pe-site-chatboți-agenți-ai-#t39yw9",
+      "source": "Integrare AI pe site, chatboți, agenți AI, automatizări inteligente. Înlocuim sarcini repetitive cu AI 24/7.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "implementare-ai.html meta og:description"
+      ]
+    },
+    {
+      "key": "integrare-ai-pe-site-chatboți-agenți-ai-#w4id19",
+      "source": "Integrare AI pe site, chatboți, agenți AI, automatizări inteligente. Înlocuim sarcini repetitive cu AI.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "implementare-ai.html meta description"
+      ]
+    },
+    {
+      "key": "integrare-completă-cu-sameday-generare-a#bo8tuf",
+      "source": "Integrare completă cu Sameday, generare AWB, easybox, livrare la adresă, tracking automat.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "integrare-cu-mailchimp-klaviyo-email-uri#1d51orb",
+      "source": "Integrare cu Mailchimp, Klaviyo, email-uri automate post-comandă, abandon coș, recuperare clienți.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "integrare-cu-platforme-alternative-de-fa#1cggnr4",
+      "source": "Integrare cu platforme alternative de facturare. Emitem facturi proforma, fiscale, stornări, totul automat.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "integrare-cu-smartbill-fgo-oblio-facturi#jvbnx9",
+      "source": "Integrare cu SmartBill, Fgo, Oblio, facturile se emit automat la fiecare comandă.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "integrare-cu-stripe-netopia-payu-mobilpa#15ktwn0",
+      "source": "Integrare cu Stripe, Netopia, PayU, MobilPay, pentru plăți cu cardul și numerar (ramburs).",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "integrare-cu-toate-companiile-de-curiera#1tuuvhl",
+      "source": "Integrare cu toate companiile de curierat internaționale și naționale, la cerere.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "integrări-automate-cu-sisteme-de-factura#isrinj",
+      "source": "Integrări automate cu sisteme de facturare (SmartBill, Oblio), curierat (Fan Courier, Sameday, Cargus) și procesatoare de plată (Stripe, Netopia, PayU).",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "integrari.html meta og:description"
+      ]
+    },
+    {
+      "key": "integrări-automate-cu-sisteme-de-factura#oqz1vl",
+      "source": "Integrări automate cu sisteme de facturare, curierat și procesatoare de plată. Totul la un click distanță.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "integrari.html meta description"
+      ]
+    },
+    {
+      "key": "integrări-automate-digital-online#1w58bcb",
+      "source": "Integrări Automate | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "integrari.html <title>"
+      ]
+    },
+    {
+      "key": "integrări-automate#1qr0oto",
+      "source": "Integrări Automate",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian. | Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html JSON-LD",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "integrări-automate#tinqoc",
+      "source": "Integrări automate",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "integrări-curierat#h590rv",
+      "source": "Integrări curierat",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "integrări#3v4h2j",
+      "source": "INTEGRĂRI",
+      "context": "Text inside <span>.",
+      "places": [
+        "integrari.html <span>"
+      ]
+    },
+    {
+      "key": "interes-legitim#bi21uy",
+      "source": "Interes legitim",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "întocmim-specificații-tehnice-și-funcțio#cjbbtw",
+      "source": "Întocmim specificații tehnice și funcționale. Creăm wireframes și design UI/UX complet.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "întocmire-contracte-bilingve-termeni-inc#1e6sr2a",
+      "source": "Întocmire contracte bilingve, termeni Incoterms (EXW, FOB, CIF, DDP), clauze de protecție.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "întrebăm-ascultăm-identificăm-constrânge#147twlj",
+      "source": "Întrebăm, ascultăm, identificăm constrângerile reale (buget, termen, echipă). Nu vândem pachete.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "introducem-ai-în-procesele-tale-prin-cha#w016zv",
+      "source": "Introducem AI în procesele tale prin chatboți, automatizări și instrumente utile echipei.",
+      "context": "Text inside <span>.",
+      "places": [
+        "implementare-ai.html <span>"
+      ]
+    },
+    {
+      "key": "introducere-date#ert8kn",
+      "source": "Introducere date",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "la-anspdcp-www-dataprotection-ro-sau-la-#csf94j",
+      "source": "la ANSPDCP (www.dataprotection.ro) sau la o autoritate de supraveghere din UE.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "la-data-actualizării-codul-site-ului-nu-#9130fk",
+      "source": "La data actualizării, codul site-ului nu include instrumente de analiză, publicitate sau remarketing precum Google Analytics, Meta Pixel ori TikTok Pixel. Categoriile de analiză și marketing din setări nu activează servicii care nu sunt instalate.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "la-magazin-online-la-automatizări-ai#4l0lct",
+      "source": "la magazin online, la automatizări AI",
+      "context": "",
+      "places": [
+        "consultanta.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html text",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "promovare.html text",
+        "servicii-it.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "landing-pages-site-uri-corporate-platfor#197t3f",
+      "source": "Landing pages, site-uri corporate, platforme, cod propriu, fără șabloane.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "lansăm-campanii-monitorizăm-zilnic-ajust#el7ztl",
+      "source": "Lansăm campanii, monitorizăm zilnic, ajustăm bugete, audiențe, bidding, creativități în funcție de rezultate.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "lansare-monitorizare#oc9lck",
+      "source": "Lansare & Monitorizare",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "lead-generation#oj9tgn",
+      "source": "Lead Generation",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "linkedin-ads#1xgc6iz",
+      "source": "LinkedIn Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "listare-în-magazin#13xms4c",
+      "source": "Listare în magazin",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "livrare-în-țară#baf5af",
+      "source": "Livrare în țară",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "lms-uri-cu-cursuri-video-quiz-uri-certif#1qytecx",
+      "source": "LMS-uri cu cursuri video, quiz-uri, certificări, plăți, progres, gamification.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "local-ads#1a5kmmg",
+      "source": "Local Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "logistică-globală-simplificată#1c04tn0",
+      "source": "Logistică globală, simplificată.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "loguri-tehnice-ale-găzduirii#x2w9g3",
+      "source": "Loguri tehnice ale găzduirii",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "luni-vineri-09-00-17-00#1p0x9m7",
+      "source": "Luni – Vineri: 09:00 – 17:00",
+      "context": "",
+      "places": [
+        "consultanta.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html text",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "promovare.html text",
+        "servicii-it.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "luni-vineri-09-00-17-00#u44vg",
+      "source": "Luni–Vineri · 09:00–17:00",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "magazin-100-custom-de-la-0#dd5nkz",
+      "source": "Magazin 100% custom de la 0",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "magazin-online-shopify-modern-referință-#1gpmmju",
+      "source": "Magazin online Shopify modern — referință pentru design e-commerce",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "magazine-online.html <img alt>"
+      ]
+    },
+    {
+      "key": "magazine-online-rapide-clare-și-optimiza#11r9y1l",
+      "source": "Magazine online rapide, clare și optimizate pentru conversie. Design adaptat brandului, experiență mobilă perfectă.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "magazine-online-shopify-digital-online#1rqixiv",
+      "source": "Magazine Online Shopify | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "magazine-online.html <title>"
+      ]
+    },
+    {
+      "key": "magazine-online-shopify#1yc6ak8",
+      "source": "Magazine Online Shopify",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian. | Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html JSON-LD",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "magazine-online#yy1po6",
+      "source": "Magazine Online",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "magazine-shopify#raqunn",
+      "source": "Magazine Shopify",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "magazine#1hoay35",
+      "source": "MAGAZINE",
+      "context": "Text inside <span>.",
+      "places": [
+        "magazine-online.html <span>"
+      ]
+    },
+    {
+      "key": "managerul-de-preferințe-păstrează-aleger#1eqtzrj",
+      "source": "Managerul de preferințe păstrează alegerea ta în stocarea locală a browserului, sub cheia",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "marketing#1rsv4bl",
+      "source": "Marketing:",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-cookie.html <strong>"
+      ]
+    },
+    {
+      "key": "maximum-24-de-luni-de-la-ultima-comunica#np55xy",
+      "source": ": maximum 24 de luni de la ultima comunicare, după care sunt șterse, cu excepția documentelor care trebuie păstrate pentru obligații legale.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "maximum-30-de-zile-durata-standard-de-re#vu16wu",
+      "source": ": maximum 30 de zile, durata standard de retenție a furnizorului de găzduire.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "meniu#3sh06b",
+      "source": "Meniu",
+      "context": "Accessible label of the \"menu-toggle\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "consultanta.html <button aria-label>",
+        "implementare-ai.html <button aria-label>",
+        "import-china.html <button aria-label>",
+        "index.html <button aria-label>",
+        "integrari.html <button aria-label>",
+        "magazine-online.html <button aria-label>",
+        "montaj-editare-video-foto.html <button aria-label>",
+        "platforme-custom.html <button aria-label>",
+        "politica-confidentialitate.html <button aria-label>",
+        "promovare.html <button aria-label>",
+        "servicii-it.html <button aria-label>"
+      ]
+    },
+    {
+      "key": "mentenanță-reparații#16tbx0n",
+      "source": "Mentenanță & reparații",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "mentorat-continuu#qikg04",
+      "source": "Mentorat continuu",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "mesaj#3sh45x",
+      "source": "Mesaj",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "mesaje-primite-prin-email-sau-whatsapp#1scrujq",
+      "source": "Mesaje primite prin email sau WhatsApp",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "meta-ads-facebook#1p96gy2",
+      "source": "Meta Ads, Facebook",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "meta-ads-instagram#1ikbcuu",
+      "source": "Meta Ads, Instagram",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "modificăm-site-uri-deja-existente-redesi#132jsrw",
+      "source": "Modificăm site-uri deja existente: redesign, adăugare secțiuni, schimbare conținut, rebranding complet.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "modificări-actualizări#1ek3xdr",
+      "source": "Modificări & actualizări",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "montaj-editare-producție-pentru-ads-soci#95lbqc",
+      "source": "Montaj, editare, producție, pentru ads, social, magazin.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "montaj-editare-video-foto-digital-online#19nmh9",
+      "source": "Montaj & Editare Video-Foto | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "montaj-editare-video-foto.html <title>"
+      ]
+    },
+    {
+      "key": "montaj-editare-video-foto#p7x11q",
+      "source": "Montaj & Editare Video-Foto",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian. | Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html JSON-LD",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "montaj-evenimente#10b2iwu",
+      "source": "Montaj evenimente",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "montaj-video-editare-foto-generare-de-vi#16rtiwt",
+      "source": "Montaj video, editare foto, generare de videoclipuri realiste cu AI pentru social media, reclame, Reels, TikTok, YouTube.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "montaj-editare-video-foto.html meta og:description"
+      ]
+    },
+    {
+      "key": "montaj-video-editare-foto-generare-de-vi#nlxilg",
+      "source": "Montaj video, editare foto, generare de videoclipuri realiste cu AI pentru social media, reclame, Reels, TikTok.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "montaj-editare-video-foto.html meta description"
+      ]
+    },
+    {
+      "key": "montaje#1snaopf",
+      "source": "MONTAJE",
+      "context": "Text inside <span>.",
+      "places": [
+        "montaj-editare-video-foto.html <span>"
+      ]
+    },
+    {
+      "key": "navigare-mobil#79vhfp",
+      "source": "Navigare mobil",
+      "context": "Accessible label of the \"nav--mobile-overlay\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "consultanta.html <nav aria-label>",
+        "implementare-ai.html <nav aria-label>",
+        "import-china.html <nav aria-label>",
+        "index.html <nav aria-label>",
+        "integrari.html <nav aria-label>",
+        "magazine-online.html <nav aria-label>",
+        "montaj-editare-video-foto.html <nav aria-label>",
+        "platforme-custom.html <nav aria-label>",
+        "politica-confidentialitate.html <nav aria-label>",
+        "promovare.html <nav aria-label>",
+        "servicii-it.html <nav aria-label>"
+      ]
+    },
+    {
+      "key": "navigare-principală#1cvanr",
+      "source": "Navigare principală",
+      "context": "Accessible label of the \"nav\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "consultanta.html <nav aria-label>",
+        "implementare-ai.html <nav aria-label>",
+        "import-china.html <nav aria-label>",
+        "index.html <nav aria-label>",
+        "integrari.html <nav aria-label>",
+        "magazine-online.html <nav aria-label>",
+        "montaj-editare-video-foto.html <nav aria-label>",
+        "platforme-custom.html <nav aria-label>",
+        "politica-confidentialitate.html <nav aria-label>",
+        "promovare.html <nav aria-label>",
+        "servicii-it.html <nav aria-label>"
+      ]
+    },
+    {
+      "key": "ne-contactezi#1x10c0c",
+      "source": "Ne contactezi",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "ne-spui-ideea-ta-discutăm-obiectivele-pu#ak1fra",
+      "source": "Ne spui ideea ta. Discutăm obiectivele, publicul țintă, problemele pe care le rezolvă aplicația.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "negociem-preț-moq-termene-de-plată-ambal#18rbgrj",
+      "source": "Negociem preț, MOQ, termene de plată, ambalaj, etichetare. Solicităm mostre, testăm calitatea.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "negociere-mostre#lqbeye",
+      "source": "Negociere & Mostre",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "negocieri-furnizori#1p2pede",
+      "source": "Negocieri furnizori",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "netopia-mobilpay#123xl9d",
+      "source": "Netopia / MobilPay",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "nicio-prevedere-din-acești-termeni-nu-li#dsm8js",
+      "source": "Nicio prevedere din acești termeni nu limitează drepturile consumatorilor sau răspunderea care nu poate fi exclusă potrivit legii.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "nouă-direcții-o-singură-echipă#1k7bxa",
+      "source": "Nouă direcții, o singură echipă.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "nu-este-folosită-în-versiunea-curentă-a-#eucopa",
+      "source": "nu este folosită în versiunea curentă a site-ului.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "nu-folosim-furnizori-de-fonturi-analiză-#rsb9qm",
+      "source": "Nu folosim furnizori de fonturi, analiză sau publicitate. Site-ul nu încarcă resurse de la terți.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "nu-ne-am-propus-niciodată-să-fim-încă-o-#elngr8",
+      "source": "Nu ne-am propus niciodată să fim încă o agenție de site-uri. Ne-am propus să fim partenerul care înțelege și construiește, nu doar livrează. Am pornit de la un adevăr simplu: majoritatea antreprenorilor nu au nevoie de încă un site frumos care stă degeaba. Au nevoie de un sistem. Un site care vinde, un magazin Shopify care rulează automat, integrări care elimină munca manuală, campanii care aduc clienți reali, și un dashboard unde vezi exact ce se întâmplă, în timp real, fără rapoarte cosmetizate.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "nu-te-lăsăm-dependent-de-noi-îți-explică#zzeq8p",
+      "source": "Nu te lăsăm dependent de noi. Îți explicăm cum funcționează fiecare sistem pe care ți-l construim, ca să poți continua singur oricând vrei. De la primul mesaj pe WhatsApp până la lansare și optimizare continuă, filosofia rămâne aceeași: ascultăm, construim, creștem. Împreună.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "nu-utiliza-site-ul-într-un-mod-ilegal-pe#1giqa0j",
+      "source": "Nu utiliza site-ul într-un mod ilegal, pentru a afecta funcționarea lui sau pentru a încălca drepturile altor persoane. Linkurile către servicii externe, inclusiv WhatsApp, sunt furnizate pentru contact; folosirea lor este supusă termenilor și politicilor furnizorilor respectivi.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "nu-vindem-datele-tale-în-funcție-de-cana#25230w",
+      "source": "Nu vindem datele tale. În funcție de canalul folosit și de infrastructura efectivă, datele pot fi prelucrate de:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "numai-când-există-o-obligație-legală#1ddvnxq",
+      "source": ", numai când există o obligație legală.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "numărători-inverse-oferte-limitate-scarc#1sswonv",
+      "source": "Numărători inverse, oferte limitate, scarcity, pentru urgență și acțiune rapidă.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "nume#yjz9dm",
+      "source": "Nume",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "numele-tău#1aitgjb",
+      "source": "Numele tău",
+      "context": "Placeholder inside the \"input\" input. Show an example of the expected value.",
+      "places": [
+        "index.html <input placeholder>"
+      ]
+    },
+    {
+      "key": "numerar-ramburs#126co5o",
+      "source": "Numerar (Ramburs)",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "obligație-legală#1tm9blw",
+      "source": "Obligație legală",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "obligații-fiscale#12fmdfb",
+      "source": "Obligații fiscale",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "oblio-fgo#oq342t",
+      "source": "Oblio / Fgo",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "online#1iw34ve",
+      "source": "ONLINE",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>",
+        "magazine-online.html <span>"
+      ]
+    },
+    {
+      "key": "operațiuni-echipă#1hoqqm",
+      "source": "Operațiuni & echipă",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "operatorul-este-global-vision-point-limi#1y99u4",
+      "source": ". Operatorul este Global Vision Point Limited, cu sediul social în Suite 2, 260 Main Street, Gibraltar. Detalii complete în",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "optimizare-continuă#e97t8",
+      "source": "Optimizare continuă",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "optimizare-costuri#nsca0i",
+      "source": "Optimizare costuri",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "optimizare-viteză#cwfg0u",
+      "source": "Optimizare viteză",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "panouri-de-admin-cu-vizualizări-de-date-#1r2g0j9",
+      "source": "Panouri de admin cu vizualizări de date, KPI-uri, rapoarte, alerte, pentru management și echipe.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "partea-fiscală#1k5m713",
+      "source": "Partea fiscală",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "partea-legală#7ngv9m",
+      "source": "Partea legală",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "partenerul-tău-digital-complet-de-la-sit#2iy5my",
+      "source": "Partenerul tău digital complet. De la site,",
+      "context": "",
+      "places": [
+        "consultanta.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html text",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "promovare.html text",
+        "servicii-it.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "pașii-importului-simplificați#12o5nxo",
+      "source": "Pașii importului, simplificați",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "patru-etape-clare-cu-livrable-la-fiecare#5efvh4",
+      "source": "Patru etape clare, cu livrable la fiecare pas și vizibilitate totală pe parcurs.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "patru-pași-fără-surprize-la-final#bw1gev",
+      "source": "Patru pași, fără surprize la final.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "payu-românia#1ynfyq4",
+      "source": "PayU România",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "pe-ce-canale-lucrăm#qi4ze4",
+      "source": "Pe ce canale lucrăm",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "pentru-cel-mult-180-de-zile-aceasta-este#186ixc8",
+      "source": ", pentru cel mult 180 de zile. Aceasta este folosită pentru a reține dacă ai acceptat sau ai respins categoriile opționale. Managerul nu setează cookie-uri HTTP.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "pentru-firme-companii-servicii-design-un#h683l5",
+      "source": "Pentru firme, companii, servicii, design unic, responsive, optimizat pentru viteză și SEO on-page.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "pentru-întrebări#1auqfyc",
+      "source": "Pentru întrebări:",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "pentru-orice-întrebare-legată-de-datele-#184phpq",
+      "source": "Pentru orice întrebare legată de datele tale cu caracter personal, ne poți contacta:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "plan-de-business#4ld0cl",
+      "source": "Plan de business",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "plan-de-marketing-campanii-expansiune-pe#18ydpeb",
+      "source": "Plan de marketing, campanii, expansiune pe noi piețe, scalare, parteneriate.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "plasăm-comanda-monitorizăm-producția-fac#1668b3c",
+      "source": "Plasăm comanda, monitorizăm producția, facem Quality Control în fabrică înainte de expediere.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "platforme-aplicații-custom-digital-onlin#189ewdi",
+      "source": "Platforme & Aplicații Custom | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "platforme-custom.html <title>"
+      ]
+    },
+    {
+      "key": "platforme-aplicații-custom#10xlh6v",
+      "source": "Platforme & Aplicații Custom",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian. | Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html JSON-LD",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "platforme-cu-ai-integrat#sm7q7j",
+      "source": "Platforme cu AI integrat",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "platforme-custom#44dmga",
+      "source": "Platforme Custom",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html text",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "platforme-de-programări-online-pentru-cl#15yd1wb",
+      "source": "Platforme de programări online, pentru clinici, saloane, freelanceri, terenuri sport, etc.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "platforme-e-learning#1aycdgx",
+      "source": "Platforme e-learning",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "platforme-multi-vendor-cu-escrow-plăți-s#1thojmb",
+      "source": "Platforme multi-vendor, cu escrow, plăți splitate, dashboard vânzători, produse, comenzi.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "platforme-web-saas#1th8t6u",
+      "source": "Platforme web (SaaS)",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "platforme#1m13ftb",
+      "source": "PLATFORME",
+      "context": "Text inside <span>.",
+      "places": [
+        "platforme-custom.html <span>"
+      ]
+    },
+    {
+      "key": "plăți-internaționale#cibo24",
+      "source": "Plăți internaționale",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "plăți-online-cu-suport-complet-card-tran#1krsm2g",
+      "source": "Plăți online cu suport complet: card, transfer bancar, rate, plata la livrare.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "politică-de-confidențialitate-digital-on#1ndt1pu",
+      "source": "Politică de Confidențialitate | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "politica-confidentialitate.html <title>"
+      ]
+    },
+    {
+      "key": "politica-de-confidențialitate-și-protecț#185d16j",
+      "source": "Politica de confidențialitate și protecția datelor cu caracter personal conform GDPR (Regulamentul UE 2016/679) și legislației naționale aplicabile.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "politica-confidentialitate.html meta description"
+      ]
+    },
+    {
+      "key": "politica-de-confidențialitate-și-protecț#s5ja46",
+      "source": "Politica de confidențialitate și protecția datelor cu caracter personal conform GDPR (Regulamentul UE 2016/679) și legislației române.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "politica-confidentialitate.html meta og:description"
+      ]
+    },
+    {
+      "key": "politica-de-confidențialitate#1o6u8h",
+      "source": "Politica de confidențialitate",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "politica-cookie.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "politica-de-cookies-digital-online#4j9vsf",
+      "source": "Politica de cookies | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "politica-cookie.html <title>"
+      ]
+    },
+    {
+      "key": "politica-de-cookies#1gm4y5s",
+      "source": "Politica de cookies",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html text",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "poți-alege-respinge-opționale-acceptă-to#zyitjz",
+      "source": "Poți alege „Respinge opționale”, „Acceptă toate” sau „Setări”. Refuzul este la fel de simplu ca acceptarea. Poți redeschide preferințele din linkul „Setări cookie” din subsolul fiecărei pagini.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "poți-redeschide-oricând-setările-din-sub#xjb6sg",
+      "source": ". Poți redeschide oricând setările din subsolul site-ului sau",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "predicție-vânzări-churn-comportament-cli#1h0ld3y",
+      "source": "Predicție vânzări, churn, comportament clienți, decizii bazate pe date, nu pe intuiție.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "predictive-analytics#14pgw2k",
+      "source": "Predictive analytics",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "preferința-cookie#1dsfzna",
+      "source": "Preferința cookie",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "preferința-expiră-după-180-de-zile-dacă-#1xe44za",
+      "source": "Preferința expiră după 180 de zile. Dacă ștergi stocarea locală din browser sau folosești alt dispozitiv/browser, ți se va cere din nou să alegi.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "preferințe-cookie#rvmcvu",
+      "source": "Preferințe cookie",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "preluare-apeluri-telefonice#uiraz9",
+      "source": "Preluare apeluri telefonice",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "prelucrarea-datelor-este-descrisă-în#1q41ulf",
+      "source": "Prelucrarea datelor este descrisă în",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "prezentări-de-produs-demo-uri-video-uri-#6eoz88",
+      "source": "Prezentări de produs, demo-uri, video-uri corporate, testimoniale clienți, unboxing-uri.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "primești-propunerea#dvopnd",
+      "source": "Primești propunerea",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "privacy#1njbf37",
+      "source": "PRIVACY",
+      "context": "Text inside <span>.",
+      "places": [
+        "politica-confidentialitate.html <span>"
+      ]
+    },
+    {
+      "key": "proceduri-de-suport-gestionare-reclamați#c4syw1",
+      "source": "Proceduri de suport, gestionare reclamații, scor NPS, automatizări helpdesk.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "proces#1jm9s41",
+      "source": "PROCES",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "proces#1k9kl69",
+      "source": "Proces",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>"
+      ]
+    },
+    {
+      "key": "procesare-plăți-cu-cardul-visa-mastercar#1892ccz",
+      "source": "Procesare plăți cu cardul, Visa, Mastercard, Apple Pay, Google Pay. 3D Secure inclus.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "procesare-și-analiză-automată-a-datelor-#xf3el9",
+      "source": "Procesare și analiză automată a datelor, rapoarte, insights, predicții, alerte.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "procesator-românesc-cu-suport-pentru-toa#1gczzbr",
+      "source": "Procesator românesc cu suport pentru toate băncile, rate fără dobândă, plăți în rate.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "procesatori-de-plată#17ppzcd",
+      "source": "Procesatori de plată",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "procesul-e-același-indiferent-că-e-un-si#1kkg8d9",
+      "source": "Procesul e același indiferent că e un site de prezentare sau un magazin cu 3.000 SKU-uri.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "procesul-nostru#osa8m5",
+      "source": "Procesul nostru",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "produsele-tale-afișate-direct-în-google-#14t9ff4",
+      "source": "Produsele tale afișate direct în Google. Comparare prețuri, imagini, descrieri. Conversii directe în magazin.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "program#9z1cu5",
+      "source": "Program",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "programe-de-puncte-recompense-referral-g#nn7bfs",
+      "source": "Programe de puncte, recompense, referral, gamification pentru clienți.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "promoții-oferte#1ahznre",
+      "source": "Promoții & Oferte",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "promovare-ads#1wysvlq",
+      "source": "Promovare & Ads",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "promovare-aplicații-mobile-pe-toate-plat#7ejm6z",
+      "source": "Promovare aplicații mobile pe toate platformele: Google UAC, Meta, TikTok, Apple Search Ads.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "promovare-marketing-digital-digital-onli#31wv0l",
+      "source": "Promovare & Marketing Digital | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "promovare.html <title>"
+      ]
+    },
+    {
+      "key": "promovare-marketing-digital#18gqpdy",
+      "source": "Promovare & Marketing Digital",
+      "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "promovare.html JSON-LD"
+      ]
+    },
+    {
+      "key": "promovare#zphups",
+      "source": "PROMOVARE",
+      "context": "Text inside <span>.",
+      "places": [
+        "promovare.html <span>"
+      ]
+    },
+    {
+      "key": "protecția-datelor-gdpr#19dylbv",
+      "source": "Protecția datelor, GDPR",
+      "context": "Text inside <span>.",
+      "places": [
+        "politica-confidentialitate.html <span>"
+      ]
+    },
+    {
+      "key": "putem-actualiza-această-politică-periodi#sbedhw",
+      "source": "Putem actualiza această politică periodic. Orice modificare va fi publicată pe această pagină, cu data actualizării. Te încurajăm să recenzezi politica periodic.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "rapoarte-săptămânale-lunare-generate-aut#1cpdemn",
+      "source": "Rapoarte săptămânale/lunare generate automat, cu insights și recomandări.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "raportare-dashboard#fz7geb",
+      "source": "Raportare & Dashboard",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "raportări-periodice#1scfz3j",
+      "source": "Raportări periodice",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "răspundem-în-câteva-minute#i37yah",
+      "source": "Răspundem în câteva minute",
+      "context": "Italic phrase inside a sentence, usually a clarification.",
+      "places": [
+        "consultanta.html <em>",
+        "implementare-ai.html <em>",
+        "import-china.html <em>",
+        "index.html <em>",
+        "integrari.html <em>",
+        "magazine-online.html <em>",
+        "montaj-editare-video-foto.html <em>",
+        "platforme-custom.html <em>",
+        "politica-confidentialitate.html <em>",
+        "politica-cookie.html <em>",
+        "promovare.html <em>",
+        "servicii-it.html <em>",
+        "termeni-si-conditii.html <em>"
+      ]
+    },
+    {
+      "key": "răspundem-solicitărilor-tale-în-termen-d#1s1d9u6",
+      "source": "Răspundem solicitărilor tale în termen de",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "răspuns-la-mesaje#awt451",
+      "source": "Răspuns la mesaje",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "răspunsul-la-solicitarea-transmisă-prin-#1ywp70v",
+      "source": "Răspunsul la solicitarea transmisă prin email, telefon sau WhatsApp și, dacă este cazul, pregătirea unei oferte.",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "re-targetare-agresivă-pe-cei-care-te-au-#16if440",
+      "source": "Re-targetare agresivă pe cei care te-au vizitat dar nu au cumpărat. Recuperare coș abandonat.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "re-targetare-pe-cei-care-au-vizitat-site#1l9dus8",
+      "source": "Re-targetare pe cei care au vizitat site-ul, au adăugat în coș, au interacționat cu brandul, pentru conversii maxime.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reach-mare-video-views-engagement-pentru#p8loa9",
+      "source": "Reach mare, video views, engagement, pentru construire de brand pe termen lung.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reclame-cu-buton-direct-whatsapp-generar#u0jphy",
+      "source": "Reclame cu buton direct WhatsApp. Generare de conversații calificate, lead-uri rapide.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reclame-în-rezultatele-google-pentru-cuv#ewolwr",
+      "source": "Reclame în rezultatele Google pentru cuvintele cheie relevante. Ideal pentru clienți cu intenție de cumpărare.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reclame-optimizate-pe-google-meta-tiktok#1ptp2l2",
+      "source": "Reclame optimizate pe Google, Meta, TikTok și LinkedIn, create pentru conversii și scalare.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reclame-video-înainte-în-timpul-sau-după#1in63df",
+      "source": "Reclame video înainte, în timpul sau după clipuri. Brand awareness puternic, audiențe mari.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reclame-video-native-spark-ads-topview-i#3elavl",
+      "source": "Reclame video native, Spark Ads, TopView, In-Feed. Audiență tânără, viralitate mare.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reclame-video-pe-youtube-tiktok-reels-st#1nau0qm",
+      "source": "Reclame video pe YouTube, TikTok, Reels, Stories. Creative produse de echipa noastră sau cu AI.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "reclame-vizuale-în-feed-stories-reels-ex#1j14wbk",
+      "source": "Reclame vizuale în feed, Stories, Reels, Explore. Excelent pentru branduri vizuale, modă, beauty, lifestyle.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "recomandări-contabil-gestiune-stocuri-fl#nd20wh",
+      "source": "Recomandări contabil, gestiune stocuri, fluxuri financiare, raportări, declarații.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "recomandări-produse-chat-pentru-comenzi-#1c74dzk",
+      "source": "Recomandări produse, chat pentru comenzi, gestionare stocuri, pricing dinamic cu AI.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "recrutare-training-procese-operaționale-#rheoww",
+      "source": "Recrutare, training, procese operaționale, customer service, fulfilment.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "reels-tiktok-shorts#nscdzr",
+      "source": "Reels / TikTok / Shorts",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "reglementări-conformitate#tfpruf",
+      "source": "Reglementări & conformitate",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "remarketing#18ugrem",
+      "source": "Remarketing",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "responsive-mobile-first#14ky27a",
+      "source": "Responsive & Mobile-First",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "resurse-externe#yvmwx5",
+      "source": "Resurse externe",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "retargeting#1jer96p",
+      "source": "Retargeting",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "rețea-neuronală-și-tehnologie-ai-pentru-#286qg8",
+      "source": "Rețea neuronală și tehnologie AI pentru business",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "implementare-ai.html <img alt>"
+      ]
+    },
+    {
+      "key": "rețele-sociale-interne#1caieea",
+      "source": "Rețele sociale interne",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "retușare-eliminare-fundal-montaj-coloriz#1ganow9",
+      "source": "Retușare, eliminare fundal, montaj, colorizare, mockup-uri. Calitate de studio.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "sameday#1r06umh",
+      "source": "Sameday",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "sarcini-care-consumă-timp-și-bani-acum-a#tqspjj",
+      "source": "Sarcini care consumă timp și bani, acum automatizate.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "sari-la-conținut#1q1xqcc",
+      "source": "Sari la conținut",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "schimbarea-alegerii#du7di",
+      "source": "Schimbarea alegerii",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "scrie-ne-pe-whatsapp-răspundem-în-câteva#jiifxo",
+      "source": "Scrie-ne pe WhatsApp Răspundem în câteva minute",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "scrie-ne-pe-whatsapp#1q81fy0",
+      "source": "Scrie-ne pe WhatsApp",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "consultanta.html <strong>",
+        "implementare-ai.html <strong>",
+        "import-china.html <strong>",
+        "index.html <strong>",
+        "integrari.html <strong>",
+        "magazine-online.html <strong>",
+        "montaj-editare-video-foto.html <strong>",
+        "platforme-custom.html <strong>",
+        "politica-confidentialitate.html <strong>",
+        "politica-cookie.html <strong>",
+        "promovare.html <strong>",
+        "servicii-it.html <strong>",
+        "termeni-si-conditii.html <strong>"
+      ]
+    },
+    {
+      "key": "scroll#1l9nit0",
+      "source": "SCROLL",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "index.html <a>"
+      ]
+    },
+    {
+      "key": "se-aplică-normele-imperative-din-românia#awmenf",
+      "source": "Se aplică normele imperative din România și Uniunea Europeană, inclusiv regulile de protecție a consumatorilor acolo unde sunt aplicabile. Pentru întrebări despre site sau acești termeni:",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "securitate#6jzfvi",
+      "source": "Securitate",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "ședințe-periodice-de-mentorat-monitoriza#17f470r",
+      "source": "Ședințe periodice de mentorat, monitorizare KPIs, ajustare strategie.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "selecție-produse-pricing-marje-gamă-sezo#t5wqc4",
+      "source": "Selecție produse, pricing, marje, gamă, sezonalitate, rotație stocuri.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "seo-on-page#z9s8yb",
+      "source": "SEO On-Page",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "servicii-complete-de-consultanță-import#13f8g0l",
+      "source": "Servicii complete de consultanță import",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "servicii-it#1053t4w",
+      "source": "SERVICII IT",
+      "context": "Text inside <span>.",
+      "places": [
+        "servicii-it.html <span>"
+      ]
+    },
+    {
+      "key": "servicii#11950yr",
+      "source": "Servicii",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html text",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "servicii#16qcfnn",
+      "source": "SERVICII",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "consultanta.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html <a>",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "promovare.html text",
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "sesiuni-foto-video-pentru-produse-360-vi#vpk2gb",
+      "source": "Sesiuni foto/video pentru produse: 360°, video demo, lifestyle, pe model.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "setup-complet-teme-custom-integrări-cu-c#vgcdlc",
+      "source": "Setup complet, teme custom, integrări cu curieri și marketplace-uri.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "setup-conturi#uqf8pm",
+      "source": "Setup Conturi",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "setup-de-editare-video-și-producție-conț#xtdxs7",
+      "source": "Setup de editare video și producție conținut",
+      "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
+      "places": [
+        "montaj-editare-video-foto.html <img alt>"
+      ]
+    },
+    {
+      "key": "shopify-dashboard#qawl9r",
+      "source": "Shopify Dashboard",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "shopify-woocommerce#17vrx4m",
+      "source": "Shopify / WooCommerce",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "și-marketing-digital#1bdgxh1",
+      "source": "și marketing digital.",
+      "context": "",
+      "places": [
+        "consultanta.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html text",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "promovare.html text",
+        "servicii-it.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "sisteme-conectate-facturare-curierat-plă#12ejtl2",
+      "source": "Sisteme conectate: facturare, curierat, plăți și marketing, toate lucrând împreună fără intervenție manuală.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "sisteme-configurări-custom#6a21bv",
+      "source": "Sisteme & configurări custom",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "sisteme-de-booking#1ys3jpt",
+      "source": "Sisteme de booking",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "sisteme-de-gestiune-clienți-pipeline-vân#1s6f3q3",
+      "source": "Sisteme de gestiune clienți, pipeline vânzări, automatizări, rapoarte.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "sisteme-de-gestiune#11ng78s",
+      "source": "Sisteme de gestiune",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "sisteme-de-loializare#1w21510",
+      "source": "Sisteme de loializare",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "site-ul-este-operat-de#col6nh",
+      "source": "Site-ul este operat de",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "site-ul-nu-încarcă-fonturi-scripturi-sau#1j47jhs",
+      "source": "Site-ul nu încarcă fonturi, scripturi sau alte resurse de la terți. Fonturile folosite sunt găzduite pe același domeniu, iar paginile nu fac solicitări către Google Fonts, CDNFonts sau alte biblioteci externe. Singurul furnizor implicat în livrarea paginilor este cel de găzduire, descris în",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "site-ul-prezintă-servicii-și-permite-viz#r1i3lz",
+      "source": "Site-ul prezintă servicii și permite vizitatorilor să ia legătura cu furnizorul. În versiunea actuală nu există coș de cumpărături, checkout sau plată online. Descrierile de pe pagini au scop informativ și nu constituie, prin ele însele, o ofertă contractuală.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "site-uri-de-prezentare#ixs9xc",
+      "source": "Site-uri de prezentare",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "site-uri-magazine-shopify-ai-și-marketin#1s7dfkq",
+      "source": "Site-uri, magazine Shopify, AI și marketing digital construit de oameni cu experiență.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "index.html meta og:description"
+      ]
+    },
+    {
+      "key": "site-uri-rapide-platforme-digitale-și-su#xogssl",
+      "source": "Site-uri rapide, platforme digitale și suport tehnic pentru business-uri care vor să crească online.",
+      "context": "Text inside <span>.",
+      "places": [
+        "servicii-it.html <span>"
+      ]
+    },
+    {
+      "key": "site-uri-web-it#1uqjrlk",
+      "source": "Site-uri Web & IT",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "site-uri-web-magazine-shopify-import-chi#19wj3on",
+      "source": "Site-uri web, magazine Shopify, import China, integrări automate, video & foto, promovare multi-channel, AI & chatboți, platforme custom. Construim, automatizăm și creștem business-ul tău online.",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "site-uri-web-servicii-it-digital-online#7rywyd",
+      "source": "Site-uri Web & Servicii IT | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "servicii-it.html <title>"
+      ]
+    },
+    {
+      "key": "site-uri-web-servicii-it#1xsvhau",
+      "source": "Site-uri Web & Servicii IT",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian. | Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
+      "places": [
+        "consultanta.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html JSON-LD",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
+      "key": "site-uri-web#1ml5pmd",
+      "source": "SITE-URI WEB",
+      "context": "Text inside <span>.",
+      "places": [
+        "servicii-it.html <span>"
+      ]
+    },
+    {
+      "key": "sliding-scale-countdown#t4a0nb",
+      "source": "Sliding Scale / Countdown",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "smartbill#12q632n",
+      "source": "SmartBill",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "solicitări-prin-email-telefon-sau-whatsa#noc0px",
+      "source": "Solicitări prin email, telefon sau WhatsApp",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-confidentialitate.html <strong>"
+      ]
+    },
+    {
+      "key": "sourcing-furnizori#1r7dv6f",
+      "source": "Sourcing furnizori",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "sourcing-negociere-logistică-supply-chai#148o3mt",
+      "source": "Sourcing, negociere, logistică, supply chain fără surprize.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "specificații-design#y7aewp",
+      "source": "Specificații & design",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "spune-ne-ce-ai-nevoie-în-două-rânduri-îț#1f37dsx",
+      "source": "Spune-ne ce ai nevoie, în două rânduri. Îți răspundem în maximum 24 de ore cu o propunere scrisă: ce facem, cât durează, la ce preț.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "stocarea-locală-a-alegerii-tale-astfel-î#sx4utz",
+      "source": "stocarea locală a alegerii tale, astfel încât să nu îți afișăm bannerul la fiecare pagină. Sunt mereu active.",
+      "context": "",
+      "places": [
+        "politica-cookie.html text"
+      ]
+    },
+    {
+      "key": "stories-highlights#1hwao67",
+      "source": "Stories & Highlights",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "strategie-de-creștere#1q9qjkp",
+      "source": "Strategie de creștere",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "strategie-de-produs#n7khf7",
+      "source": "Strategie de produs",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "strict-necesare#xqcvvi",
+      "source": "Strict necesare:",
+      "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
+      "places": [
+        "politica-cookie.html <strong>"
+      ]
+    },
+    {
+      "key": "stripe#1m8yazg",
+      "source": "Stripe",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "structură-de-campanii-optimă-audiențe-ad#165oz6n",
+      "source": "Structură de campanii optimă, audiențe, ad sets, creativități (texte, imagini, video), copy persuasive.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "structură-optimă-meta-tag-uri-schema-mar#1tac9l9",
+      "source": "Structură optimă, meta tag-uri, schema markup, sitemap, robots.txt, totul pentru a te găsi pe Google.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "studiem-piața-concurența-identificăm-opo#1jzb0et",
+      "source": "Studiem piața, concurența, identificăm oportunități și poziționare strategică.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "te-ajutăm-cu-alegerea-și-configurarea-ho#fjvpol",
+      "source": "Te ajutăm cu alegerea și configurarea hostingului, domeniului, email-urilor corporate.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "te-ajutăm-la-negocierea-contractelor-cu-#1gu21wu",
+      "source": "Te ajutăm la negocierea contractelor cu furnizori, termene de plată, MOQ-uri.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "te-ghidăm-la-alegerea-formei-juridice-sr#4bnxwh",
+      "source": "Te ghidăm la alegerea formei juridice (SRL, PFA, SRL-D), înființare, coduri CAEN, autorizări.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "telefon#rk2mto",
+      "source": "Telefon:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "temă-shopify-custom#1iuxckr",
+      "source": "Temă Shopify custom",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
+      ]
+    },
+    {
+      "key": "termeni-și-condiții-digital-online#1qul7ro",
+      "source": "Termeni și condiții | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "termeni-si-conditii.html <title>"
+      ]
+    },
+    {
+      "key": "termeni-și-condiții-gdpr-politici-retur-#w9tsec",
+      "source": "Termeni și condiții, GDPR, politici retur, protecția consumatorului, ANPC, conformitate.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "termeni-și-condiții#3c8ddh",
+      "source": "Termeni și condiții",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "termenii-de-utilizare-ai-site-ului-digit#1wsqck9",
+      "source": "Termenii de utilizare ai site-ului Digital Online și informații despre solicitarea serviciilor.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "termeni-si-conditii.html meta description"
+      ]
+    },
+    {
+      "key": "testăm-riguros-securizăm-lansăm-pe-produ#k90hqr",
+      "source": "Testăm riguros, securizăm, lansăm pe producție. Asigurăm suport post-lansare.",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "testare-lansare#1psroo9",
+      "source": "Testare & lansare",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
+      ]
+    },
+    {
+      "key": "testimoniale-reale#1clyp4s",
+      "source": "Testimoniale reale",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "texte-pentru-site-social-media-email-uri#15vz3hf",
+      "source": "Texte pentru site, social media, email-uri, produse, SEO, generate rapid cu AI și editate de noi.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "texte-pentru-site-social-media-email-uri#1cnz0fp",
+      "source": "Texte pentru site, social media, email-uri, produse, generate de AI, editate de specialiști.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "textele-elementele-grafice-identitatea-v#1meg9s4",
+      "source": "Textele, elementele grafice, identitatea vizuală și materialele publicate pe site sunt protejate de legislația aplicabilă. Reproducerea sau folosirea lor comercială necesită acordul titularului, cu excepția utilizărilor permise de lege. Drepturile asupra materialelor realizate pentru un client se stabilesc în contractul individual.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "tiktok-ads#pmohw3",
+      "source": "TikTok Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "tipuri-de-campanii-realizate#1v05lgu",
+      "source": "Tipuri de campanii realizate",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "tipuri-de-conținut-pe-care-le-producem#1oys72e",
+      "source": "Tipuri de conținut pe care le producem",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "tipuri-de-creativități-care-convertesc-c#kj9q3i",
+      "source": "Tipuri de creativități care convertesc cel mai bine în campanii plătite.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "toate-aspectele-unui-business-online-de-#48rcf",
+      "source": "Toate aspectele unui business online, de la digital la fiscal, legal și operațional.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "toate-sistemele-esențiale-pentru-un-maga#1nnuroi",
+      "source": "Toate sistemele esențiale pentru un magazin online funcțional, conectate între ele.",
+      "context": "",
+      "places": [
+        "integrari.html text"
+      ]
+    },
+    {
+      "key": "toate-site-urile-noastre-arată-perfect-p#1s623jx",
+      "source": "Toate site-urile noastre arată perfect pe orice dispozitiv: desktop, tabletă, mobil.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "totul-a-pornit-din-aceeași-întrebare-pe-#1uqp5bm",
+      "source": "Totul a pornit din aceeași întrebare pe care ți-o pui probabil și tu acum: de ce trebuie o afacere digitală să fie complicată? Din 2019, Digital Online a crescut dintr-o mică echipă cu o singură misiune, aceea de a construi sisteme digitale care chiar funcționează, într-o agenție internațională cu peste 1.264 de proiecte livrate în peste 30 de țări, pe 4 continente.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "transferuri-bancare-t-t-l-c-paypal-weste#11b5l5m",
+      "source": "Transferuri bancare (T/T), L/C, PayPal, Western Union. Recomandări sigure pentru a evita fraudele.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "transformăm-filmările-și-fotografiile-ta#kawekw",
+      "source": "Transformăm filmările și fotografiile tale în conținut clar, dinamic și pregătit pentru promovare.",
+      "context": "Text inside <span>.",
+      "places": [
+        "montaj-editare-video-foto.html <span>"
+      ]
+    },
+    {
+      "key": "transformări-vizuale-puternice-ideal-pen#1te0n4p",
+      "source": "Transformări vizuale puternice. Ideal pentru beauty, fitness, home improvement, curățenie.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "transparent-măsurabil-orientat-pe-rezult#j3m21m",
+      "source": "Transparent, măsurabil, orientat pe rezultate.",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "transport-de-la-port-aeroport-la-depozit#1f7st0e",
+      "source": "Transport de la port/aeroport la depozitul tău. Opțional, depozitare 3PL, fulfilment.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "transport#152ro6q",
+      "source": "Transport",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "trimite-mesajul#1e221lg",
+      "source": "Trimite mesajul",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "trimitem-inspectori-în-fabrică-înainte-d#1bjghoh",
+      "source": "Trimitem inspectori în fabrică înainte de expediere, verificare AQL, raport detaliat cu poze.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "tva-impozite-contabilitate-e-factura-reg#1uk9xq8",
+      "source": "TVA, impozite, contabilitate, e-Factura, regim micro vs. profit, optimizare fiscală legală.",
+      "context": "",
+      "places": [
+        "consultanta.html text"
+      ]
+    },
+    {
+      "key": "ugc-user-generated-content#1bz9boe",
+      "source": "UGC (User Generated Content)",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "un-colaj-cu-site-uri-premiate-la-nivel-i#1kfcy2y",
+      "source": "Un colaj cu site-uri premiate la nivel internațional, ca referință pentru nivelul la care lucrăm. Curat, rapid, cu structură editorială.",
+      "context": "",
+      "places": [
+        "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "un-serviciu-se-contractează-numai-după-c#3bgne4",
+      "source": "Un serviciu se contractează numai după confirmarea în scris a furnizorului și acceptarea unei oferte sau a unui contract separat care stabilește serviciile, livrabilele, termenele, prețul, plata, modificările și condițiile de încetare.",
+      "context": "",
+      "places": [
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
+      "key": "unboxing-demo#9u1tsq",
+      "source": "Unboxing & Demo",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "update-uri-săptămânale-demo-uri-pe-parcu#1bre05m",
+      "source": "Update-uri săptămânale, demo-uri pe parcurs, plăți eșalonate pe livrabile. Nu cerem 100% în avans.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "vamă-taxe#1onecpw",
+      "source": "Vamă & taxe",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "vămuire#iujuao",
+      "source": "Vămuire",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "vercel-inc-care-livrează-site-ul-prin-re#1g9ig65",
+      "source": ": Vercel Inc., care livrează site-ul prin rețeaua sa globală de distribuție. Găzduirea este configurată în regiunea Uniunii Europene (Frankfurt, Germania).",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "verificăm-identitatea-legală-a-furnizoru#hx2lku",
+      "source": "Verificăm identitatea legală a furnizorului, licențele, istoricul, recenzii reale.",
+      "context": "",
+      "places": [
+        "import-china.html text"
+      ]
+    },
+    {
+      "key": "video-ads-pentru-campanii#syt378",
+      "source": "Video Ads pentru campanii",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "video-ads#1tus4",
+      "source": "Video Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "video-foto#vhye3e",
+      "source": "Video & Foto",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "videoclipuri-de-prezentare#1nx7k3h",
+      "source": "Videoclipuri de prezentare",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "voce-naturală-sau-generată-ai-în-română-#10jnwmz",
+      "source": "Voce naturală sau generată AI, în română sau alte limbi. Pentru ads, tutoriale, podcast-uri.",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "voice-ai-receptionist-ai#6dab93",
+      "source": "Voice AI / Receptionist AI",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "voice-bot-pe-whatsapp#w9jxr1",
+      "source": "Voice bot pe WhatsApp",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "voicebot-ai-care-răspunde-la-telefon-ofe#pr7gd0",
+      "source": "Voicebot AI care răspunde la telefon, oferă informații, programează, în loc de secretar.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "voiceover-profesional#l3zjp5",
+      "source": "Voiceover profesional",
+      "context": "",
+      "places": [
+        "montaj-editare-video-foto.html text"
+      ]
+    },
+    {
+      "key": "whatsapp-40-725-376-481#9vaxzr",
+      "source": "WhatsApp +40 725 376 481",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "index.html <a>"
+      ]
+    },
+    {
+      "key": "whatsapp-ads#ecxryd",
+      "source": "WhatsApp Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    },
+    {
+      "key": "whatsapp-email-sau-formular-fără-formula#tqkhy5",
+      "source": "WhatsApp, email sau formular. Fără formular de 40 de câmpuri. Doar o conversație scurtă.",
+      "context": "",
+      "places": [
+        "index.html text"
+      ]
+    },
+    {
+      "key": "whatsapp#1im1eef",
+      "source": "WhatsApp:",
+      "context": "",
+      "places": [
+        "politica-confidentialitate.html text"
+      ]
+    },
+    {
+      "key": "whatsapp#1wdpo3x",
+      "source": "WhatsApp",
+      "context": "Text inside <span>.",
+      "places": [
+        "index.html <span>"
+      ]
+    },
+    {
+      "key": "workflow-automatizat-cu-n8n-make-zapier-#zcbxr8",
+      "source": "Workflow automatizat cu n8n, Make, Zapier, conectăm sisteme și automatizăm procese manuale.",
+      "context": "",
+      "places": [
+        "implementare-ai.html text"
+      ]
+    },
+    {
+      "key": "www-dataprotection-ro#1g6n1xk",
+      "source": "www.dataprotection.ro",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "politica-confidentialitate.html <a>"
+      ]
+    },
+    {
+      "key": "youtube-ads#1rs6wne",
+      "source": "YouTube Ads",
+      "context": "",
+      "places": [
+        "promovare.html text"
+      ]
+    }
+  ]
+}

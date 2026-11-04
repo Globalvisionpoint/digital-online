@@ -4,3 +4,5 @@ bump.ps1
 .vercelignore
 .venv/
 README.md
+node_modules/
+package-lock.json
