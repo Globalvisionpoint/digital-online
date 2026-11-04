@@ -20,8 +20,7 @@
      este mai mult decat suficient, iar dimensiunea conteaza, pentru ca
      fiecare cadru se descarca o singura data. */
   const narrow = window.innerWidth < NARROW;
-  const base = window.location.pathname.replace(/[^/]*$/, '');
-  const path = base + 'img/seq/' + (narrow ? 'm/' : '');
+  const path = new URL('../img/seq/' + (narrow ? 'm/' : ''), document.currentScript.src).href;
 
   /* Punctul de focalizare trebuie sa fie identic cu cel al fundalului vechi
      (background-position: center 40%), altfel prima imagine pictata ar sari
@@ -40,12 +39,30 @@
 
   /* Desenare "cover": cadrul umple canvasul si este decupat, exact cum se
      comporta background-size: cover pe fundalul vechi. */
-  function draw(img) {
-    if (!img || !img.naturalWidth) return false;
+  function draw(img, alpha, w, h) {
+    if (!img || !img.naturalWidth || alpha <= 0) return;
+    const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight);
+    const dw = img.naturalWidth * scale;
+    const dh = img.naturalHeight * scale;
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(img, (w - dw) * 0.5, (h - dh) * FOCAL_Y, dw, dh);
+  }
+
+  /* Interpolarea cu transparenta intre cadrele vecine atenueaza salturile
+     vizibile ale secventei, mentinand progresul sincronizat cu scrollul. */
+  function paint(index) {
+    if (drawn === index) return;
+    const first = Math.floor(index);
+    const second = (first + 1) % FRAMES;
+    const blend = index - first;
+    const firstFrame = frames[first]?.complete && frames[first].naturalWidth ? frames[first] : null;
+    const secondFrame = frames[second]?.complete && frames[second].naturalWidth ? frames[second] : null;
+    if (!firstFrame && !secondFrame) return;
+
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const w = canvas.clientWidth;
     const h = canvas.clientHeight;
-    if (!w || !h) return false;
+    if (!w || !h) return;
     const pw = Math.round(w * dpr);
     const ph = Math.round(h * dpr);
     if (canvas.width !== pw || canvas.height !== ph) {
@@ -53,31 +70,12 @@
       canvas.height = ph;
     }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const scale = Math.max(w / img.naturalWidth, h / img.naturalHeight);
-    const dw = img.naturalWidth * scale;
-    const dh = img.naturalHeight * scale;
-    ctx.drawImage(img, (w - dw) * 0.5, (h - dh) * FOCAL_Y, dw, dh);
-    return true;
-  }
-
-  /* Se deseneaza cel mai apropiat cadru descarcat de cel cerut. Daca cadrul
-     exact nu e inca gata, se pastreaza ultimul cadru afisat: mai bine o
-     imagine stabila decat un cadru lipsa.
-
-     Cadrul cerut si cel desenat sunt tinute separate: daca s-ar marca
-     "desenat" inainte de a desena efectiv, un cadru descarcat intarziat nu
-     ar mai fi redesenat niciodata, iar canvasul ar ramane gol. */
-  function paint(index) {
-    if (drawn === index) return;
-    let pick = -1;
-    for (let i = index; i >= 0; i--) {
-      if (frames[i] && frames[i].complete && frames[i].naturalWidth) {
-        pick = i;
-        break;
-      }
-    }
-    if (pick < 0) return;
-    if (pick !== drawn && draw(frames[pick])) drawn = pick;
+    ctx.clearRect(0, 0, w, h);
+    ctx.globalAlpha = 1;
+    if (firstFrame) draw(firstFrame, 1, w, h);
+    if (secondFrame) draw(secondFrame, firstFrame ? blend : 1, w, h);
+    ctx.globalAlpha = 1;
+    drawn = index;
   }
 
   /* Progresul secventei pe document: 0 la inceputul paginii, 1 la final.
@@ -102,7 +100,7 @@
 
   function frameAt() {
     const p = window.scrollY / totalScroll();
-    const idx = Math.floor(p * FRAMES * loops());
+    const idx = p * FRAMES * loops();
     return ((idx % FRAMES) + FRAMES) % FRAMES;
   }
 
@@ -131,6 +129,7 @@
     frames[i] = img;
     img.addEventListener('load', () => {
       /* Fiecare cadru nou poate fi cel cerut, deci se redeseneaza. */
+      drawn = -1;
       paint(frameAt());
     });
   }
@@ -147,6 +146,7 @@
       frames[i] = img;
       const done = () => {
         running--;
+        drawn = -1;
         paint(frameAt());
         pump();
       };
