@@ -1,6 +1,6 @@
-# Digital Online — Agenție Digitală Full-Service din România
+# Digital Online: Agenție Digitală Full-Service din România
 
-> Digital Online este o agenție digitală full-service din România care oferă servicii complete de IT, magazine online Shopify, integrări automate, AI, promovare digitală și consultanță business pentru clienți din România și Uniunea Europeană.
+> Digital Online este o agenție digitală full-service din România care oferă servicii complete de IT, Magazine Online, integrări automate, AI, promovare digitală și consultanță business pentru clienți din România și Uniunea Europeană.
 
 Site oficial: [https://digital-online.ro/](https://digital-online.ro/)
 
@@ -8,7 +8,7 @@ Site oficial: [https://digital-online.ro/](https://digital-online.ro/)
 
 - **Site-uri Web & Servicii IT**: creare site-uri de prezentare, modificare site-uri existente, mentenanță, depanare, optimizare viteză, securitate, SEO on-page
   - Pagina: [Servicii IT](https://digital-online.ro/servicii-it.html)
-- **Magazine Online Shopify**: teme custom, inserare produse, generare imagini AI, integrări automate cu curieri și facturare
+- **Magazine Online**: teme custom, inserare produse, generare imagini AI, integrări automate cu curieri și facturare
   - Pagina: [Magazine Online](https://digital-online.ro/magazine-online.html)
 - **Integrări Automate**: SmartBill, Oblio (facturare), Fan Courier, Sameday, Cargus, GLS, DHL (curierat), Stripe, Netopia, PayU (plăți)
   - Pagina: [Integrări](https://digital-online.ro/integrari.html)
@@ -28,9 +28,9 @@ Site oficial: [https://digital-online.ro/](https://digital-online.ro/)
 ## Pagini principale
 
 - [Acasă](https://digital-online.ro/)
-- [Despre — servicii, proces, valori](https://digital-online.ro/#despre)
+- [Despre: servicii, proces, valori](https://digital-online.ro/#despre)
 - [Dashboard-uri & KPI-uri](https://digital-online.ro/#dashboards)
-- [Proces de lucru — 4 pași](https://digital-online.ro/#proces)
+- [Proces de lucru: 4 pași](https://digital-online.ro/#proces)
 - [Contactează-ne](https://digital-online.ro/#contact)
 - [Politica de confidențialitate](https://digital-online.ro/politica-confidentialitate.html)
 

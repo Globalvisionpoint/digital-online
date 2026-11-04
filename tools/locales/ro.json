@@ -1,5 +1,5 @@
 {
-  "$schema": "Digital Online i18n catalog — source strings extracted from the Romanian pages.",
+  "$schema": "Digital Online i18n catalog: source strings extracted from the Romanian pages.",
   "locale": "ro",
   "generatedBy": "tools/extract.mjs",
   "pages": [
@@ -266,8 +266,8 @@
       ]
     },
     {
-      "key": "acces-complet-la-dashboard-ul-shopify-cu#1cq96hz",
-      "source": "Acces complet la dashboard-ul Shopify cu toate datele: vânzări, comenzi, produse, inventar, conversii.",
+      "key": "acces-complet-la-panoul-de-administrare-#18064oa",
+      "source": "Acces complet la panoul de administrare cu toate datele: vânzări, comenzi, produse, inventar, conversii.",
       "context": "",
       "places": [
         "magazine-online.html text"
@@ -372,8 +372,8 @@
       ]
     },
     {
-      "key": "agenție-digitală-cu-echipă-senior-site-u#vbs25l",
-      "source": "Agenție digitală cu echipă senior: site-uri, magazine Shopify, integrări automate, AI, marketing.",
+      "key": "agenție-digitală-cu-echipă-senior-site-u#1jg4nak",
+      "source": "Agenție digitală cu echipă senior: site-uri, magazine online, integrări automate, AI, marketing.",
       "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
       "places": [
         "index.html JSON-LD"
@@ -564,8 +564,8 @@
       ]
     },
     {
-      "key": "aplicații-shopify#f8169q",
-      "source": "Aplicații Shopify",
+      "key": "aplicații-și-integrări#c5uz39",
+      "source": "Aplicații și integrări",
       "context": "",
       "places": [
         "magazine-online.html text"
@@ -692,8 +692,8 @@
       ]
     },
     {
-      "key": "așa-am-construit-an-de-an-un-ecosistem-c#cey2pd",
-      "source": "Așa am construit, an de an, un ecosistem complet: site-uri web și servicii IT, magazine online Shopify, import produse din China, integrări automate, consultanță business, promovare și ads, montaj și editare video-foto, implementare AI și chatboți și platforme custom. Fiecare piesă construită să se conecteze cu celelalte, nu izolat.",
+      "key": "așa-am-construit-an-de-an-un-ecosistem-c#12hsf1r",
+      "source": "Așa am construit, an de an, un ecosistem complet: site-uri web și servicii IT, Magazine Online, import produse din China, integrări automate, consultanță business, promovare și ads, montaj și editare video-foto, implementare AI și chatboți și platforme custom. Fiecare piesă construită să se conecteze cu celelalte, nu izolat.",
       "context": "",
       "places": [
         "index.html text"
@@ -1160,8 +1160,8 @@
       ]
     },
     {
-      "key": "colaj-cu-site-uri-premiate-pe-awwwards-r#pe1xqe",
-      "source": "Colaj cu site-uri premiate pe Awwwards — referință pentru design editorial",
+      "key": "colaj-cu-site-uri-premiate-pe-awwwards-c#1t5jkqq",
+      "source": "Colaj cu site-uri premiate pe Awwwards, ca referință pentru design editorial",
       "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
       "places": [
         "servicii-it.html <img alt>"
@@ -1220,8 +1220,8 @@
       ]
     },
     {
-      "key": "conectare-cu-fan-courier-sameday-cargus-#p5zlrc",
-      "source": "Conectare cu Fan Courier, Sameday, Cargus, GLS, DHL, generare AWB-uri direct din Shopify.",
+      "key": "conectare-cu-fan-courier-sameday-cargus-#bw45gt",
+      "source": "Conectare cu Fan Courier, Sameday, Cargus, GLS, DHL, generare AWB-uri direct din magazin.",
       "context": "",
       "places": [
         "magazine-online.html text"
@@ -1268,11 +1268,19 @@
       ]
     },
     {
-      "key": "construim-magazine-shopify-rapide-clare-#smn99b",
-      "source": "Construim magazine Shopify rapide, clare și pregătite pentru vânzări, automatizări și creștere.",
+      "key": "construim-magazine-online-de-la-zero-pe-#6idu0p",
+      "source": "Construim magazine online de la zero, pe Shopify sau headless, rapide, clare și pregătite pentru vânzări, automatizări și creștere.",
       "context": "Text inside <span>.",
       "places": [
         "magazine-online.html <span>"
+      ]
+    },
+    {
+      "key": "construim-magazinul-de-la-zero-nu-doar-î#1e722zg",
+      "source": "Construim magazinul de la zero, nu doar îl configurăm. Shopify sau headless commerce, cum se potrivește afacerii tale.",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
       ]
     },
     {
@@ -1508,22 +1516,6 @@
       ]
     },
     {
-      "key": "creare-magazine-online-shopify-de-la-zer#1l9w6tb",
-      "source": "Creare magazine online Shopify de la zero, teme custom, inserare produse, SEO, generare imagini AI, configurări personalizate.",
-      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
-      "places": [
-        "magazine-online.html meta description"
-      ]
-    },
-    {
-      "key": "creare-magazine-online-shopify-de-la-zer#4phl90",
-      "source": "Creare magazine online Shopify de la zero, teme custom, inserare produse, SEO, generare imagini AI, integrări automate cu curieri și facturare.",
-      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
-      "places": [
-        "magazine-online.html meta og:description"
-      ]
-    },
-    {
       "key": "creare-site-uri-de-prezentare-modificare#1h1l1xu",
       "source": "Creare site-uri de prezentare, modificare site-uri existente, întreținere, depanare bug-uri, optimizare viteză și securitate.",
       "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
@@ -1636,14 +1628,6 @@
       ]
     },
     {
-      "key": "dacă-vrei-ceva-cu-totul-diferit-de-shopi#p57lic",
-      "source": "Dacă vrei ceva cu totul diferit de Shopify standard, construim o soluție complet personalizată, pe Shopify Hydrogen sau headless commerce.",
-      "context": "",
-      "places": [
-        "magazine-online.html text"
-      ]
-    },
-    {
       "key": "dashboard-cu-toate-datele-cost-conversii#6uakz0",
       "source": "Dashboard cu toate datele: cost, conversii, ROAS, CPA, performanță per canal, per campanie, per produs.",
       "context": "",
@@ -1708,11 +1692,11 @@
       ]
     },
     {
-      "key": "de-ce-am-pornit-digital-online#jb7y4j",
-      "source": "De ce am pornit Digital Online",
-      "context": "",
+      "key": "de-ce-am-pornit#1fdjpsw",
+      "source": "De ce am pornit",
+      "context": "Text inside <span>.",
       "places": [
-        "index.html text"
+        "index.html <span>"
       ]
     },
     {
@@ -1997,16 +1981,16 @@
       ]
     },
     {
-      "key": "digital-online-construiește-site-uri-mag#1fg8ybl",
-      "source": "Digital Online construiește site-uri, magazine Shopify, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.",
+      "key": "digital-online-construiește-site-uri-mag#1yu804",
+      "source": "Digital Online construiește site-uri, magazine online, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.",
       "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
       "places": [
         "index.html meta description"
       ]
     },
     {
-      "key": "digital-online-oferă-servicii-complete-d#lfjo9c",
-      "source": "Digital Online oferă servicii complete de IT, magazine Shopify, integrări automate, AI, promovare digitală și consultanță business în România și UE.",
+      "key": "digital-online-oferă-servicii-complete-d#9688pf",
+      "source": "Digital Online oferă servicii complete de IT, magazine online, integrări automate, AI, promovare digitală și consultanță business în România și UE.",
       "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
       "places": [
         "consultanta.html JSON-LD",
@@ -2362,8 +2346,8 @@
       ]
     },
     {
-      "key": "exemple-de-magazine-shopify#1r9u2yi",
-      "source": "Exemple de magazine Shopify.",
+      "key": "exemple-de-magazine-online#buodb1",
+      "source": "Exemple de magazine online.",
       "context": "",
       "places": [
         "magazine-online.html text"
@@ -3344,19 +3328,43 @@
       ]
     },
     {
-      "key": "magazin-100-custom-de-la-0#dd5nkz",
-      "source": "Magazin 100% custom de la 0",
+      "key": "magazin-complet-de-la-0#16twicm",
+      "source": "Magazin complet de la 0",
       "context": "",
       "places": [
         "magazine-online.html text"
       ]
     },
     {
-      "key": "magazin-online-shopify-modern-referință-#1gpmmju",
-      "source": "Magazin online Shopify modern — referință pentru design e-commerce",
+      "key": "magazin-online-modern-referință-pentru-d#1aixxy8",
+      "source": "Magazin online modern, referință pentru design e-commerce",
       "context": "Alt text of the <img> inside \"img\". Describe what the image shows; screen readers read it aloud.",
       "places": [
         "magazine-online.html <img alt>"
+      ]
+    },
+    {
+      "key": "magazine-online-de-la-zero-shopify-sau-h#ehsex6",
+      "source": "Magazine online de la zero: Shopify sau headless, temă custom, produse, SEO, imagini AI, integrări cu curieri și facturare.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "magazine-online.html meta description"
+      ]
+    },
+    {
+      "key": "magazine-online-de-la-zero-shopify-sau-h#v6peh6",
+      "source": "Magazine online de la zero: Shopify sau headless, temă custom, produse, SEO, imagini AI, integrări automate cu curieri și facturare.",
+      "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
+      "places": [
+        "magazine-online.html meta og:description"
+      ]
+    },
+    {
+      "key": "magazine-online-digital-online#vxqb05",
+      "source": "Magazine Online | Digital Online",
+      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
+      "places": [
+        "magazine-online.html <title>"
       ]
     },
     {
@@ -3368,16 +3376,8 @@
       ]
     },
     {
-      "key": "magazine-online-shopify-digital-online#1rqixiv",
-      "source": "Magazine Online Shopify | Digital Online",
-      "context": "Browser tab / page title (SEO). Keep the brand name \"Digital Online\" untranslated.",
-      "places": [
-        "magazine-online.html <title>"
-      ]
-    },
-    {
-      "key": "magazine-online-shopify#1yc6ak8",
-      "source": "Magazine Online Shopify",
+      "key": "magazine-online#yy1po6",
+      "source": "Magazine Online",
       "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian. | Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
       "places": [
         "consultanta.html <a>",
@@ -3389,36 +3389,10 @@
         "montaj-editare-video-foto.html <a>",
         "platforme-custom.html <a>",
         "politica-confidentialitate.html <a>",
-        "promovare.html <a>",
-        "servicii-it.html <a>"
-      ]
-    },
-    {
-      "key": "magazine-online#yy1po6",
-      "source": "Magazine Online",
-      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
-      "places": [
-        "consultanta.html <a>",
-        "implementare-ai.html <a>",
-        "import-china.html <a>",
-        "index.html <a>",
-        "integrari.html <a>",
-        "magazine-online.html <a>",
-        "montaj-editare-video-foto.html <a>",
-        "platforme-custom.html <a>",
-        "politica-confidentialitate.html <a>",
         "politica-cookie.html <a>",
         "promovare.html <a>",
         "servicii-it.html <a>",
         "termeni-si-conditii.html <a>"
-      ]
-    },
-    {
-      "key": "magazine-shopify#raqunn",
-      "source": "Magazine Shopify",
-      "context": "",
-      "places": [
-        "index.html text"
       ]
     },
     {
@@ -3728,8 +3702,8 @@
       ]
     },
     {
-      "key": "nu-ne-am-propus-niciodată-să-fim-încă-o-#elngr8",
-      "source": "Nu ne-am propus niciodată să fim încă o agenție de site-uri. Ne-am propus să fim partenerul care înțelege și construiește, nu doar livrează. Am pornit de la un adevăr simplu: majoritatea antreprenorilor nu au nevoie de încă un site frumos care stă degeaba. Au nevoie de un sistem. Un site care vinde, un magazin Shopify care rulează automat, integrări care elimină munca manuală, campanii care aduc clienți reali, și un dashboard unde vezi exact ce se întâmplă, în timp real, fără rapoarte cosmetizate.",
+      "key": "nu-ne-am-propus-niciodată-să-fim-încă-o-#39gzsn",
+      "source": "Nu ne-am propus niciodată să fim încă o agenție de site-uri. Ne-am propus să fim partenerul care înțelege și construiește, nu doar livrează. Am pornit de la un adevăr simplu: majoritatea antreprenorilor nu au nevoie de încă un site frumos care stă degeaba. Au nevoie de un sistem. Un site care vinde, un magazin online care rulează automat, integrări care elimină munca manuală, campanii care aduc clienți reali, și un dashboard unde vezi exact ce se întâmplă, în timp real, fără rapoarte cosmetizate.",
       "context": "",
       "places": [
         "index.html text"
@@ -3870,6 +3844,14 @@
       "context": "",
       "places": [
         "servicii-it.html text"
+      ]
+    },
+    {
+      "key": "panou-de-administrare#m4rpdg",
+      "source": "Panou de administrare",
+      "context": "",
+      "places": [
+        "magazine-online.html text"
       ]
     },
     {
@@ -4912,14 +4894,6 @@
       ]
     },
     {
-      "key": "setup-complet-teme-custom-integrări-cu-c#vgcdlc",
-      "source": "Setup complet, teme custom, integrări cu curieri și marketplace-uri.",
-      "context": "",
-      "places": [
-        "index.html text"
-      ]
-    },
-    {
       "key": "setup-conturi#uqf8pm",
       "source": "Setup Conturi",
       "context": "",
@@ -4936,11 +4910,11 @@
       ]
     },
     {
-      "key": "shopify-dashboard#qawl9r",
-      "source": "Shopify Dashboard",
+      "key": "shopify-sau-headless-temă-custom-integră#14alhz8",
+      "source": "Shopify sau headless, temă custom, integrări, totul de la zero.",
       "context": "",
       "places": [
-        "magazine-online.html text"
+        "index.html text"
       ]
     },
     {
@@ -5052,8 +5026,8 @@
       ]
     },
     {
-      "key": "site-uri-magazine-shopify-ai-și-marketin#1s7dfkq",
-      "source": "Site-uri, magazine Shopify, AI și marketing digital construit de oameni cu experiență.",
+      "key": "site-uri-magazine-online-ai-și-marketing#xanzb1",
+      "source": "Site-uri, magazine online, AI și marketing digital construit de oameni cu experiență.",
       "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
       "places": [
         "index.html meta og:description"
@@ -5076,8 +5050,8 @@
       ]
     },
     {
-      "key": "site-uri-web-magazine-shopify-import-chi#19wj3on",
-      "source": "Site-uri web, magazine Shopify, import China, integrări automate, video & foto, promovare multi-channel, AI & chatboți, platforme custom. Construim, automatizăm și creștem business-ul tău online.",
+      "key": "site-uri-web-magazine-online-import-chin#1dc9xm2",
+      "source": "Site-uri web, magazine online, import China, integrări automate, video & foto, promovare multi-channel, AI & chatboți, platforme custom. Construim, automatizăm și creștem business-ul tău online.",
       "context": "Text inside <span>.",
       "places": [
         "index.html <span>"
@@ -5280,8 +5254,8 @@
       ]
     },
     {
-      "key": "temă-shopify-custom#1iuxckr",
-      "source": "Temă Shopify custom",
+      "key": "temă-custom#w9y9gp",
+      "source": "Temă custom",
       "context": "",
       "places": [
         "magazine-online.html text"
