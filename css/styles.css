@@ -4055,3 +4055,17 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .hm-post { gap: 28px; }
   .hm-post-open { gap: 20px; margin-bottom: 8px; }
 }
+
+@media (max-width: 600px) {
+  .hm-post-title {
+    width: 100%;
+    max-width: 300px;
+    font-size: 30px;
+    line-height: 1.4;
+  }
+
+  .hm-post-title-brand {
+    display: block;
+    white-space: nowrap;
+  }
+}

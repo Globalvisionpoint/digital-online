@@ -1,6 +1,6 @@
-﻿# Digital Online — Website
+# Digital Online — Website
 
-Site complet pentru **Digital Online** (Global Vision Point Limited), cu toate serviciile de IT, web development, magazine online Shopify, integrări automate, consultanță business, import China, promovare digitală, video/foto/AI, implementare AI și platforme custom.
+Site complet pentru **Digital Online** (Global Vision Point Limited), cu toate serviciile de IT, web development, Magazine Online, integrări automate, consultanță business, import China, promovare digitală, video/foto/AI, implementare AI și platforme custom.
 
 ## Structură
 
@@ -8,7 +8,7 @@ Site complet pentru **Digital Online** (Global Vision Point Limited), cu toate s
 site nou/
 ├── index.html              # Pagina principală
 ├── servicii-it.html        # Servicii IT & Web
-├── magazine-online.html    # Magazine Online Shopify
+├── magazine-online.html    # Magazine Online
 ├── integrari.html          # Integrări Automate
 ├── consultanta.html        # Consultanță Business
 ├── import-china.html       # Import Produse China
