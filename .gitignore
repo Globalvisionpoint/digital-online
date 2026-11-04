@@ -4,3 +4,4 @@
 Thumbs.db
 *.log
 bump.ps1
+node_modules/

@@ -1,6 +1,20 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
+    <link rel="alternate" hreflang="ro" href="https://digital-online.ro/">
+    <link rel="alternate" hreflang="en" href="https://digital-online.ro/en/">
+    <link rel="alternate" hreflang="es" href="https://digital-online.ro/es/">
+    <link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/">
+    <link rel="alternate" hreflang="x-default" href="https://digital-online.ro/">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="es_ES">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta property="og:url" content="https://digital-online.ro/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital Online, Web, Shopify, AI &amp; Marketing Digital">
+    <meta name="twitter:description" content="Digital Online construiește site-uri, magazine Shopify, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.">
+    <meta name="twitter:image" content="https://digital-online.ro/img/og-cover.png">
+    <meta name="twitter:image:alt" content="Digital Online, Web, Shopify, AI &amp; Marketing Digital">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Online, Web, Shopify, AI & Marketing Digital</title>
@@ -22,6 +36,7 @@
     <link rel="preload" href="img/seq/f000.webp" as="image" media="(min-width: 860px)">
     <link rel="preload" href="img/seq/m/f000.webp" as="image" media="(max-width: 859px)">
     <link rel="stylesheet" href="css/styles.css?v=131bb-1793241153">
+    <link rel="stylesheet" href="css/lang-switcher.css">
 
     <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
@@ -83,9 +98,48 @@
           </ul>
         </nav>
 
-        <a href="https://wa.me/40725376481?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="header-cta">
+        <div class="header-actions">
+      <div class="lang-switcher" id="langSwitcher" data-lang-switcher>
+        <button type="button" class="lang-trigger" id="langTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="langMenu" aria-label="Schimbă limba">
+          <span class="lang-trigger-flag"><img class="lang-flag-img" src="img/flags/ro.svg" alt="" width="20" height="15" loading="eager" decoding="async"></span>
+          <span class="lang-trigger-code">RO</span>
+          <svg class="lang-caret" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <ul class="lang-menu" id="langMenu" role="menu" aria-label="Limbi">
+        <li role="none">
+          <a role="menuitem" href="/" class="lang-option is-current" hreflang="ro" lang="ro" data-lang="ro" aria-current="true">
+            <span class="lang-option-flag"><img class="lang-flag-img" src="img/flags/ro.svg" alt="" width="20" height="15" loading="lazy" decoding="async"></span>
+            <span class="lang-option-name">Română</span>
+            <span class="lang-option-code">RO</span>
+          </a>
+        </li>
+        <li role="none">
+          <a role="menuitem" href="en/" class="lang-option" hreflang="en" lang="en" data-lang="en">
+            <span class="lang-option-flag"><img class="lang-flag-img" src="img/flags/gb.svg" alt="" width="20" height="15" loading="lazy" decoding="async"></span>
+            <span class="lang-option-name">English</span>
+            <span class="lang-option-code">EN</span>
+          </a>
+        </li>
+        <li role="none">
+          <a role="menuitem" href="es/" class="lang-option" hreflang="es" lang="es" data-lang="es">
+            <span class="lang-option-flag"><img class="lang-flag-img" src="img/flags/es.svg" alt="" width="20" height="15" loading="lazy" decoding="async"></span>
+            <span class="lang-option-name">Español</span>
+            <span class="lang-option-code">ES</span>
+          </a>
+        </li>
+        <li role="none">
+          <a role="menuitem" href="pt-br/" class="lang-option" hreflang="pt-BR" lang="pt-BR" data-lang="pt-BR">
+            <span class="lang-option-flag"><img class="lang-flag-img" src="img/flags/br.svg" alt="" width="20" height="15" loading="lazy" decoding="async"></span>
+            <span class="lang-option-name">Português (Brasil)</span>
+            <span class="lang-option-code">PT</span>
+          </a>
+        </li>
+        </ul>
+      </div>
+<a href="https://wa.me/40725376481?text=Bun%C4%83!%20Vreau%20s%C4%83%20discut%C4%83m%20despre%20un%20proiect." target="_blank" rel="noopener" class="header-cta">
           <span>BOOK A CALL</span>
         </a>
+        </div>
 
         <button class="menu-toggle" id="menuToggle" aria-label="Meniu" aria-expanded="false" aria-controls="mobileNav">
           <span class="menu-icon" aria-hidden="true">☰</span>
@@ -453,6 +507,8 @@
       </div>
     </footer>
 
+    <script src="js/i18n-ui.js" defer></script>
+    <script src="js/lang-switcher.js" defer></script>
     <script src="js/script.js?v=131bb-1793241153" defer></script>
     <script src="js/sequence.js?v=131bb-1793241153" defer></script>
     <script src="js/theme.js?v=131bb-1793241153" defer></script>

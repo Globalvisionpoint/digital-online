@@ -1,0 +1,19 @@
+{
+  "name": "digital-online-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Digital Online — static website with multi-language support (RO / EN / ES / PT-BR).",
+  "scripts": {
+    "i18n:extract": "node tools/extract.mjs",
+    "i18n:build": "node tools/build.mjs",
+    "i18n": "node tools/extract.mjs && node tools/build.mjs",
+    "i18n:check": "node tools/check.mjs"
+  },
+  "devDependencies": {
+    "node-html-parser": "^9.0.6"
+  },
+  "dependencies": {
+    "@vercel/functions": "^3.10.6"
+  }
+}
