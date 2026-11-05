@@ -4090,3 +4090,99 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 @media (max-width: 600px) {
   .hm-post-title-brand { white-space: nowrap; }
 }
+
+@media (max-width: 600px) {
+  :root {
+    --step--2: 0.8125rem;
+    --step--1: 0.9375rem;
+    --step-0: 1rem;
+    --step-1: 1.125rem;
+    --step-2: 1.375rem;
+    --step-3: 1.75rem;
+    --step-4: 2rem;
+    --step-5: 2.375rem;
+    --step-6: 2.75rem;
+    --step-7: 3.125rem;
+    --step-8: 3.5rem;
+    --step-9: 4rem;
+  }
+
+  body.theme p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .theme .section h2,
+  .theme #proces .section-head h2,
+  .theme .section .cp-title,
+  .hm-post .hm-post-title {
+    font-size: clamp(32px, 8vw, 40px);
+    line-height: 1.12;
+  }
+
+  .theme .step-card h3 {
+    font-size: 22px;
+    line-height: 1.2;
+  }
+
+  .hm-feature p {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .hm-tagline-text {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    padding-inline: 8px;
+  }
+
+  .theme .section-head p,
+  .hm-intro-body {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .hm-feature-cta,
+  .hm-intro-cta {
+    font-size: 13px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .hm-services-list,
+  .hm-service-row-desc {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .hm-eyebrow-text,
+  .hm-scroll-text,
+  .hm-intro-left .eyebrow,
+  .theme .section .eyebrow,
+  .theme .step-card .meta,
+  .theme .contact-field-label {
+    font-size: 12px;
+  }
+
+  .theme .contact-submit,
+  .theme .nav--mobile-overlay .nav-cta-mobile {
+    font-size: 14px;
+  }
+
+  .theme .nav--mobile-overlay .mobile-nav-sublink {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .theme .footer-bottom {
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+  }
+
+  .pricing-card .plan-cta p {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    white-space: normal !important;
+  }
+}
