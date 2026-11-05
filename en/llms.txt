@@ -1,0 +1,71 @@
+# Digital Online: Full-Service Digital Agency
+
+> Digital Online is a full-service digital agency providing IT, online store, automation integration, AI, digital marketing, and business consulting services to clients in Romania and the European Union.
+
+Official website: [https://digital-online.ro/en/](https://digital-online.ro/en/)
+Other language versions: [Romanian](https://digital-online.ro/llms.txt), [Spanish](https://digital-online.ro/es/llms.txt), [Brazilian Portuguese](https://digital-online.ro/pt-br/llms.txt)
+
+## Main services
+
+- **Websites & IT services**: company websites, updates to existing sites, maintenance, troubleshooting, speed optimization, security, and on-page SEO
+  - Page: [IT services](https://digital-online.ro/en/servicii-it.html)
+- **Online stores**: custom themes, product uploads, AI image generation, and automated courier and invoicing integrations
+  - Page: [Online stores](https://digital-online.ro/en/magazine-online.html)
+- **Automated integrations**: SmartBill and Oblio invoicing; Fan Courier, Sameday, Cargus, GLS, and DHL delivery; Stripe, Netopia, and PayU payments
+  - Page: [Integrations](https://digital-online.ro/en/integrari.html)
+- **Online business consulting**: digital, tax, legal (GDPR), accounting, company setup, and growth strategies
+  - Page: [Consulting](https://digital-online.ro/en/consultanta.html)
+- **Product imports from China**: Alibaba/1688 supplier sourcing, negotiation, quality control, sea and air freight, customs clearance, EORI, VAT, and GPSR
+  - Page: [China imports](https://digital-online.ro/en/import-china.html)
+- **Digital advertising & marketing**: Google Ads (Search, Shopping, YouTube, Display), Meta Ads (Facebook, Instagram), TikTok Ads, and LinkedIn Ads
+  - Page: [Digital marketing](https://digital-online.ro/en/promovare.html)
+- **Video and photo editing**: Reels, TikTok, Shorts, video ads, AI voiceovers, animation, and Instagram carousels
+  - Page: [Video and photo editing](https://digital-online.ro/en/montaj-editare-video-foto.html)
+- **AI implementation & chatbots**: website chatbots, AI customer service agents, voice AI, AI content generation, and n8n/Make/Zapier automation
+  - Page: [AI implementation](https://digital-online.ro/en/implementare-ai.html)
+- **Custom platforms & applications**: SaaS, marketplaces, CRM, ERP, LMS, dashboards, and iOS and Android apps
+  - Page: [Custom platforms](https://digital-online.ro/en/platforme-custom.html)
+
+## Main pages
+
+- [Home](https://digital-online.ro/en/)
+- [Services and solutions](https://digital-online.ro/en/#servicii)
+- [About the company](https://digital-online.ro/en/#companie)
+- [Four-step process](https://digital-online.ro/en/#proces)
+- [Contact](https://digital-online.ro/en/#contact)
+- [Privacy policy](https://digital-online.ro/en/politica-confidentialitate.html)
+
+## Company information
+
+- **Phone**: +40 725 376 481
+- **Email**: contact@digital-online.ro
+- **WhatsApp**: [wa.me/40725376481](https://wa.me/40725376481)
+- **Hours**: Monday–Friday, 09:00–17:00 (EET)
+- **Languages**: Romanian, English, Spanish, Brazilian Portuguese
+- **Service area**: Romania, Moldova, Bulgaria, Hungary, and the European Union
+- **Accepted currencies**: EUR, RON
+- **Payment methods**: cash, credit card, bank transfer
+
+## Technologies
+
+- Frontend: HTML5, CSS3, JavaScript ES6+
+- Frameworks: Shopify Hydrogen, Next.js, React, Vue.js
+- Backend: Node.js, Python, PHP
+- Databases: PostgreSQL, MySQL, MongoDB
+- Mobile: React Native, Flutter, Swift, Kotlin
+- AI: OpenAI GPT, Anthropic Claude, Google Gemini, Stable Diffusion
+- Automation: n8n, Make, Zapier
+- Cloud: AWS, Google Cloud, Azure, Hetzner
+
+## Quick contact
+
+- Contact form: [https://digital-online.ro/en/#contact](https://digital-online.ro/en/#contact)
+- WhatsApp: [https://wa.me/40725376481](https://wa.me/40725376481)
+- Email: [mailto:contact@digital-online.ro](mailto:contact@digital-online.ro)
+- Privacy policy: [https://digital-online.ro/en/politica-confidentialitate.html](https://digital-online.ro/en/politica-confidentialitate.html)
+
+## Suggested content (optional)
+
+For more information, readers can consult:
+- The detailed service descriptions linked above
+- The privacy policy for information about GDPR practices

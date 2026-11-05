@@ -62,6 +62,35 @@ function escapeAttr(value) {
     .replace(/"/g, '&quot;');
 }
 
+function stripBusinessLocation(raw) {
+  let sanitized = raw;
+  for (const property of ['address', 'geo']) {
+    const match = new RegExp(`"${property}"\\s*:\\s*\\{[^{}]*\\}`).exec(sanitized);
+    if (!match) continue;
+
+    let start = match.index;
+    let end = start + match[0].length;
+    let previous = start - 1;
+    while (previous >= 0 && /\s/.test(sanitized[previous])) previous -= 1;
+    let next = end;
+    while (/\s/.test(sanitized[next] || '')) next += 1;
+
+    if (sanitized[next] === ',') {
+      end = next + 1;
+    } else if (sanitized[previous] === ',') {
+      start = previous;
+    }
+
+    sanitized = sanitized.slice(0, start) + sanitized.slice(end);
+  }
+
+  const schema = JSON.parse(sanitized);
+  if (Object.hasOwn(schema, 'address') || Object.hasOwn(schema, 'geo')) {
+    throw new Error('Business location schema could not be removed safely');
+  }
+  return sanitized;
+}
+
 /**
  * Repair the SEO tags of one Romanian page.
  *
@@ -73,6 +102,39 @@ export function fixRoSeo(source, fileName) {
   const tree = parseHtml(source);
   const patches = [];
   const nl = newlineOf(tree);
+
+  /* --- Do not publish the business' physical location --- */
+  const locationMeta = findElements(tree, e => {
+    if (e.tag !== 'meta') return false;
+    const key = (getAttr(e, 'name') || getAttr(e, 'property') || '').toLowerCase();
+    return key.startsWith('geo.') || key === 'icbm';
+  });
+  for (const element of locationMeta) {
+    const start = source.lastIndexOf('\n', element.start - 1) + 1;
+    const newline = source.indexOf('\n', element.end);
+    patches.push({
+      start,
+      end: newline === -1 ? element.end : newline + 1,
+      text: ''
+    });
+  }
+
+  for (const script of findElements(tree, e => e.tag === 'script')) {
+    if ((getAttr(script, 'type') || '').toLowerCase() !== 'application/ld+json') continue;
+    const rawNode = script.children.find(child => child.type === 'raw');
+    if (!rawNode) continue;
+
+    const schema = JSON.parse(rawNode.value);
+    const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
+    if (!types.some(type => type === 'LocalBusiness' || type === 'ProfessionalService')) continue;
+    if (!Object.hasOwn(schema, 'address') && !Object.hasOwn(schema, 'geo')) continue;
+
+    patches.push({
+      start: rawNode.start,
+      end: rawNode.end,
+      text: stripBusinessLocation(rawNode.value)
+    });
+  }
 
   /* --- Remove social image metadata after retiring the share image --- */
   const imageMeta = findElements(tree, e => {

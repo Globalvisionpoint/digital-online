@@ -1,5 +1,5 @@
 {
-  "$schema": "Digital Online i18n catalog: source strings extracted from the Romanian pages.",
+  "$schema": "Digital Online i18n catalog — source strings extracted from the Romanian pages.",
   "locale": "ro",
   "generatedBy": "tools/extract.mjs",
   "pages": [
@@ -1989,8 +1989,8 @@
       ]
     },
     {
-      "key": "digital-online-oferă-servicii-complete-d#9688pf",
-      "source": "Digital Online oferă servicii complete de IT, magazine online, integrări automate, AI, promovare digitală și consultanță business în România și UE.",
+      "key": "digital-online-oferă-servicii-de-it-maga#1k2ym0z",
+      "source": "Digital Online oferă servicii de IT, magazine online, integrări automate, AI, promovare digitală și consultanță business. Comunicarea cu clienții este disponibilă în română, engleză, spaniolă și portugheză.",
       "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
       "places": [
         "consultanta.html JSON-LD",
