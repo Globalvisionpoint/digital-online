@@ -1,0 +1,71 @@
+# Digital Online: Agencia Digital Integral
+
+> Digital Online es una agencia digital integral que ofrece servicios de TI, tiendas online, integraciones automatizadas, IA, marketing digital y consultoría empresarial para clientes de Rumanía y la Unión Europea.
+
+Sitio web oficial: [https://digital-online.ro/es/](https://digital-online.ro/es/)
+Versiones en otros idiomas: [Rumano](https://digital-online.ro/llms.txt), [Inglés](https://digital-online.ro/en/llms.txt), [Portugués brasileño](https://digital-online.ro/pt-br/llms.txt)
+
+## Servicios principales
+
+- **Sitios web y servicios de TI**: creación de webs corporativas, actualización de sitios existentes, mantenimiento, resolución de problemas, optimización de velocidad, seguridad y SEO on-page
+  - Página: [Servicios de TI](https://digital-online.ro/es/servicii-it.html)
+- **Tiendas online**: temas personalizados, carga de productos, generación de imágenes con IA e integraciones automatizadas de mensajería y facturación
+  - Página: [Tiendas online](https://digital-online.ro/es/magazine-online.html)
+- **Integraciones automatizadas**: facturación con SmartBill y Oblio; envíos con Fan Courier, Sameday, Cargus, GLS y DHL; pagos con Stripe, Netopia y PayU
+  - Página: [Integraciones](https://digital-online.ro/es/integrari.html)
+- **Consultoría para negocios online**: asesoría digital, fiscal, legal (GDPR), contable, constitución de empresas y estrategias de crecimiento
+  - Página: [Consultoría](https://digital-online.ro/es/consultanta.html)
+- **Importación de productos de China**: búsqueda de proveedores en Alibaba/1688, negociación, control de calidad, transporte marítimo y aéreo, aduanas, EORI, IVA y GPSR
+  - Página: [Importación desde China](https://digital-online.ro/es/import-china.html)
+- **Publicidad y marketing digital**: Google Ads (Search, Shopping, YouTube, Display), Meta Ads (Facebook, Instagram), TikTok Ads y LinkedIn Ads
+  - Página: [Marketing digital](https://digital-online.ro/es/promovare.html)
+- **Edición de vídeo y fotografía**: Reels, TikTok, Shorts, anuncios en vídeo, voz en off con IA, animaciones y carruseles de Instagram
+  - Página: [Edición de vídeo y fotografía](https://digital-online.ro/es/montaj-editare-video-foto.html)
+- **Implementación de IA y chatbots**: chatbots web, agentes de atención al cliente con IA, voz con IA, generación de contenido y automatizaciones con n8n/Make/Zapier
+  - Página: [Implementación de IA](https://digital-online.ro/es/implementare-ai.html)
+- **Plataformas y aplicaciones a medida**: SaaS, marketplaces, CRM, ERP, LMS, paneles de control y aplicaciones para iOS y Android
+  - Página: [Plataformas a medida](https://digital-online.ro/es/platforme-custom.html)
+
+## Páginas principales
+
+- [Inicio](https://digital-online.ro/es/)
+- [Servicios y soluciones](https://digital-online.ro/es/#servicii)
+- [Sobre la empresa](https://digital-online.ro/es/#companie)
+- [Proceso de trabajo: 4 pasos](https://digital-online.ro/es/#proces)
+- [Contacto](https://digital-online.ro/es/#contact)
+- [Política de privacidad](https://digital-online.ro/es/politica-confidentialitate.html)
+
+## Información de la empresa
+
+- **Teléfono**: +40 725 376 481
+- **Correo electrónico**: contact@digital-online.ro
+- **WhatsApp**: [wa.me/40725376481](https://wa.me/40725376481)
+- **Horario**: lunes a viernes, 09:00–17:00 (EET)
+- **Idiomas**: rumano, inglés, español y portugués brasileño
+- **Ámbito de servicio**: Rumanía, Moldavia, Bulgaria, Hungría y la Unión Europea
+- **Monedas aceptadas**: EUR, RON
+- **Métodos de pago**: efectivo, tarjeta de crédito y transferencia bancaria
+
+## Tecnologías
+
+- Frontend: HTML5, CSS3, JavaScript ES6+
+- Frameworks: Shopify Hydrogen, Next.js, React, Vue.js
+- Backend: Node.js, Python, PHP
+- Bases de datos: PostgreSQL, MySQL, MongoDB
+- Móvil: React Native, Flutter, Swift, Kotlin
+- IA: OpenAI GPT, Anthropic Claude, Google Gemini, Stable Diffusion
+- Automatización: n8n, Make, Zapier
+- Cloud: AWS, Google Cloud, Azure, Hetzner
+
+## Contacto rápido
+
+- Formulario de contacto: [https://digital-online.ro/es/#contact](https://digital-online.ro/es/#contact)
+- WhatsApp: [https://wa.me/40725376481](https://wa.me/40725376481)
+- Correo electrónico: [mailto:contact@digital-online.ro](mailto:contact@digital-online.ro)
+- Política de privacidad: [https://digital-online.ro/es/politica-confidentialitate.html](https://digital-online.ro/es/politica-confidentialitate.html)
+
+## Contenido recomendado (opcional)
+
+Para obtener más información, se recomienda consultar:
+- Las descripciones detalladas de los servicios enlazadas arriba
+- La política de privacidad para conocer las prácticas relacionadas con GDPR

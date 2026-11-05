@@ -1,8 +1,9 @@
-# Digital Online: Agenție Digitală Full-Service din România
+# Digital Online: Agenție Digitală Full-Service
 
-> Digital Online este o agenție digitală full-service din România care oferă servicii complete de IT, Magazine Online, integrări automate, AI, promovare digitală și consultanță business pentru clienți din România și Uniunea Europeană.
+> Digital Online este o agenție digitală full-service care oferă servicii de IT, magazine online, integrări automate, AI, promovare digitală și consultanță business pentru clienți din România și Uniunea Europeană.
 
 Site oficial: [https://digital-online.ro/](https://digital-online.ro/)
+Ghiduri GEO în alte limbi: [Engleză](https://digital-online.ro/en/llms.txt), [Spaniolă](https://digital-online.ro/es/llms.txt), [Portugheză braziliană](https://digital-online.ro/pt-br/llms.txt)
 
 ## Servicii principale
 
@@ -36,12 +37,11 @@ Site oficial: [https://digital-online.ro/](https://digital-online.ro/)
 
 ## Informații companie
 
-- **Sediu**: România
 - **Telefon**: +40 725 376 481
 - **Email**: contact@digital-online.ro
 - **WhatsApp**: [wa.me/40725376481](https://wa.me/40725376481)
 - **Program**: Luni – Vineri, 09:00 – 17:00 (EET)
-- **Limbi**: Română, Engleză, Spaniolă, Portugheză
+- **Limbi**: Română, Engleză, Spaniolă, Portugheză braziliană
 - **Zonă deservită**: România, Moldova, Bulgaria, Ungaria, Uniunea Europeană
 - **Monede acceptate**: EUR, RON
 - **Metode de plată**: Numerar, Card de credit, Transfer bancar

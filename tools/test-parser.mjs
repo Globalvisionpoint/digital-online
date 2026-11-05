@@ -181,6 +181,42 @@ for (const file of files) {
   } else {
     console.log('OK    retired share-image references are removed without dropping social titles');
   }
+
+  const withLocation = `<html><head><meta name="geo.position" content="44.4268;26.1025"></head><body>
+    <script type="application/ld+json">
+    {
+      "@type": "LocalBusiness",
+      "name": "Digital Online",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "București"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "44.4268",
+        "longitude": "26.1025"
+      },
+      "areaServed": ["RO", "EU"]
+    }
+    </script>
+    <script type="application/ld+json">{"@type":["LocalBusiness","ProfessionalService"],"address":{"@type":"PostalAddress","addressLocality":"București"},"geo":{"@type":"GeoCoordinates","latitude":"44.4268","longitude":"26.1025"},"areaServed":["RO","EU"]}</script>
+  </body></html>`;
+  const withoutLocation = fixRoSeo(withLocation, 'index.html');
+  const businessSchemas = [];
+  walk(parseHtml(withoutLocation), node => {
+    if (node.type !== 'element' || node.tag !== 'script') return;
+    if ((node.attrs || []).find(attr => attr.name.toLowerCase() === 'type')?.value !== 'application/ld+json') return;
+    const raw = node.children?.find(child => child.type === 'raw')?.value;
+    if (raw) businessSchemas.push(JSON.parse(raw));
+  });
+  if (businessSchemas.length !== 2 ||
+      businessSchemas.some(schema => schema.address || schema.geo ||
+        JSON.stringify(schema.areaServed) !== '["RO","EU"]') ||
+      withoutLocation.includes('geo.position')) {
+    fail('business location was not removed while retaining its service area');
+  } else {
+    console.log('OK    business coordinates and address are removed while its service area is retained');
+  }
 }
 
 /* ------------------------------------------------------------
@@ -242,6 +278,93 @@ for (const file of files) {
     .filter(id => !ids.has(id));
   if (missing.length) fail(`llms.txt has broken homepage anchors: ${missing.join(', ')}`);
   else console.log('OK    llms.txt homepage anchors point to existing sections');
+}
+
+/* ------------------------------------------------------------
+   9. Every public page must avoid publishing the business'
+      physical location, while retaining its service area.
+   ------------------------------------------------------------ */
+{
+  const locales = [
+    { code: 'ro', prefix: '' },
+    { code: 'en', prefix: 'en' },
+    { code: 'es', prefix: 'es' },
+    { code: 'pt-BR', prefix: 'pt-br' }
+  ];
+  const locationWords = /\b(?:București|Bucharest|România|Romania|Rumanía|Romênia|España|Spain|Brasil|Brazil)\b/i;
+  let checked = 0;
+
+  for (const locale of locales) {
+    for (const file of files) {
+      const relativePath = path.join(locale.prefix, file);
+      const html = fs.readFileSync(path.join(root, relativePath), 'utf8');
+      const tree = parseHtml(html);
+
+      walk(tree, node => {
+        if (node.type !== 'element') return;
+
+        if (node.tag === 'meta') {
+          const key = (node.attrs || []).find(attr =>
+            ['name', 'property'].includes(attr.name.toLowerCase())
+          )?.value?.toLowerCase();
+          if (key?.startsWith('geo.') || key === 'icbm') {
+            fail(`${relativePath} still publishes the ${key} geotag`);
+          }
+        }
+
+        if (node.tag !== 'script' ||
+            (node.attrs || []).find(attr => attr.name.toLowerCase() === 'type')?.value?.toLowerCase() !== 'application/ld+json') {
+          return;
+        }
+
+        const raw = node.children?.find(child => child.type === 'raw')?.value;
+        if (!raw) return;
+        const schema = JSON.parse(raw);
+        const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
+        if (!types.some(type => type === 'LocalBusiness' || type === 'ProfessionalService')) return;
+
+        checked += 1;
+        if (schema.address || schema.geo) {
+          fail(`${relativePath} still publishes a business address or coordinates`);
+        }
+        if (locationWords.test(schema.description || '')) {
+          fail(`${relativePath} describes the business as located in a specific country or city`);
+        }
+      });
+    }
+  }
+
+  if (checked) console.log(`OK    ${checked} business schemas omit physical location across all locales`);
+  else fail('no business schemas were checked');
+}
+
+/* ------------------------------------------------------------
+   10. GEO guidance is available in every language and points
+       to the corresponding localized pages.
+   ------------------------------------------------------------ */
+{
+  const docs = [
+    { file: 'llms.txt', prefix: '', heading: '# Digital Online: Agenție Digitală Full-Service' },
+    { file: 'en/llms.txt', prefix: '/en/', heading: '# Digital Online: Full-Service Digital Agency' },
+    { file: 'es/llms.txt', prefix: '/es/', heading: '# Digital Online: Agencia Digital Integral' },
+    { file: 'pt-br/llms.txt', prefix: '/pt-br/', heading: '# Digital Online: Agência Digital Completa' }
+  ];
+
+  for (const doc of docs) {
+    const content = fs.readFileSync(path.join(root, doc.file), 'utf8');
+    const serviceUrls = [...content.matchAll(/\]\((https:\/\/digital-online\.ro\/[^)#\s]+\.html)\)/g)]
+      .map(match => match[1]);
+    const wrongLocale = serviceUrls.filter(url => !url.includes(doc.prefix));
+    if (!content.startsWith(doc.heading) || !serviceUrls.length || wrongLocale.length) {
+      fail(`${doc.file} is missing localized GEO guidance or links to the wrong locale`);
+    } else {
+      console.log(`OK    ${doc.file} contains localized GEO guidance and page links`);
+    }
+
+    if (/\b(?:sediu|headquarters|sede|endereço)\b|București|Bucharest/i.test(content)) {
+      fail(`${doc.file} exposes a physical company location`);
+    }
+  }
 }
 
 console.log(failures ? `\n${failures} test(s) failed` : '\nAll tests passed.');
