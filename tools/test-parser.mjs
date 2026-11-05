@@ -213,6 +213,15 @@ for (const file of files) {
   } else {
     console.log(`OK    sitemap lists ${entries.length} URLs with all locale alternates`);
   }
+
+  const expectedFullSitemap = renderSitemap(files);
+  const actualFullSitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+  const fullEntryCount = [...actualFullSitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].length;
+  if (actualFullSitemap !== expectedFullSitemap || fullEntryCount !== files.length * 4) {
+    fail(`generated sitemap does not match all ${files.length * 4} localized page URLs`);
+  } else {
+    console.log(`OK    generated sitemap matches all ${fullEntryCount} localized page URLs`);
+  }
 }
 
 /* ------------------------------------------------------------
