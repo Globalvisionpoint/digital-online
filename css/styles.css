@@ -16,11 +16,10 @@
   --bg: #0a0a0a;
   --bg-2: #111114;
   --bg-3: #16161a;
-  /* Fundalul paginii este semi-transparent, ca secventa de nori de dedesubt
-     sa se vada prin sectiuni. Panourile si cardurile raman opace, ca sa se
-     citeasca ca suprafete solide peste fundal. */
-  --bg-page: rgba(10, 10, 10, 0.78);
-  --bg-2-page: rgba(17, 17, 20, 0.78);
+  /* Fundalurile sectiunilor raman transparente ca secventa sa-si pastreze
+     culorile si luminozitatea; panourile si cardurile raman opace. */
+  --bg-page: rgba(10, 10, 10, 0);
+  --bg-2-page: rgba(17, 17, 20, 0);
   --text: #ffffff;
   --text-2: #ffffff;
   --text-3: #ffffff;
@@ -249,7 +248,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: rgba(5, 5, 5, 0.62);
+  background: transparent;
   isolation: isolate;
 }
 
@@ -273,9 +272,6 @@
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
-  /* Norii sunt alb-negru, la fel ca restul site-ului: fara grayscale, cerul
-     ar introduce o nuanta rece pe un site monocrom. */
-  filter: grayscale(1) contrast(1.06);
 }
 
 /* Pe ecrane mici se foloseste setul de cadre la jumatate din latime. */
@@ -350,6 +346,10 @@
 }
 
 .hm-title-fill {
+  --hm-hero-fill:
+    radial-gradient(ellipse 20% 75% at 20% 50%, rgba(205, 255, 250, 0.96) 0%, rgba(53, 216, 205, 0.58) 42%, transparent 78%),
+    repeating-radial-gradient(ellipse 55% 135% at 0% 50%, transparent 0 34px, rgba(136, 255, 247, 0.82) 35px 37px, transparent 38px 67px),
+    linear-gradient(112deg, #06272d 0%, #0d4148 16%, #58c8c0 31%, #c5f8f1 38%, #15565d 49%, #092b34 63%, #45aaa6 78%, #b7eee8 86%, #06272d 100%);
   display: block;
   font-family: 'Aspera', 'JetBrains Mono', monospace;
   font-size: clamp(64px, 9vw, 320px);
@@ -359,12 +359,10 @@
   text-transform: uppercase;
   text-align: center;
 
-  background-image: url('../img/title-sky.webp?v=131bb-1793241153');
-  background-size: 100% 300%;
-  background-position: center center;
+  background-image: var(--hm-hero-fill);
+  background-size: 180% 160%, 220% 190%, 300% 100%;
+  background-position: 0% 50%, 0% 45%, 0% 50%;
   background-repeat: no-repeat;
-  background-color: rgba(255, 255, 255, 0.24);
-  background-blend-mode: screen;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -372,16 +370,11 @@
   -webkit-text-stroke: clamp(0.55px, 0.07vw, 1.1px) rgba(255, 255, 255, 0.85);
   paint-order: stroke fill;
 
-  /* Filtrele vechi (brightness 2.1, saturate 1.45) erau calibrate pentru
-     textura zgomotoasa dinainte si ar face norii sa arda in alb. Cu norii,
-     un boost usor pastreaza forma literelor si lasa cerul sa se citeasca.
-     Norii sunt alb-negru, la fel ca restul site-ului: filtrul de culoare
-     al fundalului ar scoate orice nuanta, deci norii trebuie grayscale. */
-  filter: grayscale(1) brightness(1.5) contrast(1.08) drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
+  filter: saturate(1.1) brightness(1.08) contrast(1.04) drop-shadow(0 6px 28px rgba(0, 0, 0, 0.45));
   opacity: 0;
   transform: translateX(0);
   animation: hmTitleInLeft 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
+             hmHeroColorFlow 8s 1.55s ease-in-out infinite alternate;
   overflow-wrap: normal;
   word-break: keep-all;
   max-width: 100%;
@@ -394,6 +387,8 @@
   -webkit-text-stroke: clamp(0.3px, 0.04vw, 0.6px) rgba(255, 255, 255, 0.85);
   max-width: 100%;
 }
+
+
 
 .hm-title--service {
   gap: 14px;
@@ -420,7 +415,7 @@
 
 .hm-title-fill--outline {
   animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
+             hmHeroColorFlow 8s 1.55s ease-in-out infinite alternate;
 }
 
 /* ---------- Split hero titles ----------
@@ -440,7 +435,7 @@
 
 .hm-title--split:not(.hm-title--zipper) .hm-title-fill:nth-child(even) {
   animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
+             hmHeroColorFlow 8s 1.55s ease-in-out infinite alternate;
 }
 
 /* One rendered line of a wrapped title. Font, letter-spacing, text stroke and
@@ -449,12 +444,10 @@
 .hm-title--split .hm-line {
   display: block;
   max-width: 100%;
-  background-image: url('../img/title-sky.webp?v=131bb-1793241153');
-  background-size: 100% 300%;
-  background-position: center center;
+  background-image: var(--hm-hero-fill);
+  background-size: 180% 160%, 220% 190%, 300% 100%;
+  background-position: 0% 50%, 0% 45%, 0% 50%;
   background-repeat: no-repeat;
-  background-color: rgba(255, 255, 255, 0.24);
-  background-blend-mode: screen;
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -471,13 +464,13 @@
 .hm-title--split .hm-from-left {
   opacity: 0;
   animation: hmTitleInLeft 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
+             hmHeroColorFlow 8s 1.55s ease-in-out infinite alternate;
 }
 
 .hm-title--split .hm-from-right {
   opacity: 0;
   animation: hmTitleInRight 1.2s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards,
-             hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
+             hmHeroColorFlow 8s 1.55s ease-in-out infinite alternate;
 }
 
 /* Added before a re-wrap, so a resized title never replays the entrance. */
@@ -485,7 +478,7 @@
 .hm-title--split.hm-title--settled .hm-from-right {
   opacity: 1;
   transform: none;
-  animation: hmTextureDrift 24s 1.55s ease-in-out infinite alternate;
+  animation: hmHeroColorFlow 8s 1.55s ease-in-out infinite alternate;
 }
 
 @keyframes hmTitleInLeft {
@@ -496,9 +489,9 @@
   from { opacity: 0; transform: translateX(110%); }
   to { opacity: 1; transform: translateX(0); }
 }
-@keyframes hmTextureDrift {
-  from { background-position: 18% 28%; }
-  to { background-position: 82% 72%; }
+@keyframes hmHeroColorFlow {
+  from { background-position: 0% 50%, 0% 45%, 0% 50%; }
+  to { background-position: 100% 50%, 100% 55%, 100% 50%; }
 }
 @keyframes hmFadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -1099,7 +1092,7 @@
    deci vizual 48+8 = 56, egal cu gap-ul de jos (subtitlu→formular). Jos 56px. */
 .theme .section.section-contact { padding: 48px 0 56px; }
 
-.theme .section-gray { background: var(--bg-2); }
+.theme .section-gray { background: var(--bg-2-page); }
 
 .theme .section .eyebrow {
   font-family: 'Inter Tight', sans-serif;
@@ -1140,6 +1133,7 @@
   margin-bottom: 16px;
   line-height: 1.05;
   padding: 0;
+  text-wrap: balance;
 }
 .theme .section-head p {
   max-width: 70ch;
@@ -1157,14 +1151,46 @@
   margin-right: auto;
 }
 
+@media (min-width: 861px) {
+  .theme #proces .section-head {
+    max-width: 100%;
+  }
+
+  .theme #proces .section-head h2 {
+    font-size: clamp(32px, 3.6vw, 52px);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 860px) {
+  .theme #proces .section-head h2 {
+    max-width: 100%;
+    font-size: clamp(28px, 6vw, 44px);
+  }
+
+  .hm-post .hm-post-title {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(24px, 6.3vw, 32px);
+    line-height: 1.15;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .hm-post .hm-post-title > span:first-child,
+  .hm-post .hm-post-title-brand {
+    display: block;
+  }
+}
+
 .theme .step-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(5, 5, 5, 0.72);
   border: 1px solid var(--line);
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .theme .step-card:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(5, 5, 5, 0.82);
   border-color: rgba(255, 255, 255, 0.20);
   transform: translateY(-2px);
 }
@@ -3868,7 +3894,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   align-items: center;
   gap: 18px;
   text-align: center;
-  max-width: 720px;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -3881,6 +3907,11 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   color: #ffffff;
   margin: 0;
   text-align: center;
+  white-space: nowrap;
+}
+
+.hm-post-title-brand {
+  white-space: nowrap;
 }
 
 .hm-post-lede {
@@ -4057,15 +4088,5 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 }
 
 @media (max-width: 600px) {
-  .hm-post-title {
-    width: 100%;
-    max-width: 300px;
-    font-size: 30px;
-    line-height: 1.4;
-  }
-
-  .hm-post-title-brand {
-    display: block;
-    white-space: nowrap;
-  }
+  .hm-post-title-brand { white-space: nowrap; }
 }

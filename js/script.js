@@ -8,6 +8,33 @@
   const isCoarse = matchMedia('(pointer: coarse)').matches;
   const canObserve = 'IntersectionObserver' in window;
 
+  /* Aspera does not include accented glyphs. Keep the original localized
+     labels available to assistive technology while rendering plain glyphs. */
+  const removeDiacritics = text => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const plainTitle = document.querySelector('.hm-title');
+  if (plainTitle) {
+    const titleLines = plainTitle.querySelectorAll('.hm-title-fill');
+    const hasAccents = Array.from(titleLines).some(line =>
+      removeDiacritics(line.textContent) !== line.textContent
+    );
+    if (hasAccents) {
+      if (!plainTitle.hasAttribute('aria-label')) {
+        plainTitle.setAttribute('aria-label', plainTitle.textContent.replace(/\s+/g, ' ').trim());
+      }
+      titleLines.forEach(line => {
+        line.textContent = removeDiacritics(line.textContent);
+      });
+    }
+  }
+
+  document.querySelectorAll('.nav-list--mono .nav-link').forEach(link => {
+    const label = link.textContent.trim();
+    const plainLabel = removeDiacritics(label);
+    if (plainLabel === label) return;
+    if (!link.hasAttribute('aria-label')) link.setAttribute('aria-label', label);
+    link.textContent = plainLabel;
+  });
+
   /* ------- Custom cursor (desktop only) ------- */
   if (!isCoarse && !reduced) {
     const c = document.createElement('div');
