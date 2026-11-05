@@ -28,8 +28,8 @@ Site oficial: [https://digital-online.ro/](https://digital-online.ro/)
 ## Pagini principale
 
 - [Acasă](https://digital-online.ro/)
-- [Despre: servicii, proces, valori](https://digital-online.ro/#despre)
-- [Dashboard-uri & KPI-uri](https://digital-online.ro/#dashboards)
+- [Servicii și soluții](https://digital-online.ro/#servicii)
+- [Despre companie](https://digital-online.ro/#companie)
 - [Proces de lucru: 4 pași](https://digital-online.ro/#proces)
 - [Contactează-ne](https://digital-online.ro/#contact)
 - [Politica de confidențialitate](https://digital-online.ro/politica-confidentialitate.html)

@@ -74,12 +74,11 @@ export function fixRoSeo(source, fileName) {
   const patches = [];
   const nl = newlineOf(tree);
 
-  /* --- Remove metadata and structured data that reference the retired share image --- */
+  /* --- Remove social image metadata after retiring the share image --- */
   const imageMeta = findElements(tree, e => {
     if (e.tag !== 'meta') return false;
     const key = (getAttr(e, 'property') || getAttr(e, 'name') || '').toLowerCase();
-    return /^(og:image(?::.*)?|twitter:image(?::.*)?)$/.test(key) &&
-      (getAttr(e, 'content') || '').includes('/img/og-cover.png');
+    return /^(og:image(?::.*)?|twitter:image(?::.*)?)$/.test(key);
   });
   for (const element of imageMeta) {
     const start = source.lastIndexOf('\n', element.start - 1) + 1;
