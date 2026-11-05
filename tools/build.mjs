@@ -12,11 +12,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { LOCALE_CODES, getLocale } from './lib/config.mjs';
+import { LOCALE_CODES, LOCALES, getLocale } from './lib/config.mjs';
 import { buildPage, appendSwitcherScript } from './lib/build-page.mjs';
 import { injectSwitcher } from './lib/inject.mjs';
 import { fixRoSeo } from './lib/ro-seo.mjs';
 import { renderMiddleware } from './lib/middleware.mjs';
+import { renderSitemap } from './lib/sitemap.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const localesDir = path.join(root, 'tools', 'locales');
@@ -142,6 +143,11 @@ for (const line of report) {
 const middlewareFile = path.join(root, 'middleware.ts');
 fs.writeFileSync(middlewareFile, renderMiddleware(), 'utf8');
 console.log('\n[middleware] middleware.ts written (IP -> language)');
+
+/* ---------- 4. Search sitemap ---------- */
+const sitemapFile = path.join(root, 'sitemap.xml');
+fs.writeFileSync(sitemapFile, renderSitemap(PAGES), 'utf8');
+console.log(`[sitemap] ${PAGES.length * LOCALES.length} localized page URLs written`);
 
 if (totalMissing) {
   console.log('\nFill the "translation" fields in tools/locales/*.json and rebuild.');

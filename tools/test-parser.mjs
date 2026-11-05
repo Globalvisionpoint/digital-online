@@ -10,6 +10,7 @@ import { parseHtml, walk } from './lib/html.mjs';
 import { keyFor } from './lib/extract.mjs';
 import { localizeHref, relativePage } from './lib/config.mjs';
 import { fixRoSeo } from './lib/ro-seo.mjs';
+import { renderSitemap } from './lib/sitemap.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const files = fs.readdirSync(root)
@@ -172,13 +173,66 @@ for (const file of files) {
   else console.log(`OK    ${expected.length} favicon variants use the header logo mark`);
 
   if (output.includes('og-cover.png') || output.includes('property="og:image"') ||
-      output.includes('name="twitter:image"') || output.includes('"image":')) {
+      output.includes('name="twitter:image"') || output.includes('image:alt') ||
+      output.includes('"image":')) {
     fail('retired social cover references were not removed');
   } else if (!output.includes('name="twitter:card" content="summary"')) {
     fail('Twitter card type was not changed to summary after removing its image');
   } else {
     console.log('OK    retired share-image references are removed without dropping social titles');
   }
+}
+
+/* ------------------------------------------------------------
+   7. The sitemap must include every page in every locale, with
+      reciprocal language alternatives and a Romanian x-default.
+   ------------------------------------------------------------ */
+{
+  const sitemap = renderSitemap(['index.html', 'consultanta.html']);
+  const entries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(match => match[1]);
+  const expectedUrls = [
+    'https://digital-online.ro/',
+    'https://digital-online.ro/en/',
+    'https://digital-online.ro/es/',
+    'https://digital-online.ro/pt-br/',
+    'https://digital-online.ro/consultanta.html',
+    'https://digital-online.ro/en/consultanta.html',
+    'https://digital-online.ro/es/consultanta.html',
+    'https://digital-online.ro/pt-br/consultanta.html'
+  ];
+  const missing = expectedUrls.filter(url => !sitemap.includes(`<loc>${url}</loc>`));
+  const incompleteAlternates = entries.filter(entry =>
+    !entry.includes('hreflang="ro"') ||
+    !entry.includes('hreflang="en"') ||
+    !entry.includes('hreflang="es"') ||
+    !entry.includes('hreflang="pt-BR"') ||
+    !entry.includes('hreflang="x-default"')
+  );
+  if (entries.length !== expectedUrls.length || missing.length || incompleteAlternates.length) {
+    fail(`localized sitemap is incomplete (${entries.length} URLs, ${missing.length} missing URLs, ${incompleteAlternates.length} incomplete alternate sets)`);
+  } else {
+    console.log(`OK    sitemap lists ${entries.length} URLs with all locale alternates`);
+  }
+}
+
+/* ------------------------------------------------------------
+   8. GEO guidance links must point at sections that still exist.
+   ------------------------------------------------------------ */
+{
+  const homepage = parseHtml(fs.readFileSync(path.join(root, 'index.html'), 'utf8'));
+  const ids = new Set();
+  walk(homepage, node => {
+    if (node.type !== 'element') return;
+    const id = node.attrs?.find(attr => attr.name.toLowerCase() === 'id')?.value;
+    if (id) ids.add(id);
+  });
+
+  const llms = fs.readFileSync(path.join(root, 'llms.txt'), 'utf8');
+  const missing = [...llms.matchAll(/\]\(https:\/\/digital-online\.ro\/#([^)\s]+)\)/g)]
+    .map(match => match[1])
+    .filter(id => !ids.has(id));
+  if (missing.length) fail(`llms.txt has broken homepage anchors: ${missing.join(', ')}`);
+  else console.log('OK    llms.txt homepage anchors point to existing sections');
 }
 
 console.log(failures ? `\n${failures} test(s) failed` : '\nAll tests passed.');
