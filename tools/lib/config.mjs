@@ -101,6 +101,10 @@ export function pagePath(code, file) {
   return `${prefix}/${name}`;
 }
 
+function pageFilePath(code, file) {
+  return `${prefixFor(code)}/${file}`;
+}
+
 /**
  * Relative path from one directory to a target path.
  * Both arguments are site-absolute, e.g. '/en/' and '/es/consultanta.html'.
@@ -126,7 +130,7 @@ export function relativePath(fromDir, target) {
  */
 export function relativePage(fromCode, fromFile, toCode, toFile) {
   const fromDir = pagePath(fromCode, fromFile).replace(/[^/]*$/, '');
-  const target = pagePath(toCode, toFile);
+  const target = pageFilePath(toCode, toFile);
   return relativePath(fromDir, target);
 }
 
@@ -151,9 +155,7 @@ export function localizeHref(href, code, file) {
   }
 
   const clean = pathPart.replace(/^\.\//, '').replace(/^\//, '');
-  const target = clean === '' || clean === 'index.html'
-    ? pagePath(code, 'index.html')
-    : pagePath(code, clean);
+  const target = pageFilePath(code, clean || 'index.html');
   const fromDir = pagePath(code, file).replace(/[^/]*$/, '');
 
   return `${relativePath(fromDir, target)}${suffix}`;

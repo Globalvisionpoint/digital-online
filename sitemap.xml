@@ -10,11 +10,6 @@
         <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/"/>
-        <image:image>
-            <image:loc>https://digital-online.ro/img/og-cover.png</image:loc>
-            <image:title>Digital Online - IT, E-Commerce, AI, Marketing</image:title>
-            <image:caption>Agenție digitală full-service din România</image:caption>
-        </image:image>
     </url>
     <url>
         <loc>https://digital-online.ro/servicii-it.html</loc>
@@ -134,4 +129,3 @@
         <priority>0.3</priority>
     </url>
 </urlset>
-
