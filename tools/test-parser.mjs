@@ -8,6 +8,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { parseHtml, walk } from './lib/html.mjs';
 import { keyFor } from './lib/extract.mjs';
+import { localizeHref, relativePage } from './lib/config.mjs';
+import { fixRoSeo } from './lib/ro-seo.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const files = fs.readdirSync(root)
@@ -115,6 +117,67 @@ for (const file of files) {
     } else {
       console.log(`OK    ${file}: ${keys.length} keys, no duplicates`);
     }
+  }
+}
+
+/* ------------------------------------------------------------
+   5. Home and language links must resolve to HTML files, not
+      directories, so they also work when previewed via file://.
+   ------------------------------------------------------------ */
+{
+  const cases = [
+    ['Romanian home from root', relativePage('ro', 'index.html', 'ro', 'index.html'), 'index.html'],
+    ['English home from root', relativePage('ro', 'index.html', 'en', 'index.html'), 'en/index.html'],
+    ['English home from a page', relativePage('en', 'servicii-it.html', 'en', 'index.html'), 'index.html'],
+    ['Romanian home from PT-BR', relativePage('pt-BR', 'servicii-it.html', 'ro', 'index.html'), '../index.html'],
+    ['PT-BR home from Spanish', relativePage('es', 'index.html', 'pt-BR', 'index.html'), '../pt-br/index.html'],
+    ['Localized home href', localizeHref('index.html', 'en', 'servicii-it.html'), 'index.html'],
+    ['Root home href', localizeHref('/', 'pt-BR', 'servicii-it.html'), 'index.html']
+  ];
+
+  const failed = cases.filter(([, actual, expected]) => actual !== expected);
+  for (const [label, actual, expected] of cases) {
+    if (actual !== expected) console.log(`      ${label}: expected ${expected}, got ${actual}`);
+  }
+  if (failed.length) fail(`${failed.length} home/language link path(s) are incorrect`);
+  else console.log(`OK    ${cases.length} home and language link paths target HTML files`);
+}
+
+/* ------------------------------------------------------------
+   6. Every locale must use the header's logo mark for its favicon.
+   ------------------------------------------------------------ */
+{
+  const source = `<html><head>
+    <link rel="icon" type="image/svg+xml" href="img/logo-light.svg">
+    <meta property="og:image" content="https://digital-online.ro/img/og-cover.png">
+    <meta property="og:image:alt" content="Digital Online">
+    <meta name="twitter:image" content="https://digital-online.ro/img/og-cover.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <script type="application/ld+json">
+    {
+      "image": "https://digital-online.ro/img/og-cover.png",
+      "name": "Digital Online"
+    }
+    </script>
+  </head><body></body></html>`;
+  const output = fixRoSeo(source, 'index.html');
+  const expected = [
+    'href="img/favicon.svg"',
+    'href="img/favicon.ico"',
+    'href="img/favicon-32.png"',
+    'href="img/favicon-192.png"'
+  ];
+  const missing = expected.filter(href => !output.includes(href));
+  if (missing.length) fail(`favicon references were not normalized: ${missing.join(', ')}`);
+  else console.log(`OK    ${expected.length} favicon variants use the header logo mark`);
+
+  if (output.includes('og-cover.png') || output.includes('property="og:image"') ||
+      output.includes('name="twitter:image"') || output.includes('"image":')) {
+    fail('retired social cover references were not removed');
+  } else if (!output.includes('name="twitter:card" content="summary"')) {
+    fail('Twitter card type was not changed to summary after removing its image');
+  } else {
+    console.log('OK    retired share-image references are removed without dropping social titles');
   }
 }
 

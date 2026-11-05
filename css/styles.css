@@ -42,16 +42,16 @@
   height: 60px !important;
   display: flex !important;
   align-items: center !important;
-  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.6) 0%, rgba(10, 10, 10, 0) 100%);
+  background: rgba(10, 10, 10, 0.76);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
   transition: border-color 0.3s ease, background 0.3s ease;
 }
 
 .theme .header--minimal.is-scrolled {
   background: rgba(10, 10, 10, 0.88);
-  border-bottom-color: var(--line);
+  border-bottom-color: rgba(255, 255, 255, 0.16);
 }
 
 .theme .header--minimal .header-inner {
@@ -4264,4 +4264,16 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .theme .legal-footer-links {
     font-size: 14px;
   }
+}
+
+.showcase-figure:has(img[src$="hero-integrari.webp"]) {
+  position: relative;
+}
+
+.showcase-figure:has(img[src$="hero-integrari.webp"])::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.12);
+  pointer-events: none;
 }
