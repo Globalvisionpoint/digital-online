@@ -12,6 +12,97 @@
     ţ: 't', Ţ: 'T'
   })[character]);
 
+  // ----- Fit hero titles to the hero width -----
+  /* The hero display font has very wide advance widths and a title word is
+     never hyphenated or broken, so a long translated word can render wider
+     than the hero and get clipped by its overflow. Viewport-based font-size
+     clamps cannot know how wide a word is, so measure the widest rendered
+     line and shrink the fill just enough for it to fit. */
+  const measureTitleLines = (element) => {
+    const range = document.createRange();
+    range.selectNodeContents(element);
+    const lines = [];
+    Array.prototype.forEach.call(range.getClientRects(), (rect) => {
+      if (rect.width < 1 || rect.height < 1) return;
+      const line = lines.find(candidate => Math.abs(candidate.top - rect.top) < 2);
+      if (line) {
+        line.left = Math.min(line.left, rect.left);
+        line.right = Math.max(line.right, rect.right);
+      } else {
+        lines.push({ top: rect.top, left: rect.left, right: rect.right });
+      }
+    });
+    return lines;
+  };
+
+  /* Never shrink a hero title below this share of its stylesheet size: past
+     that the display font stops reading as a display font, and letting the
+     word wrap onto a second line looks better. */
+  const MIN_HERO_FIT = 0.6;
+
+  /* Every fill of one title is scaled by the same factor, so the lines of a
+     split title keep a single size instead of drifting apart. */
+  const fitTitle = (title) => {
+    const fills = Array.from(title.querySelectorAll('.hm-title-fill'));
+    if (!fills.length) return false;
+
+    const measured = [];
+    fills.forEach((fill) => {
+      /* Measure from the stylesheet size, so a wider viewport grows back, and
+         without the wrapping safety net, to read the natural line width. */
+      fill.style.removeProperty('font-size');
+      fill.style.setProperty('overflow-wrap', 'normal');
+      fill.style.setProperty('word-break', 'keep-all');
+      const base = parseFloat(window.getComputedStyle(fill).fontSize);
+      const available = fill.clientWidth;
+      if (base && available) measured.push({ fill, base, available });
+    });
+    if (!measured.length) return false;
+
+    let scale = 1;
+    measured.forEach(({ fill, available }) => {
+      const widest = measureTitleLines(fill)
+        .reduce((max, line) => Math.max(max, line.right - line.left), 0);
+      if (widest > available + 0.5) scale = Math.min(scale, available / widest);
+    });
+
+    if (scale >= 1) {
+      /* Nothing to shrink: hand the fills back to the stylesheet so its
+         wrapping safety net still guards the word. */
+      measured.forEach(({ fill }) => {
+        fill.style.removeProperty('overflow-wrap');
+        fill.style.removeProperty('word-break');
+      });
+      return false;
+    }
+
+    if (scale < MIN_HERO_FIT) {
+      /* The word cannot fit a single line at a readable size, so hand it back
+         to the stylesheet and let it wrap onto a second line. */
+      measured.forEach(({ fill }) => {
+        fill.style.removeProperty('overflow-wrap');
+        fill.style.removeProperty('word-break');
+      });
+      return false;
+    }
+
+    measured.forEach(({ fill, base }) => {
+      fill.style.fontSize = `${base * scale}px`;
+    });
+    return true;
+  };
+
+  const heroTitles = Array.from(document.querySelectorAll('.hero-theme .hm-title'));
+  const fitHeroTitles = () => heroTitles.forEach((title) => {
+    if (!fitTitle(title)) return;
+    // Shrinking can turn a wrapped line into a short one, so the zipper has
+    // to re-group the rendered lines at the new size. Runs before the resize
+    // handler registered below, which re-measures in a frame.
+    zipTitle(title);
+    // The tagline moved, so the SCROLL indicator has to be re-centred.
+    window.dispatchEvent(new CustomEvent('hm:titlefit'));
+  });
+
   // ----- Zipper reveal for multi-line hero titles -----
   /* Service page titles enter alternately from the left and from the right,
      like the DIGITAL / ONLINE pair on the homepage. A title line that
@@ -321,7 +412,7 @@
 
     // Close menu if resized past mobile breakpoint
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 900) closeMenu();
+      if (window.innerWidth > 1026) closeMenu();
     });
   }
 
@@ -398,12 +489,33 @@
     runAfterLayout();
     window.addEventListener('resize', runAfterLayout);
     window.addEventListener('orientationchange', runAfterLayout);
+    // The tagline sits below the title, so the fit moves it and the gap has
+    // to be recomputed.
+    window.addEventListener('hm:titlefit', runAfterLayout);
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(runAfterLayout);
     }
     // Re-run when hero image swaps backgroundPosition (parallax) — they don't change height, but be safe
     const img = hero.querySelector('.hm-bg-img');
     if (img && !img.complete) img.addEventListener('load', runAfterLayout);
+  }
+
+  /* Fitting has to run even with reduced motion, where the SCROLL block is
+     left to CSS: the title still has to fit the hero. It runs synchronously
+     on resize, before the zipper handler registered above re-groups the
+     lines in its own frame, so the fit and the grouping agree. */
+  if (heroTitles.length) {
+    fitHeroTitles();
+    window.addEventListener('resize', fitHeroTitles, { passive: true });
+    window.addEventListener('orientationchange', fitHeroTitles);
+    window.addEventListener('pageshow', fitHeroTitles);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) fitHeroTitles();
+    });
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitHeroTitles).catch(() => {});
+    }
+    window.addEventListener('load', fitHeroTitles);
   }
 })();
 

@@ -161,8 +161,10 @@
 }
 
 /* The header is a 3-column grid on desktop (logo | nav | actions).
-   The switcher sits between the nav and the call-to-action. */
-@media (max-width: 900px) {
+   The switcher sits between the nav and the call-to-action.
+   Below 1026px the header switches to the mobile menu (same breakpoint as
+   styles.css), so the switcher keeps only its flag. */
+@media (max-width: 1026px) {
   .theme .header--minimal .header-inner {
     grid-template-columns: 1fr auto auto;
   }

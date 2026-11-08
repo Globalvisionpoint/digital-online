@@ -1173,7 +1173,7 @@
     width: 100%;
     max-width: 100%;
     font-size: clamp(24px, 6.3vw, 32px);
-    line-height: 1.15;
+    line-height: 1.2;
     white-space: normal;
     text-wrap: balance;
   }
@@ -1181,6 +1181,13 @@
   .hm-post .hm-post-title > span:first-child,
   .hm-post .hm-post-title-brand {
     display: block;
+  }
+
+  /* Cele doua randuri ale titlului stau pe linii separate, dar line-height-ul
+     singur le lasa lipite. Un respiro proportional cu marimea fontului le
+     desparte fara sa rupa ritmul blocului. */
+  .hm-post .hm-post-title-brand {
+    margin-top: 0.25em;
   }
 }
 
@@ -1899,15 +1906,21 @@
    sub 600px grila devine pe un singur rând. Intervalul 601–768px păstrează
    asezarea de desktop, dar scalează conținutul cardurilor ca să încapă. */
 
-@media (max-width: 900px) {
+/* Sub 1026px meniul din header devine cel de mobil (hamburger). Butonul de
+   contact cere ~175px (pt-br) / ~190px (es), deci peste această lățime se rupe
+   pe mai multe rânduri și iese din bara fixă de 60px. */
+@media (max-width: 1026px) {
   .theme .nav--center { display: none; }
   .theme .has-dropdown .nav-dropdown { display: none; }
   .theme .menu-toggle { display: inline-flex; }
   .theme .header--minimal .header-inner {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr auto auto;
     gap: 12px;
   }
   .theme .header--minimal .header-cta { display: none; }
+}
+
+@media (max-width: 900px) {
   .hm-intro-inner { grid-template-columns: 1fr; gap: 24px; }
   .hm-service-row { grid-template-columns: 40px 1fr 24px; gap: 12px; }
   .hm-service-row-desc { display: none; }
@@ -2022,7 +2035,6 @@
   }
   .theme .section { padding: 70px 0; }
   .theme .hm-services { padding: 48px 0; }
-  .theme .section#proces { padding: 0 0 48px; }
   .theme .section#proces .section-head { margin-bottom: 48px; }
   .theme .section.section-contact { padding: 40px 0 48px; }
   .theme .hm-intro { padding: 70px 0 60px; }
@@ -4082,10 +4094,26 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .hm-act-body { order: 2 !important; }
 }
 
+@media (max-width: 860px) {
+  /* Ritm vertical egal (24px) între #proces → titlu → lede → foto, pe toată
+     zona în care titlul se rupe pe două rânduri. */
+  .theme .section#proces { padding: 0; }
+  .hm-about { padding: 24px 0 48px; }
+  .hm-post { gap: 24px; }
+  .hm-post-open { gap: 24px; margin-bottom: 0; }
+}
+
+/* Desktop: acelasi ritm vertical egal ca pe mobil (40px), la scara mai mare.
+   Un singur proprietar pentru spatiul de deasupra titlului: padding-ul de jos
+   al #proces = 0, ca sa nu se dubleze cu padding-ul de sus al .hm-about. */
+@media (min-width: 861px) {
+  .theme .section#proces { padding-bottom: 0; }
+  .hm-about { padding-top: 40px; }
+  .hm-post-open { gap: 40px; }
+}
+
 @media (max-width: 600px) {
   .hm-about-inner { padding: 0 20px; }
-  .hm-post { gap: 28px; }
-  .hm-post-open { gap: 20px; margin-bottom: 8px; }
 }
 
 @media (max-width: 600px) {
@@ -4119,6 +4147,10 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .hm-post .hm-post-title {
     font-size: clamp(32px, 8vw, 40px);
     line-height: 1.12;
+  }
+
+  .hm-post .hm-post-title {
+    line-height: 1.24;
   }
 
   .theme .step-card h3 {
@@ -4266,6 +4298,32 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   }
 }
 
+/* Între 1027px și 1343px butonul de contact (~175px pt-br / ~190px es) se rupe
+   pe mai multe rânduri și iese din bara fixă de 60px. Aici îngustăm doar
+   tipografia navigației și a butonului, ca să încapă pe un singur rând, fără să
+   mutăm alinierea de pe desktop. Regula stă după blocul de la 601px ca să-l
+   poată suprascrie. */
+@media (min-width: 1027px) and (max-width: 1343px) {
+  .theme .header-cta {
+    white-space: nowrap;
+    font-size: 11px;
+    letter-spacing: 0.07em;
+  }
+
+  .theme .nav-list--mono {
+    gap: 12px !important;
+  }
+
+  .theme .nav-list--mono .nav-link {
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .theme .header--minimal .lang-trigger-code {
+    display: none;
+  }
+}
+
 .showcase-figure:has(img[src$="hero-integrari.webp"]) {
   position: relative;
 }
@@ -4276,4 +4334,17 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   inset: 0;
   background: rgba(0, 0, 0, 0.12);
   pointer-events: none;
+}
+
+/* Titlurile din hero au un corp foarte lat și nu se rup niciodată la cuvânt, așa
+   că o traducere lungă (PRIVACIDADE, INTEGRACIONES, AUTOMATIZADO…) poate ieși
+   din hero și era tăiată de overflow. Pe ecrane mici lăsăm browserul să rupă
+   cuvântul când nu încape pe un rând; cu JS activ theme.js micșorează fontul
+   măsurând lățimea reală a rândului. Regula stă la finalul fișierului pentru că
+   blocurile de tipografie de mai sus nu sunt în ordine crescătoare. */
+@media (max-width: 768px) {
+  .theme .hero-theme .hm-title-fill {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 }
