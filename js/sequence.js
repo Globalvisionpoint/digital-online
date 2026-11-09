@@ -1,6 +1,6 @@
 /* ============================================================================
    DIGITAL ONLINE — Image sequence scroll animation
-   Fundalul hero-ului este secventa video de 240 de cadre, derulata de scroll.
+   Fundalul hero-ului este secventa de 230 de cadre, derulata de scroll.
    Cadrul afisat este o functie pura a pozitiei de scroll: daca te-ai oprit,
    secventa ramane in cadrul in care ai lasat-o; daca urci inapoi, revine.
    Nimic nu depinde de ceas, la fel ca restul animatiilor de pe site.
@@ -16,7 +16,7 @@
 
   const FRAMES = 230;
   const NARROW = 860;
-  const FRAME_VERSION = 'video-230-start-10';
+  const FRAME_VERSION = '131bb-1794183653';
   const scriptUrl = document.currentScript.src;
   let narrow = window.innerWidth < NARROW;
   let path = sequencePath();

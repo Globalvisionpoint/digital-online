@@ -496,60 +496,6 @@
     }
   });
 
-  /* ------- Per-word stagger on .stagger headlines ------- */
-  document.querySelectorAll('.stagger').forEach(h => {
-    const text = h.textContent;
-    const parts = text.split(/(\s+)/);
-    h.textContent = '';
-    parts.forEach(p => {
-      if (/^\s+$/.test(p)) { h.appendChild(document.createTextNode(p)); return; }
-      const w = document.createElement('span');
-      w.className = 'word';
-      w.textContent = p;
-      h.appendChild(w);
-    });
-    const revealWords = () => {
-      const words = h.querySelectorAll('.word');
-      words.forEach((w, i) => setTimeout(() => w.classList.add('is-in'), i * 35));
-    };
-    if (canObserve && !reduced) {
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(en => {
-          if (en.isIntersecting) {
-            revealWords();
-            io.unobserve(h);
-          }
-        });
-      }, { threshold: 0.3 });
-      io.observe(h);
-    } else {
-      revealWords();
-    }
-  });
-
-  /* ------- Number tally ------- */
-  document.querySelectorAll('.tally[data-to]').forEach(el => {
-    const target = Number(el.dataset.to);
-    const dur = Number(el.dataset.dur || 1800);
-    const dec = Number(el.dataset.dec || 0);
-    if (!('IntersectionObserver' in window) || reduced) { el.textContent = target.toFixed(dec); return; }
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(en => {
-        if (!en.isIntersecting) return;
-        const start = performance.now();
-        (function step(now) {
-          const t = Math.min((now - start) / dur, 1);
-          const eased = 1 - Math.pow(1 - t, 3);
-          el.textContent = (target * eased).toFixed(dec);
-          if (t < 1) requestAnimationFrame(step);
-          else el.textContent = target.toFixed(dec);
-        })(start);
-        io.unobserve(el);
-      });
-    }, { threshold: 0.4 });
-    io.observe(el);
-  });
-
   /* ------- Header shadow on scroll ------- */
   const header = document.querySelector('.header');
   if (header) {

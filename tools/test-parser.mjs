@@ -6,15 +6,17 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 import { parseHtml, walk } from './lib/html.mjs';
 import { keyFor } from './lib/extract.mjs';
 import { localizeHref, relativePage } from './lib/config.mjs';
 import { fixRoSeo } from './lib/ro-seo.mjs';
 import { renderSitemap } from './lib/sitemap.mjs';
+import { createLastmodResolver } from './lib/lastmod.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const files = fs.readdirSync(root)
-  .filter(f => f.endsWith('.html') && f !== 'google16298c737d30f4e5.html')
+  .filter(f => f.endsWith('.html') && !['google16298c737d30f4e5.html', '404.html'].includes(f))
   .sort();
 
 let failures = 0;
@@ -250,7 +252,20 @@ for (const file of files) {
     console.log(`OK    sitemap lists ${entries.length} URLs with all locale alternates`);
   }
 
-  const expectedFullSitemap = renderSitemap(files);
+  // Without a resolver the optional <lastmod> must simply be absent.
+  if (entries.some(entry => entry.includes('<lastmod>'))) {
+    fail('sitemap added a <lastmod> without a date resolver');
+  }
+
+  const dated = renderSitemap(['index.html'], () => '2024-01-02');
+  const dates = [...dated.matchAll(/<lastmod>(.*?)<\/lastmod>/g)].map(match => match[1]);
+  if (dates.length !== 4 || dates.some(date => date !== '2024-01-02')) {
+    fail(`sitemap <lastmod> is not emitted once per locale URL (${dates.length} tags)`);
+  } else {
+    console.log('OK    sitemap emits one <lastmod> per locale URL and omits it when unknown');
+  }
+
+  const expectedFullSitemap = renderSitemap(files, createLastmodResolver(root));
   const actualFullSitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
   const fullEntryCount = [...actualFullSitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].length;
   if (actualFullSitemap !== expectedFullSitemap || fullEntryCount !== files.length * 4) {
@@ -364,6 +379,130 @@ for (const file of files) {
     if (/\b(?:sediu|headquarters|sede|endereço)\b|București|Bucharest/i.test(content)) {
       fail(`${doc.file} exposes a physical company location`);
     }
+  }
+}
+
+/* ------------------------------------------------------------
+   11. The host-level 404 stays out of the sitemap and selects
+       correct copy and links for every supported URL prefix.
+   ------------------------------------------------------------ */
+{
+  const html = fs.readFileSync(path.join(root, '404.html'), 'utf8');
+  const script = fs.readFileSync(path.join(root, 'js', '404.js'), 'utf8');
+  const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+  const expected = [
+    { path: '/missing', locale: 'ro', title: 'Pagina nu a fost găsită | Digital Online', prefix: '', languages: 'Alege limba', heading: 'Pagina nu a fost găsită.' },
+    { path: '/en/missing', locale: 'en', title: 'Page not found | Digital Online', prefix: '/en', languages: 'Choose a language', heading: 'We couldn’t find that page.' },
+    { path: '/es/missing', locale: 'es', title: 'Página no encontrada | Digital Online', prefix: '/es', languages: 'Elige un idioma', heading: 'No encontramos esta página.' },
+    { path: '/pt-br/missing', locale: 'pt-BR', title: 'Página não encontrada | Digital Online', prefix: '/pt-br', languages: 'Escolha um idioma', heading: 'Não encontramos esta página.' }
+  ];
+
+  if (!html.includes('name="robots" content="noindex, nofollow"') ||
+      !html.includes('src="/js/404.js?v=') ||
+      sitemap.includes('/404.html')) {
+    fail('host-level 404 is missing noindex, localization script, or sitemap exclusion');
+  }
+
+  for (const test of expected) {
+    const textNodes = ['eyebrow', 'heading', 'description', 'home', 'contact', 'languages-label']
+      .map(key => ({ dataset: { '404': key }, textContent: '' }));
+    const homeLinks = [{ href: '' }, { href: '' }];
+    const contactLink = { href: '' };
+    const languageNav = { setAttribute(name, value) { this[name] = value; } };
+    const localeLinks = ['ro', 'en', 'es', 'pt-BR'].map(code => ({
+      dataset: { locale: code },
+      setAttribute(name, value) { this[name] = value; },
+      addEventListener() {}
+    }));
+    const document = {
+      documentElement: {},
+      title: '',
+      querySelectorAll(selector) {
+        if (selector === '[data-404]') return textNodes;
+        if (selector === '[data-404-home]') return homeLinks;
+        if (selector === '[data-locale]') return localeLinks;
+        return [];
+      },
+      querySelector(selector) {
+        if (selector === '[data-404-contact]') return contactLink;
+        if (selector === '.not-found-languages') return languageNav;
+        return null;
+      }
+    };
+
+    vm.runInNewContext(script, {
+      window: { location: { pathname: test.path } },
+      document
+    });
+
+    const home = `${test.prefix}/`;
+    const contact = `${test.prefix}/#contact`;
+    if (document.documentElement.lang !== test.locale || document.title !== test.title ||
+        homeLinks.some(link => link.href !== home) || contactLink.href !== contact ||
+        languageNav['aria-label'] !== test.languages ||
+        textNodes.find(node => node.dataset['404'] === 'heading')?.textContent !== test.heading ||
+        !localeLinks.find(link => link.dataset.locale === test.locale)?.['aria-current']) {
+      fail(`404 localization failed for ${test.path}`);
+    }
+  }
+  if (!failures) console.log('OK    branded 404 selects localized copy and links for all four locales');
+}
+
+/* ------------------------------------------------------------
+   12. Responsive showcase candidates exist and stay root-relative
+       in every generated locale.
+   ------------------------------------------------------------ */
+{
+  const pages = ['implementare-ai.html', 'import-china.html', 'servicii-it.html'];
+  const prefixes = ['', 'en', 'es', 'pt-br'];
+  let valid = true;
+
+  for (const prefix of prefixes) {
+    for (const page of pages) {
+      const file = path.join(root, prefix, page);
+      const html = fs.readFileSync(file, 'utf8');
+      const srcset = html.match(/\bsrcset="([^"]+)"/)?.[1] || '';
+      const image = page === 'implementare-ai.html' ? 'hero-implementare-ai'
+        : page === 'import-china.html' ? 'hero-import-china'
+          : 'hero-servicii-it';
+      const expected = [
+        `/img/${image}-480.webp 480w`,
+        `/img/${image}-960.webp 960w`,
+        `/img/${image}.webp 1440w`
+      ];
+
+      if (expected.some(candidate => !srcset.includes(candidate)) ||
+          expected.slice(0, 2).some(candidate => !fs.existsSync(path.join(root, 'img', candidate.split('/').pop().split(' ')[0])))) {
+        fail(`${prefix ? `${prefix}/` : ''}${page} is missing a responsive image candidate`);
+        valid = false;
+      }
+    }
+  }
+  if (valid) console.log('OK    three responsive showcase images resolve in all four locales');
+}
+
+/* ------------------------------------------------------------
+   13. The scroll sequence keeps its frame count and transfer
+       budgets after responsive WebP compression.
+   ------------------------------------------------------------ */
+{
+  const desktopDir = path.join(root, 'img', 'seq');
+  const mobileDir = path.join(desktopDir, 'm');
+  const frameFiles = dir => fs.readdirSync(dir).filter(file => /^f\d{3}\.webp$/.test(file));
+  const desktop = frameFiles(desktopDir);
+  const mobile = frameFiles(mobileDir);
+  const totalBytes = (dir, files) => files.reduce(
+    (sum, file) => sum + fs.statSync(path.join(dir, file)).size, 0
+  );
+  const desktopBytes = totalBytes(desktopDir, desktop);
+  const mobileBytes = totalBytes(mobileDir, mobile);
+
+  if (desktop.length !== 230 || mobile.length !== 230) {
+    fail(`scroll sequence frame count changed (desktop ${desktop.length}, mobile ${mobile.length})`);
+  } else if (desktopBytes > 7_000_000 || mobileBytes > 3_000_000) {
+    fail(`scroll sequence exceeds its transfer budget (desktop ${desktopBytes}, mobile ${mobileBytes} bytes)`);
+  } else {
+    console.log(`OK    230-frame sequence stays within transfer budgets (${desktopBytes} desktop, ${mobileBytes} mobile bytes)`);
   }
 }
 

@@ -8,7 +8,10 @@
     "i18n:extract": "node tools/extract.mjs",
     "i18n:build": "node tools/build.mjs",
     "i18n": "node tools/extract.mjs && node tools/build.mjs",
-    "i18n:check": "node tools/check.mjs"
+    "i18n:check": "node tools/check.mjs",
+    "lint:catalogs": "node tools/lint-catalogs.mjs",
+    "test": "node tools/test-parser.mjs",
+    "verify": "node tools/lint-catalogs.mjs && node tools/test-parser.mjs"
   },
   "devDependencies": {
     "node-html-parser": "^9.0.6"

@@ -1981,14 +1981,6 @@
       ]
     },
     {
-      "key": "digital-online-construiește-site-uri-mag#1yu804",
-      "source": "Digital Online construiește site-uri, magazine online, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.",
-      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
-      "places": [
-        "index.html meta description"
-      ]
-    },
-    {
       "key": "digital-online-oferă-servicii-de-it-maga#1k2ym0z",
       "source": "Digital Online oferă servicii de IT, magazine online, integrări automate, AI, promovare digitală și consultanță business. Comunicarea cu clienții este disponibilă în română, engleză, spaniolă și portugheză.",
       "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
@@ -2003,6 +1995,14 @@
         "politica-confidentialitate.html JSON-LD",
         "promovare.html JSON-LD",
         "servicii-it.html JSON-LD"
+      ]
+    },
+    {
+      "key": "digital-online-site-uri-magazine-online-#1c1yqyu",
+      "source": "Digital Online: site-uri, magazine online, integrări automate, editare video, promovare multi-channel și AI. Echipă senior, în RO/EN/ES/PT.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "index.html meta description"
       ]
     },
     {

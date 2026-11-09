@@ -36,9 +36,8 @@
     <link rel="preload" href="fonts/Aspera.otf" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="fonts/inter-tight-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="img/seq/f000.webp?v=video-230-start-10" as="image" media="(min-width: 860px)">
-    <link rel="preload" href="img/seq/m/f000.webp?v=video-230-start-10" as="image" media="(max-width: 859px)">
-    <link rel="stylesheet" href="css/styles.css?v=131bb-1793241153-header-separator">
+    <link rel="stylesheet" href="css/fonts.css?v=131bb-1794183653">
+    <link rel="stylesheet" href="css/styles.css?v=131bb-1794183653">
     <link rel="stylesheet" href="css/lang-switcher.css">
     <!-- Three.js + GSAP -->
         <link rel="icon" type="image/x-icon" href="img/favicon.ico">
@@ -302,7 +301,7 @@
             <p>De la furnizor din China până la depozitul tău: sourcing, transport, vamă și conformitate.</p>
           </div>
           <figure class="showcase-figure">
-            <img src="img/hero-import-china.webp" width="1440" height="1080" alt="Container și logistică internațională de import" loading="lazy" />
+            <img src="img/hero-import-china.webp" srcset="/img/hero-import-china-480.webp 480w, /img/hero-import-china-960.webp 960w, /img/hero-import-china.webp 1440w" sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 1440px) 90vw, 1296px" width="1440" height="1080" alt="Container și logistică internațională de import" loading="lazy" />
           </figure>
         </div>
       </section>
@@ -314,14 +313,14 @@
                 <p>Fiecare etapă a importului explicată clar, cu suport practic la fiecare pas.</p>
             </div>
             <div class="feature-grid feature-grid--4">
-                <div class="feature process-step"><h4><span></span> Sourcing furnizori</h4><p>Identificăm furnizori verificați pe Alibaba, 1688, Made-in-China. Verificăm legitimitatea, calitatea, certificările.</p></div>
-                <div class="feature process-step"><h4><span></span> Negociere &amp; Mostre</h4><p>Negociem preț, MOQ, termene de plată, ambalaj, etichetare. Solicităm mostre, testăm calitatea.</p></div>
-                <div class="feature process-step"><h4><span></span> Comandă &amp; QC</h4><p>Plasăm comanda, monitorizăm producția, facem Quality Control în fabrică înainte de expediere.</p></div>
-                <div class="feature process-step"><h4><span></span> Transport</h4><p>Alegem transport maritim (LCL/FCL), aerian sau curier (DHL, FedEx). Optimizăm costul vs. timp.</p></div>
-                <div class="feature process-step"><h4><span></span> Vămuire</h4><p>Gestionăm toate formalitățile vamale, coduri HS, taxe vamale, TVA, declarații, EORI.</p></div>
-                <div class="feature process-step"><h4><span></span> Livrare în țară</h4><p>Transport de la port/aeroport la depozitul tău. Opțional, depozitare 3PL, fulfilment.</p></div>
-                <div class="feature process-step"><h4><span></span> Obligații fiscale</h4><p>Declarații vamale, TVA la import, intrastat, contabilitate, facturi emise corect.</p></div>
-                <div class="feature process-step"><h4><span></span> Etichetare &amp; conformitate</h4><p>Asigurăm conformitatea cu legislația UE/RO: etichete în limba română, CE, marcaje, certificări.</p></div>
+                <div class="feature process-step"><h3><span></span> Sourcing furnizori</h3><p>Identificăm furnizori verificați pe Alibaba, 1688, Made-in-China. Verificăm legitimitatea, calitatea, certificările.</p></div>
+                <div class="feature process-step"><h3><span></span> Negociere &amp; Mostre</h3><p>Negociem preț, MOQ, termene de plată, ambalaj, etichetare. Solicităm mostre, testăm calitatea.</p></div>
+                <div class="feature process-step"><h3><span></span> Comandă &amp; QC</h3><p>Plasăm comanda, monitorizăm producția, facem Quality Control în fabrică înainte de expediere.</p></div>
+                <div class="feature process-step"><h3><span></span> Transport</h3><p>Alegem transport maritim (LCL/FCL), aerian sau curier (DHL, FedEx). Optimizăm costul vs. timp.</p></div>
+                <div class="feature process-step"><h3><span></span> Vămuire</h3><p>Gestionăm toate formalitățile vamale, coduri HS, taxe vamale, TVA, declarații, EORI.</p></div>
+                <div class="feature process-step"><h3><span></span> Livrare în țară</h3><p>Transport de la port/aeroport la depozitul tău. Opțional, depozitare 3PL, fulfilment.</p></div>
+                <div class="feature process-step"><h3><span></span> Obligații fiscale</h3><p>Declarații vamale, TVA la import, intrastat, contabilitate, facturi emise corect.</p></div>
+                <div class="feature process-step"><h3><span></span> Etichetare &amp; conformitate</h3><p>Asigurăm conformitatea cu legislația UE/RO: etichete în limba română, CE, marcaje, certificări.</p></div>
             </div>
 
             <div class="mt-60">
@@ -329,15 +328,15 @@
                     <h2>Servicii complete de consultanță import</h2>
                 </div>
                 <div class="feature-grid">
-                    <div class="feature"><h4><span></span> Audit furnizor</h4><p>Verificăm identitatea legală a furnizorului, licențele, istoricul, recenzii reale.</p></div>
-                    <div class="feature"><h4><span></span> Contracte internaționale</h4><p>Întocmire contracte bilingve, termeni Incoterms (EXW, FOB, CIF, DDP), clauze de protecție.</p></div>
-                    <div class="feature"><h4><span></span> Inspecție calitate</h4><p>Trimitem inspectori în fabrică înainte de expediere, verificare AQL, raport detaliat cu poze.</p></div>
-                    <div class="feature"><h4><span></span> Plăți internaționale</h4><p>Transferuri bancare (T/T), L/C, PayPal, Western Union. Recomandări sigure pentru a evita fraudele.</p></div>
-                    <div class="feature"><h4><span></span> Vamă & taxe</h4><p>Clasificare tarifară, calcul taxe vamale, TVA, accize, taxe antidumping dacă e cazul.</p></div>
-                    <div class="feature"><h4><span></span> Ambalaj & etichetare</h4><p>Asigurăm ambalaj corespunzător transportului, etichete în română, coduri de bare, EAN-13.</p></div>
-                    <div class="feature"><h4><span></span> Listare în magazin</h4><p>După primire, te ajutăm să listezi produsele în magazinul tău online: titluri, descrieri, imagini, SEO.</p></div>
-                    <div class="feature"><h4><span></span> Optimizare costuri</h4><p>Analizăm costul total (produs + transport + taxe + depozitare) și optimizăm pentru marjă maximă.</p></div>
-                    <div class="feature"><h4><span></span> Reglementări & conformitate</h4><p>CE, RoHS, REACH, GPSR, certificări obligatorii, restricții vamale, interdicții.</p></div>
+                    <div class="feature"><h3><span></span> Audit furnizor</h3><p>Verificăm identitatea legală a furnizorului, licențele, istoricul, recenzii reale.</p></div>
+                    <div class="feature"><h3><span></span> Contracte internaționale</h3><p>Întocmire contracte bilingve, termeni Incoterms (EXW, FOB, CIF, DDP), clauze de protecție.</p></div>
+                    <div class="feature"><h3><span></span> Inspecție calitate</h3><p>Trimitem inspectori în fabrică înainte de expediere, verificare AQL, raport detaliat cu poze.</p></div>
+                    <div class="feature"><h3><span></span> Plăți internaționale</h3><p>Transferuri bancare (T/T), L/C, PayPal, Western Union. Recomandări sigure pentru a evita fraudele.</p></div>
+                    <div class="feature"><h3><span></span> Vamă & taxe</h3><p>Clasificare tarifară, calcul taxe vamale, TVA, accize, taxe antidumping dacă e cazul.</p></div>
+                    <div class="feature"><h3><span></span> Ambalaj & etichetare</h3><p>Asigurăm ambalaj corespunzător transportului, etichete în română, coduri de bare, EAN-13.</p></div>
+                    <div class="feature"><h3><span></span> Listare în magazin</h3><p>După primire, te ajutăm să listezi produsele în magazinul tău online: titluri, descrieri, imagini, SEO.</p></div>
+                    <div class="feature"><h3><span></span> Optimizare costuri</h3><p>Analizăm costul total (produs + transport + taxe + depozitare) și optimizăm pentru marjă maximă.</p></div>
+                    <div class="feature"><h3><span></span> Reglementări & conformitate</h3><p>CE, RoHS, REACH, GPSR, certificări obligatorii, restricții vamale, interdicții.</p></div>
                 </div>
             </div>
 </div>
@@ -356,7 +355,7 @@
           </div>
           <div class="footer-cols">
             <div>
-              <h5>Servicii</h5>
+              <h3>Servicii</h3>
               <ul>
                 <li><a href="servicii-it.html">Site-uri Web &amp; Servicii IT</a></li>
                 <li><a href="magazine-online.html">Magazine Online</a></li>
@@ -368,7 +367,7 @@
               </ul>
             </div>
             <div>
-              <h5>Companie</h5>
+              <h3>Companie</h3>
               <ul>
                 <li><a href="index.html#companie">Despre noi</a></li>
                 <li><a href="index.html#proces">Procesul nostru</a></li>
@@ -377,7 +376,7 @@
               </ul>
             </div>
             <div>
-              <h5>Contact</h5>
+              <h3>Contact</h3>
               <ul class="footer-contact">
                 <li class="footer-contact-email">
                   <a href="mailto:contact@digital-online.ro">contact@digital-online.ro</a>
@@ -408,9 +407,9 @@
 
     <script src="js/i18n-ui.js" defer></script>
     <script src="js/lang-switcher.js" defer></script>
-    <script src="js/script.js?v=131bb-1793241153-aspera" defer></script>
-    <script src="js/sequence.js?v=video-sequence-start-10-restored-title-drift" defer></script>
-    <script src="js/theme.js?v=131bb-1793241153" defer></script>
+    <script src="js/script.js?v=131bb-1794183653" defer></script>
+    <script src="js/sequence.js?v=131bb-1794183653" defer></script>
+    <script src="js/theme.js?v=131bb-1794183653" defer></script>
 
     </body>
 </html>

@@ -17,7 +17,7 @@ const outFile = path.join(root, 'tools', 'locales', 'ro.json');
 /* Pages that are part of the site. The Google verification file is
    intentionally excluded: it is a static token, not content. */
 const PAGES = fs.readdirSync(root)
-  .filter(f => f.endsWith('.html') && f !== 'google16298c737d30f4e5.html')
+  .filter(f => f.endsWith('.html') && !['google16298c737d30f4e5.html', '404.html'].includes(f))
   .sort();
 
 const catalog = new Catalog();
