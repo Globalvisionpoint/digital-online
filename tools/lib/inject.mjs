@@ -77,21 +77,18 @@ export function injectSwitcher(source, fileName, locale = 'ro') {
   ).length > 0;
 
   if (!hasStylesheet) {
-      // The link goes at the very end of the stack: the same source order
-      // as the hand-edited Romanian pages it is copied from.
-      const all = findElements(tree, e => e.tag === 'link' && (getAttr(e, 'rel') || '') === 'stylesheet');
-      const last = all.length ? all[all.length - 1] : null;
-      const href = last ? last.openEnd : null;
-      const head = findFirst(tree, e => e.tag === 'head');
-      // Localized pages live one folder deeper, so the path goes up.
-      const prefix = locale === 'ro' ? '' : '../';
-      const link = `\n    <link rel="stylesheet" href="${prefix}css/lang-switcher.css">`;
-      if (href) {
-        patches.push({ start: href, end: href, text: link });
-      } else if (head) {
-        patches.push({ start: head.openEnd, end: head.openEnd, text: link });
-      }
+    const css = findFirst(tree, e => e.tag === 'link' && (getAttr(e, 'rel') || '') === 'stylesheet');
+    const href = css ? css.openEnd : null;
+    const head = findFirst(tree, e => e.tag === 'head');
+    // Localized pages live one folder deeper, so the path goes up.
+    const prefix = locale === 'ro' ? '' : '../';
+    const link = `\n    <link rel="stylesheet" href="${prefix}css/lang-switcher.css">`;
+    if (href) {
+      patches.push({ start: href, end: href, text: link });
+    } else if (head) {
+      patches.push({ start: head.openEnd, end: head.openEnd, text: link });
     }
+  }
 
   /* --- Switcher markup --- */
   const urls = {};

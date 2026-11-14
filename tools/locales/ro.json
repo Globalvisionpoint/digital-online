@@ -1556,6 +1556,14 @@
       ]
     },
     {
+      "key": "cu-ce-te-putem-ajuta#76ndwd",
+      "source": "Cu ce te putem ajuta?",
+      "context": "Placeholder inside the \"textarea\" input. Show an example of the expected value.",
+      "places": [
+        "index.html <textarea placeholder>"
+      ]
+    },
+    {
       "key": "cu-sediul-social-în-suite-2-260-main-str#1pcvjf9",
       "source": ", cu sediul social în Suite 2, 260 Main Street, Gibraltar, operând sub denumirea comercială Digital Online",
       "context": "",
@@ -1981,6 +1989,14 @@
       ]
     },
     {
+      "key": "digital-online-construiește-site-uri-mag#1yu804",
+      "source": "Digital Online construiește site-uri, magazine online, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "index.html meta description"
+      ]
+    },
+    {
       "key": "digital-online-oferă-servicii-de-it-maga#1k2ym0z",
       "source": "Digital Online oferă servicii de IT, magazine online, integrări automate, AI, promovare digitală și consultanță business. Comunicarea cu clienții este disponibilă în română, engleză, spaniolă și portugheză.",
       "context": "Structured data (schema.org) name or description. Describes the organisation, the service or the breadcrumb to search engines.",
@@ -1995,14 +2011,6 @@
         "politica-confidentialitate.html JSON-LD",
         "promovare.html JSON-LD",
         "servicii-it.html JSON-LD"
-      ]
-    },
-    {
-      "key": "digital-online-site-uri-magazine-online-#1c1yqyu",
-      "source": "Digital Online: site-uri, magazine online, integrări automate, editare video, promovare multi-channel și AI. Echipă senior, în RO/EN/ES/PT.",
-      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
-      "places": [
-        "index.html meta description"
       ]
     },
     {
@@ -3417,6 +3425,14 @@
       "context": "Emphasised phrase inside a sentence. Keep the emphasis meaning.",
       "places": [
         "politica-cookie.html <strong>"
+      ]
+    },
+    {
+      "key": "marketplace-uri#a5d4zv",
+      "source": "Marketplace-uri",
+      "context": "",
+      "places": [
+        "platforme-custom.html text"
       ]
     },
     {
@@ -5563,6 +5579,14 @@
       "context": "",
       "places": [
         "promovare.html text"
+      ]
+    },
+    {
+      "key": "video-foto#1gkl1d",
+      "source": "VIDEO-FOTO",
+      "context": "Text inside <span>.",
+      "places": [
+        "montaj-editare-video-foto.html <span>"
       ]
     },
     {

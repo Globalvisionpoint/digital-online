@@ -367,57 +367,23 @@
   const mobileNav = document.getElementById('mobileNav');
   const mobileNavClose = document.getElementById('mobileNavClose');
   if (menuToggle && mobileNav) {
-    mobileNav.tabIndex = -1;
-    let inertBackground = [];
-    const setBackgroundInert = (inert) => {
-      if (inert) {
-        inertBackground = Array.from(mobileNav.parentElement.children)
-          .filter(element => element !== mobileNav)
-          .map(element => ({ element, wasInert: element.inert }));
-        inertBackground.forEach(({ element }) => { element.inert = true; });
-        return;
-      }
-
-      inertBackground.forEach(({ element, wasInert }) => {
-        element.inert = wasInert;
-      });
-      inertBackground = [];
-    };
-
-    const focusableInMenu = () => Array.from(
-      mobileNav.querySelectorAll('a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])')
-    ).filter(element => element.getClientRects().length > 0);
-
-    const closeMenu = (restoreFocus = false) => {
+    const closeMenu = () => {
       menuToggle.classList.remove('is-open');
       mobileNav.classList.remove('is-open');
       menuToggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
-      setBackgroundInert(false);
-      if (restoreFocus) menuToggle.focus();
     };
 
     menuToggle.addEventListener('click', () => {
-      if (menuToggle.classList.contains('is-open')) {
-        closeMenu();
-        return;
-      }
-
-      menuToggle.classList.add('is-open');
-      mobileNav.classList.add('is-open');
-      menuToggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-      setBackgroundInert(true);
-      requestAnimationFrame(() => {
-        if (!menuToggle.classList.contains('is-open')) return;
-        const firstFocusable = focusableInMenu()[0];
-        (firstFocusable || mobileNav).focus();
-      });
+      const isOpen = menuToggle.classList.toggle('is-open');
+      mobileNav.classList.toggle('is-open', isOpen);
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
 
     // Close button inside overlay
     if (mobileNavClose) {
-      mobileNavClose.addEventListener('click', () => closeMenu(true));
+      mobileNavClose.addEventListener('click', closeMenu);
     }
 
     // Close menu when clicking a link
@@ -439,34 +405,9 @@
       });
     });
 
-    // Keep keyboard focus in the open navigation and return it on Escape.
+    // Close on Escape
     document.addEventListener('keydown', (e) => {
-      if (!menuToggle.classList.contains('is-open')) return;
-      if (e.key === 'Escape') {
-        closeMenu(true);
-        return;
-      }
-      if (e.key !== 'Tab') return;
-
-      const focusable = focusableInMenu();
-      if (!focusable.length) {
-        e.preventDefault();
-        mobileNav.focus();
-        return;
-      }
-
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (!mobileNav.contains(document.activeElement)) {
-        e.preventDefault();
-        (e.shiftKey ? last : first).focus();
-      } else if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
+      if (e.key === 'Escape' && menuToggle.classList.contains('is-open')) closeMenu();
     });
 
     // Close menu if resized past mobile breakpoint

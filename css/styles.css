@@ -3,6 +3,8 @@
    Dark editorial + image-fill typography + topo overlays
    ============================================================ */
 
+@import url('fonts.css');
+
 @font-face {
   font-family: 'Aspera';
   src: url('../fonts/Aspera.otf') format('opentype');
@@ -267,7 +269,7 @@
   height: 100%;
   pointer-events: none;
   filter: grayscale(1);
-  background-image: url('../img/seq/f000.webp?v=131bb-1794183653');
+  background-image: url('../img/seq/f000.webp');
   background-size: cover;
   background-position: center 40%;
   background-repeat: no-repeat;
@@ -275,7 +277,7 @@
 
 /* Pe ecrane mici se foloseste setul de cadre la jumatate din latime. */
 @media (max-width: 859px) {
-  .hm-seq { background-image: url('../img/seq/m/f000.webp?v=131bb-1794183653'); }
+  .hm-seq { background-image: url('../img/seq/m/f000.webp'); }
 }
 
 .hm-topo {
@@ -869,7 +871,7 @@
 .process-flow__item:hover {
   background: rgba(255, 255, 255, 0.03);
 }
-.process-flow__item h3 {
+.process-flow__item h4 {
   font-family: 'Inter Tight', sans-serif;
   font-size: 18px;
   font-weight: 600;
@@ -1302,13 +1304,12 @@
   gap: 32px;
 }
 
-.theme .footer-cols h3 {
+.theme .footer-cols h5 {
   color: var(--text);
   font-family: 'Inter Tight', sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
-  line-height: 1.55;
   text-transform: uppercase;
   margin: 0 0 16px;
 }
@@ -1742,13 +1743,12 @@
   overflow-y: auto;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .theme .nav--mobile-overlay.is-open {
   opacity: 1;
   visibility: visible;
-  transition: opacity 0.3s ease, visibility 0s;
 }
 
 .theme .nav--mobile-overlay a {
@@ -2096,6 +2096,12 @@
     transform: none !important;
     filter: none !important;
   }
+  .word {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+  }
   .hm-title-fill,
   .hm-title-fill--stacked,
   .hm-line,
@@ -2185,10 +2191,10 @@
 .theme .feature:hover {
   background: var(--bg-2);
 }
-.theme .feature h3 {
+.theme .feature h4 {
   color: var(--text);
 }
-.theme .feature h3 span {
+.theme .feature h4 span {
   color: var(--clay, #8B3A2E);
 }
 .theme .feature p {
@@ -2992,7 +2998,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   border-bottom: 1px solid #2a2823;
 }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-.footer h3 { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: #a6a39b; margin-bottom: 18px; font-weight: 500; }
+.footer h5 { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: #a6a39b; margin-bottom: 18px; font-weight: 500; }
 .footer .lead { font-family: 'Instrument Serif', serif; font-size: var(--step-3); line-height: 1.1; font-variation-settings: 'opsz' 48; }
 .footer ul li { margin-bottom: 10px; font-size: var(--step--1); }
 .footer ul li a:hover { color: var(--rust); }
@@ -3150,10 +3156,27 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   }
 }
 
+/* Text per-word stagger — animated by main.js on scroll */
+@media (scripting: enabled) {
+  .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(0.5em);
+    transition: opacity 600ms var(--ease-out), transform 600ms var(--ease-out);
+  }
+}
+.word.is-in { opacity: 1; transform: none; }
+
+/* Number counter — animated by main.js */
+.tally { font-variant-numeric: tabular-nums; }
+
 /* ============================================================================
    TICKER variant
    ============================================================================ */
 .hero-foot .stamp span:first-child { color: var(--clay); margin-right: 12px; }
+
+/* Hide loader / canvas / scanlines from cyber version */
+#loader, #bg-canvas, .grid-overlay, .noise-overlay, .scanlines, .vignette, #cursor, #cursor-trail, .custom-cursor, .cursor-trail, .hero-orb, .hero-blob { display: none !important; }
 
 /* Logo image — keep existing */
 .logo-img { height: 26px; width: auto; }
@@ -3247,7 +3270,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   transition: background var(--t-mid);
 }
 .feature:hover { background: var(--paper-2); }
-.feature h3 {
+.feature h4 {
   font-family: 'Inter Tight', sans-serif;
   font-size: var(--step-1);
   font-weight: 600;
@@ -3255,14 +3278,14 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   letter-spacing: -0.01em;
   text-align: center;
 }
-.feature--center-title h3 { text-align: center; }
-.feature h3 span {
+.feature--center-title h4 { text-align: center; }
+.feature h4 span {
   color: var(--clay);
   font-style: normal;
   margin-right: 4px;
 }
 /* Marcajul decorativ gol nu trebuie să împingă titlul în lateral. */
-.feature h3 span:empty { margin-right: 0; }
+.feature h4 span:empty { margin-right: 0; }
 .feature p {
   font-size: var(--step--1);
   color: var(--ash-2);
@@ -4252,7 +4275,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     letter-spacing: 0.1em;
   }
 
-  .theme .footer-cols h3 {
+  .theme .footer-cols h5 {
     font-size: 14px;
   }
 
@@ -4313,35 +4336,6 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   pointer-events: none;
 }
 
-/* Ținte de atingere (WCAG 2.5.8): linkurile din footer și cel din bannerul de
-   cookies erau `display: inline`, deci cutia lor clicabilă era doar înaltă cât
-   corpul fontului (~17px, respectiv ~20px) — sub pragul de 24×24. Le facem
-   cutii inline-flex/inline-block cu minimum 24px și micșorăm proporțional
-   spațiul dintre elemente, ca distanța text-la-text din footer să rămână
-   aceeași (29px pe desktop, 27px pe mobil) și să nu apară deplasări de layout.
-   Regulile stau la finalul fișierului pentru că `.theme .footer-cols a` de mai
-   sus trebuie depășită în cascadă. */
-.theme .footer-cols a,
-.theme .footer-contact-email a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 24px;
-  padding-block: 2px;
-}
-
-.theme .footer-cols ul { gap: 5px; }
-.theme .footer-cols .footer-contact { gap: 14px; }
-
-/* Linkul „politica de cookies" e injectat de js/theme.js în paragraful
-   bannerului. Părintele are line-height 24.8px pe mobil, așa că fixăm
-   line-height-ul cutiei la 20px ca înălțimea totală (24px) să nu crească
-   rândul. */
-.cookie-banner-copy p a {
-  display: inline-block;
-  line-height: 20px;
-  padding-block: 2px;
-}
-
 /* Titlurile din hero au un corp foarte lat și nu se rup niciodată la cuvânt, așa
    că o traducere lungă (PRIVACIDADE, INTEGRACIONES, AUTOMATIZADO…) poate ieși
    din hero și era tăiată de overflow. Pe ecrane mici lăsăm browserul să rupă
@@ -4352,171 +4346,5 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   .theme .hero-theme .hm-title-fill {
     overflow-wrap: anywhere;
     word-break: break-word;
-  }
-}
-
-/* Mod de contrast forțat (Windows High Contrast / forced-colors). Sistemul
-   înlocuiește culorile cu o paletă proprie, dar nu poate desena un text umplut
-   cu un gradient: `background-clip: text` cu `-webkit-text-fill-color:
-   transparent` devine text invizibil. Renunțăm la umplere și la umbre și
-   desenăm literele în culorile de sistem (CanvasText pe Canvas), care sunt
-   singurele garantate în paleta forțată — `currentColor` ar însemna alb pe
-   alb atunci când tema de contrast e deschisă. */
-@media (forced-colors: active) {
-  /* Specificitatea trebuie să bată `.hm-title:not(.hm-title--service)
-     .hm-title-fill`, de aceea selectorul are trei clase. */
-  .theme .hm-title .hm-title-fill,
-  .theme .hm-title--split .hm-line {
-    forced-color-adjust: none;
-    background-image: none;
-    background-color: Canvas;
-    background-clip: border-box;
-    -webkit-background-clip: border-box;
-    color: CanvasText;
-    -webkit-text-fill-color: CanvasText;
-    -webkit-text-stroke-width: 0;
-    filter: none;
-  }
-
-  .theme .hm-title .hm-title-fill {
-    display: table;
-    width: fit-content;
-    max-width: 100%;
-    margin-inline: auto;
-    padding-inline: 0.12em;
-  }
-
-  /* Panourile translucide nu au sens fără culorile proprii. */
-  .theme .site-header,
-  .theme .mobile-nav,
-  .theme .cookie-banner,
-  .theme .cookie-dialog {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  /* Umbrele decorative de obiect nu se văd; muchiile reale trebuie păstrate. */
-  .theme .footer-cols a,
-  .theme .footer-contact-email a,
-  .theme .legal-footer-links a,
-  .theme .legal-footer-links button {
-    forced-color-adjust: none;
-    color: LinkText;
-  }
-
-  .theme :focus-visible {
-    outline: 2px solid Highlight;
-    outline-offset: 3px;
-  }
-}
-
-/* Branded fallback page served by static hosts as their 404 response. */
-.not-found-page-body {
-  min-height: 100vh;
-  background: var(--paper);
-}
-.not-found-page {
-  min-height: 100vh;
-  min-height: 100svh;
-  display: grid;
-  place-items: center;
-  padding: clamp(24px, 6vw, 88px);
-}
-.not-found-card {
-  width: min(100%, 760px);
-  padding: clamp(28px, 7vw, 76px);
-  border: var(--hair);
-  background: var(--paper);
-}
-.not-found-brand {
-  display: inline-flex;
-  margin-bottom: clamp(56px, 9vw, 112px);
-}
-.not-found-brand img {
-  width: clamp(150px, 28vw, 190px);
-  height: auto;
-  filter: brightness(0);
-}
-.not-found-code {
-  margin-bottom: 14px;
-  color: var(--clay);
-  font: 600 12px/1.4 'Inter Tight', sans-serif;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-.not-found-card h1 {
-  max-width: 12ch;
-  font-size: clamp(44px, 8vw, 88px);
-  line-height: 0.98;
-}
-.not-found-description {
-  max-width: 48ch;
-  margin-top: 24px;
-  color: var(--ash-2);
-}
-.not-found-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
-  align-items: center;
-  margin-top: 32px;
-}
-.not-found-home-link,
-.not-found-contact-link {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-.not-found-home-link {
-  padding: 0 20px;
-  background: var(--ink);
-  color: var(--paper);
-}
-.not-found-contact-link {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-.not-found-languages {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 20px;
-  margin-top: clamp(40px, 7vw, 72px);
-  padding-top: 20px;
-  border-top: var(--hair-thin);
-  font-size: var(--step--1);
-}
-.not-found-languages a[aria-current="page"] {
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-@media (forced-colors: active) {
-  .not-found-card {
-    forced-color-adjust: none;
-    color: CanvasText;
-    background: Canvas;
-    border-color: CanvasText;
-  }
-  .not-found-home-link {
-    forced-color-adjust: none;
-    color: ButtonText;
-    background: ButtonFace;
-    border: 1px solid ButtonText;
-  }
-  .not-found-code { color: LinkText; }
-}
-
-/* Cine cere mai mult contrast decât pragul AA: întărim numai granițele și
-   liniile subțiri, fără să atingem tipografia sau spațierea. */
-@media (prefers-contrast: more) {
-  .theme {
-    --line: rgba(255, 255, 255, 0.32);
-    --hair-thin: 1px solid rgba(255, 255, 255, 0.28);
-  }
-
-  .theme .footer-cols a,
-  .theme .legal-footer-links a {
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
   }
 }

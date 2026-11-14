@@ -1,52 +1,67 @@
 # Digital Online — Website
 
-Static, multilingual website for Digital Online (Global Vision Point Limited). Romanian pages are the source of truth; English, Spanish, and Brazilian Portuguese pages are generated from the same HTML and translation catalogs.
+Site complet pentru **Digital Online** (Global Vision Point Limited), cu toate serviciile de IT, web development, Magazine Online, integrări automate, consultanță business, import China, promovare digitală, video/foto/AI, implementare AI și platforme custom.
 
-## Pages and assets
+## Structură
 
-- Romanian source pages: `index.html` and 12 service, company, and policy pages at the repository root.
-- Localized pages: `en/`, `es/`, and `pt-br/`.
-- Shared styles and scripts: `css/` and `js/`.
-- Images and the scroll-driven hero sequence: `img/`.
-- Translation catalogs and build tools: `tools/locales/` and `tools/`.
-- `404.html` is the branded host-level not-found page; it selects Romanian, English, Spanish, or Brazilian Portuguese from the requested URL prefix.
-
-## Development
-
-Install the Node.js dependencies once:
-
-```sh
-npm install
+```
+site nou/
+├── index.html              # Pagina principală
+├── servicii-it.html        # Servicii IT & Web
+├── magazine-online.html    # Magazine Online
+├── integrari.html          # Integrări Automate
+├── consultanta.html        # Consultanță Business
+├── import-china.html       # Import Produse China
+├── promovare.html          # Promovare & Marketing (Google/Meta/TikTok Ads)
+├── video-foto-ai.html      # Video-Foto & Generare AI
+├── implementare-ai.html    # Implementare AI & Chatboți
+├── platforme-custom.html   # Platforme & Aplicații Custom
+├── css/
+│   └── styles.css          # Stylesheet principal (luminous, no dark mode)
+└── js/
+    └── script.js           # Interacțiuni (meniu, formular, reveal-on-scroll)
 ```
 
-Common commands:
+## Caracteristici
 
-```sh
-npm run i18n:extract  # refresh the Romanian source-string catalog
-npm run i18n:build   # rebuild localized pages, middleware, and sitemap
-npm run i18n:check   # report missing or stale catalog entries
-npm run verify       # check catalog quality and run parser/pipeline tests
+- ✅ **Design luminos**, fără dark mode (așa cum a fost cerut)
+- ✅ **Date companie ascunse** — în secțiunea „Încredere & Transparență" cu buton „Afișează datele companiei"
+- ✅ **Dashboard-uri analytics** pentru Google Analytics, Shopify, SmartBill, Google Ads, Meta Ads, TikTok Ads, Curierat, AI Agents
+- ✅ **9 pagini dedicate** pentru fiecare serviciu în parte
+- ✅ **Formulare de contact** cu validare pe toate paginile
+- ✅ **Mobile-responsive** complet
+- ✅ **SEO friendly** — meta descriptions, headings ierarhice, breadcrumbs
+- ✅ **Animații subtile** la scroll
+- ✅ **Titluri hero animate** — liniile intră alternativ din stânga și din dreapta, ca un fermoar, urmărind liniile reale de text (rand 1 stânga, rand 2 dreapta, rand 3 stânga), măsurate la runtime deci corecte la orice lățime și după redimensionare (ex. `DIGITAL` / `ONLINE` pe prima pagină)
+- ✅ **Fonturi premium** (Inter + Plus Jakarta Sans) de la Google Fonts
+
+## Deschidere locală
+
+Pur și simplu deschide `index.html` în browser. Nu necesită build sau server.
+
+```bash
+# Opțional: pornire server local cu Python
+cd "site nou"
+python -m http.server 8000
+# apoi accesează http://localhost:8000
 ```
 
-Preview with any local static HTTP server. For example:
+## Compania
 
-```sh
-npx serve .
-```
+- **Brand comercial:** Digital Online
+- **Companie legală:** Global Vision Point Limited
+- **Sediu social:** Suite 2, 260 Main Street, Gibraltar
+- **Email contact:** contact@digital-online.ro
 
-Edit Romanian source pages and catalogs, then rebuild; do not hand-edit generated localized pages or `middleware.ts`. The generator keeps localized asset paths, SEO metadata, language links, middleware, and the sitemap in sync.
+Datele legale sunt plasate în secțiunea „Încredere & Transparență" a paginii principale (buton expandabil), nu la vedere pe fiecare pagină.
 
-## Technical notes
+## Tehnologii folosite
 
-- Plain HTML, CSS, and vanilla JavaScript; no front-end framework.
-- Vercel serves the static site and runs the generated language-selection middleware.
-- Responsive layouts, keyboard-operable navigation, reduced-motion support, and a branded localized 404 page.
-- `npm run verify` is the focused validation command for build-pipeline changes.
+- HTML5 semantic
+- CSS3 (variabile, flexbox, grid, animații, gradient)
+- Vanilla JavaScript (zero dependențe)
+- Google Fonts (Inter, Plus Jakarta Sans)
 
-## Company
-
-- Brand: Digital Online
-- Legal company: Global Vision Point Limited
-- Contact: contact@digital-online.ro
+---
 
 © Digital Online · Global Vision Point Limited

@@ -14,6 +14,11 @@ import { localizeHref, getLocale, prefixFor, SITE_URL } from './config.mjs';
 
 const SKIP_TAGS = new Set(['script', 'style', 'code', 'pre', 'kbd', 'samp', 'textarea']);
 
+/* Elements whose attributes are never translated. A <textarea> keeps its
+   own text content, but its placeholder is visible copy and has to be
+   localized like any other field. */
+const SKIP_ATTR_TAGS = new Set(['script', 'style']);
+
 /* Open Graph and Twitter Card properties that hold prose. */
 const TRANSLATABLE_META_KEYS = new Set([
   'og:title', 'og:description', 'og:image:alt',
@@ -70,7 +75,7 @@ export function localizePage(source, fileName, catalog, locale) {
   /* ---------- Attributes ---------- */
   walk(tree, (node) => {
     if (node.type !== 'element') return;
-    if (SKIP_TAGS.has(node.tag)) return;
+    if (SKIP_ATTR_TAGS.has(node.tag)) return;
 
     for (const attr of node.attrs || []) {
       const name = attr.name.toLowerCase();

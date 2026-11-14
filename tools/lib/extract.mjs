@@ -36,6 +36,11 @@ const TRANSLATABLE_ATTRS = new Set([
 /* Elements whose text content is never translated. */
 const SKIP_TAGS = new Set(['script', 'style', 'code', 'pre', 'kbd', 'samp', 'textarea']);
 
+/* Elements whose attributes are never translated. A <textarea> is skipped
+   for its text content, but its placeholder is user-visible text and has
+   to reach the catalog. */
+const SKIP_ATTR_TAGS = new Set(['script', 'style']);
+
 /* Inline elements that do not interrupt a sentence. A text run that
    only contains inline children is still one translation unit. */
 const INLINE_TAGS = new Set([
@@ -45,12 +50,16 @@ const INLINE_TAGS = new Set([
 ]);
 
 /* Values that are identifiers rather than prose: emails, phones,
-   URLs, storage keys, tracking ids, currency amounts. */
+   URLs, storage keys, tracking ids, currency amounts.
+
+   The hyphen rules only match lower-case keys. A word written with
+   capitals is prose even when it contains a hyphen ("VIDEO-FOTO",
+   "Marketplace-uri"), while storage keys are lower-case
+   ("digital-online-cookie-consent"). */
 const IDENTIFIER_PATTERNS = [
   /^[\w.+-]+@[\w-]+\.[\w.]+$/,
   /^\+?[\d\s().-]{7,}$/,
   /^https?:\/\//i,
-  /^[\w-]+-[\w-]+$/,
   /^[a-z0-9_]+(-[a-z0-9_]+)+$/
 ];
 
@@ -202,7 +211,7 @@ export function extractFromHtml(source, fileName) {
   /* --- Translatable attributes --- */
   walk(tree, (node) => {
     if (node.type !== 'element') return;
-    if (SKIP_TAGS.has(node.tag)) return;
+    if (SKIP_ATTR_TAGS.has(node.tag)) return;
 
     for (const attr of node.attrs || []) {
       const name = attr.name.toLowerCase();

@@ -18,14 +18,13 @@ import { injectSwitcher } from './lib/inject.mjs';
 import { fixRoSeo } from './lib/ro-seo.mjs';
 import { renderMiddleware } from './lib/middleware.mjs';
 import { renderSitemap } from './lib/sitemap.mjs';
-import { createLastmodResolver } from './lib/lastmod.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const localesDir = path.join(root, 'tools', 'locales');
 
 /* Pages that make up the site. */
 const PAGES = fs.readdirSync(root)
-  .filter(f => f.endsWith('.html') && !['google16298c737d30f4e5.html', '404.html'].includes(f))
+  .filter(f => f.endsWith('.html') && f !== 'google16298c737d30f4e5.html')
   .sort();
 
 /* Only these locales are generated. Romanian is the source and is
@@ -91,9 +90,9 @@ function loadCatalog(locale) {
   const stale = Object.keys(strings).filter(s => !known.has(s));
 
   return { catalog, missing, stale };
-  }
+}
 
-  /* ---------- 1. Romanian source pages: switcher + SEO tags ---------- */
+/* ---------- 1. Romanian source pages: switcher + SEO tags ---------- */
 let roChanged = 0;
 for (const page of PAGES) {
   const file = path.join(root, page);
@@ -147,8 +146,7 @@ console.log('\n[middleware] middleware.ts written (IP -> language)');
 
 /* ---------- 4. Search sitemap ---------- */
 const sitemapFile = path.join(root, 'sitemap.xml');
-const lastmodOf = createLastmodResolver(root);
-fs.writeFileSync(sitemapFile, renderSitemap(PAGES, lastmodOf), 'utf8');
+fs.writeFileSync(sitemapFile, renderSitemap(PAGES), 'utf8');
 console.log(`[sitemap] ${PAGES.length * LOCALES.length} localized page URLs written`);
 
 if (totalMissing) {
