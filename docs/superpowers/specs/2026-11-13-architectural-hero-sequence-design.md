@@ -43,7 +43,9 @@ arhitectură, se mișcă lin sub scroll, și **nu percepe nicio întrerupere sau
 ### Anti-obiective (ar fi un eșec chiar dacă funcționează tehnic)
 
 - Hero care „sare” dintr-un cadru în altul vizibil — trebuie să se simtă continuu.
-- Hero care consumă > 25 MB pe desktop sau > 8 MB pe mobil.
+- Hero care consumă **peste 25 MB pe desktop sau peste 8 MB pe mobil într-un scroll
+  complet, de sus până jos** — cifra se referă la **totalul sesiunii**, nu la ce se vede
+  în primul ecran. Vezi §2 „Consumul real” și §7.
 - Hero care blochează primul render sau întârzie LCP-ul.
 - Hero care arată ca un template generic de „3D abstract” — cerința explicită a fost realism.
 - Secvență care se simte ca un slideshow (mișcare sacadată, ritm necontrolat).
@@ -116,6 +118,29 @@ greutate**. Rămâne o alegere pur estetică.
 este sub **65 de secunde**. Este ieftin: scriptul se poate rula oricând, deci setul este
 reproductibil din sursă, spre deosebire de cele 230 de cadre actuale, care au fost produse
 în afara repo-ului și **nu pot fi regenerate**.
+
+### Consumul real — bugetul este pe sesiune, nu pe primul ecran
+
+Aceasta este o clarificare importantă, pentru că schimbă ce înseamnă „buget”:
+
+`frameAt()` din `js/sequence.js` mapează **întreaga înălțime a documentului** pe intervalul
+`0 → 479`:
+
+```js
+const progress = scrollY / totalScroll();   // whole document
+```
+
+Iar `requestNear()` cere cadrele din fereastra curentă plus `PREFETCH_AHEAD` înainte. Adică
+un vizitator care derulează până jos **ajunge să ceară toate cele 480 de cadre**, inclusiv
+pe date mobile. Nu există astăzi nicio limită care să oprească descărcarea la ce s-a văzut
+în primul ecran.
+
+**Concluzie:** cifrele din anti-obiective (25 MB desktop / 8 MB mobil) se citesc ca
+**total pe un scroll complet, de sus până jos** — nu ca „ce se descarcă până se vede
+hero-ul”. Ambele seturi alese se încadrează: 17.56 MB desktop, 2.93 MB mobil.
+
+Această concluzie are însă o consecință de design pe care o tratez separat, la §4.6
+(comportamentul paginilor scurte).
 
 ---
 
@@ -198,6 +223,47 @@ tipografie mare. Deci **nu** pornim „fără direcție”. Diale de referință
 element nou de UI: **ENERGIE 1 / RITM 1 / MIȘCARE 1** (adică reținut, nu spectaculos),
 cu excepția mișcării hero-ului, unde utilizatorul a dat direcție explicită: **mediu**.
 Output-ul vizual se etichetează ca atare până la aprobare.
+
+### 4.6 Hero-ul este pe 52 din 54 de pagini — asta schimbă comportamentul
+
+Verificat: `canvas.hm-seq` apare pe **52 din 54 de fișiere HTML** (singurele două fără el
+sunt `404.html` și fișierul de verificare Google). `js/sequence.js` este inclus de toate
+cele **13 șabloane românești** (index, consultanță, implementare-ai, import-china, integrări,
+magazine-online, montaj-editare-video-foto, platforme-custom, politică-confidențialitate,
+politică-cookie, promovare, servicii-it, termeni-și-condiții), plus versiunile generate
+`en/`, `es/`, `pt-br/`.
+
+Aici apare problema, și este o **lacună reală a documentului pe care builder-check-ul a
+prins-o**: `frameAt()` raportează scroll-ul la **înălțimea întregului document**:
+
+```js
+const progress = scrollY / totalScroll();
+const index = progress * (FRAMES - 1);
+```
+
+Pe pagina principală, `totalScroll()` este mare, deci cele 480 de cadre se joacă pe o
+derulare lungă — exact ce vrem. Dar pe `politica-cookie` (pagina are ~187 linii de HTML)
+sau `termeni-si-conditii`, documentul este scurt: **aceeași mișcare de 20 de secunde se
+joacă în una-două gesturi de scroll**, la viteză de 5–10× mai mare. Traducerea literală a
+deciziei (4) „o singură mișcare continuă peste tot scroll-ul” produce, pe paginile scurte,
+o **sfâșiere** vizuală, exact anti-obiectivul „să nu se simtă ca un slideshow”.
+
+Opțiunile reale sunt trei; primele două păstrează decizia (4) intactă:
+
+1. **O singură cronologie globală, cu viteză normalizată.** Mișcarea se joacă pe **o distanță
+   fixă de scroll** (ex. 6 ecrane), nu pe înălțimea documentului: `totalScroll()` este
+   înlocuit cu `min(documentScroll, DISTANTA_FIXA)`. Pe pagina principală nu se schimbă
+   nimic (documentul e mai lung). Pe paginile scurte, mișcarea se termină la un moment dat
+   și hero-ul rămâne pe ultimul cadru — liniștit, fără sfâșiere.
+2. **Interval de cadre pe pagină.** Fiecare pagină declară ce porțiune din cele 480 de
+   cadre folosește (ex. pagina principală 0–479, paginile scurte 0–120). Mai mult control,
+   dar cere date pe fiecare pagină și complică `sequence.js`.
+3. **Hero doar pe pagina principală.** Elimină problema complet, dar pierdem fundalul
+   animat de pe 51 de pagini, adică o schimbare vizuală mult mai mare decât ce s-a cerut.
+
+**Recomandarea mea, marcată ca a mea: opțiunea 1.** Este cea mai mică schimbare care
+rezolvă problema, păstrează literal decizia „o singură mișcare continuă”, și nu cere date
+noi. Cere însă **o decizie a ta**, pentru că schimbă ce se vede pe 51 de pagini: vezi §6.
 
 ---
 
@@ -337,6 +403,53 @@ un site static, dar înseamnă că regenerarea setului de mai multe ori umflă i
 Producerea pipeline-ului permite însă regenerarea, deci **nu** este nevoie să păstrăm în repo
 copii succesive: înlocuim, nu adăugăm.
 
+### 5.7 Cache-ul cadrelor — o corectitudine care lipsește azi
+
+Verificat în două locuri, și ambele arată aceeași lipsă:
+
+- **`vercel.json`** cachează `/img/flags/(.*)` ca `public, max-age=31536000, immutable` și
+  **nu are nicio regulă pentru `/img/seq/`**.
+- **`bump.ps1`** (care e în `.gitignore`) rescrie `styles.css?v=`, `fonts.css?v=`, `theme.js?v=`,
+  `script.js?v=`, `sequence.js?v=`, `404.js?v=`, `animation.webp?v=`, `title-sky.webp?v=`
+  în toate `*.html`, apoi actualizează `FRAME_VERSION` în `js/sequence.js` și
+  **doar `f000.webp?v=`** în `css/styles.css`.
+
+Adică: astăzi **niciun cadru în afară de `f000` nu are versiune în URL**. `f123.webp` este
+cerut cu nume fix. Asta funcționează doar pentru că nu există încă o regulă `immutable`
+pentru `/img/seq/` — browserul revalidează. **Dacă cineva adaugă regula `immutable` (firească
+pentru 480 de imagini), vizitatorii care revin ar vedea cadrele vechi la nesfârșit.**
+
+**Două modificări mici, ambele marcate ca ale mele:**
+
+1. **În `srcFor()`** — un singur loc, toate cele 480 de cadre. Funcția construiește deja
+   URL-ul; ne asigurăm că versiunea se aplică identic tuturor celor 480 de cadre, nu doar
+   imaginii de rezervă:
+   ```js
+   function srcFor(i) {
+     return path + 'f' + ('00' + i).slice(-3) + '.webp?v=' + FRAME_VERSION;
+   }
+   ```
+   (comportamentul existent este deja acesta — se păstrează, dar devine o garanție explicită
+   în document, pentru că de el atârnă siguranța regulii `immutable`.)
+2. **`vercel.json`:** adăugăm o regulă pentru `/img/seq/(.*)` cu
+   `public, max-age=31536000, immutable`. Ea devine sigură **doar** împreună cu (1),
+   pentru că versiunea din query-string schimbă URL-ul la fiecare regenerare.
+
+**`bump.ps1` trebuie extins** ca să nu se desincronizeze: în afară de `f000.webp?v=`,
+trebuie să poată avansa și versiunea folosită de toate cadrele. Altfel, la următorul bump,
+imaginile de rezervă din CSS se actualizează, dar cadrele rămân pe versiunea veche.
+
+### 5.8 Unde stă filmarea sursă
+
+Sursa (103 MB) **nu se comite niciodată**. `tools/build-seq.mjs` primește calea ca argument,
+deci clipul poate sta oriunde în afara repo-ului. În lucru, el stă în afara proiectului,
+într-un director temporar, iar la final se șterge.
+
+Verificat: `img/videoanim.mp4` **a existat** în istoria gitului (apare în
+`git log --all --diff-filter=A --name-only -- '*.mp4'`), dar **nu mai este pe disc** și nu
+este urmărit. Nu este nevoie de nicio rescriere de istorie (`filter-repo` / BFG): costul lui
+a fost plătit deja, iar noul MP4 nu intră niciodată în repo.
+
 ---
 
 ## 6. Ce rămâne de decis de builder
@@ -355,26 +468,38 @@ Ordinea de mai jos este ordinea lucrului. Nimic nu se construiește până la ap
 4. **`js/sequence.js`: `FRAMES` → 480, `FRAME_VERSION` nou.** Apoi **reacordarea** celor
    trei constante de streaming (`MAX_PARALLEL`, `PREFETCH_AHEAD`, `CACHE_RADIUS`) prin
    măsurătoare pe rețea throttled, nu prin ghicire.
-5. **`css/styles.css`:** scoaterea `filter: grayscale(1)` și actualizarea ambelor
+5. **Comportamentul pe paginile scurte** — §4.6, opțiunea 1: viteza mișcării se
+   normalizează la o distanță fixă de scroll, nu la înălțimea documentului.
+6. **`css/styles.css`:** scoaterea `filter: grayscale(1)` și actualizarea ambelor
    `background-image` de rezervă (desktop + mobil) la aceeași versiune.
-6. **Verificarea comportamentului:** scroll lin pe tot parcursul, fără salturi; reduced-motion
+7. **Cache-ul cadrelor** — §5.7: versiunea în `srcFor()` pentru toate cele 480 de cadre,
+   regula `immutable` în `vercel.json`, extinderea `bump.ps1`.
+8. **Verificarea comportamentului:** scroll lin pe tot parcursul, fără salturi; reduced-motion
    → cadru static; trecerea pragului `NARROW` la redimensionare fără artefacte.
-7. **`npm run i18n:build`** dacă s-a atins vreun HTML, apoi **`npm run verify`**.
+9. **`npm run i18n:build`** dacă s-a atins vreun HTML, apoi **`npm run verify`**.
 
 **Decisii lăsate explicit builder-ului** (nu le-a hotărât utilizatorul):
 
 - Valorile finale pentru `MAX_PARALLEL`, `PREFETCH_AHEAD`, `CACHE_RADIUS` — trebuie
-  măsurate, nu alese din ochi. Bugetul este 17.56 MB desktop / ~2.93 MB mobil.
+  măsurate, nu alese din ochi.
 - Nivelul de calitate final (`-q:v`): am validat **62 pe desktop** și **66 pe mobil**. Dacă
   builder-ul vede artefacte vizibile la 62, crește; dacă vrea altă greutate, coboară. Nu
   schimba geometria ca să compensezi calitatea.
 - Dacă menținem pragul `NARROW` la 860 sau îl ajustăm — depinde de unde se simte cel mai bine
   tranziția între rânduri.
 - Modul exact de raportare din `build-seq.mjs` (dimensiune totală, timp, cadru lipsă).
+- Recadrarea `FOCAL_Y` / potrivirea `cover` pentru tăierea portrait de la mobil — tăierea
+  arată altă porțiune a culoarului, deci punctul focal de 0.4 poate să nu mai fie optim.
+- Banda de 640–859 px, unde rândul mobil portrait este scalat în sus pe tablete mici.
 
-**A mea, de verificat de tine (nu ale tale):** geometria 16:9 pentru desktop (din `taiere=1`),
-rândul mobil portrait 432×768, decizia anti-LFS, și pornirea pe cadrul 0 (din tensiunea
-`cadru_start` de la §4).
+**A mea, de verificat de tine (nu ale tale):**
+
+- geometria 16:9 pentru desktop (din `taiere=1`);
+- rândul mobil portrait 432×768;
+- decizia anti-LFS (§5.6);
+- pornirea pe cadrul 0 (§4);
+- normalizarea vitezei pe paginile scurte (§4.6, opțiunea 1);
+- versiunea de cache în `srcFor()` + regula `immutable` (§5.7).
 
 **Nu se atinge:** structura HTML a hero-ului, textele, secțiunile, ancorele, pipeline-ul i18n
 în afara rulării normale, `js/theme.js`, zipper-ul.
@@ -387,7 +512,11 @@ rândul mobil portrait 432×768, decizia anti-LFS, și pornirea pe cadrul 0 (din
   portrait 432×768 (2.93 MB), toate numite de la `f000`.
 - `tools/build-seq.mjs` există și regenerează setul din sursă în sub două minute.
 - Derularea de sus până jos joacă o singură mișcare continuă, fără salturi vizibile.
+- **Aceeași mișcare se simte la fel și pe paginile scurte** (confidențialitate, cookie,
+  termeni) — nu se termină în două gesturi de scroll.
 - Hero-ul arată ca o fotografie de arhitectură pe un desktop de 1920 px.
+- Fiecare cadru este cerut cu versiune în URL; a doua vizită nu poate primi un cadru vechi.
 - `npm run verify` trece.
 - Primul render nu este blocat: imaginea de rezervă din CSS apare instant, cadrele se
   încarcă progresiv.
+- Consumul total pe un scroll complet: **17.56 MB desktop**, **~3 MB mobil**.
