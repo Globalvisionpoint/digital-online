@@ -13,32 +13,50 @@
   })[character]);
 
   // ----- Fit hero titles to the hero width -----
-  /* The hero display font has very wide advance widths and a title word is
-     never hyphenated or broken, so a long translated word can render wider
-     than the hero and get clipped by its overflow. Viewport-based font-size
-     clamps cannot know how wide a word is, so measure the widest rendered
-     line and shrink the fill just enough for it to fit. */
-  const measureTitleLines = (element) => {
-    const range = document.createRange();
-    range.selectNodeContents(element);
-    const lines = [];
-    Array.prototype.forEach.call(range.getClientRects(), (rect) => {
-      if (rect.width < 1 || rect.height < 1) return;
-      const line = lines.find(candidate => Math.abs(candidate.top - rect.top) < 2);
-      if (line) {
-        line.left = Math.min(line.left, rect.left);
-        line.right = Math.max(line.right, rect.right);
-      } else {
-        lines.push({ top: rect.top, left: rect.left, right: rect.right });
-      }
+  /* The hero display font has very wide advance widths and its words are
+     never broken, so a long translated word can render wider than the hero
+     column and get clipped by the hero overflow. Viewport-based font-size
+     clamps cannot know how wide a word is, so every word of the title is
+     measured on its own and the title is scaled down until the widest word
+     fits on a single line. */
+  const measureWidestWord = (fill, style) => {
+    /* The word is measured outside of the title, on a nowrap probe, so the
+       layout cannot break it and the result is the width the visitor sees. */
+    const probe = document.createElement('span');
+    probe.setAttribute('aria-hidden', 'true');
+    probe.style.cssText = [
+      'position:absolute',
+      'visibility:hidden',
+      'white-space:nowrap',
+      'top:-9999px',
+      'left:0',
+      'font-family:' + style.fontFamily,
+      'font-size:' + style.fontSize,
+      'font-weight:' + style.fontWeight,
+      'font-style:' + style.fontStyle,
+      'letter-spacing:' + style.letterSpacing,
+      'word-spacing:' + style.wordSpacing,
+      'text-transform:' + style.textTransform,
+      'font-variant-ligatures:' + style.fontVariantLigatures,
+      'font-feature-settings:' + style.fontFeatureSettings
+    ].join(';');
+    document.body.appendChild(probe);
+
+    let widest = 0;
+    fill.textContent.split(/\s+/).filter(Boolean).forEach((word) => {
+      probe.textContent = word;
+      widest = Math.max(widest, probe.getBoundingClientRect().width);
     });
-    return lines;
+
+    probe.remove();
+    return widest;
   };
 
-  /* Never shrink a hero title below this share of its stylesheet size: past
-     that the display font stops reading as a display font, and letting the
-     word wrap onto a second line looks better. */
-  const MIN_HERO_FIT = 0.6;
+  /* A hero title is never shrunk below this size: past it the display font
+     stops reading as a display font. A word that still does not fit is
+     hyphenated by the browser on a syllable boundary instead of being cut
+     in half. */
+  const MIN_HERO_FONT_SIZE = 12;
 
   /* Every fill of one title is scaled by the same factor, so the lines of a
      split title keep a single size instead of drifting apart. */
@@ -46,61 +64,53 @@
     const fills = Array.from(title.querySelectorAll('.hm-title-fill'));
     if (!fills.length) return false;
 
+    /* Measure from a pristine DOM: the zipper wraps the rendered lines in
+       block spans, and measuring those would report the width of a line the
+       browser has already broken instead of the width of the word. */
+    unzipTitle(title);
+
     const measured = [];
     fills.forEach((fill) => {
       /* Measure from the stylesheet size, so a wider viewport grows back, and
-         without the wrapping safety net, to read the natural line width. */
+         without the wrapping safety net, so a word is never broken. Hyphenation
+         is switched off here: the fit guarantees room for the whole word, so a
+         syllable break would only ever be a rounding artefact. */
       fill.style.removeProperty('font-size');
       fill.style.setProperty('overflow-wrap', 'normal');
-      fill.style.setProperty('word-break', 'keep-all');
-      const base = parseFloat(window.getComputedStyle(fill).fontSize);
+      fill.style.setProperty('word-break', 'normal');
+      fill.style.setProperty('hyphens', 'manual');
+      const style = window.getComputedStyle(fill);
+      const base = parseFloat(style.fontSize);
       const available = fill.clientWidth;
-      if (base && available) measured.push({ fill, base, available });
+      const widest = measureWidestWord(fill, style);
+      if (base && available && widest) measured.push({ fill, base, available, widest });
     });
     if (!measured.length) return false;
 
-    let scale = 1;
-    measured.forEach(({ fill, available }) => {
-      const widest = measureTitleLines(fill)
-        .reduce((max, line) => Math.max(max, line.right - line.left), 0);
-      if (widest > available + 0.5) scale = Math.min(scale, available / widest);
-    });
-
-    if (scale >= 1) {
-      /* Nothing to shrink: hand the fills back to the stylesheet so its
-         wrapping safety net still guards the word. */
-      measured.forEach(({ fill }) => {
-        fill.style.removeProperty('overflow-wrap');
-        fill.style.removeProperty('word-break');
-      });
-      return false;
-    }
-
-    if (scale < MIN_HERO_FIT) {
-      /* The word cannot fit a single line at a readable size, so hand it back
-         to the stylesheet and let it wrap onto a second line. */
-      measured.forEach(({ fill }) => {
-        fill.style.removeProperty('overflow-wrap');
-        fill.style.removeProperty('word-break');
-      });
-      return false;
-    }
+    /* The widest word of the title decides the scale: every other word is
+       shorter and therefore fits as well, so a line can only ever break
+       between two words. One pixel of slack absorbs sub-pixel rounding. */
+    const scale = measured.reduce(
+      (factor, item) => Math.min(factor, (item.available - 1) / item.widest),
+      1
+    );
 
     measured.forEach(({ fill, base }) => {
-      fill.style.fontSize = `${base * scale}px`;
+      const size = Math.max(MIN_HERO_FONT_SIZE, base * scale);
+      fill.style.fontSize = `${Math.floor(size * 100) / 100}px`;
     });
-    return true;
+
+    return scale < 1;
   };
 
   const heroTitles = Array.from(document.querySelectorAll('.hero-theme .hm-title'));
   const fitHeroTitles = () => heroTitles.forEach((title) => {
-    if (!fitTitle(title)) return;
-    // Shrinking can turn a wrapped line into a short one, so the zipper has
-    // to re-group the rendered lines at the new size. Runs before the resize
-    // handler registered below, which re-measures in a frame.
-    zipTitle(title);
+    const shrunk = fitTitle(title);
+    /* Shrinking can turn a wrapped line into a short one, so the zipper has
+       to re-group the rendered lines at the new size. */
+    if (title.classList.contains('hm-title--split')) zipTitle(title);
     // The tagline moved, so the SCROLL indicator has to be re-centred.
-    window.dispatchEvent(new CustomEvent('hm:titlefit'));
+    if (shrunk) window.dispatchEvent(new CustomEvent('hm:titlefit'));
   });
 
   // ----- Zipper reveal for multi-line hero titles -----

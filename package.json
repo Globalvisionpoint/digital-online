@@ -10,6 +10,7 @@
     "i18n": "node tools/extract.mjs && node tools/build.mjs",
     "i18n:check": "node tools/check.mjs",
     "lint:catalogs": "node tools/lint-catalogs.mjs",
+    "check:hero": "node tools/check-hero-fit.mjs",
     "test": "node tools/test-parser.mjs",
     "verify": "node tools/lint-catalogs.mjs && node tools/test-parser.mjs"
   },

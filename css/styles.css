@@ -401,12 +401,12 @@
 }
 
 .hm-title--compact .hm-title-fill {
-  font-size: clamp(30px, 7vw, 108px);
+  font-size: clamp(30px, 7vw, 100px);
 }
 
 @media (max-width: 600px) {
   .hm-title--compact .hm-title-fill {
-    font-size: clamp(24px, 6.3vw, 108px);
+    font-size: clamp(24px, 6.3vw, 100px);
   }
 }
 
@@ -4336,15 +4336,109 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   pointer-events: none;
 }
 
-/* Titlurile din hero au un corp foarte lat și nu se rup niciodată la cuvânt, așa
-   că o traducere lungă (PRIVACIDADE, INTEGRACIONES, AUTOMATIZADO…) poate ieși
-   din hero și era tăiată de overflow. Pe ecrane mici lăsăm browserul să rupă
-   cuvântul când nu încape pe un rând; cu JS activ theme.js micșorează fontul
-   măsurând lățimea reală a rândului. Regula stă la finalul fișierului pentru că
-   blocurile de tipografie de mai sus nu sunt în ordine crescătoare. */
+/* ---------- Titlurile din hero: cuvintele raman intregi ----------
+   Corpul de litera din hero este foarte lat, iar un titlu tradus poate avea un
+   cuvant mai lat decat coloana (AUTOMATIZADAS, INTEGRACIONES, PRIVACIDADE,
+   IMPLEMENTATION). Inainte, o regula de mobil punea overflow-wrap: anywhere,
+   iar browserul taia cuvantul la mijloc: „AUTOMATIZADA" + „S PARA". Acum
+   cuvintele nu se mai taie niciodata; un rand se rupe doar intre doua cuvinte.
+
+   Sunt doua regimuri, pentru ca doar unul dintre ele poate sti cat de lat este
+   un cuvant:
+
+   1. Cu JavaScript, theme.js masoara fiecare cuvant si micsoreaza titlul exact
+      cat sa incapa cel mai lat. Aici CSS-ul poate fi generos, iar fiecare pagina
+      primeste marimea maxima pe care o suporta cuvantul ei cel mai lung.
+      Marimea de pornire este limitata la 272px / raport, ca sa nu sara peste
+      hero inainte ca scriptul sa ruleze.
+   2. Fara JavaScript nu exista masurare, deci fiecare grupa de titluri are un
+      clamp calculat din cel mai lat cuvant al ei, masurat in Chromium cu fontul
+      Aspera. Latimea utila este min(viewport - 2 x margine, 1280px), deci la
+      320px raman 272px.
+
+   Cat ocupa un cuvant la un pixel de corp, pe fiecare grupa de titluri:
+     titluri de serviciu  11.523  (AUTOMATIZADAS, es/pt-BR)
+     titluri compacte     12.369  (IMPLEMENTATION, en)
+     titluri simple        9.063  (PRIVACIDADE, pt-BR)
+
+   De aici vine fiecare plafon fara JavaScript: 272 / 11.523 = 23.6px pentru
+   servicii, 272 / 12.369 = 22.0px pentru compacte si 272 / 9.063 = 30.0px
+   pentru simple, la 320px. hyphens: auto ramane doar plasa de siguranta pentru
+   limbile care au dictionar de silabe in Chromium (spanola, portugheza): daca
+   un cuvant tot nu incape, browserul il rupe corect gramatical, pe silaba.
+   Pentru romana si engleza nu exista dictionar, deci cuvantul ramane intreg. */
+.hm-title-fill {
+  hyphens: auto;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* Fara JavaScript: clamp-uri stranse, calculate pe cel mai lat cuvant. */
+.hm-title:not(.hm-title--service) .hm-title-fill {
+  font-size: clamp(64px, 9vw, 138px);
+}
+
+@media (max-width: 1100px) {
+  .hm-title:not(.hm-title--service) .hm-title-fill {
+    font-size: clamp(48px, 9vw, 138px);
+  }
+}
+
 @media (max-width: 768px) {
-  .theme .hero-theme .hm-title-fill {
-    overflow-wrap: anywhere;
-    word-break: break-word;
+  .hm-title--service .hm-title-fill {
+    font-size: clamp(22px, 6.3vw, 96px);
+  }
+
+  .hm-title--service.hm-title--narrow .hm-title-fill {
+    font-size: clamp(20px, 5.8vw, 88px);
+  }
+
+  .hm-title--compact .hm-title-fill {
+    font-size: clamp(21px, 6.3vw, 100px);
+  }
+
+  .hm-title:not(.hm-title--service) .hm-title-fill {
+    font-size: clamp(24px, 9vw, 138px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hm-title--service .hm-title-fill {
+    font-size: clamp(20px, 6.3vw, 96px);
+  }
+
+  .hm-title--service.hm-title--narrow .hm-title-fill {
+    font-size: clamp(19px, 5.8vw, 88px);
+  }
+
+  .hm-title--compact .hm-title-fill {
+    font-size: clamp(19px, 6.3vw, 100px);
+  }
+
+  .hm-title:not(.hm-title--service) .hm-title-fill {
+    font-size: clamp(22px, 9vw, 138px);
+  }
+}
+
+/* Cu JavaScript theme.js potriveste titlul exact, deci marimea de pornire poate
+   fi apropiata de maximul cuvantului cel mai lat: 23.6px la servicii, 22px la
+   compacte si 30px la simple, inmultite cu o panta care creste odata cu
+   ecranul. Scriptul nu mareste niciodata titlul, doar il micsoreaza, asa ca
+   aceste valori sunt limita de sus a fiecarei pagini pe mobil. */
+@media (scripting: enabled) and (max-width: 768px) {
+  .hm-title:not(.hm-title--service) .hm-title-fill {
+    font-size: clamp(30px, 9vw, 138px);
+  }
+
+  .hm-title--service .hm-title-fill {
+    font-size: clamp(24px, 9vw, 96px);
+  }
+
+  .hm-title--service.hm-title--narrow .hm-title-fill {
+    font-size: clamp(22px, 8.5vw, 88px);
+  }
+
+  .hm-title--compact .hm-title-fill {
+    font-size: clamp(22px, 9.5vw, 100px);
   }
 }
