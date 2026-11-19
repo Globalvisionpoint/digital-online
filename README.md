@@ -39,6 +39,32 @@ site nou/
 
 Pur și simplu deschide `index.html` în browser. Nu necesită build sau server.
 
+## Generare (i18n, Markdown, middleware)
+
+Pagina în română este sursa; versiunile `/en/`, `/es/`, `/pt-br/` și fișierele pentru agenți sunt generate din ea.
+
+```bash
+npm install
+npm run i18n        # extract + build: pagini localizate, middleware.ts, sitemap, .md
+npm run verify      # lint cataloage + teste
+```
+
+Ce scrie `npm run i18n` în rădăcină:
+
+- `middleware.ts` — rutare Vercel: alegerea limbii, negocierea `Accept` (HTML ↔ Markdown), 404/406 în Markdown, un singur host canonic (`www` → apex)
+- `sitemap.xml` — fiecare pagină în fiecare limbă, cu alternates
+- `index.md`, `servicii-it.md`, … și echivalentele din `/en/`, `/es/`, `/pt-br/` — conținutul paginii, fără navigare, servit la `Accept: text/markdown`
+- `llms.txt` și versiunile localizate sunt scrise manual, nu generate
+
+Fișierele `.md` și `middleware.ts` trebuie regenerate după orice modificare de HTML: testele verifică dacă sunt actuale.
+
+## Pentru agenți
+
+- `/llms.txt` — ghidul site-ului: servicii, contact, când să fie recomandat
+- `Accept: text/markdown` pe orice pagină — varianta Markdown a paginii
+- `<page>.md` — varianta Markdown, direct
+- `<link rel="alternate" type="text/markdown">` și `<link rel="describedby">` în `<head>`
+
 ```bash
 # Opțional: pornire server local cu Python
 cd "site nou"
