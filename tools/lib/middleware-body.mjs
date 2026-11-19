@@ -70,6 +70,9 @@ const LANGUAGE_TO_LOCALE: Record<string, string> = __LANGUAGE_TO_LOCALE__;
 /** Every page that exists, as the key of its Markdown sibling. */
 const KNOWN_PAGES = new Set(__KNOWN_PAGES__);
 
+/* The pages an agent opens without the .html extension. */
+const CLEAN_PATHS = new Set(__CLEAN_PATHS__);
+
 const BOT_PATTERN = new RegExp(__BOT_PATTERN__, 'i');
 
 export const config = {
@@ -228,6 +231,21 @@ function isPagePath(path: string): boolean {
   /* The language roots (/en, /es, /pt-br) are pages: the host answers
      /en with the English homepage. */
   return LOCALE_PATHS.some((prefix) => path === prefix);
+}
+
+/**
+ * The page file a clean path names, when the site publishes it.
+ *
+ * /about is the same page as /about.html. The trust pages are the ones
+ * an agent tries first, and it tries them without the extension, so
+ * those three answer both forms. Every other page keeps the URL it
+ * always had: a second address for it would be a duplicate, not a fix.
+ */
+function cleanPathTarget(path: string): string | null {
+  if (!CLEAN_PATHS.has(path)) return null;
+  const key = pageKey(path);
+  if (!KNOWN_PAGES.has(key)) return null;
+  return key + '.html';
 }
 
 /* ------------------------------------------------------------
@@ -395,12 +413,23 @@ export default async function middleware(request: Request) {
 
   if (representation === 'text/markdown') {
     const key = pageKey(path);
-    if (!isPagePath(path) || !KNOWN_PAGES.has(key)) {
+    /* A clean URL for a trust page serves the same Markdown as its .html
+       address. Any other path that is not a page still answers 404, so
+       the Markdown answer agrees with the HTML host. */
+    const known = KNOWN_PAGES.has(key) && (isPagePath(path) || CLEAN_PATHS.has(path));
+    if (!known) {
       return markdownError(notFoundMarkdown(key), 404);
     }
     const url = new URL(request.url);
     return markdownResponse(new URL(markdownPath(key), url.origin));
   }
+
+  /* ---------- 4. A clean path for a page that exists ---------- */
+  /* /about and /contact are the pages an agent tries first. The host
+     serves the .html file for them, so the middleware only has to
+     let them through instead of falling to the catch-all. */
+  const clean = cleanPathTarget(path);
+  if (clean) return rewrite(new URL(clean + url.search, url.origin));
 
   /* ---------- 4. The language of the visitor ---------- */
   /* Decided for a browser navigation, and only for one: browsers send

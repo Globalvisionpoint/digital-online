@@ -63,9 +63,34 @@ function escapeAttr(value) {
     .replace(/"/g, '&quot;');
 }
 
-function stripBusinessLocation(raw) {
+/**
+ * The country of the registered office. Its PostalAddress is published
+ * on purpose: agents check it to verify the business is real.
+ */
+const REGISTERED_COUNTRY = 'GI';
+
+/**
+ * Remove what must never be published: the coordinates of the team,
+ * and any address outside the registration country, which would
+ * reveal where the people actually sit.
+ *
+ * The registered office itself is allowed through, because it is
+ * already public in the terms and the privacy policy.
+ *
+ * @param {string} raw the JSON-LD text
+ * @returns {string} the text without the removable members
+ */
+function sanitizeBusinessLocation(raw) {
+  const schema = JSON.parse(raw);
+  const country = (schema.address?.addressCountry || '').toUpperCase();
+
+  const removable = [];
+  if (Object.hasOwn(schema, 'geo')) removable.push('geo');
+  if (Object.hasOwn(schema, 'address') && country !== REGISTERED_COUNTRY) removable.push('address');
+  if (!removable.length) return raw;
+
   let sanitized = raw;
-  for (const property of ['address', 'geo']) {
+  for (const property of removable) {
     const match = new RegExp(`"${property}"\\s*:\\s*\\{[^{}]*\\}`).exec(sanitized);
     if (!match) continue;
 
@@ -85,9 +110,13 @@ function stripBusinessLocation(raw) {
     sanitized = sanitized.slice(0, start) + sanitized.slice(end);
   }
 
-  const schema = JSON.parse(sanitized);
-  if (Object.hasOwn(schema, 'address') || Object.hasOwn(schema, 'geo')) {
-    throw new Error('Business location schema could not be removed safely');
+  const result = JSON.parse(sanitized);
+  if (Object.hasOwn(result, 'geo')) {
+    throw new Error('Business coordinates could not be removed safely');
+  }
+  const keptCountry = (result.address?.addressCountry || '').toUpperCase();
+  if (Object.hasOwn(result, 'address') && keptCountry !== REGISTERED_COUNTRY) {
+    throw new Error('A non-registered business address could not be removed safely');
   }
   return sanitized;
 }
@@ -133,7 +162,7 @@ export function fixRoSeo(source, fileName) {
     patches.push({
       start: rawNode.start,
       end: rawNode.end,
-      text: stripBusinessLocation(rawNode.value)
+      text: sanitizeBusinessLocation(rawNode.value)
     });
   }
 

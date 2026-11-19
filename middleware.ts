@@ -87,7 +87,9 @@ const LANGUAGE_TO_LOCALE: Record<string, string> = {
 
 /** Every page that exists, as the key of its Markdown sibling. */
 const KNOWN_PAGES = new Set([
+  "/about",
   "/consultanta",
+  "/contact",
   "/implementare-ai",
   "/import-china",
   "/",
@@ -97,10 +99,13 @@ const KNOWN_PAGES = new Set([
   "/platforme-custom",
   "/politica-confidentialitate",
   "/politica-cookie",
+  "/privacy",
   "/promovare",
   "/servicii-it",
   "/termeni-si-conditii",
+  "/en/about",
   "/en/consultanta",
+  "/en/contact",
   "/en/implementare-ai",
   "/en/import-china",
   "/en/",
@@ -110,10 +115,13 @@ const KNOWN_PAGES = new Set([
   "/en/platforme-custom",
   "/en/politica-confidentialitate",
   "/en/politica-cookie",
+  "/en/privacy",
   "/en/promovare",
   "/en/servicii-it",
   "/en/termeni-si-conditii",
+  "/es/about",
   "/es/consultanta",
+  "/es/contact",
   "/es/implementare-ai",
   "/es/import-china",
   "/es/",
@@ -123,10 +131,13 @@ const KNOWN_PAGES = new Set([
   "/es/platforme-custom",
   "/es/politica-confidentialitate",
   "/es/politica-cookie",
+  "/es/privacy",
   "/es/promovare",
   "/es/servicii-it",
   "/es/termeni-si-conditii",
+  "/pt-br/about",
   "/pt-br/consultanta",
+  "/pt-br/contact",
   "/pt-br/implementare-ai",
   "/pt-br/import-china",
   "/pt-br/",
@@ -136,10 +147,14 @@ const KNOWN_PAGES = new Set([
   "/pt-br/platforme-custom",
   "/pt-br/politica-confidentialitate",
   "/pt-br/politica-cookie",
+  "/pt-br/privacy",
   "/pt-br/promovare",
   "/pt-br/servicii-it",
   "/pt-br/termeni-si-conditii"
 ]);
+
+/* The pages an agent opens without the .html extension. */
+const CLEAN_PATHS = new Set(["/about","/contact","/privacy","/en/about","/en/contact","/en/privacy","/es/about","/es/contact","/es/privacy","/pt-br/about","/pt-br/contact","/pt-br/privacy"]);
 
 const BOT_PATTERN = new RegExp("bot|crawler|spider|crawling|slurp|bingpreview|facebookexternalhit|headless|scrapy|semrush|ahrefs|mj12bot|dotbot|blexbot|petalbot|gptbot|claudebot|ccbot|bytespider|perplexity|oai-searchbot|chatgpt-user|adsbot|applebot|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|preview|python-requests|curl|wget|libwww", 'i');
 
@@ -299,6 +314,21 @@ function isPagePath(path: string): boolean {
   /* The language roots (/en, /es, /pt-br) are pages: the host answers
      /en with the English homepage. */
   return LOCALE_PATHS.some((prefix) => path === prefix);
+}
+
+/**
+ * The page file a clean path names, when the site publishes it.
+ *
+ * /about is the same page as /about.html. The trust pages are the ones
+ * an agent tries first, and it tries them without the extension, so
+ * those three answer both forms. Every other page keeps the URL it
+ * always had: a second address for it would be a duplicate, not a fix.
+ */
+function cleanPathTarget(path: string): string | null {
+  if (!CLEAN_PATHS.has(path)) return null;
+  const key = pageKey(path);
+  if (!KNOWN_PAGES.has(key)) return null;
+  return key + '.html';
 }
 
 /* ------------------------------------------------------------
@@ -466,12 +496,23 @@ export default async function middleware(request: Request) {
 
   if (representation === 'text/markdown') {
     const key = pageKey(path);
-    if (!isPagePath(path) || !KNOWN_PAGES.has(key)) {
+    /* A clean URL for a trust page serves the same Markdown as its .html
+       address. Any other path that is not a page still answers 404, so
+       the Markdown answer agrees with the HTML host. */
+    const known = KNOWN_PAGES.has(key) && (isPagePath(path) || CLEAN_PATHS.has(path));
+    if (!known) {
       return markdownError(notFoundMarkdown(key), 404);
     }
     const url = new URL(request.url);
     return markdownResponse(new URL(markdownPath(key), url.origin));
   }
+
+  /* ---------- 4. A clean path for a page that exists ---------- */
+  /* /about and /contact are the pages an agent tries first. The host
+     serves the .html file for them, so the middleware only has to
+     let them through instead of falling to the catch-all. */
+  const clean = cleanPathTarget(path);
+  if (clean) return rewrite(new URL(clean + url.search, url.origin));
 
   /* ---------- 4. The language of the visitor ---------- */
   /* Decided for a browser navigation, and only for one: browsers send

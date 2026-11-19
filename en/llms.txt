@@ -56,10 +56,17 @@ Send a two-line summary: what has to be built, the deadline and the approximate 
 - [About the company](https://digital-online.ro/en/#companie)
 - [Four-step process](https://digital-online.ro/en/#proces)
 - [Contact](https://digital-online.ro/en/#contact)
-- [Privacy policy](https://digital-online.ro/en/politica-confidentialitate.html)
+- [Home](https://digital-online.ro/en/)
+- [About the company](https://digital-online.ro/en/about)
+- [Direct contact](https://digital-online.ro/en/contact)
+- [Privacy, in short](https://digital-online.ro/en/privacy)
+- [Privacy policy (full)](https://digital-online.ro/en/politica-confidentialitate.html)
+- [Terms and conditions](https://digital-online.ro/en/termeni-si-conditii.html)
 
 ## Company information
 
+- **Legal name**: Global Vision Point Limited
+- **Registered office**: Suite 2, 260 Main Street, Gibraltar, GX11 1AA
 - **Phone**: +40 725 376 481
 - **Email**: contact@digital-online.ro
 - **WhatsApp**: [wa.me/40725376481](https://wa.me/40725376481)

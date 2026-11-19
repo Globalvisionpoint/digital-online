@@ -253,7 +253,7 @@ for (const file of files) {
       "areaServed": ["RO", "EU"]
     }
     </script>
-    <script type="application/ld+json">{"@type":["LocalBusiness","ProfessionalService"],"address":{"@type":"PostalAddress","addressLocality":"București"},"geo":{"@type":"GeoCoordinates","latitude":"44.4268","longitude":"26.1025"},"areaServed":["RO","EU"]}</script>
+    <script type="application/ld+json">{"@type":["LocalBusiness","ProfessionalService"],"address":{"@type":"PostalAddress","streetAddress":"Suite 2, 260 Main Street","addressLocality":"Gibraltar","postalCode":"GX11 1AA","addressCountry":"GI"},"geo":{"@type":"GeoCoordinates","latitude":"44.4268","longitude":"26.1025"},"areaServed":["RO","EU"]}</script>
   </body></html>`;
   const withoutLocation = fixRoSeo(withLocation, 'index.html');
   const businessSchemas = [];
@@ -263,13 +263,22 @@ for (const file of files) {
     const raw = node.children?.find(child => child.type === 'raw')?.value;
     if (raw) businessSchemas.push(JSON.parse(raw));
   });
-  if (businessSchemas.length !== 2 ||
-      businessSchemas.some(schema => schema.address || schema.geo ||
-        JSON.stringify(schema.areaServed) !== '["RO","EU"]') ||
-      withoutLocation.includes('geo.position')) {
-    fail('business location was not removed while retaining its service area');
+  const [strippedSchema, registeredSchema] = businessSchemas;
+  const registeredOffice = address =>
+    address?.addressCountry === 'GI' && address?.streetAddress === 'Suite 2, 260 Main Street';
+  const noCoordinates = businessSchemas.every(schema => !schema.geo);
+  const onlyRegisteredAddress = businessSchemas.every(schema =>
+    !schema.address || registeredOffice(schema.address)
+  );
+  const areaKept = businessSchemas.every(schema =>
+    JSON.stringify(schema.areaServed) === '["RO","EU"]'
+  );
+  if (businessSchemas.length !== 2 || !strippedSchema || !registeredSchema ||
+      !noCoordinates || !onlyRegisteredAddress || !areaKept ||
+      withoutLocation.includes('geo.position') || withoutLocation.includes('București')) {
+    fail('an office address or the coordinates were published, or the registered office was lost');
   } else {
-    console.log('OK    business coordinates and address are removed while its service area is retained');
+    console.log('OK    coordinates and unregistered offices are removed; the registered office is kept');
   }
 }
 
@@ -378,8 +387,13 @@ for (const file of files) {
         if (!types.some(type => type === 'LocalBusiness' || type === 'ProfessionalService')) return;
 
         checked += 1;
-        if (schema.address || schema.geo) {
-          fail(`${relativePath} still publishes a business address or coordinates`);
+        if (schema.geo) {
+          fail(`${relativePath} publishes business coordinates`);
+        }
+        const addressCountry = (schema.address?.addressCountry || '').toUpperCase();
+        if (schema.address &&
+            (addressCountry !== 'GI' || schema.address.streetAddress !== 'Suite 2, 260 Main Street')) {
+          fail(`${relativePath} publishes an address other than the registered office`);
         }
         if (locationWords.test(schema.description || '')) {
           fail(`${relativePath} describes the business as located in a specific country or city`);
@@ -388,7 +402,7 @@ for (const file of files) {
     }
   }
 
-  if (checked) console.log(`OK    ${checked} business schemas omit physical location across all locales`);
+  if (checked) console.log(`OK    ${checked} business schemas publish no coordinates and only the registered office`);
   else fail('no business schemas were checked');
 }
 
@@ -415,8 +429,16 @@ for (const file of files) {
       console.log(`OK    ${doc.file} contains localized GEO guidance and page links`);
     }
 
-    if (/\b(?:sediu|headquarters|sede|endereço)\b|București|Bucharest/i.test(content)) {
-      fail(`${doc.file} exposes a physical company location`);
+    /* The registered office is published on purpose, because agents
+       check it to verify the business. What must never appear is the
+       coordinates of the team, or an operating address in a country
+       the site does not claim to work from. */
+    if (/București|Bucharest|44\.4268|26\.1025/i.test(content)) {
+      fail(`${doc.file} exposes a physical operating location`);
+    }
+    if (/sediu social|registered office|domicilio social|sede social/i.test(content) &&
+        !/Suite 2, 260 Main Street, Gibraltar/i.test(content)) {
+      fail(`${doc.file} states a registered office other than the published one`);
     }
   }
 }
@@ -943,7 +965,9 @@ for (const file of files) {
     }
   }
 
-  if (checked !== 52) fail(`favicon set checked on ${checked} pages, expected 52`);
+  if (checked !== locales.length * files.length) {
+    fail(`favicon set checked on ${checked} pages, expected ${locales.length * files.length}`);
+  }
   if (signatures.size !== 2) {
     fail(`favicon blocks differ across pages (${signatures.size} distinct sets)`);
   } else {
@@ -1005,6 +1029,220 @@ for (const file of files) {
   } else {
     console.log(`OK    favicon.svg draws the same mark as the header logo (dot ${faviconMark.circle})`);
   }
+}
+
+/* ------------------------------------------------------------
+   18. The Organization schema carries the contact channel and the
+       registered office, so an agent can verify the business and
+       answer "who is behind this site and how do I reach them".
+   ------------------------------------------------------------ */
+{
+  const locales = [
+    { code: 'ro', file: 'index.html' },
+    { code: 'en', file: 'en/index.html' },
+    { code: 'es', file: 'es/index.html' },
+    { code: 'pt-BR', file: 'pt-br/index.html' }
+  ];
+
+  for (const locale of locales) {
+    const html = fs.readFileSync(path.join(root, locale.file), 'utf8');
+    const tree = parseHtml(html);
+
+    const schemas = [];
+    for (const script of findElements(tree, e =>
+      e.tag === 'script' && (getAttr(e, 'type') || '').toLowerCase() === 'application/ld+json'
+    )) {
+      schemas.push(JSON.parse(script.children.map(child => child.value || '').join('')));
+    }
+    const business = schemas.find(schema => {
+      const types = Array.isArray(schema['@type']) ? schema['@type'] : [schema['@type']];
+      return types.some(type => type === 'LocalBusiness' || type === 'ProfessionalService');
+    });
+
+    if (!business) {
+      fail(`${locale.file} has no business JSON-LD`);
+      continue;
+    }
+
+    const contact = business.contactPoint;
+    if (!contact) {
+      fail(`${locale.file} Organization has no contactPoint`);
+      continue;
+    }
+    const contacts = Array.isArray(contact) ? contact : [contact];
+    const reachable = contacts.some(entry =>
+      entry['@type'] === 'ContactPoint' &&
+      Boolean(entry.contactType) &&
+      Boolean(entry.email || entry.telephone)
+    );
+    if (!reachable) fail(`${locale.file} contactPoint has no contactType and no e-mail or phone`);
+
+    const address = business.address;
+    if (!address) {
+      fail(`${locale.file} Organization has no address`);
+      continue;
+    }
+    if (address['@type'] !== 'PostalAddress') {
+      fail(`${locale.file} address is not a PostalAddress`);
+    }
+    for (const field of ['streetAddress', 'addressLocality', 'addressCountry']) {
+      if (!address[field]) fail(`${locale.file} PostalAddress has no ${field}`);
+    }
+    if (address.addressCountry !== 'GI') {
+      fail(`${locale.file} publishes ${address.addressCountry} instead of the registered country`);
+    }
+    if (business.legalName !== 'Global Vision Point Limited') {
+      fail(`${locale.file} Organization legalName is ${JSON.stringify(business.legalName)}`);
+    }
+
+    /* The phone an agent reads has to be one it can actually dial. */
+    if (!/^\+\d{6,}$/.test(String(contacts.find(entry => entry.telephone)?.telephone || ''))) {
+      fail(`${locale.file} contactPoint telephone is not in E.164 form`);
+    }
+  }
+
+  console.log('OK    Organization schema publishes contactPoint, PostalAddress and legalName');
+}
+
+/* ------------------------------------------------------------
+   19. The trust pages an agent opens before recommending a
+       business exist in every locale, with real content, and the
+       clean URLs an agent guesses resolve to them.
+   ------------------------------------------------------------ */
+{
+  const TRUST = ['about.html', 'contact.html', 'privacy.html'];
+  const locales = [
+    { code: 'ro', prefix: '' },
+    { code: 'en', prefix: 'en' },
+    { code: 'es', prefix: 'es' },
+    { code: 'pt-BR', prefix: 'pt-br' }
+  ];
+
+  const textOf = html => html
+    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[a-z]+;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  for (const locale of locales) {
+    for (const page of TRUST) {
+      const relativePath = path.join(locale.prefix, page);
+      const file = path.join(root, relativePath);
+      if (!fs.existsSync(file)) {
+        fail(`${relativePath} does not exist`);
+        continue;
+      }
+
+      const html = fs.readFileSync(file, 'utf8');
+      const tree = parseHtml(html);
+
+      const main = findFirst(tree, e => e.tag === 'main');
+      if (!main) {
+        fail(`${relativePath} has no main element`);
+        continue;
+      }
+      const mainHtml = html.slice(main.start, main.closeEnd ?? main.end);
+      const length = textOf(mainHtml).length;
+      if (length < 500) {
+        fail(`${relativePath} has ${length} characters of content, under the 500 an agent needs`);
+      }
+
+      const h1 = findFirst(tree, e => e.tag === 'h1');
+      if (!h1) fail(`${relativePath} has no h1`);
+
+      const canonical = findFirst(tree, e =>
+        e.tag === 'link' && (getAttr(e, 'rel') || '').toLowerCase() === 'canonical'
+      );
+      const expectedCanonical = `https://digital-online.ro/${relativePath.replace(/\\/g, '/')}`;
+      if (!canonical || getAttr(canonical, 'href') !== expectedCanonical) {
+        fail(`${relativePath} canonical is ${JSON.stringify(getAttr(canonical || { attrs: [] }, 'href'))}`);
+      }
+
+      const markdown = path.join(root, page.replace(/\.html$/, '.md'));
+      const localizedMarkdown = path.join(root, locale.prefix, page.replace(/\.html$/, '.md'));
+      if (!fs.existsSync(markdown) || !fs.existsSync(localizedMarkdown)) {
+        fail(`${relativePath} has no Markdown sibling`);
+      }
+    }
+  }
+
+  /* Every locale's sitemap advertises them. */
+  const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+  for (const locale of locales) {
+    const prefix = locale.prefix ? `${locale.prefix}/` : '';
+    for (const page of TRUST) {
+      const url = `https://digital-online.ro/${prefix}${page}`;
+      if (!sitemap.includes(`<loc>${url}</loc>`)) fail(`sitemap.xml has no ${url}`);
+    }
+  }
+
+  /* The clean URL an agent guesses must resolve, which the middleware
+     decides: /about must not answer 404 before the host serves it. */
+  const middleware = fs.readFileSync(path.join(root, 'middleware.ts'), 'utf8');
+  for (const page of TRUST) {
+    const key = `"/${page.replace(/\.html$/, '')}"`;
+    if (!middleware.includes(key)) {
+      fail(`middleware.ts does not know the clean URL ${key}`);
+    }
+  }
+
+  console.log('OK    about, contact and privacy exist in every locale and resolve from clean URLs');
+}
+
+/* ------------------------------------------------------------
+   20. The homepage names the brand together with the product terms
+       an agent (and a search engine) searches for, so "Digital
+       Online" resolves to this site rather than to a generic phrase.
+   ------------------------------------------------------------ */
+{
+  const locales = [
+    { code: 'ro', file: 'index.html' },
+    { code: 'en', file: 'en/index.html' },
+    { code: 'es', file: 'es/index.html' },
+    { code: 'pt-BR', file: 'pt-br/index.html' }
+  ];
+
+  const { productTerms } = await import('./lib/metadata.mjs');
+
+  for (const locale of locales) {
+    const html = fs.readFileSync(path.join(root, locale.file), 'utf8');
+    const pageText = html
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ');
+
+    const title = /<title>([^<]*)<\/title>/i.exec(html)?.[1] || '';
+    const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/i.exec(html)?.[1]?.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ') || '';
+
+    /* The brand and at least one product term have to co-occur where a
+       crawler reads them: the title and the heading. */
+    const brandInTitle = /Digital Online/i.test(title);
+    const brandInH1 = /Digital Online/i.test(h1);
+    if (!brandInTitle && !brandInH1) {
+      fail(`${locale.file} does not name the brand in its title or h1`);
+    }
+
+    const product = productTerms(locale.code).keywords;
+    const named = product.filter(term =>
+      pageText.toLowerCase().includes(term.toLowerCase())
+    );
+    if (!named.length) {
+      fail(`${locale.file} names none of its product terms on the page`);
+    }
+
+    /* A term an agent reads in the structured data has to be visible on
+       the page too, otherwise the claim reads as invented. */
+    const invisible = product.filter(term =>
+      !pageText.toLowerCase().includes(term.toLowerCase())
+    );
+    if (invisible.length) {
+      fail(`${locale.file} claims ${invisible.join(', ')} in structured data but not on the page`);
+    }
+  }
+
+  console.log('OK    the brand and its product terms are named together on every homepage');
 }
 
 console.log(failures ? `\n${failures} test(s) failed` : '\nAll tests passed.');

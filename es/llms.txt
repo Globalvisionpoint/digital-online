@@ -56,10 +56,17 @@ Envía un resumen de dos líneas: qué hay que construir, el plazo y el presupue
 - [Sobre la empresa](https://digital-online.ro/es/#companie)
 - [Proceso de trabajo: 4 pasos](https://digital-online.ro/es/#proces)
 - [Contacto](https://digital-online.ro/es/#contact)
-- [Política de privacidad](https://digital-online.ro/es/politica-confidentialitate.html)
+- [Inicio](https://digital-online.ro/es/)
+- [Sobre la empresa](https://digital-online.ro/es/about)
+- [Contacto directo](https://digital-online.ro/es/contact)
+- [Privacidad, en resumen](https://digital-online.ro/es/privacy)
+- [Política de privacidad (completa)](https://digital-online.ro/es/politica-confidentialitate.html)
+- [Términos y condiciones](https://digital-online.ro/es/termeni-si-conditii.html)
 
 ## Información de la empresa
 
+- **Denominación legal**: Global Vision Point Limited
+- **Domicilio social**: Suite 2, 260 Main Street, Gibraltar, GX11 1AA
 - **Teléfono**: +40 725 376 481
 - **Correo electrónico**: contact@digital-online.ro
 - **WhatsApp**: [wa.me/40725376481](https://wa.me/40725376481)

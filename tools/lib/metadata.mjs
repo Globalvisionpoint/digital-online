@@ -340,17 +340,50 @@ export function keywordsFor(locale) {
 }
 
 /**
+ * The registered office of the business, as published in the terms
+ * and the privacy policy. It is a registration address, not an
+ * office an agent can visit, so no coordinates accompany it.
+ */
+export const LEGAL_ADDRESS = {
+  '@type': 'PostalAddress',
+  streetAddress: 'Suite 2, 260 Main Street',
+  addressLocality: 'Gibraltar',
+  postalCode: 'GX11 1AA',
+  addressCountry: 'GI'
+};
+
+/** The registered company name behind the Digital Online brand. */
+export const LEGAL_NAME = 'Global Vision Point Limited';
+
+/** The public support channel of the business. */
+export const CONTACT_POINT = {
+  '@type': 'ContactPoint',
+  contactType: 'customer support',
+  email: 'contact@digital-online.ro',
+  telephone: '+40725376481',
+  availableLanguage: ['ro', 'en', 'es', 'pt-BR'],
+  areaServed: 'RO'
+};
+
+/**
  * The JSON-LD fields that name the products of the business.
  *
  * `makesOffer` is written with one `Service` per direction, each
  * carrying a `serviceType`: that is the field an agent host reads
  * when the site has no keyword list of its own.
+ *
+ * `legalName`, `address` and `contactPoint` let an agent answer
+ * "who is behind this site and how do I reach them", which it checks
+ * before recommending a business.
  */
 export function agentFields(locale) {
   const terms = productTerms(locale);
   return {
     keywords: terms.keywords,
     knowsAbout: terms.knowsAbout,
+    legalName: LEGAL_NAME,
+    address: LEGAL_ADDRESS,
+    contactPoint: CONTACT_POINT,
     makesOffer: terms.services.map(([name, serviceType]) => ({
       '@type': 'Offer',
       itemOffered: {

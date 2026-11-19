@@ -2,6 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
+        <loc>https://digital-online.ro/about.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/about.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/about.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/about.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/about.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/en/about.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/about.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/about.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/about.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/about.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/es/about.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/about.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/about.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/about.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/about.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/pt-br/about.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/about.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/about.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/about.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/about.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/about.html"/>
+    </url>
+    <url>
         <loc>https://digital-online.ro/consultanta.html</loc>
         <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/consultanta.html"/>
         <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/consultanta.html"/>
@@ -32,6 +64,38 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/consultanta.html"/>
         <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/consultanta.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/consultanta.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/contact.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/contact.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/en/contact.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/contact.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/es/contact.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/contact.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/pt-br/contact.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/contact.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/contact.html"/>
     </url>
     <url>
         <loc>https://digital-online.ro/implementare-ai.html</loc>
@@ -320,6 +384,38 @@
         <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/politica-cookie.html"/>
         <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/politica-cookie.html"/>
         <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/politica-cookie.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/privacy.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/privacy.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/en/privacy.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/privacy.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/es/privacy.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/privacy.html"/>
+    </url>
+    <url>
+        <loc>https://digital-online.ro/pt-br/privacy.html</loc>
+        <xhtml:link rel="alternate" hreflang="ro" href="https://digital-online.ro/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://digital-online.ro/en/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://digital-online.ro/es/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="pt-BR" href="https://digital-online.ro/pt-br/privacy.html"/>
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://digital-online.ro/privacy.html"/>
     </url>
     <url>
         <loc>https://digital-online.ro/promovare.html</loc>

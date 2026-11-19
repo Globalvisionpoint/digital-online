@@ -100,6 +100,33 @@ function knownPages(pages) {
 }
 
 /**
+ * The trust pages, which answer with and without the .html extension.
+ *
+ * An agent checking whether a business is legitimate opens /about,
+ * /contact and /privacy, and it opens them without the extension.
+ * Those three paths are the only clean URLs the site adds; every
+ * other page keeps the one address it already had.
+ */
+const CLEAN_PAGE_KEYS = ['about', 'contact', 'privacy'];
+
+/**
+ * The clean paths of the trust pages, in every locale.
+ *
+ * @param {string[]} pages the page file names (index.html, ...)
+ */
+function cleanPaths(pages) {
+  const available = new Set(pages.map(page => page.replace(/\.html$/, '')));
+  const keys = [];
+  for (const locale of LOCALES) {
+    const prefix = locale.prefix ? `/${locale.prefix}` : '';
+    for (const key of CLEAN_PAGE_KEYS) {
+      if (available.has(key)) keys.push(`${prefix}/${key}`);
+    }
+  }
+  return keys;
+}
+
+/**
  * Render middleware.ts.
  *
  * @param {string[]} pages the page file names the site publishes
@@ -114,6 +141,7 @@ export function renderMiddleware(pages = []) {
   body = fill(body, '__LOCALE_PATHS__', JSON.stringify(localePaths));
   body = fill(body, '__LANGUAGE_TO_LOCALE__', JSON.stringify(languageToLocale, null, 2));
   body = fill(body, '__KNOWN_PAGES__', JSON.stringify(knownPages(pages), null, 2));
+  body = fill(body, '__CLEAN_PATHS__', JSON.stringify(cleanPaths(pages)));
   body = fill(body, '__BOT_PATTERN__', JSON.stringify(BOT_PATTERN));
 
   return `${MIDDLEWARE_BANNER}${body}`;
