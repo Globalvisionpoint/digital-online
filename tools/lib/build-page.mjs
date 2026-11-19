@@ -15,6 +15,7 @@ import { localizePage } from './apply.mjs';
 import { LOCALES, getLocale, canonicalFor, pagePath, relativePage, SITE_URL } from './config.mjs';
 import { injectSwitcher, switcherScriptTag, stripSwitcher } from './inject.mjs';
 import { asciiHeaderNavPatches } from './ascii-header.mjs';
+import { ensureShareTags, ensureAgentMetadata, ensureMarkdownLinks } from './metadata.mjs';
 
 /**
  * @param {string} source   Romanian HTML
@@ -84,6 +85,14 @@ export function buildPage(source, fileName, catalog, locale) {
   }
 
   html = applyPatches(html, patches2);
+
+  /* ---------- 2b. Share image and homepage product terms ---------- */
+  /* The share image is the same for every locale; only its alt text
+     differs. The product terms are written per locale so a translated
+     homepage never advertises the Romanian wording. */
+  html = ensureShareTags(html, locale);
+  html = ensureMarkdownLinks(html, fileName, locale);
+  if (fileName === 'index.html') html = ensureAgentMetadata(html, locale);
 
   /* ---------- 3. Switcher markup + script ---------- */
   html = injectSwitcher(html, fileName, locale);

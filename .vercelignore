@@ -6,3 +6,5 @@ bump.ps1
 README.md
 node_modules/
 package-lock.json
+tools/
+docs/

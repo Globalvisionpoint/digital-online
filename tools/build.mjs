@@ -18,6 +18,7 @@ import { injectSwitcher } from './lib/inject.mjs';
 import { fixRoSeo } from './lib/ro-seo.mjs';
 import { renderMiddleware } from './lib/middleware.mjs';
 import { renderSitemap } from './lib/sitemap.mjs';
+import { renderMarkdown } from './lib/markdown.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
 const localesDir = path.join(root, 'tools', 'locales');
@@ -141,13 +142,30 @@ for (const line of report) {
 
 /* ---------- 3. The Vercel middleware ---------- */
 const middlewareFile = path.join(root, 'middleware.ts');
-fs.writeFileSync(middlewareFile, renderMiddleware(), 'utf8');
-console.log('\n[middleware] middleware.ts written (IP -> language)');
+fs.writeFileSync(middlewareFile, renderMiddleware(PAGES), 'utf8');
+console.log('\n[middleware] middleware.ts written (IP -> language, Accept -> Markdown)');
 
 /* ---------- 4. Search sitemap ---------- */
 const sitemapFile = path.join(root, 'sitemap.xml');
 fs.writeFileSync(sitemapFile, renderSitemap(PAGES), 'utf8');
 console.log(`[sitemap] ${PAGES.length * LOCALES.length} localized page URLs written`);
+
+/* ---------- 5. Markdown siblings, for agents ---------- */
+/* Every page gets a .md next to it, in every locale, converted from
+   the same HTML a browser gets. The middleware serves it to a
+   request that carries Accept: text/markdown. */
+let markdownFiles = 0;
+for (const locale of LOCALE_CODES) {
+  const config = getLocale(locale);
+  for (const page of PAGES) {
+    const sourcePath = path.join(root, config.prefix, page);
+    const target = `${sourcePath.replace(/\.html$/, '')}.md`;
+    const markdown = renderMarkdown(fs.readFileSync(sourcePath, 'utf8'), page, locale);
+    fs.writeFileSync(target, markdown, 'utf8');
+    markdownFiles += 1;
+  }
+}
+console.log(`[markdown] ${markdownFiles} .md siblings written`);
 
 if (totalMissing) {
   console.log('\nFill the "translation" fields in tools/locales/*.json and rebuild.');

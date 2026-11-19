@@ -6,12 +6,27 @@
    who has not chosen one yet, based on the country of their IP.
    A visitor who picks a language in the switcher gets a cookie,
    and that choice always wins over the country.
+
+   It also serves the Markdown an agent asks for
+   (Accept: text/markdown), including a Markdown 404 and 406, and
+   keeps one canonical host.
    ============================================================ */
 
-import { geolocation, next } from '@vercel/functions';
+import { geolocation, next, rewrite } from '@vercel/functions';
 
 const COOKIE_NAME = 'digital-online-lang';
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 180;
+
+/* The host every page is canonical on: the one the sitemap, the
+   canonicals and the hreflang alternates name. */
+const CANONICAL_HOST = 'digital-online.ro';
+const CANONICAL_HOSTS = new Set([CANONICAL_HOST, 'www.' + CANONICAL_HOST]);
+
+const MARKDOWN_TYPE = 'text/markdown; charset=utf-8';
+
+/* What this site can produce, most default first: a tie between the
+   two (Accept: *\/*, which a browser sends) resolves to HTML. */
+const REPRESENTATIONS = ['text/html', 'text/markdown'];
 
 /** ISO-3166 alpha-2 country code -> locale code. */
 const COUNTRY_TO_LOCALE: Record<string, string> = {
@@ -70,27 +85,167 @@ const LANGUAGE_TO_LOCALE: Record<string, string> = {
   "en": "en"
 };
 
+/** Every page that exists, as the key of its Markdown sibling. */
+const KNOWN_PAGES = new Set([
+  "/consultanta",
+  "/implementare-ai",
+  "/import-china",
+  "/",
+  "/integrari",
+  "/magazine-online",
+  "/montaj-editare-video-foto",
+  "/platforme-custom",
+  "/politica-confidentialitate",
+  "/politica-cookie",
+  "/promovare",
+  "/servicii-it",
+  "/termeni-si-conditii",
+  "/en/consultanta",
+  "/en/implementare-ai",
+  "/en/import-china",
+  "/en/",
+  "/en/integrari",
+  "/en/magazine-online",
+  "/en/montaj-editare-video-foto",
+  "/en/platforme-custom",
+  "/en/politica-confidentialitate",
+  "/en/politica-cookie",
+  "/en/promovare",
+  "/en/servicii-it",
+  "/en/termeni-si-conditii",
+  "/es/consultanta",
+  "/es/implementare-ai",
+  "/es/import-china",
+  "/es/",
+  "/es/integrari",
+  "/es/magazine-online",
+  "/es/montaj-editare-video-foto",
+  "/es/platforme-custom",
+  "/es/politica-confidentialitate",
+  "/es/politica-cookie",
+  "/es/promovare",
+  "/es/servicii-it",
+  "/es/termeni-si-conditii",
+  "/pt-br/consultanta",
+  "/pt-br/implementare-ai",
+  "/pt-br/import-china",
+  "/pt-br/",
+  "/pt-br/integrari",
+  "/pt-br/magazine-online",
+  "/pt-br/montaj-editare-video-foto",
+  "/pt-br/platforme-custom",
+  "/pt-br/politica-confidentialitate",
+  "/pt-br/politica-cookie",
+  "/pt-br/promovare",
+  "/pt-br/servicii-it",
+  "/pt-br/termeni-si-conditii"
+]);
+
 const BOT_PATTERN = new RegExp("bot|crawler|spider|crawling|slurp|bingpreview|facebookexternalhit|headless|scrapy|semrush|ahrefs|mj12bot|dotbot|blexbot|petalbot|gptbot|claudebot|ccbot|bytespider|perplexity|oai-searchbot|chatgpt-user|adsbot|applebot|twitterbot|linkedinbot|discordbot|telegrambot|whatsapp|preview|python-requests|curl|wget|libwww", 'i');
 
 export const config = {
   runtime: 'nodejs',
-  /* Only the HTML pages need the language decision. */
+  /* Only the HTML pages need the language decision and the
+     negotiation; assets, the machine-readable files and the
+     search-engine verification file are served untouched. */
   matcher: [
-    '/((?!css/|js/|img/|fonts/|robots\\.txt|sitemap\\.xml|llms\\.txt|favicon\\.ico|apple-touch-icon\\.png|site\\.webmanifest|google16298c737d30f4e5\\.html).*)'
+    '/((?!css/|js/|img/|fonts/|robots\.txt|sitemap\.xml|llms\.txt|favicon\.ico|apple-touch-icon\.png|site\.webmanifest|google16298c737d30f4e5\.html).*)'
   ]
 };
 
-/** Read one cookie out of the Cookie header. */
-function readCookie(header: string | null, name: string): string | undefined {
-  if (!header) return undefined;
-  for (const part of header.split(';')) {
-    const index = part.indexOf('=');
-    if (index === -1) continue;
-    if (part.slice(0, index).trim() !== name) continue;
-    return decodeURIComponent(part.slice(index + 1).trim());
-  }
-  return undefined;
+/* ------------------------------------------------------------
+   Accept negotiation
+   ------------------------------------------------------------ */
+
+type MediaRange = { type: string; quality: number };
+
+/** How many characters of a media range are fixed, not a wildcard. */
+function specificity(type: string): number {
+  if (type === '*/*') return 0;
+  if (type.endsWith('/*')) return 1;
+  return 2;
 }
+
+/** One Accept entry as a media type and its quality. */
+function parseMediaRange(entry: string): MediaRange | null {
+  const parts = entry.trim().split(';');
+  const type = (parts[0] || '').trim().toLowerCase();
+  if (!type) return null;
+
+  let quality = 1;
+  for (const param of parts.slice(1)) {
+    const match = /^\s*q\s*=\s*([0-9.]+)\s*$/i.exec(param);
+    if (!match) continue;
+    const value = Number.parseFloat(match[1]);
+    quality = Number.isNaN(value) ? 0 : Math.min(1, Math.max(0, value));
+  }
+  return { type: type, quality: quality };
+}
+
+/**
+ * The quality the client gave a representation.
+ *
+ * An exact type beats \`text/*\`, which beats \`*\/*\`; the most
+ * specific matching entry decides, so a real Chrome header
+ * (\`text/html,application/xhtml+xml,...,*\/*;q=0.8\`) resolves to
+ * HTML and never to Markdown.
+ */
+function qualityFor(ranges: MediaRange[], representation: string): number {
+  const major = representation.split('/')[0];
+  let best: MediaRange | null = null;
+
+  for (const range of ranges) {
+    const matches =
+      range.type === representation ||
+      range.type === major + '/*' ||
+      range.type === '*/*';
+    if (!matches) continue;
+    if (
+      best === null ||
+      specificity(range.type) > specificity(best.type) ||
+      (specificity(range.type) === specificity(best.type) && range.quality > best.quality)
+    ) {
+      best = range;
+    }
+  }
+  return best === null ? 0 : best.quality;
+}
+
+/**
+ * The representation to serve, or null when none is acceptable.
+ *
+ * A missing Accept header means "no constraint", so HTML is served;
+ * so does \`*\/*\`. \`text/markdown;q=0\` alone scores 0 for both
+ * representations, which is a 406: the client can accept neither.
+ */
+function negotiate(accept: string | null): string | null {
+  if (accept === null || accept.trim() === '') return 'text/html';
+
+  const ranges = accept
+    .split(',')
+    .map(parseMediaRange)
+    .filter((range): range is MediaRange => range !== null);
+  if (ranges.length === 0) return 'text/html';
+
+  let winner: string | null = null;
+  let winnerQuality = 0;
+  for (const representation of REPRESENTATIONS) {
+    const quality = qualityFor(ranges, representation);
+    if (quality > winnerQuality) {
+      winner = representation;
+      winnerQuality = quality;
+    }
+  }
+
+  /* Every representation scored 0: either it was not named at all, or
+     it was named with q=0. Both mean "you cannot give me anything",
+     which is exactly what 406 says. */
+  return winner;
+}
+
+/* ------------------------------------------------------------
+   Paths
+   ------------------------------------------------------------ */
 
 /** Is the path already inside a language folder? */
 function hasLocalePrefix(path: string): boolean {
@@ -104,6 +259,140 @@ function isAsset(path: string): boolean {
   return !name.endsWith('.html');
 }
 
+/** The key a page and its Markdown sibling share. */
+function pageKey(path: string): string {
+  let p = path;
+  if (p.endsWith('.md')) p = p.slice(0, -'.md'.length);
+  if (p === '' || p === '/') return '/';
+  /* /en and /en/ are the same page; the HTML host redirects one to
+     the other, and the Markdown lookup has to agree. */
+  if (LOCALE_PATHS.some((prefix) => p === prefix)) return p + '/';
+  if (p.endsWith('/index.html')) return p.slice(0, -'index.html'.length);
+  if (p.endsWith('/index')) return p.slice(0, -'index'.length);
+  if (p.endsWith('.html')) return p.slice(0, -'.html'.length);
+  return p;
+}
+
+/** The path of a page's Markdown sibling. */
+function markdownPath(path: string): string {
+  const key = pageKey(path);
+  if (key === '/') return '/index.md';
+  if (key.endsWith('/')) return key + 'index.md';
+  return key + '.md';
+}
+
+/** The path of a page, for the Markdown of a 404. */
+function displayPath(path: string): string {
+  return path === '' ? '/' : path;
+}
+
+/**
+ * Does this path serve an HTML page?
+ *
+ * The site's URLs carry the .html extension (plus a directory for each
+ * language), so /consultanta is not a page: the HTML host answers 404
+ * for it, and the Markdown answer has to agree instead of inventing a
+ * page that a browser cannot reach.
+ */
+function isPagePath(path: string): boolean {
+  if (path === '/' || path.endsWith('/') || path.endsWith('.html')) return true;
+  /* The language roots (/en, /es, /pt-br) are pages: the host answers
+     /en with the English homepage. */
+  return LOCALE_PATHS.some((prefix) => path === prefix);
+}
+
+/* ------------------------------------------------------------
+   Markdown bodies
+   ------------------------------------------------------------ */
+
+const SITE = 'https://digital-online.ro';
+
+/** The Markdown 404: what went wrong and where to go next. */
+function notFoundMarkdown(path: string): string {
+  return [
+    '# 404 — page not found',
+    '',
+    'The path \`' + displayPath(path) + '\` does not exist on digital-online.ro.',
+    'Check the spelling, or start from one of these entry points:',
+    '',
+    '- [llms.txt](' + SITE + '/llms.txt) — the site guide for agents: services, contact, when to use it',
+    '- [sitemap.xml](' + SITE + '/sitemap.xml) — every page in every language',
+    '- [Homepage](' + SITE + '/) — services, process and contact details',
+    '',
+    'Request the same URL with \`Accept: text/html\` to get the HTML site.',
+    ''
+  ].join('\n');
+}
+
+/** The Markdown 406: what this site can serve. */
+function notAcceptableMarkdown(path: string): string {
+  return [
+    '# 406 — not acceptable',
+    '',
+    'This site can answer \`' + displayPath(path) + '\` only as',
+    '\`text/html\` or \`text/markdown\`, and the request accepted neither.',
+    '',
+    'Repeat the request with an Accept header that includes one of them.',
+    '',
+    '- [llms.txt](' + SITE + '/llms.txt) — the site guide for agents',
+    ''
+  ].join('\n');
+}
+
+/** A Markdown error response, with the headers a negotiated reply needs. */
+function markdownError(body: string, status: number): Response {
+  /* An error is never cached: the same URL answers 200 to another
+     Accept, and the body is generated here. */
+  return new Response(body, {
+    status: status,
+    headers: {
+      'Content-Type': MARKDOWN_TYPE,
+      'Vary': 'Accept',
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff'
+    }
+  });
+}
+
+/* ------------------------------------------------------------
+   Markdown lookup
+   ------------------------------------------------------------ */
+
+/**
+ * Serve the Markdown written next to a page at build time.
+ *
+ * The file is a static asset, so the middleware rewrites to it and
+ * lets the platform serve it, instead of fetching the site from
+ * itself on every request. The Content-Type is set both here and in
+ * vercel.json (which also covers an agent that asks for the .md
+ * file directly), so the response is text/markdown either way.
+ */
+function markdownResponse(destination: URL): Response {
+  return rewrite(destination, {
+    headers: {
+      'Content-Type': MARKDOWN_TYPE,
+      'Vary': 'Accept',
+      'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300'
+    }
+  });
+}
+
+/* ------------------------------------------------------------
+   Locale choice
+   ------------------------------------------------------------ */
+
+/** Read one cookie out of the Cookie header. */
+function readCookie(header: string | null, name: string): string | undefined {
+  if (!header) return undefined;
+  for (const part of header.split(';')) {
+    const index = part.indexOf('=');
+    if (index === -1) continue;
+    if (part.slice(0, index).trim() !== name) continue;
+    return decodeURIComponent(part.slice(index + 1).trim());
+  }
+  return undefined;
+}
+
 /** The locale the browser asks for, by Accept-Language. */
 function localeFromAcceptLanguage(header: string | null): string | undefined {
   if (!header) return undefined;
@@ -111,12 +400,14 @@ function localeFromAcceptLanguage(header: string | null): string | undefined {
   const entries = header
     .split(',')
     .map((part) => {
-      const [tag, ...params] = part.trim().split(';');
-      const quality = params
+      const pieces = part.trim().split(';');
+      const tag = (pieces[0] || '').trim().toLowerCase();
+      const quality = pieces
+        .slice(1)
         .map((p) => p.trim())
         .find((p) => p.startsWith('q='));
       const q = quality ? Number.parseFloat(quality.slice(2)) : 1;
-      return { tag: tag.trim().toLowerCase(), q: Number.isNaN(q) ? 0 : q };
+      return { tag: tag, q: Number.isNaN(q) ? 0 : q };
     })
     .filter((entry) => entry.tag && entry.q > 0)
     .sort((a, b) => b.q - a.q);
@@ -131,48 +422,87 @@ function localeFromAcceptLanguage(header: string | null): string | undefined {
 /** Send the visitor to the given language and remember the choice. */
 function redirect(request: Request, url: URL, prefix: string, locale: string): Response {
   const path = url.pathname === '/' ? '/' : url.pathname;
-  const target = new URL(`${prefix}${path}${url.search}`, request.url);
+  const target = new URL(prefix + path + url.search, request.url);
   return new Response(null, {
     status: 302,
     headers: {
       Location: target.toString(),
-      'Set-Cookie': `${COOKIE_NAME}=${locale}; Path=/; Max-Age=${COOKIE_MAX_AGE}; SameSite=Lax`
+      'Set-Cookie':
+        COOKIE_NAME + '=' + locale + '; Path=/; Max-Age=' + COOKIE_MAX_AGE + '; SameSite=Lax',
+      'Vary': 'Accept, Accept-Language'
     }
   });
 }
 
-export default function middleware(request: Request) {
+/* ------------------------------------------------------------
+   The handler
+   ------------------------------------------------------------ */
+
+export default async function middleware(request: Request) {
   const url = new URL(request.url);
   const path = url.pathname;
 
-  /* The visitor already picked a language, or the URL already names
-     one: leave it alone. */
-  if (hasLocalePrefix(path)) return next();
+  /* ---------- 1. One canonical host ---------- */
+  if (url.host !== CANONICAL_HOST && CANONICAL_HOSTS.has(url.host)) {
+    const target = new URL(url.pathname + url.search, 'https://' + CANONICAL_HOST);
+    return new Response(null, { status: 301, headers: { Location: target.toString() } });
+  }
+
+  /* ---------- 2. Files that are never negotiated ---------- */
+  /* This also makes a rewrite to a .md file terminal: the destination
+     is a file, so it is served as-is and the middleware cannot loop. */
   if (isAsset(path)) return next();
 
-  /* Crawlers must see the canonical Romanian pages. */
-  const userAgent = request.headers.get('user-agent') || '';
-  if (BOT_PATTERN.test(userAgent)) return next();
+  if (request.method !== 'GET' && request.method !== 'HEAD') {
+    return next({ headers: { Vary: 'Accept' } });
+  }
 
-  /* A language chosen in the switcher always wins. */
+  /* ---------- 3. Content negotiation ---------- */
+  const representation = negotiate(request.headers.get('accept'));
+
+  if (representation === null) {
+    return markdownError(notAcceptableMarkdown(pageKey(path)), 406);
+  }
+
+  if (representation === 'text/markdown') {
+    const key = pageKey(path);
+    if (!isPagePath(path) || !KNOWN_PAGES.has(key)) {
+      return markdownError(notFoundMarkdown(key), 404);
+    }
+    const url = new URL(request.url);
+    return markdownResponse(new URL(markdownPath(key), url.origin));
+  }
+
+  /* ---------- 4. The language of the visitor ---------- */
+  /* Decided for a browser navigation, and only for one: browsers send
+     Sec-Fetch-Dest on a document request, while crawlers, agents and
+     plain HTTP clients do not. A 302 into a language folder for those
+     would hide the very page they asked for, so they read the
+     canonical Romanian page. */
+  const userAgent = (request.headers.get('user-agent') || '').trim();
+  const isBrowserNavigation =
+    (request.headers.get('sec-fetch-dest') || '').toLowerCase() === 'document';
+  if (!userAgent || !isBrowserNavigation || BOT_PATTERN.test(userAgent)) {
+    return next({ headers: { Vary: 'Accept' } });
+  }
+
+  if (hasLocalePrefix(path)) return next({ headers: { Vary: 'Accept' } });
+
   const chosen = readCookie(request.headers.get('cookie'), COOKIE_NAME);
   if (chosen && chosen in LOCALE_PREFIX) {
     const prefix = LOCALE_PREFIX[chosen];
-    if (!prefix) return next();
+    if (!prefix) return next({ headers: { Vary: 'Accept' } });
     return redirect(request, url, prefix, chosen);
   }
 
-  /* The country of the visitor decides. */
   const { country } = geolocation(request);
   let locale = country ? COUNTRY_TO_LOCALE[country.toUpperCase()] : undefined;
 
-  /* No country match: fall back to the language of the browser. */
   if (!locale) {
     locale = localeFromAcceptLanguage(request.headers.get('accept-language'));
   }
 
-  /* Nothing matched, or the visitor belongs to the Romanian site. */
-  if (!locale || !LOCALE_PREFIX[locale]) return next();
+  if (!locale || !LOCALE_PREFIX[locale]) return next({ headers: { Vary: 'Accept' } });
 
   return redirect(request, url, LOCALE_PREFIX[locale], locale);
 }

@@ -16,6 +16,7 @@
 import { parseHtml, findElements, findFirst, getAttr, applyPatches } from './html.mjs';
 import { LOCALES, getLocale, canonicalFor } from './config.mjs';
 import { replaceHreflang, replaceOgLocale, newlineOf } from './build-page.mjs';
+import { ensureShareTags, ensureAgentMetadata, ensureMarkdownLinks } from './metadata.mjs';
 
 /**
  * Build the Open Graph and Twitter Card tags of a page that has
@@ -136,7 +137,9 @@ export function fixRoSeo(source, fileName) {
     });
   }
 
-  /* --- Remove social image metadata after retiring the share image --- */
+  /* --- Remove social image metadata after retiring the share image ---
+     The share image is back (img/og-cover.jpg, 1200x630), so only
+     the old, retired cover is dropped here. */
   const imageMeta = findElements(tree, e => {
     if (e.tag !== 'meta') return false;
     const key = (getAttr(e, 'property') || getAttr(e, 'name') || '').toLowerCase();
@@ -145,6 +148,8 @@ export function fixRoSeo(source, fileName) {
   for (const element of imageMeta) {
     const start = source.lastIndexOf('\n', element.start - 1) + 1;
     const newline = source.indexOf('\n', element.end);
+    const value = (getAttr(element, 'content') || '').toLowerCase();
+    if (!value.includes('og-cover.png')) continue;
     patches.push({
       start,
       end: newline === -1 ? element.end : newline + 1,
@@ -273,7 +278,8 @@ export function fixRoSeo(source, fileName) {
     const head = findFirst(tree, e => e.tag === 'head');
     if (head) {
       // Only the missing half is added: a page that already has the
-      // Open Graph tags keeps them untouched.
+      // Open Graph tags keeps them untouched. The share image is
+      // appended by ensureShareTags below.
       const block = (hasOgTitle
         ? twitterTags(escapeAttr(title), escapeAttr(description))
         : socialTags(fileName, escapeAttr(title), escapeAttr(description))
@@ -286,5 +292,11 @@ export function fixRoSeo(source, fileName) {
     }
   }
 
-  return applyPatches(source, patches);
+  const withSocial = applyPatches(source, patches);
+
+  /* --- Share image, Markdown sibling, large card, product terms --- */
+  const withLinks = ensureMarkdownLinks(withSocial, fileName, 'ro');
+  const withImage = ensureShareTags(withLinks, 'ro');
+  if (fileName !== 'index.html') return withImage;
+  return ensureAgentMetadata(withImage, 'ro');
 }
