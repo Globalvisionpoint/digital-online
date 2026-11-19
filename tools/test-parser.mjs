@@ -215,6 +215,14 @@ for (const file of files) {
   if (missing.length) fail(`favicon references were not normalized: ${missing.join(', ')}`);
   else console.log(`OK    ${expected.length} favicon variants use the header logo mark`);
 
+  /* The vector first: it is the same mark as the header logo and a
+     browser that reads it never falls back to a bitmap. */
+  if (!/<link rel="icon" type="image\/svg\+xml" href="img\/favicon\.svg">\s*\n\s*<link rel="icon" type="image\/png"/.test(output)) {
+    fail('the SVG icon is not listed first in the favicon block');
+  } else {
+    console.log('OK    the SVG favicon is listed before the bitmaps');
+  }
+
   /* The retired PNG cover is replaced by the generated JPEG: the old
      reference must be gone, the new one present, and the card large. */
   if (output.includes('og-cover.png') || output.includes('"image":')) {
@@ -880,6 +888,123 @@ for (const file of files) {
   }
 
   console.log('OK    every llms.txt tells an agent when to use the site and how to call');
+}
+
+/* ------------------------------------------------------------
+   17. Every page, in every locale, requests the identical favicon
+       set in the identical order, and every file it names exists
+       with a real image inside.
+   ------------------------------------------------------------ */
+{
+  const { ICON_TARGETS } = await import('./lib/metadata.mjs');
+  const locales = [
+    { code: 'ro', prefix: '' },
+    { code: 'en', prefix: 'en' },
+    { code: 'es', prefix: 'es' },
+    { code: 'pt-BR', prefix: 'pt-br' }
+  ];
+
+  const signature = (tree, depth) => findElements(tree, e =>
+    e.tag === 'link' && /^(icon|apple-touch-icon)$/i.test(getAttr(e, 'rel') || '')
+  ).map(e => `${getAttr(e, 'rel')}|${getAttr(e, 'type') || ''}|${getAttr(e, 'sizes') || ''}|${getAttr(e, 'href')}`);
+
+  const expected = ICON_TARGETS.map(icon =>
+    `${icon.rel}|${icon.type || ''}|${icon.sizes || ''}|${icon.href}`
+  );
+
+  const signatures = new Map();
+  let checked = 0;
+
+  for (const locale of locales) {
+    const depth = locale.prefix ? '../' : '';
+    for (const file of files) {
+      const rel = path.join(locale.prefix, file);
+      const html = fs.readFileSync(path.join(root, rel), 'utf8');
+      const tree = parseHtml(html);
+      checked += 1;
+
+      const actual = signature(tree, depth);
+      const want = expected.map(entry => depth ? entry.replace('|img/', `|${depth}img/`) : entry);
+
+      if (actual.join(' ') !== want.join(' ')) {
+        fail(`${rel} favicon block is ${JSON.stringify(actual)}`);
+        continue;
+      }
+      signatures.set(want.join(' '), (signatures.get(want.join(' ')) || 0) + 1);
+
+      // Every named file has to exist, from this page's directory.
+      for (const icon of findElements(tree, e =>
+        e.tag === 'link' && /^(icon|apple-touch-icon)$/i.test(getAttr(e, 'rel') || '')
+      )) {
+        const href = getAttr(icon, 'href') || '';
+        const target = path.resolve(path.dirname(path.join(root, rel)), href);
+        if (!fs.existsSync(target)) fail(`${rel} names a missing icon: ${href}`);
+      }
+    }
+  }
+
+  if (checked !== 52) fail(`favicon set checked on ${checked} pages, expected 52`);
+  if (signatures.size !== 2) {
+    fail(`favicon blocks differ across pages (${signatures.size} distinct sets)`);
+  } else {
+    console.log(`OK    ${checked} pages request the same icon set, SVG first`);
+  }
+
+  /* The bitmaps must actually be images, and the ICO must carry a
+     16 px frame, which is the size a browser tab renders. */
+  const head = (file) => fs.readFileSync(path.join(root, file)).subarray(0, 8);
+  if (head('img/favicon-32.png').toString('hex') !== '89504e470d0a1a0a') fail('img/favicon-32.png is not a PNG');
+  if (head('img/favicon-192.png').toString('hex') !== '89504e470d0a1a0a') fail('img/favicon-192.png is not a PNG');
+  if (head('img/favicon.ico').toString('hex').slice(0, 8) !== '00000100') fail('img/favicon.ico is not an ICO');
+
+  const ico = fs.readFileSync(path.join(root, 'img', 'favicon.ico'));
+  const frameCount = ico.readUInt16LE(4);
+  const sizes = [];
+  for (let i = 0; i < frameCount; i += 1) {
+    const offset = 6 + i * 16;
+    const width = ico[offset] === 0 ? 256 : ico[offset];
+    sizes.push(width);
+  }
+  if (!sizes.includes(16)) fail(`img/favicon.ico has no 16px frame (has ${sizes.join(',')})`);
+  else console.log(`OK    favicon.ico carries frames ${sizes.join(', ')}`);
+
+  const svg = fs.readFileSync(path.join(root, 'img', 'favicon.svg'), 'utf8');
+  const logo = fs.readFileSync(path.join(root, 'img', 'logo.svg'), 'utf8');
+
+  /* The two files draw the same mark with different path syntax:
+     favicon.svg uses relative commands ("M0 0h36v36H0z"), logo.svg
+     absolute ones ("M 0 0 L 36 0 L 36 36 L 0 36 Z"). Comparing the
+     text would fail on a correct pair, so the test checks the
+     geometry both files must share: a 36-unit square, the D stem and
+     bowl, and the dot at (25, 18) with radius 5. */
+  const geometry = (value) => {
+    const circle = /<circle[^>]*cx="(\d+)"[^>]*cy="(\d+)"[^>]*r="(\d+)"/.exec(value);
+    const square = /d="M\s*0\s*0[^"]*36[^"]*36/.test(value);
+    const stem = /M\s*8\s*9/.test(value);
+    const bowl = /a\s*9\s*9\s*0\s*0\s*1\s*0\s*18|A\s*9\s*9\s*0\s*0\s*1\s*19\s*27/.test(value);
+    return {
+      circle: circle ? `${circle[1]},${circle[2]},${circle[3]}` : null,
+      square,
+      stem,
+      bowl
+    };
+  };
+
+  const faviconMark = geometry(svg);
+  const logoMark = geometry(logo);
+
+  const sameMark =
+    faviconMark.circle !== null &&
+    faviconMark.circle === logoMark.circle &&
+    faviconMark.square === logoMark.square &&
+    faviconMark.stem === logoMark.stem &&
+    faviconMark.bowl === logoMark.bowl;
+
+  if (!sameMark) {
+    fail(`favicon.svg does not draw the header logo mark: ${JSON.stringify(faviconMark)}`);
+  } else {
+    console.log(`OK    favicon.svg draws the same mark as the header logo (dot ${faviconMark.circle})`);
+  }
 }
 
 console.log(failures ? `\n${failures} test(s) failed` : '\nAll tests passed.');

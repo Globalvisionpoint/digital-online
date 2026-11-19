@@ -119,6 +119,109 @@ export function productTerms(locale) {
 }
 
 /* ------------------------------------------------------------
+   Favicons
+   ------------------------------------------------------------ */
+
+/**
+ * The favicon set, in the order a browser should consider it.
+ *
+ * The SVG comes first: it is the same mark as the header logo and
+ * stays sharp at every size, so a browser that understands it never
+ * falls back to a bitmap. The ICO stays last for legacy clients.
+ */
+export const ICON_TARGETS = [
+  { rel: 'icon', type: 'image/svg+xml', href: 'img/favicon.svg' },
+  { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'img/favicon-32.png' },
+  { rel: 'icon', type: 'image/x-icon', href: 'img/favicon.ico' },
+  { rel: 'apple-touch-icon', sizes: '192x192', href: 'img/favicon-192.png' }
+];
+
+/**
+ * Rewrite the icon block in one canonical order and one set.
+ *
+ * Every page used to scatter the four files, and the order decides
+ * which one a browser picks. This removes every <link> of the set and
+ * writes the canonical block where the first one was, so every page
+ * requests the identical set in the identical order, and the tab, the
+ * bookmark and the home-screen icon are always the header's mark.
+ *
+ * Only icon <link> elements are removed: the tags between them (the
+ * title, the canonical, the description) stay where they are, which
+ * is why nothing else can be swallowed.
+ *
+ * @param {string} source   the page as it is on disk
+ * @param {string} [prefix] relative path to the site root ('../' in a locale)
+ * @returns {string} the page with a canonical icon block
+ */
+export function normalizeIcons(source, prefix = '') {
+  const tree = parseHtml(source);
+  const nl = newlineOf(tree);
+  const indent = '    ';
+
+  const linkFor = (icon) => {
+    const attrs = [
+      `rel="${icon.rel}"`,
+      icon.type ? `type="${icon.type}"` : null,
+      icon.sizes ? `sizes="${icon.sizes}"` : null,
+      `href="${prefix}${icon.href}"`
+    ].filter(Boolean);
+    return `<link ${attrs.join(' ')}>`;
+  };
+
+  const block = ICON_TARGETS.map(icon => `${indent}${linkFor(icon)}`).join(nl);
+
+  const icons = findElements(tree, e =>
+    e.tag === 'link' && /^(icon|shortcut icon|apple-touch-icon)$/i.test(getAttr(e, 'rel') || '')
+  );
+
+  if (!icons.length) {
+    const head = findFirst(tree, e => e.tag === 'head');
+    if (!head) return source;
+    return applyPatches(source, [{
+      start: head.openEnd,
+      end: head.openEnd,
+      text: `${nl}${block}`
+    }]);
+  }
+
+  /* Where the block belongs: the line of the first icon. */
+  const anchor = source.lastIndexOf('\n', icons[0].start - 1) + 1;
+  const patches = [];
+
+  icons.forEach((element, index) => {
+    const lineStart = source.lastIndexOf('\n', element.start - 1) + 1;
+    const lineEnd = source.indexOf('\n', element.end);
+    const end = lineEnd === -1 ? element.end : lineEnd + 1;
+
+    if (index === 0) {
+      // The canonical block replaces the first icon's line.
+      patches.push({ start: lineStart, end, text: `${block}${nl}` });
+    } else {
+      patches.push({ start: lineStart, end, text: '' });
+    }
+  });
+
+  // Nothing to change when the block already sits exactly here.
+  if (icons.length === ICON_TARGETS.length &&
+      source.slice(anchor, icons[0].end) === `${indent}${linkFor(ICON_TARGETS[0])}`) {
+    return source;
+  }
+
+  return applyPatches(source, patches);
+}
+
+/**
+ * The canonical icon href of a page, for the tests.
+ *
+ * @param {string} file the page file name
+ * @param {string} locale the locale of the page
+ */
+export function iconHref(locale, href) {
+  return `${getLocale(locale).prefix ? '../' : ''}${href}`;
+}
+
+
+/* ------------------------------------------------------------
    Share image tags
    ------------------------------------------------------------ */
 

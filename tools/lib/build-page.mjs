@@ -15,7 +15,7 @@ import { localizePage } from './apply.mjs';
 import { LOCALES, getLocale, canonicalFor, pagePath, relativePage, SITE_URL } from './config.mjs';
 import { injectSwitcher, switcherScriptTag, stripSwitcher } from './inject.mjs';
 import { asciiHeaderNavPatches } from './ascii-header.mjs';
-import { ensureShareTags, ensureAgentMetadata, ensureMarkdownLinks } from './metadata.mjs';
+import { ensureShareTags, ensureAgentMetadata, ensureMarkdownLinks, normalizeIcons } from './metadata.mjs';
 
 /**
  * @param {string} source   Romanian HTML
@@ -91,6 +91,7 @@ export function buildPage(source, fileName, catalog, locale) {
      differs. The product terms are written per locale so a translated
      homepage never advertises the Romanian wording. */
   html = ensureShareTags(html, locale);
+  html = normalizeIcons(html, locale === 'ro' ? '' : '../');
   html = ensureMarkdownLinks(html, fileName, locale);
   if (fileName === 'index.html') html = ensureAgentMetadata(html, locale);
 

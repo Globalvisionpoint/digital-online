@@ -16,7 +16,7 @@
 import { parseHtml, findElements, findFirst, getAttr, applyPatches } from './html.mjs';
 import { LOCALES, getLocale, canonicalFor } from './config.mjs';
 import { replaceHreflang, replaceOgLocale, newlineOf } from './build-page.mjs';
-import { ensureShareTags, ensureAgentMetadata, ensureMarkdownLinks } from './metadata.mjs';
+import { ensureShareTags, ensureAgentMetadata, ensureMarkdownLinks, normalizeIcons } from './metadata.mjs';
 
 /**
  * Build the Open Graph and Twitter Card tags of a page that has
@@ -169,53 +169,10 @@ export function fixRoSeo(source, fileName) {
     patches.push({ start: match.index, end: match.index + match[0].length, text: '' });
   }
 
-  /* --- Favicon: use the same symbol as the header logo everywhere --- */
-  const iconLinks = findElements(tree, e =>
-    e.tag === 'link' && /^(icon|apple-touch-icon)$/i.test(getAttr(e, 'rel') || '')
-  );
-  const iconTargets = [
-    { rel: 'icon', type: 'image/x-icon', href: 'img/favicon.ico' },
-    { rel: 'icon', type: 'image/svg+xml', href: 'img/favicon.svg' },
-    { rel: 'icon', type: 'image/png', sizes: '32x32', href: 'img/favicon-32.png' },
-    { rel: 'apple-touch-icon', sizes: '192x192', href: 'img/favicon-192.png' }
-  ];
-
-  for (const target of iconTargets) {
-    const existing = iconLinks.find(e =>
-      (getAttr(e, 'rel') || '').toLowerCase() === target.rel &&
-      ((target.type && getAttr(e, 'type') === target.type) ||
-       (target.rel === 'apple-touch-icon' && !target.type))
-    );
-    if (!existing) continue;
-
-    for (const [name, value] of Object.entries(target)) {
-      const attr = existing.attrs.find(a => a.name.toLowerCase() === name);
-      if (attr && attr.hasValue && attr.value !== value) {
-        patches.push({ start: attr.valueStart, end: attr.valueEnd, text: escapeAttr(value) });
-      } else if (!attr) {
-        patches.push({
-          start: existing.openEnd - 1,
-          end: existing.openEnd - 1,
-          text: ` ${name}="${escapeAttr(value)}"`
-        });
-      }
-    }
-  }
-
-  const missingIcons = iconTargets.filter(target => !iconLinks.some(e =>
-    (getAttr(e, 'rel') || '').toLowerCase() === target.rel &&
-    ((target.type && getAttr(e, 'type') === target.type) ||
-     (target.rel === 'apple-touch-icon' && !target.type))
-  ));
-  if (missingIcons.length) {
-    const head = findFirst(tree, e => e.tag === 'head');
-    if (head) {
-      const markup = missingIcons.map(icon =>
-        `    <link ${Object.entries(icon).map(([name, value]) => `${name}="${escapeAttr(value)}"`).join(' ')}>`
-      ).join(nl);
-      patches.push({ start: head.openEnd, end: head.openEnd, text: `${nl}${markup}` });
-    }
-  }
+  /* --- Favicon: the same mark as the header logo, in one order --- */
+  /* normalizeIcons rewrites the whole block below; nothing to do per
+     icon here. Kept in the pipeline so every page is normalized by
+     one function rather than by two that could disagree. */
 
   /* --- hreflang alternates: every language, pointing at itself --- */
   patches.push(...replaceHreflang(tree, fileName, 'ro'));
@@ -294,8 +251,9 @@ export function fixRoSeo(source, fileName) {
 
   const withSocial = applyPatches(source, patches);
 
-  /* --- Share image, Markdown sibling, large card, product terms --- */
-  const withLinks = ensureMarkdownLinks(withSocial, fileName, 'ro');
+  /* --- Share image, favicons, Markdown sibling, product terms --- */
+  const withIcons = normalizeIcons(withSocial, '');
+  const withLinks = ensureMarkdownLinks(withIcons, fileName, 'ro');
   const withImage = ensureShareTags(withLinks, 'ro');
   if (fileName !== 'index.html') return withImage;
   return ensureAgentMetadata(withImage, 'ro');
