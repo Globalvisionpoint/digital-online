@@ -5,3 +5,9 @@ Thumbs.db
 *.log
 bump.ps1
 node_modules/
+
+# Temporary files from local checks (screenshots, one-off scripts).
+_*.mjs
+_*.py
+_*.png
+_*.html
