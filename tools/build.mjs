@@ -12,12 +12,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { LOCALE_CODES, LOCALES, getLocale } from './lib/config.mjs';
+import { LOCALE_CODES, LOCALES, getLocale, canonicalFor } from './lib/config.mjs';
 import { buildPage, appendSwitcherScript } from './lib/build-page.mjs';
 import { injectSwitcher } from './lib/inject.mjs';
 import { fixRoSeo } from './lib/ro-seo.mjs';
 import { renderMiddleware } from './lib/middleware.mjs';
 import { renderSitemap } from './lib/sitemap.mjs';
+import { loadState, updateState, hashContent } from './lib/sitemap-state.mjs';
 import { renderMarkdown } from './lib/markdown.mjs';
 
 const root = path.resolve(import.meta.dirname, '..');
@@ -94,6 +95,9 @@ function loadCatalog(locale) {
 }
 
 /* ---------- 1. Romanian source pages: switcher + SEO tags ---------- */
+/* Every page the build writes is hashed as it lands, so the sitemap
+   can date it from real content rather than from the clock. */
+const pageHashes = new Map();
 let roChanged = 0;
 for (const page of PAGES) {
   const file = path.join(root, page);
@@ -105,6 +109,7 @@ for (const page of PAGES) {
     fs.writeFileSync(file, html, 'utf8');
     roChanged += 1;
   }
+  pageHashes.set(canonicalFor(page, 'ro'), hashContent(html));
 }
 if (roChanged) console.log(`[ro] switcher and SEO tags updated on ${roChanged} pages`);
 
@@ -124,6 +129,7 @@ for (const locale of TARGETS) {
     const source = fs.readFileSync(path.join(root, page), 'utf8');
     const html = buildPage(source, page, catalog, locale);
     fs.writeFileSync(path.join(outDir, page), html, 'utf8');
+    pageHashes.set(canonicalFor(page, locale), hashContent(html));
     written += 1;
   }
 
@@ -146,9 +152,21 @@ fs.writeFileSync(middlewareFile, renderMiddleware(PAGES), 'utf8');
 console.log('\n[middleware] middleware.ts written (IP -> language, Accept -> Markdown)');
 
 /* ---------- 4. Search sitemap ---------- */
+/* The date of a page comes from its content hash, so a deploy that
+   changed nothing keeps the dates it had and the crawler is not sent
+   to re-read the whole site for nothing. */
+const sitemapStateFile = path.join(root, 'tools', 'sitemap-state.json');
+const previousState = loadState(sitemapStateFile);
+const today = new Date().toISOString().slice(0, 10);
+const { dates, state: nextState, changed, removed } = updateState(previousState, pageHashes, today);
+
 const sitemapFile = path.join(root, 'sitemap.xml');
-fs.writeFileSync(sitemapFile, renderSitemap(PAGES), 'utf8');
-console.log(`[sitemap] ${PAGES.length * LOCALES.length} localized page URLs written`);
+fs.writeFileSync(sitemapFile, renderSitemap(PAGES, dates), 'utf8');
+fs.writeFileSync(sitemapStateFile, `${JSON.stringify(nextState, null, 2)}\n`, 'utf8');
+console.log(
+  `[sitemap] ${PAGES.length * LOCALES.length} localized page URLs written ` +
+  `(${changed.length} changed, ${removed.length} removed)`
+);
 
 /* ---------- 5. Markdown siblings, for agents ---------- */
 /* Every page gets a .md next to it, in every locale, converted from

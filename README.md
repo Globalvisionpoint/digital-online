@@ -52,11 +52,19 @@ npm run verify      # lint cataloage + teste
 Ce scrie `npm run i18n` în rădăcină:
 
 - `middleware.ts` — rutare Vercel: alegerea limbii, negocierea `Accept` (HTML ↔ Markdown), 404/406 în Markdown, un singur host canonic (`www` → apex)
-- `sitemap.xml` — fiecare pagină în fiecare limbă, cu alternates
+- `sitemap.xml` — fiecare pagină în fiecare limbă, cu alternates și `<lastmod>`
 - `index.md`, `servicii-it.md`, … și echivalentele din `/en/`, `/es/`, `/pt-br/` — conținutul paginii, fără navigare, servit la `Accept: text/markdown`
 - `llms.txt` și versiunile localizate sunt scrise manual, nu generate
 
 Fișierele `.md` și `middleware.ts` trebuie regenerate după orice modificare de HTML: testele verifică dacă sunt actuale.
+
+### `<lastmod>`: data vine din conținut, nu din ceas
+
+`tools/sitemap-state.json` ține un hash al fiecărei pagini și data la care a fost schimbată ultima dată. La build, pagina se hash-uiește din nou: dacă bytes-ii sunt identici, data rămâne; dacă diferă, primește data de azi.
+
+De ce contează: Google ignoră `<lastmod>` dacă îl vede schimbându-se la fiecare deploy fără motiv. Un build care nu schimbă nimic produce un `sitemap.xml` identic byte cu byte, deci crawlerul nu e trimis să recitească tot site-ul degeaba.
+
+State-ul se commite în git. Ștergerea lui nu strică nimic — următorul build datează toate paginile cu ziua respectivă.
 
 ## Pentru agenți
 

@@ -316,7 +316,13 @@ for (const file of files) {
   const expectedFullSitemap = renderSitemap(files);
   const actualFullSitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
   const fullEntryCount = [...actualFullSitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].length;
-  if (actualFullSitemap !== expectedFullSitemap || fullEntryCount !== files.length * 4) {
+
+  /* The dates come from the state file and from content hashes, so a
+     comparison here strips them: what this test owns is the URL set
+     and the alternate cluster, not when a page last changed. */
+  const withoutDates = xml => xml.replace(/^[ \t]*<lastmod>[^<]*<\/lastmod>\r?\n/gm, '');
+  if (withoutDates(actualFullSitemap) !== withoutDates(expectedFullSitemap) ||
+      fullEntryCount !== files.length * 4) {
     fail(`generated sitemap does not match all ${files.length * 4} localized page URLs`);
   } else {
     console.log(`OK    generated sitemap matches all ${fullEntryCount} localized page URLs`);
@@ -1243,6 +1249,76 @@ for (const file of files) {
   }
 
   console.log('OK    the brand and its product terms are named together on every homepage');
+}
+
+/* ------------------------------------------------------------
+   21. The sitemap dates each page from its content, not from the
+       build clock. A crawler trusts <lastmod> only when it moves
+       for a real reason, so a rebuild that changes nothing must
+       produce an identical sitemap.
+   ------------------------------------------------------------ */
+{
+  const { loadState, updateState, hashContent } = await import('./lib/sitemap-state.mjs');
+  const { renderSitemap } = await import('./lib/sitemap.mjs');
+
+  /* 21a. Every URL in the generated sitemap carries a valid date. */
+  const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
+  const entries = [...sitemap.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(match => match[1]);
+  const undated = entries.filter(entry => !/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(entry));
+  if (undated.length) fail(`${undated.length} sitemap entries carry no lastmod`);
+
+  /* 21b. A page whose bytes did not change keeps its old date. */
+  const today = '2026-01-01';
+  const later = '2026-06-15';
+  const first = updateState({ version: 1, pages: {} }, new Map([['/a', hashContent('<p>A</p>')]]), today);
+  const unchanged = updateState(first.state, new Map([['/a', hashContent('<p>A</p>')]]), later);
+  if (unchanged.dates['/a'] !== today) {
+    fail(`an unchanged page moved its date from ${today} to ${unchanged.dates['/a']}`);
+  }
+  if (unchanged.changed.length !== 0) {
+    fail(`an unchanged page was reported as changed: ${unchanged.changed.join(', ')}`);
+  }
+
+  /* 21c. A page whose bytes changed gets the new date. */
+  const edited = updateState(unchanged.state, new Map([['/a', hashContent('<p>B</p>')]]), later);
+  if (edited.dates['/a'] !== later) {
+    fail(`an edited page kept its old date ${edited.dates['/a']}`);
+  }
+  if (edited.changed.join(',') !== '/a') fail('an edited page was not reported as changed');
+
+  /* 21d. A page that disappears is dropped from the state. */
+  const dropped = updateState(edited.state, new Map(), later);
+  if (dropped.removed.join(',') !== '/a') fail('a removed page stayed in the state');
+
+  /* 21e. A malformed date is refused rather than written. */
+  let refused = false;
+  try {
+    updateState({ version: 1, pages: {} }, new Map([['/a', 'x']]), '19-11-2026');
+  } catch {
+    refused = true;
+  }
+  if (!refused) fail('a malformed sitemap date was accepted');
+
+  /* 21f. A missing or corrupt state file falls back to a fresh one. */
+  const missing = loadState(path.join(root, 'tools', 'does-not-exist.json'));
+  if (Object.keys(missing.pages).length !== 0) fail('a missing state file did not start fresh');
+  const corruptFile = path.join(root, '_corrupt-state.json');
+  fs.writeFileSync(corruptFile, '{not json', 'utf8');
+  const corrupt = loadState(corruptFile);
+  fs.unlinkSync(corruptFile);
+  if (Object.keys(corrupt.pages).length !== 0) fail('a corrupt state file was not survived');
+
+  /* 21g. Rendering the same dates twice is byte-identical, which is
+     what keeps a no-op deploy from looking like a rewrite. */
+  const dates = Object.fromEntries(entries.map(entry => [
+    /<loc>([^<]+)<\/loc>/.exec(entry)[1],
+    '2026-11-19'
+  ]));
+  const a = renderSitemap(['index.html'], dates);
+  const b = renderSitemap(['index.html'], dates);
+  if (a !== b) fail('sitemap rendering is not deterministic');
+
+  console.log('OK    sitemap lastmod follows content changes and stays stable on a no-op build');
 }
 
 console.log(failures ? `\n${failures} test(s) failed` : '\nAll tests passed.');
