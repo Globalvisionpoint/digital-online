@@ -5,7 +5,7 @@ Site complet pentru **Digital Online** (Global Vision Point Limited), cu toate s
 ## Structură
 
 ```
-site nou/
+digital-online/
 ├── index.html              # Pagina principală
 ├── servicii-it.html        # Servicii IT & Web
 ├── magazine-online.html    # Magazine Online
@@ -13,7 +13,7 @@ site nou/
 ├── consultanta.html        # Consultanță Business
 ├── import-china.html       # Import Produse China
 ├── promovare.html          # Promovare & Marketing (Google/Meta/TikTok Ads)
-├── video-foto-ai.html      # Video-Foto & Generare AI
+├── montaj-editare-video-foto.html  # Montaj & Editare Video-Foto
 ├── implementare-ai.html    # Implementare AI & Chatboți
 ├── platforme-custom.html   # Platforme & Aplicații Custom
 ├── css/
@@ -33,11 +33,11 @@ site nou/
 - ✅ **SEO friendly** — meta descriptions, headings ierarhice, breadcrumbs
 - ✅ **Animații subtile** la scroll
 - ✅ **Titluri hero animate** — liniile intră alternativ din stânga și din dreapta, ca un fermoar, urmărind liniile reale de text (rand 1 stânga, rand 2 dreapta, rand 3 stânga), măsurate la runtime deci corecte la orice lățime și după redimensionare (ex. `DIGITAL` / `ONLINE` pe prima pagină)
-- ✅ **Fonturi premium** (Inter + Plus Jakarta Sans) de la Google Fonts
+- ✅ **Fonturi premium** (Aspera + Inter Tight) găzduite local, fără cereri către Google Fonts
 
 ## Deschidere locală
 
-Pur și simplu deschide `index.html` în browser. Nu necesită build sau server.
+Deschide `index.html` în browser pentru paginile statice. Pentru middleware (negocierea Markdown, 404 în Markdown) folosește serverul local descris mai jos.
 
 ## Generare (i18n, Markdown, middleware)
 
@@ -75,7 +75,7 @@ State-ul se commite în git. Ștergerea lui nu strică nimic — următorul buil
 
 ```bash
 # Opțional: pornire server local cu Python
-cd "site nou"
+cd digital-online
 python -m http.server 8000
 # apoi accesează http://localhost:8000
 ```
@@ -93,8 +93,8 @@ Datele legale sunt plasate în secțiunea „Încredere & Transparență" a pagi
 
 - HTML5 semantic
 - CSS3 (variabile, flexbox, grid, animații, gradient)
-- Vanilla JavaScript (zero dependențe)
-- Google Fonts (Inter, Plus Jakarta Sans)
+- Vanilla JavaScript pentru UI, plus `@vercel/functions` pentru middleware
+- Fonturi găzduite local (Aspera, Inter Tight), fără Google Fonts
 
 ---
 
