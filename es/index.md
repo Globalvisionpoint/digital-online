@@ -70,13 +70,13 @@ Todo empezó con la misma pregunta que probablemente te estás haciendo ahora mi
 
 ![El equipo de Digital Online en la oficina](https://digital-online.ro/es/../img/team-office.webp)
 
-### El comienzo.
+### El comienzo
 
 Nunca quisimos ser una agencia web más. Queríamos ser el socio que entiende y construye, no solo entrega. Partimos de una verdad simple: la mayoría de los emprendedores no necesita otra web bonita que se quede ahí. Necesitan un sistema. Una web que vende, una tienda online que funciona sola, integraciones que eliminan el trabajo manual, campañas que traen clientes reales y un panel donde ves exactamente lo que pasa, en tiempo real y sin informes maquillados.
 
 ![El equipo de Digital Online trabajando](https://digital-online.ro/es/../img/team-work.webp)
 
-### El ecosistema.
+### El ecosistema
 
 Así, año a año, construimos un ecosistema completo: webs y servicios TI, tiendas online, importación de productos de China, integraciones automáticas, consultoría de negocio, publicidad, montaje y edición de vídeo y foto, implementación de IA y chatbots, y plataformas a medida. Cada pieza está pensada para conectarse con las demás, no para quedarse aislada.
 

@@ -70,13 +70,13 @@ It all started from the same question you are probably asking yourself right now
 
 ![The Digital Online team in the office](https://digital-online.ro/en/../img/team-office.webp)
 
-### The beginning.
+### The beginning
 
 We never set out to be just another web agency. We set out to be the partner who understands and builds, not just delivers. We started from a simple truth: most entrepreneurs do not need one more beautiful site that just sits there. They need a system. A site that sells, an online store that runs on its own, integrations that wipe out manual work, campaigns that bring real customers, and a dashboard where you see exactly what is happening, in real time, with no polished reports.
 
 ![The Digital Online team at work](https://digital-online.ro/en/../img/team-work.webp)
 
-### The ecosystem.
+### The ecosystem
 
 That is how, year after year, we built a complete ecosystem: websites and IT services, online stores, product imports from China, automated integrations, business consulting, advertising, video and photo editing, AI and chatbots, and custom platforms. Every piece was built to connect to the others, not to stand alone.
 

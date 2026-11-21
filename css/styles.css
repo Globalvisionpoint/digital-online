@@ -3898,9 +3898,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* Ritm vertical uniform, mai aerisit: fiecare bloc (deschidere, acte,
-     închidere) respiră, fără să pară lipit de vecinul lui. */
-  gap: clamp(48px, 5vw, 72px);
+  /* Ritm vertical uniform, suficient de strâns cât blocurile să se citească
+     ca un singur articol, dar destul de aerisit cât să nu pară lipite. */
+  gap: clamp(32px, 3.5vw, 52px);
 }
 
 /* Opening block — titlu + lede centrate, exact ca celelalte titluri
@@ -3944,9 +3944,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .hm-act {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* Foto și panoul stau una lângă alta, cu un gol real între ele: nimic nu
-     mai calcă peste marginea fotografiei. */
-  gap: clamp(24px, 3vw, 40px);
+  /* Foto și panoul stau una lângă alta, cu un gol mic dar clar: nici
+     suprapuse, nici împrăștiate. */
+  gap: clamp(24px, 2.2vw, 32px);
   align-items: center;
   max-width: 1080px;
   margin: 0 auto;
@@ -4011,6 +4011,8 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   font-weight: 600;
   letter-spacing: -0.02em;
   color: #ffffff;
+  /* Titlul stă pe centrul chenarului, ca un cap de pagină. */
+  text-align: center;
   margin: 0;
 }
 
@@ -4034,7 +4036,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .hm-post-close {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 3vw, 40px);
+  gap: clamp(24px, 2.2vw, 32px);
   align-items: start;
   max-width: 1080px;
   margin: 0 auto;

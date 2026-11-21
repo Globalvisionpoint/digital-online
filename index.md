@@ -70,13 +70,13 @@ Totul a pornit din aceeași întrebare pe care ți-o pui probabil și tu acum: d
 
 ![Echipa Digital Online la birou](https://digital-online.ro/img/team-office.webp)
 
-### Începutul.
+### Începutul
 
 Nu ne-am propus niciodată să fim încă o agenție de site-uri. Ne-am propus să fim partenerul care înțelege și construiește, nu doar livrează. Am pornit de la un adevăr simplu: majoritatea antreprenorilor nu au nevoie de încă un site frumos care stă degeaba. Au nevoie de un sistem. Un site care vinde, un magazin online care rulează automat, integrări care elimină munca manuală, campanii care aduc clienți reali, și un dashboard unde vezi exact ce se întâmplă, în timp real, fără rapoarte cosmetizate.
 
 ![Echipa Digital Online lucrând](https://digital-online.ro/img/team-work.webp)
 
-### Ecosistem.
+### Ecosistem
 
 Așa am construit, an de an, un ecosistem complet: site-uri web și servicii IT, Magazine Online, import produse din China, integrări automate, consultanță business, promovare și ads, montaj și editare video-foto, implementare AI și chatboți și platforme custom. Fiecare piesă construită să se conecteze cu celelalte, nu izolat.
 
