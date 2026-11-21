@@ -1405,6 +1405,29 @@
       ]
     },
     {
+      "key": "confidențialitate#ncrreb",
+      "source": "Confidențialitate",
+      "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
+      "places": [
+        "about.html <a>",
+        "consultanta.html <a>",
+        "contact.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
+        "privacy.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
+        "termeni-si-conditii.html <a>"
+      ]
+    },
+    {
       "key": "configurăm-google-ads-meta-business-tikt#7bwwg3",
       "source": "Configurăm Google Ads, Meta Business, TikTok Ads, pixeli, tracking, conversii. Audităm ce există deja.",
       "context": "",
@@ -3383,6 +3406,29 @@
       ]
     },
     {
+      "key": "informații-legale#1q9uqiw",
+      "source": "Informații legale",
+      "context": "Accessible label of the \"legal-footer-links\" control. Read by screen readers; keep it short and action-oriented.",
+      "places": [
+        "about.html <nav aria-label>",
+        "consultanta.html <nav aria-label>",
+        "contact.html <nav aria-label>",
+        "implementare-ai.html <nav aria-label>",
+        "import-china.html <nav aria-label>",
+        "index.html <nav aria-label>",
+        "integrari.html <nav aria-label>",
+        "magazine-online.html <nav aria-label>",
+        "montaj-editare-video-foto.html <nav aria-label>",
+        "platforme-custom.html <nav aria-label>",
+        "politica-confidentialitate.html <nav aria-label>",
+        "politica-cookie.html <nav aria-label>",
+        "privacy.html <nav aria-label>",
+        "promovare.html <nav aria-label>",
+        "servicii-it.html <nav aria-label>",
+        "termeni-si-conditii.html <nav aria-label>"
+      ]
+    },
+    {
       "key": "informații-legale#tg9p7r",
       "source": "INFORMAȚII LEGALE",
       "context": "",
@@ -4723,10 +4769,20 @@
       "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
       "places": [
         "about.html <a>",
+        "consultanta.html <a>",
         "contact.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
         "politica-confidentialitate.html <a>",
         "politica-cookie.html text",
         "privacy.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
         "termeni-si-conditii.html <a>"
       ]
     },
@@ -5562,6 +5618,29 @@
       ]
     },
     {
+      "key": "setări-cookie#mtcuo9",
+      "source": "Setări cookie",
+      "context": "",
+      "places": [
+        "about.html text",
+        "consultanta.html text",
+        "contact.html text",
+        "implementare-ai.html text",
+        "import-china.html text",
+        "index.html text",
+        "integrari.html text",
+        "magazine-online.html text",
+        "montaj-editare-video-foto.html text",
+        "platforme-custom.html text",
+        "politica-confidentialitate.html text",
+        "politica-cookie.html text",
+        "privacy.html text",
+        "promovare.html text",
+        "servicii-it.html text",
+        "termeni-si-conditii.html text"
+      ]
+    },
+    {
       "key": "setup-conturi#uqf8pm",
       "source": "Setup Conturi",
       "context": "",
@@ -6021,8 +6100,20 @@
       "context": "Link label. Name the destination in a natural way, not a literal translation of the Romanian.",
       "places": [
         "about.html <a>",
+        "consultanta.html <a>",
         "contact.html <a>",
+        "implementare-ai.html <a>",
+        "import-china.html <a>",
+        "index.html <a>",
+        "integrari.html <a>",
+        "magazine-online.html <a>",
+        "montaj-editare-video-foto.html <a>",
+        "platforme-custom.html <a>",
+        "politica-confidentialitate.html <a>",
+        "politica-cookie.html <a>",
         "privacy.html <a>",
+        "promovare.html <a>",
+        "servicii-it.html <a>",
         "termeni-si-conditii.html text"
       ]
     },

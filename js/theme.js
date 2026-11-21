@@ -699,18 +699,9 @@
   banner.hidden = Boolean(savedConsent);
   if (savedConsent) dispatchConsent(savedConsent);
 
-  const footerBottom = document.querySelector('.footer-bot');
-  if (footerBottom && !footerBottom.querySelector('.legal-footer-links')) {
-    const tr = (key) => (window.t ? window.t(key) : key);
-    const legalLinks = document.createElement('nav');
-    legalLinks.className = 'legal-footer-links';
-    legalLinks.setAttribute('aria-label', tr('footer.legal.label'));
-    legalLinks.innerHTML = `<a href="politica-confidentialitate.html"></a><a href="politica-cookie.html"></a><a href="termeni-si-conditii.html"></a><button type="button" data-cookie-settings></button>`;
-    legalLinks.querySelector('a[href="politica-confidentialitate.html"]').textContent = tr('footer.privacy');
-    legalLinks.querySelector('a[href="politica-cookie.html"]').textContent = tr('footer.cookies');
-    legalLinks.querySelector('a[href="termeni-si-conditii.html"]').textContent = tr('footer.terms');
-    legalLinks.querySelector('[data-cookie-settings]').textContent = tr('footer.cookieSettings');
-    footerBottom.append(legalLinks);
-    legalLinks.querySelector('[data-cookie-settings]').addEventListener('click', openSettings);
-  }
+  /* The legal links are part of the page markup, not built here: an
+     answer engine reads the static HTML and never runs this script,
+     so a link that only exists after JS would be invisible to it.
+     The footer buttons carry data-open-cookie-settings, which the
+     delegated handler above already opens. */
 })();

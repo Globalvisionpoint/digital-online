@@ -32,11 +32,6 @@
       'cookie.close': 'Închide',
       'cookie.save': 'Salvează preferințele',
       'cookie.note': 'Salvarea unei preferințe nu activează instrumente care nu sunt instalate pe site.',
-      'footer.legal.label': 'Informații legale',
-      'footer.privacy': 'Confidențialitate',
-      'footer.cookies': 'Politica de cookies',
-      'footer.terms': 'Termeni și condiții',
-      'footer.cookieSettings': 'Setări cookie',
       'form.notConnected': 'Formularul online nu este conectat și mesajul nu a fost trimis. Scrie-ne la contact@digital-online.ro sau contactează-ne pe WhatsApp.'
     },
 
@@ -60,11 +55,6 @@
       'cookie.close': 'Close',
       'cookie.save': 'Save preferences',
       'cookie.note': 'Saving a preference does not activate tools that are not installed on the site.',
-      'footer.legal.label': 'Legal information',
-      'footer.privacy': 'Privacy',
-      'footer.cookies': 'Cookie policy',
-      'footer.terms': 'Terms and conditions',
-      'footer.cookieSettings': 'Cookie settings',
       'form.notConnected': 'This form is not connected and your message was not sent. Write to us at contact@digital-online.ro or message us on WhatsApp.'
     },
 
@@ -88,11 +78,6 @@
       'cookie.close': 'Cerrar',
       'cookie.save': 'Guardar preferencias',
       'cookie.note': 'Guardar una preferencia no activa herramientas que no estén instaladas en el sitio.',
-      'footer.legal.label': 'Información legal',
-      'footer.privacy': 'Privacidad',
-      'footer.cookies': 'Política de cookies',
-      'footer.terms': 'Términos y condiciones',
-      'footer.cookieSettings': 'Ajustes de cookies',
       'form.notConnected': 'Este formulario no está conectado y el mensaje no se ha enviado. Escríbenos a contact@digital-online.ro o contáctanos por WhatsApp.'
     },
 
@@ -116,11 +101,6 @@
       'cookie.close': 'Fechar',
       'cookie.save': 'Salvar preferências',
       'cookie.note': 'Salvar uma preferência não ativa ferramentas que não estejam instaladas no site.',
-      'footer.legal.label': 'Informações legais',
-      'footer.privacy': 'Privacidade',
-      'footer.cookies': 'Política de cookies',
-      'footer.terms': 'Termos e condições',
-      'footer.cookieSettings': 'Configurações de cookies',
       'form.notConnected': 'Este formulário não está conectado e a mensagem não foi enviada. Escreva para contact@digital-online.ro ou fale conosco pelo WhatsApp.'
     }
   };
