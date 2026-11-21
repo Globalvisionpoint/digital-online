@@ -380,6 +380,9 @@
     const closeMenu = () => {
       menuToggle.classList.remove('is-open');
       mobileNav.classList.remove('is-open');
+      /* `hidden` readuce meniul în starea ascunsă şi în afara arborelui de
+         accesibilitate; CSS-ul face tranziţia, atributul garantează starea. */
+      mobileNav.hidden = true;
       menuToggle.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     };
@@ -387,6 +390,7 @@
     menuToggle.addEventListener('click', () => {
       const isOpen = menuToggle.classList.toggle('is-open');
       mobileNav.classList.toggle('is-open', isOpen);
+      mobileNav.hidden = !isOpen;
       menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
       document.body.style.overflow = isOpen ? 'hidden' : '';
     });

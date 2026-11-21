@@ -24,6 +24,9 @@
   function setOpen(open) {
     root.classList.toggle('is-open', open);
     trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    /* `hidden` ţine meniul în afara randării până la primul click, ca un
+       refresh să nu îl arate deschis înainte să se aplice CSS-ul. */
+    menu.hidden = !open;
   }
 
   trigger.addEventListener('click', function (event) {

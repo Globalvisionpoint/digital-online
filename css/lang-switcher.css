@@ -83,6 +83,14 @@
   transform: rotate(180deg);
 }
 
+/* `hidden` în markup ascunde meniul încă dinainte ca foaia de stil să se
+   încarce, așa că la refresh nu mai apare deschis pentru o fracțiune de
+   secundă. `display: none` de aici învinge orice display din regulile de
+   mai jos, cât timp atributul e prezent. */
+.lang-menu[hidden] {
+  display: none;
+}
+
 .lang-menu {
   position: absolute;
   top: calc(100% + 10px);

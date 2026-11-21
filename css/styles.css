@@ -1731,6 +1731,13 @@
 .theme .menu-toggle.is-open .close-icon { display: inline; }
 
 /* Mobile nav overlay */
+/* `hidden` în markup ţine meniul ascuns încă înainte de încărcarea CSS-ului,
+   deci un refresh pe desktop nu mai afişează pentru o clipă meniul de mobil.
+   Regula de aici are Specificitate mai mare decât `display: flex` de mai jos. */
+.theme .nav--mobile-overlay[hidden] {
+  display: none;
+}
+
 .theme .nav--mobile-overlay {
   position: fixed;
   inset: 0;

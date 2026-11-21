@@ -78,7 +78,7 @@ export function switcherMarkup(current, urls, labels = {}, prefix = '') {
           <span class="lang-trigger-code">${locale.shortLabel}</span>
           <svg class="lang-caret" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <ul class="lang-menu" id="langMenu" role="menu" aria-label="${labels.menu || 'Limbi'}">
+        <ul class="lang-menu" id="langMenu" hidden role="menu" aria-label="${labels.menu || 'Limbi'}">
 ${items}
         </ul>
       </div>`;

@@ -47,9 +47,9 @@
     <link rel="preload" href="../fonts/inter-tight-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="../img/seq/f000.webp?v=video-230-start-10" as="image" media="(min-width: 860px)">
     <link rel="preload" href="../img/seq/m/f000.webp?v=video-230-start-10" as="image" media="(max-width: 859px)">
-    <link rel="stylesheet" href="../css/styles.css?v=131bb-1793241153-tight-about">
-    <link rel="stylesheet" href="../css/lang-switcher.css">
-<!-- Three.js + GSAP -->
+    <link rel="stylesheet" href="../css/styles.css?v=131bb-1793241153-no-fouc">
+    <link rel="stylesheet" href="../css/lang-switcher.css?v=131bb-1793241153-no-fouc">
+    <!-- Three.js + GSAP -->
     <link rel="icon" type="image/svg+xml" href="../img/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico">
@@ -213,7 +213,7 @@
           <span class="lang-trigger-code">ES</span>
           <svg class="lang-caret" viewBox="0 0 10 6" aria-hidden="true" focusable="false"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <ul class="lang-menu" id="langMenu" role="menu" aria-label="Idiomas">
+        <ul class="lang-menu" id="langMenu" hidden role="menu" aria-label="Idiomas">
         <li role="none">
           <a role="menuitem" href="../promovare.html" class="lang-option" hreflang="ro" lang="ro" data-lang="ro">
             <span class="lang-option-flag"><img class="lang-flag-img" src="../img/flags/ro.svg" alt="Română" width="20" height="15" loading="lazy" decoding="async"></span>
@@ -257,7 +257,7 @@
     </header>
 
     <!-- Mobile nav overlay -->
-    <nav class="nav--mobile-overlay" id="mobileNav" aria-label="Navegación móvil">
+    <nav class="nav--mobile-overlay" id="mobileNav" hidden aria-label="Navegación móvil">
       <button class="mobile-nav-close" id="mobileNavClose" type="button" aria-label="Cerrar el menú">
         <span aria-hidden="true">✕</span>
       </button>
