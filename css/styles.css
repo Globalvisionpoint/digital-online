@@ -3996,26 +3996,6 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .hm-act--left .hm-act-body,
 .hm-act--right .hm-act-body { margin: 0; }
 
-/* Anul stă pe fotografie, ca pe coperta unei reviste. */
-.hm-act-year {
-  position: absolute;
-  left: clamp(16px, 2vw, 28px);
-  bottom: clamp(14px, 1.8vw, 26px);
-  z-index: 1;
-  font-family: 'Inter Tight', sans-serif;
-  font-size: clamp(40px, 4.5vw, 64px);
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #ffffff;
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.55);
-}
-
-.hm-act--right .hm-act-year {
-  left: auto;
-  right: clamp(16px, 2vw, 28px);
-}
-
 .hm-act-head {
   display: flex;
   flex-direction: column;
