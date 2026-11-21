@@ -3898,9 +3898,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* Ritm vertical uniform, suficient de strâns cât blocurile să se citească
-     ca un singur articol, dar destul de aerisit cât să nu pară lipite. */
-  gap: clamp(32px, 3.5vw, 52px);
+  /* Ritm vertical strâns: blocurile se citesc ca un singur articol, fără
+     pauze mari între ele. */
+  gap: clamp(24px, 2.6vw, 32px);
 }
 
 /* Opening block — titlu + lede centrate, exact ca celelalte titluri
@@ -3944,9 +3944,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .hm-act {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* Foto și panoul stau una lângă alta, cu un gol mic dar clar: nici
-     suprapuse, nici împrăștiate. */
-  gap: clamp(24px, 2.2vw, 32px);
+  /* Foto și panoul stau aproape una de alta: se citesc împreună, ca o
+     singură unitate. */
+  gap: clamp(16px, 1.7vw, 20px);
   align-items: center;
   max-width: 1080px;
   margin: 0 auto;
@@ -4036,7 +4036,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .hm-post-close {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 2.2vw, 32px);
+  gap: clamp(16px, 1.7vw, 20px);
   align-items: start;
   max-width: 1080px;
   margin: 0 auto;
@@ -4089,7 +4089,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
      în care titlul se rupe pe două rânduri. */
   .theme .section#proces { padding: 0; }
   .hm-about { padding: 24px 0 48px; }
-  .hm-post { gap: 32px; }
+  .hm-post { gap: 24px; }
   .hm-post-open { gap: 24px; margin-bottom: 0; }
 }
 
@@ -4098,8 +4098,8 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
    sa nu se dubleze cu padding-ul de sus al .hm-about. */
 @media (min-width: 861px) {
   .theme .section#proces { padding-bottom: 0; }
-  .hm-about { padding-top: 48px; }
-  .hm-post-open { gap: 40px; }
+  .hm-about { padding-top: 32px; }
+  .hm-post-open { gap: 32px; }
 }
 
 @media (max-width: 600px) {
