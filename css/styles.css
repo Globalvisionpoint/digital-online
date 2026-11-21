@@ -4045,11 +4045,13 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 .hm-act--right .hm-act-body { order: 1; }
 
 /* Closing block — oglinda capului de articol: tot grilă 2 coloane pe același
-   ax de 1080px, ca închiderea să nu mai „plutească” centrală și îngustă. */
+   ax de 1080px, ca închiderea să nu mai „plutească” centrală și îngustă.
+   Golul dintre cele două panouri este exact cel din actele de mai sus, ca
+   tot articolul să aibă aceeași distanță între coloane. */
 .hm-post-close {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: clamp(24px, 3vw, 40px);
   align-items: start;
   max-width: 1080px;
   margin: 0 auto;
@@ -4074,7 +4076,7 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 @media (max-width: 900px) {
   .hm-post-close {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
     align-items: stretch;
   }
   /* Act devine o singură coloană: panoul stă sub fotografie, cu un gol
