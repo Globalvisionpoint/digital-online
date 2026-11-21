@@ -1260,8 +1260,11 @@
 
 .theme .footer-row {
   display: grid;
-  grid-template-columns: 1.4fr 2fr;
-  gap: 32px;
+  /* Coloana de brand stă pe minimum necesar, iar cele trei coloane de linkuri
+     primesc restul spațiului: așa „Montaj & Editare Video-Foto" și orele de
+     program încap pe un singur rând, fără să se rupă. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.4fr);
+  gap: 28px;
 }
 
 .theme .footer-brand .logo {
@@ -1301,7 +1304,7 @@
 .theme .footer-cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
 
 .theme .footer-cols h5 {
@@ -4284,8 +4287,10 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     font-size: 14px;
   }
 
+  /* Linkurile din subsol păstrează mărimea lor de bază (14px). Forțarea la
+     16px rupea „Montaj & Editare Video-Foto" pe două rânduri în coloana
+     îngustă de servicii. */
   .theme .footer-brand p,
-  .theme .footer-cols a,
   .theme .footer-contact li,
   .theme .footer-contact-whatsapp a,
   .theme .footer-contact-whatsapp .wa-text strong {
