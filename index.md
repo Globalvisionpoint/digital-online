@@ -1,6 +1,6 @@
 # Digital Online, Web, Shopify, AI & Marketing Digital
 
-> Digital Online construiește site-uri, magazine online, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.
+> Site-uri, magazine online, integrări automate, video și AI. O echipă senior construiește sistemul digital care îți crește afacerea, în 4 limbi.
 
 Site-uri web, magazine online, import China, integrări automate, video & foto, promovare multi-channel, AI & chatboți, platforme custom. Construim, automatizăm și creștem business-ul tău online.
 

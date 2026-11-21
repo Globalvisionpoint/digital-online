@@ -67,12 +67,14 @@ Crawl-delay: 30
 Disallow: /cgi-bin/
 
 # ============================================================
-# AI BOTS - separare training (blocat) vs live search/citation (permis)
-# Training: GPTBot, ClaudeBot, CCBot, Bytespider, anthropic-ai
-# Live/citation: OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot
+# AI CRAWLERS - toate permise explicit
+# Vrem sa fim citati de motoarele AI, deci niciun crawler de AI nu
+# este blocat: nici cei de cautare/citare, nici cei de antrenare.
+# Un grup propriu inlocuieste regulile din "User-agent: *", deci
+# "Allow: /" aici este acces complet, fara limite mostenite.
 # ============================================================
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: OAI-SearchBot
 Allow: /
@@ -81,7 +83,7 @@ User-agent: ChatGPT-User
 Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 
 User-agent: Claude-SearchBot
 Allow: /
@@ -90,16 +92,55 @@ User-agent: Claude-User
 Allow: /
 
 User-agent: anthropic-ai
-Disallow: /
+Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 User-agent: Bytespider
-Disallow: /
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Timpibot
+Allow: /
+
+User-agent: ImagesiftBot
+Allow: /
 
 # ============================================================
 # Sitemaps

@@ -1,6 +1,6 @@
 # Digital Online, Web, Shopify, IA y Marketing Digital
 
-> Digital Online crea webs, tiendas online, integraciones automáticas, edición de vídeo, promoción multicanal e implementación de IA. Habla directamente con un equipo senior, en RO/EN/ES/PT.
+> Webs, tiendas online, integraciones automáticas, vídeo e IA. Un equipo senior construye el sistema digital que hace crecer tu negocio, en 4 idiomas.
 
 Webs, tiendas online, importación de productos de China, integraciones automáticas, vídeo y foto, promoción multicanal, IA y chatbots, plataformas a medida. Construimos, automatizamos y hacemos crecer tu negocio online.
 

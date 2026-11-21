@@ -8,6 +8,7 @@
    ============================================================ */
 
 import { LOCALES, getLocale } from './config.mjs';
+import { escapeForAttr } from './entities.mjs';
 
 /**
  * The flags, drawn from the official artwork of the `flag-icons`
@@ -30,8 +31,11 @@ const FLAGS = {
 /**
  * The badge markup for a flag.
  *
- * The image is decorative: the language is always spelled out next
- * to it, so the badge carries no accessible name of its own.
+ * Every flag carries its language name as alt text. In the header the
+ * flag is the only visual clue to the current language, so the name is
+ * what a screen reader announces there; in the dropdown the name sits
+ * next to the picture, which makes the alt slightly redundant but never
+ * wrong, and it keeps every image on the page carrying a real name.
  *
  * `eager` is for the flag in the header itself, which is above the
  * fold and must be there the moment the page paints. The badges in
@@ -40,8 +44,10 @@ const FLAGS = {
 export function flagSvg(flagCode, prefix = '', eager = false) {
   const src = FLAGS[flagCode];
   if (!src) return '';
+  const owner = LOCALES.find((l) => l.flag === flagCode);
+  const alt = escapeForAttr(owner ? owner.label : '');
   const loading = eager ? 'eager' : 'lazy';
-  return `<img class="lang-flag-img" src="${prefix}${src}" alt="" width="20" height="15" loading="${loading}" decoding="async">`;
+  return `<img class="lang-flag-img" src="${prefix}${src}" alt="${alt}" width="20" height="15" loading="${loading}" decoding="async">`;
 }
 
 /**

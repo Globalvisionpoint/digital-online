@@ -1,6 +1,6 @@
 # Digital Online, Web, Shopify, AI & Digital Marketing
 
-> Digital Online builds websites, online stores, automated integrations, video editing, multi-channel advertising and AI implementation. Talk directly to a senior team, in RO/EN/ES/PT.
+> Websites, online stores, automated integrations, video and AI. A senior team builds the digital system that grows your business, in 4 languages.
 
 Websites, online stores, product imports from China, automated integrations, video & photo, multi-channel advertising, AI & chatbots, custom platforms. We build, automate and grow your business online.
 

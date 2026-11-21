@@ -1,6 +1,6 @@
 # Privacidade | Digital Online
 
-> Em resumo: quais dados o digital-online.ro coleta, por quê, por quanto tempo os guardamos e como exercer os seus direitos. O texto completo está na política de privacidade.
+> Quais dados o digital-online.ro coleta, por quê, por quanto tempo os guardamos e como exercer seus direitos. Texto completo na política de privacidade.
 
 PROTEÇÃO DE DADOS
 

@@ -1,6 +1,6 @@
 # Contato Digital Online | Fale sobre o seu projeto
 
-> Como falar conosco: e-mail, telefone e WhatsApp, horário, os idiomas em que respondemos e o que incluir na primeira mensagem para receber uma proposta rapidamente.
+> Como falar conosco: e-mail, telefone e WhatsApp, horário, idiomas e o que incluir na primeira mensagem para receber uma proposta rápida.
 
 CONTATO
 

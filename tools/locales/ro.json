@@ -2287,14 +2287,6 @@
       ]
     },
     {
-      "key": "digital-online-construiește-site-uri-mag#1yu804",
-      "source": "Digital Online construiește site-uri, magazine online, integrări automate, editare video, promovare multi-channel și implementare AI. Discuiți direct cu o echipă senior, în RO/EN/ES/PT.",
-      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
-      "places": [
-        "index.html meta description"
-      ]
-    },
-    {
       "key": "digital-online-este-brandul-sub-care-glo#14fmmtt",
       "source": "Digital Online este brandul sub care Global Vision Point Limited construiește și întreține prezența online a firmelor mici și mijlocii: site-uri de prezentare, magazine online, platforme custom, integrări automate, implementări AI și campaniile care aduc trafic către ele. Lucrăm dintr-o singură echipă, cu design, cod, SEO și promovare în același loc, tocmai ca să nu primești un site frumos pe care nimeni nu îl găsește.",
       "context": "",
@@ -5750,6 +5742,14 @@
       "context": "Social share description. One or two sentences that summarise the page for someone who sees the link in a feed.",
       "places": [
         "index.html meta og:description"
+      ]
+    },
+    {
+      "key": "site-uri-magazine-online-integrări-autom#95pqrt",
+      "source": "Site-uri, magazine online, integrări automate, video și AI. O echipă senior construiește sistemul digital care îți crește afacerea, în 4 limbi.",
+      "context": "SEO meta description. One or two sentences that describe the page and appear in search results.",
+      "places": [
+        "index.html meta description"
       ]
     },
     {
