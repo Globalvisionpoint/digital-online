@@ -3895,8 +3895,9 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  /* Ritm vertical uniform între toate blocurile (deschidere, acte, închidere). */
-  gap: 40px;
+  /* Ritm vertical uniform, mai aerisit: fiecare bloc (deschidere, acte,
+     închidere) respiră, fără să pară lipit de vecinul lui. */
+  gap: clamp(48px, 5vw, 72px);
 }
 
 /* Opening block — titlu + lede centrate, exact ca celelalte titluri
@@ -3936,12 +3937,13 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   text-align: center;
 }
 
-/* Act — foto + panou de text suprapus (compoziție editorială) */
+/* Act — foto + panou de text, pe două coloane separate */
 .hm-act {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /* fără gap: panoul intră peste marginea fotografiei */
-  gap: 0;
+  /* Foto și panoul stau una lângă alta, cu un gol real între ele: nimic nu
+     mai calcă peste marginea fotografiei. */
+  gap: clamp(24px, 3vw, 40px);
   align-items: center;
   max-width: 1080px;
   margin: 0 auto;
@@ -3986,9 +3988,10 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
   border: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-/* suprapunere: panoul calcă peste marginea interioară a pozei */
-.hm-act--left .hm-act-body { margin-left: -72px; }
-.hm-act--right .hm-act-body { margin-right: -72px; }
+/* Panoul nu mai calcă peste fotografie: cele două coloane sunt separate de
+   golul grilei, iar panoul stă pe aceeași coloană cu textul lui. */
+.hm-act--left .hm-act-body,
+.hm-act--right .hm-act-body { margin: 0; }
 
 /* Anul stă pe fotografie, ca pe coperta unei reviste. */
 .hm-act-year {
@@ -4074,16 +4077,16 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
     gap: 24px;
     align-items: stretch;
   }
-  /* Act devine o singură coloană: panoul urcă peste poză (suprapunere
-     verticală în loc de orizontală) și rămâne la 16px de margini. */
+  /* Act devine o singură coloană: panoul stă sub fotografie, cu un gol
+     vizibil între ele, nu peste ea. */
   .hm-act {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 20px;
     align-items: stretch;
   }
   .hm-act--left .hm-act-body,
   .hm-act--right .hm-act-body {
-    margin: -56px 16px 0;
+    margin: 0;
   }
   /* Titlul de deschidere rămâne centrat și pe mobil. */
   .hm-post-open {
@@ -4095,20 +4098,20 @@ a.cp-row:hover .cp-wa { transform: scale(1.15); }
 }
 
 @media (max-width: 860px) {
-  /* Ritm vertical egal (24px) între #proces → titlu → lede → foto, pe toată
-     zona în care titlul se rupe pe două rânduri. */
+  /* Ritm vertical egal între #proces → titlu → lede → foto, pe toată zona
+     în care titlul se rupe pe două rânduri. */
   .theme .section#proces { padding: 0; }
   .hm-about { padding: 24px 0 48px; }
-  .hm-post { gap: 24px; }
+  .hm-post { gap: 32px; }
   .hm-post-open { gap: 24px; margin-bottom: 0; }
 }
 
-/* Desktop: acelasi ritm vertical egal ca pe mobil (40px), la scara mai mare.
-   Un singur proprietar pentru spatiul de deasupra titlului: padding-ul de jos
-   al #proces = 0, ca sa nu se dubleze cu padding-ul de sus al .hm-about. */
+/* Desktop: acelasi ritm vertical, la scara mai mare. Un singur proprietar
+   pentru spatiul de deasupra titlului: padding-ul de jos al #proces = 0, ca
+   sa nu se dubleze cu padding-ul de sus al .hm-about. */
 @media (min-width: 861px) {
   .theme .section#proces { padding-bottom: 0; }
-  .hm-about { padding-top: 40px; }
+  .hm-about { padding-top: 48px; }
   .hm-post-open { gap: 40px; }
 }
 
